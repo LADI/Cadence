@@ -1110,11 +1110,11 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
         self.systray.addMenuAction("tools", "app_catia", "Catia")
         self.systray.addMenuAction("tools", "app_claudia", "Claudia")
         self.systray.addMenuSeparator("tools", "tools_sep")
-        self.systray.addMenuAction("tools", "app_logs", "Logs")
-        self.systray.addMenuAction("tools", "app_meter_in", "Meter (Inputs)")
-        self.systray.addMenuAction("tools", "app_meter_out", "Meter (Output)")
-        self.systray.addMenuAction("tools", "app_render", "Render")
-        self.systray.addMenuAction("tools", "app_xy-controller", "XY-Controller")
+        self.systray.addMenuAction("tools", "app_logs", self.tr("Logs"))
+        self.systray.addMenuAction("tools", "app_meter_in", self.tr("Meter (Inputs)"))
+        self.systray.addMenuAction("tools", "app_meter_out", self.tr("Meter (Output)"))
+        self.systray.addMenuAction("tools", "app_render", self.tr("Render"))
+        self.systray.addMenuAction("tools", "app_xy-controller", self.tr("XY-Controller"))
         self.systray.addSeparator("sep2")
 
         self.systray.connect("app_catarina", self.func_start_catarina)
@@ -1261,15 +1261,15 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
 
             else:
                 self.jackStopped()
-                self.label_jack_realtime.setText("Yes" if jacksettings.isRealtime() else "No")
+                self.label_jack_realtime.setText(self.tr("Yes") if jacksettings.isRealtime() else self.tr("No"))
         else:
             self.jackStopped()
-            self.label_jack_status.setText("Unavailable")
+            self.label_jack_status.setText(self.tr("Unavailable"))
             self.label_jack_status_ico.setPixmap(self.pix_error)
-            self.label_jack_realtime.setText("Unknown")
+            self.label_jack_realtime.setText(self.tr("Unknown"))
             self.label_jack_realtime_ico.setPixmap(self.pix_error)
             self.groupBox_jack.setEnabled(False)
-            self.groupBox_jack.setTitle("-- jackdbus is not available --")
+            self.groupBox_jack.setTitle(self.tr("-- jackdbus is not available --"))
             self.b_jack_start.setEnabled(False)
             self.b_jack_stop.setEnabled(False)
             self.b_jack_restart.setEnabled(False)
@@ -1291,7 +1291,7 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
             self.toolBox_alsamidi.setEnabled(False)
             self.cb_a2j_autostart.setChecked(False)
             self.cb_a2j_autoexport.setChecked(False)
-            self.label_bridge_a2j.setText("ALSA MIDI Bridge is not installed")
+            self.label_bridge_a2j.setText(self.tr("ALSA MIDI Bridge is not installed"))
             self.settings.setValue("A2J/AutoStart", False)
 
         self.updateSystrayTooltip()
@@ -1344,19 +1344,19 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
         self.systray.setActionEnabled("jack_start", False)
         self.systray.setActionEnabled("jack_stop", True)
 
-        self.label_jack_status.setText("Started")
+        self.label_jack_status.setText(self.tr("Started"))
         self.label_jack_status_ico.setPixmap(self.pix_apply)
 
         if gDBus.jack.IsRealtime():
-            self.label_jack_realtime.setText("Yes")
+            self.label_jack_realtime.setText(self.tr("Yes"))
             self.label_jack_realtime_ico.setPixmap(self.pix_apply)
         else:
-            self.label_jack_realtime.setText("No")
+            self.label_jack_realtime.setText(self.tr("No"))
             self.label_jack_realtime_ico.setPixmap(self.pix_cancel)
 
         self.label_jack_dsp.setText("%.2f%%" % self.m_last_dsp_load)
         self.label_jack_xruns.setText(str(self.m_last_xruns))
-        self.label_jack_bfsize.setText("%i samples" % self.m_last_buffer_size)
+        self.label_jack_bfsize.setText(self.tr("%i samples") % self.m_last_buffer_size)
         self.label_jack_srate.setText("%i Hz" % gDBus.jack.GetSampleRate())
         self.label_jack_latency.setText("%.1f ms" % gDBus.jack.GetLatency())
 
@@ -1393,7 +1393,7 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
             self.systray.setActionEnabled("jack_start", True)
             self.systray.setActionEnabled("jack_stop", False)
 
-        self.label_jack_status.setText("Stopped")
+        self.label_jack_status.setText(self.tr("Stopped"))
         self.label_jack_status_ico.setPixmap(self.pix_cancel)
 
         self.label_jack_dsp.setText("---")
@@ -1815,7 +1815,7 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
             asoundrcFd.close()
 
         else:
-            print("Cadence::AlsaBridgeChanged(%i) - invalid index" % index)
+            print(self.tr("Cadence::AlsaBridgeChanged(%i) - invalid index") % index)
 
         self.checkAlsaAudio()
 
@@ -2386,7 +2386,7 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
 
                 if self.m_last_buffer_size != next_buffer_size:
                     self.m_last_buffer_size = next_buffer_size
-                    self.label_jack_bfsize.setText("%i samples" % self.m_last_buffer_size)
+                    self.label_jack_bfsize.setText(self.tr("%i samples") % self.m_last_buffer_size)
                     self.label_jack_latency.setText("%.1f ms" % gDBus.jack.GetLatency())
 
             else:
