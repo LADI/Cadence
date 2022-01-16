@@ -156,7 +156,7 @@ class AbstractCanvasJackClass(QMainWindow):
             failed = bool(jacksettings.setBufferSize(bufferSize))
 
         if failed:
-            print("Failed to change buffer-size as %i, reset to %i" % (bufferSize, self.fBufferSize))
+            print(self.tr("Failed to change buffer-size as %i, reset to %i") % (bufferSize, self.fBufferSize))
             self.ui_setBufferSize(self.fBufferSize, True)
 
     def jack_setSampleRate(self, sampleRate):

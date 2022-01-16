@@ -239,7 +239,7 @@ class RenderW(QDialog):
         os.chdir(self.ui.le_folder.text())
 
         if newBufferSize != int(jacklib.get_buffer_size(self.fJackClient)):
-            print("NOTICE: buffer size changed before render")
+            print(self.tr("NOTICE: buffer size changed before render"))
             jacklib.set_buffer_size(self.fJackClient, newBufferSize)
 
         if useTransport:
@@ -252,7 +252,7 @@ class RenderW(QDialog):
         self.fProcess.waitForStarted()
 
         if self.fFreewheel:
-            print("NOTICE: rendering in freewheel mode")
+            print(self.tr("NOTICE: rendering in freewheel mode"))
             sleep(1)
             jacklib.set_freewheel(self.fJackClient, 1)
 
