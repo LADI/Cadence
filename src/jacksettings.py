@@ -220,8 +220,8 @@ class JackSettingsW(QDialog):
             if dbus.String(itexText.lower()) not in driverList:
                 self.ui.obj_server_driver.hideRow(i)
 
-        self.ui.obj_server_driver.setMinimumWidth(maxWidth)
-        self.ui.obj_server_driver.setMaximumWidth(maxWidth)
+        #self.ui.obj_server_driver.setMinimumWidth(maxWidth)
+        #self.ui.obj_server_driver.setMaximumWidth(maxWidth)
 
         # -------------------------------------------------------------
         # Set-up connections

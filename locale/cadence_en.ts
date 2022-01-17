@@ -3,38 +3,38 @@
 <context>
     <name>AbstractCanvasJackClass</name>
     <message>
-        <location filename="../src/shared_canvasjack.py" line="159"/>
+        <location filename="../src/shared_canvasjack.py" line="142"/>
         <source>Failed to change buffer-size as %i, reset to %i</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/shared_canvasjack.py" line="346"/>
+        <location filename="../src/shared_canvasjack.py" line="329"/>
         <source>&amp;Play</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/shared_canvasjack.py" line="351"/>
+        <location filename="../src/shared_canvasjack.py" line="334"/>
         <source>&amp;Pause</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/shared_canvasjack.py" line="411"/>
+        <location filename="../src/shared_canvasjack.py" line="394"/>
         <source>Change Sample Rate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/shared_canvasjack.py" line="411"/>
+        <location filename="../src/shared_canvasjack.py" line="394"/>
         <source>It&apos;s not possible to change Sample Rate while JACK is running.
 Do you want to change as soon as JACK stops?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/shared_canvasjack.py" line="501"/>
+        <location filename="../src/shared_canvasjack.py" line="484"/>
         <source>Save Image</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/shared_canvasjack.py" line="501"/>
+        <location filename="../src/shared_canvasjack.py" line="484"/>
         <source>PNG Image (*.png);;JPEG Image (*.jpg)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -67,7 +67,7 @@ Do you want to change as soon as JACK stops?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="443"/>
+        <location filename="../resources/ui/cadence.ui" line="410"/>
         <source>TextLabel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -97,680 +97,660 @@ Do you want to change as soon as JACK stops?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="189"/>
-        <source>Result</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/cadence.ui" line="202"/>
-        <source>Test Name:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/cadence.py" line="1561"/>
+        <location filename="../src/cadence.py" line="1496"/>
         <source>JACK Status</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="270"/>
+        <location filename="../resources/ui/cadence.ui" line="237"/>
         <source>Sample Rate:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="286"/>
+        <location filename="../resources/ui/cadence.ui" line="253"/>
         <source>DSP Load:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="315"/>
+        <location filename="../resources/ui/cadence.ui" line="282"/>
         <source>Realtime:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="344"/>
+        <location filename="../resources/ui/cadence.ui" line="311"/>
         <source>Buffer Size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="367"/>
+        <location filename="../resources/ui/cadence.ui" line="334"/>
         <source>Xruns:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="396"/>
+        <location filename="../resources/ui/cadence.ui" line="363"/>
         <source>Server Status:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="412"/>
+        <location filename="../resources/ui/cadence.ui" line="379"/>
         <source>Block Latency:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1088"/>
+        <location filename="../src/cadence.py" line="1027"/>
         <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1089"/>
+        <location filename="../src/cadence.py" line="1028"/>
         <source>Stop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="482"/>
+        <location filename="../resources/ui/cadence.ui" line="458"/>
         <source>Force Restart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="489"/>
+        <location filename="../resources/ui/cadence.ui" line="451"/>
         <source>Configure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="496"/>
+        <location filename="../resources/ui/cadence.ui" line="479"/>
         <source>Switch Master</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="519"/>
-        <source>Auto-start JACK or LADISH at login</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/cadence.ui" line="694"/>
+        <location filename="../resources/ui/cadence.ui" line="663"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="544"/>
+        <location filename="../resources/ui/cadence.ui" line="504"/>
         <source>JACK Bridges</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="580"/>
+        <location filename="../resources/ui/cadence.ui" line="549"/>
         <source>ALSA Audio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1451"/>
+        <location filename="../src/cadence.py" line="1386"/>
         <source>No bridge in use</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="660"/>
+        <location filename="../resources/ui/cadence.ui" line="629"/>
         <source>Bridge Type:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="671"/>
+        <location filename="../resources/ui/cadence.ui" line="640"/>
         <source>(None)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="676"/>
+        <location filename="../resources/ui/cadence.ui" line="645"/>
         <source>ALSA -&gt; Loop -&gt; JACK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="681"/>
+        <location filename="../resources/ui/cadence.ui" line="650"/>
         <source>ALSA -&gt; JACK (Plugin)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="686"/>
+        <location filename="../resources/ui/cadence.ui" line="655"/>
         <source>ALSA -&gt; PulseAudio -&gt; JACK (Plugin)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="728"/>
+        <location filename="../resources/ui/cadence.ui" line="697"/>
         <source>ALSA MIDI</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="746"/>
+        <location filename="../resources/ui/cadence.ui" line="715"/>
         <source>ALSA MIDI State</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="821"/>
+        <location filename="../resources/ui/cadence.ui" line="790"/>
         <source>Export hardware ports</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="828"/>
+        <location filename="../resources/ui/cadence.ui" line="797"/>
         <source>Start with Jack</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="862"/>
+        <location filename="../resources/ui/cadence.ui" line="831"/>
         <source>PulseAudio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="880"/>
+        <location filename="../resources/ui/cadence.ui" line="849"/>
         <source>PulseAudio state</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1090"/>
+        <location filename="../src/cadence.py" line="1029"/>
         <source>Channels</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="962"/>
+        <location filename="../resources/ui/cadence.ui" line="931"/>
         <source>Auto-start at login</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1114"/>
+        <location filename="../src/cadence.py" line="1053"/>
         <source>Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1026"/>
+        <location filename="../resources/ui/cadence.ui" line="995"/>
         <source>Applications</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1051"/>
+        <location filename="../resources/ui/cadence.ui" line="1020"/>
         <source>Catia</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1082"/>
+        <location filename="../resources/ui/cadence.ui" line="1051"/>
         <source>JACK Patchbay with A2J Bridge support and JACK Transport</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1098"/>
-        <source>Claudia</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/cadence.ui" line="1129"/>
-        <source>LADISH frontend; like Catia, but focused at session management</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/cadence.ui" line="1145"/>
+        <location filename="../resources/ui/cadence.ui" line="1211"/>
         <source>Meter In / Out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1193"/>
+        <location filename="../resources/ui/cadence.ui" line="1259"/>
         <source>Digital peak meter, auto-connected to all system inputs or outputs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1119"/>
+        <location filename="../src/cadence.py" line="1057"/>
         <source>Logs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1290"/>
-        <source>View JACK, A2J and LADISH logs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/cadence.py" line="1122"/>
+        <location filename="../src/cadence.py" line="1060"/>
         <source>Render</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1337"/>
+        <location filename="../resources/ui/cadence.ui" line="1098"/>
         <source>Render a JACK project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1123"/>
+        <location filename="../src/cadence.py" line="1061"/>
         <source>XY-Controller</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1384"/>
+        <location filename="../resources/ui/cadence.ui" line="1306"/>
         <source>Virtual XY Controller with MIDI Keyboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1429"/>
+        <location filename="../resources/ui/cadence.ui" line="1351"/>
         <source>Tweaks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1474"/>
+        <location filename="../resources/ui/cadence.ui" line="1396"/>
         <source>Settings have been changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1497"/>
+        <location filename="../resources/ui/cadence.ui" line="1419"/>
         <source>Apply Now</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1552"/>
+        <location filename="../resources/ui/cadence.ui" line="1474"/>
         <source>audio-plugins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1557"/>
+        <location filename="../resources/ui/cadence.ui" line="1479"/>
         <source>default-apps</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1562"/>
+        <location filename="../resources/ui/cadence.ui" line="1484"/>
         <source>wineasio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1567"/>
+        <location filename="../resources/ui/cadence.ui" line="1489"/>
         <source>name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1572"/>
+        <location filename="../resources/ui/cadence.ui" line="1494"/>
         <source>Audio Plugins PATH</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1583"/>
+        <location filename="../resources/ui/cadence.ui" line="1505"/>
         <source>Default Applications</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1594"/>
+        <location filename="../resources/ui/cadence.ui" line="1516"/>
         <source>WineASIO</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1622"/>
+        <location filename="../resources/ui/cadence.ui" line="1553"/>
         <source>Remove</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1658"/>
+        <location filename="../resources/ui/cadence.ui" line="1589"/>
         <source>Add...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1689"/>
+        <location filename="../resources/ui/cadence.ui" line="1620"/>
         <source>LADSPA</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1719"/>
+        <location filename="../resources/ui/cadence.ui" line="1650"/>
         <source>DSSI</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1749"/>
+        <location filename="../resources/ui/cadence.ui" line="1680"/>
         <source>LV2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1779"/>
+        <location filename="../resources/ui/cadence.ui" line="1710"/>
         <source>VST</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1820"/>
+        <location filename="../resources/ui/cadence.ui" line="1751"/>
         <source>Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1827"/>
+        <location filename="../resources/ui/cadence.ui" line="1758"/>
         <source>Change...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1844"/>
+        <location filename="../resources/ui/cadence.ui" line="1784"/>
         <source>Image Viewer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1864"/>
+        <location filename="../resources/ui/cadence.ui" line="1804"/>
         <source>Text Editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1884"/>
+        <location filename="../resources/ui/cadence.ui" line="1824"/>
         <source>Video Player</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1904"/>
+        <location filename="../resources/ui/cadence.ui" line="1844"/>
         <source>Music Player</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1924"/>
+        <location filename="../resources/ui/cadence.ui" line="1864"/>
         <source>Web Browser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="2013"/>
+        <location filename="../resources/ui/cadence.ui" line="1953"/>
         <source>[App Name]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="2036"/>
+        <location filename="../resources/ui/cadence.ui" line="1976"/>
         <source>[App Comment]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="2072"/>
+        <location filename="../resources/ui/cadence.ui" line="2021"/>
         <source>Audio Ports</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="2126"/>
+        <location filename="../resources/ui/cadence.ui" line="2075"/>
         <source>Number of jack ports that wineasio will try to open.
 Default is 16</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="2084"/>
+        <location filename="../resources/ui/cadence.ui" line="2033"/>
         <source>Number of inputs:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="2116"/>
+        <location filename="../resources/ui/cadence.ui" line="2065"/>
         <source>Number of outputs:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="2163"/>
+        <location filename="../resources/ui/cadence.ui" line="2112"/>
         <source>Try to connect the asio channels to the
 physical I/O ports on your hardware.
 Default is on</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="2168"/>
+        <location filename="../resources/ui/cadence.ui" line="2117"/>
         <source>Connect to hardware</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="2180"/>
+        <location filename="../resources/ui/cadence.ui" line="2129"/>
         <source>JACK Options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="2204"/>
+        <location filename="../resources/ui/cadence.ui" line="2153"/>
         <source>Enable wineasio to launch the jack server.
 Default is off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="2208"/>
+        <location filename="../resources/ui/cadence.ui" line="2157"/>
         <source>Autostart server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="2235"/>
+        <location filename="../resources/ui/cadence.ui" line="2184"/>
         <source>When on, an asio app will be able to change the jack buffer size.
 Default is off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="2239"/>
+        <location filename="../resources/ui/cadence.ui" line="2188"/>
         <source>Fixed buffersize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="2250"/>
+        <location filename="../resources/ui/cadence.ui" line="2199"/>
         <source>Preferred buffersize:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="900"/>
+        <location filename="../src/cadence.py" line="840"/>
         <source>PulseAudio is not installed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1076"/>
+        <location filename="../src/cadence.py" line="1015"/>
         <source>Start JACK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1077"/>
+        <location filename="../src/cadence.py" line="1016"/>
         <source>Stop JACK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1078"/>
+        <location filename="../src/cadence.py" line="1017"/>
         <source>Configure JACK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1081"/>
+        <location filename="../src/cadence.py" line="1020"/>
         <source>ALSA Audio Bridge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1084"/>
+        <location filename="../src/cadence.py" line="1023"/>
         <source>ALSA MIDI Bridge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1087"/>
+        <location filename="../src/cadence.py" line="1026"/>
         <source>PulseAudio Bridge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1120"/>
+        <location filename="../src/cadence.py" line="1058"/>
         <source>Meter (Inputs)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1121"/>
+        <location filename="../src/cadence.py" line="1059"/>
         <source>Meter (Output)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1357"/>
+        <location filename="../src/cadence.py" line="1292"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1360"/>
+        <location filename="../src/cadence.py" line="1295"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1273"/>
+        <location filename="../src/cadence.py" line="1208"/>
         <source>Unavailable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1275"/>
+        <location filename="../src/cadence.py" line="1210"/>
         <source>Unknown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1278"/>
+        <location filename="../src/cadence.py" line="1213"/>
         <source>-- jackdbus is not available --</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1300"/>
+        <location filename="../src/cadence.py" line="1235"/>
         <source>ALSA MIDI Bridge is not installed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1353"/>
+        <location filename="../src/cadence.py" line="1288"/>
         <source>Started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="2395"/>
+        <location filename="../src/cadence.py" line="2322"/>
         <source>%i samples</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1402"/>
+        <location filename="../src/cadence.py" line="1337"/>
         <source>Stopped</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1431"/>
+        <location filename="../src/cadence.py" line="1366"/>
         <source>ALSA MIDI Bridge is running, ports are exported</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1433"/>
+        <location filename="../src/cadence.py" line="1368"/>
         <source>ALSA MIDI Bridge is running</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1441"/>
+        <location filename="../src/cadence.py" line="1376"/>
         <source>ALSA MIDI Bridge is stopped</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1465"/>
+        <location filename="../src/cadence.py" line="1400"/>
         <source>Using Cadence snd-aloop daemon, started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1475"/>
+        <location filename="../src/cadence.py" line="1410"/>
         <source>Using Cadence snd-aloop daemon, stopped</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1487"/>
+        <location filename="../src/cadence.py" line="1422"/>
         <source>Using JACK plugin bridge (Always on)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1496"/>
+        <location filename="../src/cadence.py" line="1431"/>
         <source>Using PulseAudio plugin bridge (Always on)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1889"/>
+        <location filename="../src/cadence.py" line="1816"/>
         <source>Custom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1506"/>
+        <location filename="../src/cadence.py" line="1441"/>
         <source>Using custom asoundrc, not managed by Cadence</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1522"/>
+        <location filename="../src/cadence.py" line="1457"/>
         <source>PulseAudio is started and bridged to JACK with %s inputs/%s outputs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1532"/>
+        <location filename="../src/cadence.py" line="1467"/>
         <source>PulseAudio is started but not bridged</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1539"/>
+        <location filename="../src/cadence.py" line="1474"/>
         <source>PulseAudio is not started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1562"/>
+        <location filename="../src/cadence.py" line="1497"/>
         <source>Realtime</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1563"/>
+        <location filename="../src/cadence.py" line="1498"/>
         <source>DSP Load</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1564"/>
+        <location filename="../src/cadence.py" line="1499"/>
         <source>Xruns</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1565"/>
+        <location filename="../src/cadence.py" line="1500"/>
         <source>Buffer Size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1566"/>
+        <location filename="../src/cadence.py" line="1501"/>
         <source>Sample Rate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1567"/>
+        <location filename="../src/cadence.py" line="1502"/>
         <source>Block Latency</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1785"/>
+        <location filename="../src/cadence.py" line="1712"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1715"/>
+        <location filename="../src/cadence.py" line="1646"/>
         <source>Failed to start JACK, please check the logs for more information.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1724"/>
+        <location filename="../src/cadence.py" line="1655"/>
         <source>Failed to stop JACK, please check the logs for more information.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1729"/>
+        <location filename="../src/cadence.py" line="1660"/>
         <source>This will force kill all JACK applications!&lt;br&gt;Make sure to save your projects before continue.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1729"/>
+        <location filename="../src/cadence.py" line="1660"/>
         <source>Are you sure you want to force the restart of JACK?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1754"/>
+        <location filename="../src/cadence.py" line="1685"/>
         <source>Failed to switch JACK master, please check the logs for more information.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1785"/>
+        <location filename="../src/cadence.py" line="1712"/>
         <source>You&apos;re using a custom ~/.asoundrc file not managed by Cadence.&lt;br/&gt;By choosing to use a Cadence ALSA-Audio bridge, &lt;b&gt;the file will be replaced&lt;/b&gt;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1785"/>
+        <location filename="../src/cadence.py" line="1712"/>
         <source>Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1824"/>
+        <location filename="../src/cadence.py" line="1751"/>
         <source>Cadence::AlsaBridgeChanged(%i) - invalid index</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="2223"/>
+        <location filename="../src/cadence.py" line="2150"/>
         <source>Add Path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="2252"/>
+        <location filename="../src/cadence.py" line="2179"/>
         <source>Change Path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resources/ui/cadence.ui" line="486"/>
+        <source>Auto-start JACK at login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resources/ui/cadence.ui" line="1195"/>
+        <source>View JACK and A2J logs</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>CadenceSystemCheck</name>
     <message>
-        <location filename="../src/cadence.py" line="426"/>
+        <location filename="../src/cadence.py" line="425"/>
         <source>check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="428"/>
+        <location filename="../src/cadence.py" line="427"/>
         <source>yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="430"/>
+        <location filename="../src/cadence.py" line="429"/>
         <source>nothing to report</source>
         <translation type="unfinished"></translation>
     </message>
@@ -778,22 +758,22 @@ Default is off</source>
 <context>
     <name>CadenceSystemCheck_audioGroup</name>
     <message>
-        <location filename="../src/cadence.py" line="439"/>
+        <location filename="../src/cadence.py" line="438"/>
         <source>User in audio group</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="446"/>
+        <location filename="../src/cadence.py" line="445"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="464"/>
+        <location filename="../src/cadence.py" line="463"/>
         <source>Yes, but needs relogin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="468"/>
+        <location filename="../src/cadence.py" line="467"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
@@ -801,12 +781,12 @@ Default is off</source>
 <context>
     <name>CadenceSystemCheck_kernel</name>
     <message>
-        <location filename="../src/cadence.py" line="478"/>
+        <location filename="../src/cadence.py" line="477"/>
         <source>Current kernel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="497"/>
+        <location filename="../src/cadence.py" line="496"/>
         <source>Vanilla</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2223,1217 +2203,18 @@ Default is off</source>
 </context>
 <context>
     <name>ClaudiaLauncher</name>
-    <message>
-        <location filename="../src/claudia_launcher.py" line="594"/>
-        <source>App Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia_launcher.py" line="573"/>
-        <source>Plugin Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia_launcher.py" line="657"/>
-        <source>&lt;a href=&apos;%s&apos;&gt;Documentation&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia_launcher.py" line="660"/>
-        <source>&lt;a href=&apos;%s&apos;&gt;WebSite&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>ClaudiaLauncherApp</name>
-    <message>
-        <location filename="../resources/ui/claudia_launcher_app.ui" line="14"/>
-        <source>Claudia Launcher</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher_app.ui" line="29"/>
-        <source>&amp;Start</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher_app.ui" line="46"/>
-        <source>&amp;Add to LADISH</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher_app.ui" line="57"/>
-        <source>Enable LADISH</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher_app.ui" line="87"/>
-        <source>Default BPM:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher_app.ui" line="140"/>
-        <source>Default Sample Rate:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher_app.ui" line="186"/>
-        <source>LADI Room:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher_app.ui" line="229"/>
-        <source>Project folder:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher_app.ui" line="263"/>
-        <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher_app.ui" line="268"/>
-        <source>&amp;About</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia_launcher.py" line="1303"/>
-        <source>LADISH is enabled</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia_launcher.py" line="1306"/>
-        <source>LADISH is sick</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia_launcher.py" line="1317"/>
-        <source>LADISH is not available</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia_launcher.py" line="1337"/>
-        <source>Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia_launcher.py" line="1337"/>
-        <source>JACK is not started!
-Please start it first, then re-run Claudia-Launcher again.</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>ClaudiaLauncherW</name>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="24"/>
-        <source>DAW</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="36"/>
-        <source>Digital Audio Workstations, Loopers, Sequencers and Trackers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="1962"/>
-        <source>Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="1967"/>
-        <source>Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="1972"/>
-        <source>Template?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="2005"/>
-        <source>ICO</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="2015"/>
-        <source>App Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="536"/>
-        <source>Plugin support</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="545"/>
-        <source>LADSPA:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="2085"/>
-        <source>ico</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="562"/>
-        <source>DSSI:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="579"/>
-        <source>LV2:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="596"/>
-        <source>VST:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="2051"/>
-        <source>mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="2032"/>
-        <source>Features</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="262"/>
-        <source>JACK transport:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="2058"/>
-        <source>Session Level:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="2041"/>
-        <source>MIDI Mode:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="2068"/>
-        <source>#</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="2095"/>
-        <source>Help</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="2104"/>
-        <source>Documentation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="2117"/>
-        <source>WebSite</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="2130"/>
-        <source>(Nothing available)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="395"/>
-        <source>Host</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="407"/>
-        <source>Hosts for various kinds of Instruments, Effects and Tools</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="466"/>
-        <source>Instruments</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="471"/>
-        <source>Effects</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="626"/>
-        <source>Internal:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="758"/>
-        <source>Instrument</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="770"/>
-        <source>Instruments, Synths and Samplers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="1214"/>
-        <source>Built-in FX:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="1224"/>
-        <source>Audio Input:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="1040"/>
-        <source>Bristol</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="1052"/>
-        <source>Bristol Vintage Synths</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="1106"/>
-        <source>Short Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="1111"/>
-        <source>Full Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="1317"/>
-        <source>Plugin</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="1329"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Audio Plugins, loaded via Carla&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="1386"/>
-        <source>Author</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="1391"/>
-        <source>Category</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="1434"/>
-        <source>Plugin Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="1451"/>
-        <source>Information</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="1467"/>
-        <source>Audio Inputs:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="1477"/>
-        <source>Audio Outputs:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="1487"/>
-        <source>MIDI Inputs:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="1497"/>
-        <source>MIDI Outputs:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="1528"/>
-        <source>Parameter Inputs:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="1538"/>
-        <source>Parameter Outputs:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="1631"/>
-        <source>Effect</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="1643"/>
-        <source>Effects, EQs and Mixers</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="1810"/>
-        <source>Stereo:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="1896"/>
-        <source>Tool</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="1908"/>
-        <source>Misc Tools and Utilities</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_launcher.ui" line="2075"/>
-        <source>JACK Transport:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="509"/>
-        <source>Auto-close</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>ClaudiaMainW</name>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="14"/>
-        <source>Claudia</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="36"/>
-        <source>Studio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="48"/>
-        <source>New Studio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="68"/>
-        <source>Load Studio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="78"/>
-        <source>Ctrl+Shift+L</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="706"/>
-        <source>Save Studio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="111"/>
-        <source>Save Studio As</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="703"/>
-        <source>Start Studio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="704"/>
-        <source>Stop Studio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="168"/>
-        <source>Project</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="180"/>
-        <source>New Project</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="1743"/>
-        <source>Open Project</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="2018"/>
-        <source>Save Project</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="240"/>
-        <source>Save Project As</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="257"/>
-        <source>Transport</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="269"/>
-        <source>Transport Play/Pause</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="292"/>
-        <source>Transport Stop</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="312"/>
-        <source>Transport Backwards</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="335"/>
-        <source>Transport Forwards</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="368"/>
-        <source>??:??:??</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="375"/>
-        <source>Beats per Minute</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="384"/>
-        <source> BPM</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="403"/>
-        <source>Canvas</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="415"/>
-        <source>Zoom Auto-Fit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1318"/>
-        <source>Zoom In</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1330"/>
-        <source>Zoom Out</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1342"/>
-        <source>Zoom 100%</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="711"/>
-        <source>Tools</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="716"/>
-        <source>Clear Xruns</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="712"/>
-        <source>Configure JACK</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="713"/>
-        <source>JACK Render</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="635"/>
-        <source>&lt;table&gt;&lt;tr&gt;&lt;td width=&apos;100&apos;&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;If you&apos;ve started ladish for the first time, you should:&lt;br&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&lt;td&gt;
- 1. Create a new studio (in the menu, Studio -&gt; New Studio)&lt;br&gt;
- 2. Configure JACK (in the menu, Tools -&gt; Configure JACK)&lt;br&gt;
- 3. Start the studio (in the menu, Studio -&gt; Start Studio)&lt;br&gt;
- 4. Start apps (in the menu, Application -&gt; Run)&lt;br&gt;
- 5. Connect their ports by click &amp;amp; drag on canvas&lt;br&gt;
- 6. Save the studio (in the menu, Studio -&gt; Save Studio)
-&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="690"/>
-        <source>Buffer Size:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="707"/>
-        <source>Sample Rate:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="724"/>
-        <source> RT </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="738"/>
-        <source>? Xruns</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="758"/>
-        <source>DSP Load: %p%</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="778"/>
-        <source>&amp;Studio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="782"/>
-        <source>&amp;Load Studio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="791"/>
-        <source>&amp;Delete Studio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="814"/>
-        <source>&amp;Room</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="2024"/>
-        <source>Delete Room</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="830"/>
-        <source>&amp;Project</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="834"/>
-        <source>Load Project</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="851"/>
-        <source>&amp;Application</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="858"/>
-        <source>&amp;Transport</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="867"/>
-        <source>&amp;Tools</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="871"/>
-        <source>ALSA-MIDI Bridge</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="887"/>
-        <source>S&amp;ettings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="896"/>
-        <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="903"/>
-        <source>&amp;Canvas</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="907"/>
-        <source>Zoom</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="933"/>
-        <source>&amp;About</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="942"/>
-        <source>&amp;New Studio...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="945"/>
-        <source>Ctrl+Shift+N</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="957"/>
-        <source>F5</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="969"/>
-        <source>F6</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="978"/>
-        <source>&amp;Rename Studio...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="981"/>
-        <source>Ctrl+Shift+R</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="990"/>
-        <source>&amp;Save Studio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="993"/>
-        <source>Ctrl+Shift+S</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1002"/>
-        <source>Save Studio &amp;As...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1011"/>
-        <source>&amp;Unload Studio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1014"/>
-        <source>Ctrl+Shift+U</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1023"/>
-        <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1026"/>
-        <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="2005"/>
-        <source>Create Room...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1038"/>
-        <source>Ctrl+Shift+C</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1050"/>
-        <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="2019"/>
-        <source>Save Project As...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="2020"/>
-        <source>Unload Project</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1071"/>
-        <source>Ctrl+U</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1080"/>
-        <source>Add &amp;New...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1083"/>
-        <source>Shift+F2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1092"/>
-        <source>Run &amp;Custom...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1095"/>
-        <source>F2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1107"/>
-        <source>&amp;Play</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1110"/>
-        <source>Ctrl+Shift+P</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1119"/>
-        <source>&amp;Stop</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1122"/>
-        <source>Ctrl+Shift+X</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1131"/>
-        <source>&amp;Backwards</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1134"/>
-        <source>Ctrl+Shift+B</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1143"/>
-        <source>&amp;Forwards</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1146"/>
-        <source>Ctrl+Shift+F</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1155"/>
-        <source>Clear &amp;Xruns</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1164"/>
-        <source>&amp;Configure JACK</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1173"/>
-        <source>Reactivate ladishd</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1181"/>
-        <source>32</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1189"/>
-        <source>64</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1197"/>
-        <source>128</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1205"/>
-        <source>256</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1213"/>
-        <source>512</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1221"/>
-        <source>1024</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1229"/>
-        <source>2048</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1237"/>
-        <source>4096</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1245"/>
-        <source>8192</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1253"/>
-        <source>Show &amp;Statusbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1261"/>
-        <source>Show &amp;Toolbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="717"/>
-        <source>Configure Claudia</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1273"/>
-        <source>Ctrl+P</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1282"/>
-        <source>&amp;Arrange</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1285"/>
-        <source>Ctrl+G</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1294"/>
-        <source>&amp;Refresh</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1297"/>
-        <source>Ctrl+R</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1306"/>
-        <source>Auto-Fit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1309"/>
-        <source>Home</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1321"/>
-        <source>Ctrl++</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1333"/>
-        <source>Ctrl+-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1345"/>
-        <source>Ctrl+1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1350"/>
-        <source>Save Image...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1355"/>
-        <source>About Qt</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1364"/>
-        <source>JACK R&amp;ender</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1369"/>
-        <source>&amp;Logs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="2016"/>
-        <source>New Project...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1381"/>
-        <source>Ctrl+N</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="1975"/>
-        <source>Load from folder...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1389"/>
-        <source>Ctrl+L</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="2022"/>
-        <source>Project Properties...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1407"/>
-        <source>Start Bridge</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1416"/>
-        <source>Stop Bridge</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia.ui" line="1421"/>
-        <source>Export Hardware Ports...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="701"/>
-        <source>New Studio...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="707"/>
-        <source>Save Studio As...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="708"/>
-        <source>Rename Studio...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="709"/>
-        <source>Unload Studio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="714"/>
-        <source>Logs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="990"/>
-        <source>Input</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="992"/>
-        <source>Output</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="994"/>
-        <source>Physical</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="996"/>
-        <source>Can Monitor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="998"/>
-        <source>Terminal</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="1007"/>
-        <source>Audio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="1009"/>
-        <source>MIDI</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="1011"/>
-        <source>Unknown</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="1015"/>
-        <source>&lt;table&gt;&lt;tr&gt;&lt;td align=&apos;right&apos;&gt;&lt;b&gt;Group ID:&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;%i&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&apos;right&apos;&gt;&lt;b&gt;Group Name:&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;%s&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&apos;right&apos;&gt;&lt;b&gt;Port ID:&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;%i&lt;/i&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&apos;right&apos;&gt;&lt;b&gt;Port Name:&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;%s&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&apos;right&apos;&gt;&lt;b&gt;Full Port Name:&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;%s&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan=&apos;2&apos;&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&apos;right&apos;&gt;&lt;b&gt;Port Flags:&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;%s&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&apos;right&apos;&gt;&lt;b&gt;Port Type:&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;%s&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="1028"/>
-        <source>Port Information</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="1748"/>
-        <source>Warning</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="1748"/>
-        <source>The selected folder does not contain a ladish project</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="1938"/>
-        <source>Empty studio list</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="1968"/>
-        <source>Empty room list</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="2013"/>
-        <source>Add New...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="2014"/>
-        <source>Run Custom...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="2049"/>
-        <source>Stop</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="2050"/>
-        <source>Kill</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="2054"/>
-        <source>Start</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="2058"/>
-        <source>Properties</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="2060"/>
-        <source>Remove</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="2117"/>
-        <source>App properties</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="2748"/>
-        <source>Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="2204"/>
-        <source>ladish daemon has crashed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="2208"/>
-        <source>jackdbus has crashed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="2318"/>
-        <source>Execution Halted</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="2318"/>
-        <source>Something went wrong with ladish so the last action was not sucessful.
-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="2322"/>
-        <source>You can check the ladish log file (or click in the &apos;Show Details&apos; button) to find out what went wrong.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="2325"/>
-        <source>You can check the ladish log file to find out what went wrong.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="2551"/>
-        <source>A2J Hardware Export</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="2551"/>
-        <source>Enable Hardware Export on the A2J Bridge?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="2656"/>
-        <source>About Claudia</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="2656"/>
-        <source>&lt;h3&gt;Claudia&lt;/h3&gt;&lt;br&gt;Version %s&lt;br&gt;Claudia is a Graphical User Interface to LADISH.&lt;br&gt;&lt;br&gt;Copyright (C) 2010-2018 falkTX</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="2748"/>
-        <source>DBus is not available, Claudia cannot start without it!</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>CreateRoomW</name>
-    <message>
-        <location filename="../resources/ui/claudia_createroom.ui" line="14"/>
-        <source>Create room</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_createroom.ui" line="20"/>
-        <source>Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_createroom.ui" line="32"/>
-        <source>Create from template</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>Dialog</name>
@@ -3488,26 +2269,6 @@ Please start it first, then re-run Claudia-Launcher again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence_tb_jack.ui" line="14"/>
-        <source>JACK Options</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/cadence_tb_jack.ui" line="20"/>
-        <source>Load JACK Default Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/cadence_tb_jack.ui" line="30"/>
-        <source>Load LADISH Studio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/cadence_tb_jack.ui" line="58"/>
-        <source>Studio Name:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../resources/ui/cadence_tb_pa.ui" line="14"/>
         <source>PulseAudio Options</source>
         <translation type="unfinished"></translation>
@@ -3530,36 +2291,26 @@ Please start it first, then re-run Claudia-Launcher again.</source>
 </context>
 <context>
     <name>ExampleGUI</name>
-    <message>
-        <location filename="../src/systray.py" line="674"/>
-        <source>About</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/systray.py" line="674"/>
-        <source>Systray Demo</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>ForceWaitDialog</name>
     <message>
-        <location filename="../src/cadence.py" line="625"/>
+        <location filename="../src/cadence.py" line="624"/>
         <source>Info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="625"/>
+        <location filename="../src/cadence.py" line="624"/>
         <source>JACK was re-started sucessfully</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="627"/>
+        <location filename="../src/cadence.py" line="626"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="627"/>
+        <location filename="../src/cadence.py" line="626"/>
         <source>Could not start JACK!</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4200,96 +2951,36 @@ Is not possible to configure JACK at this point.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/logs.ui" line="24"/>
+        <location filename="../resources/ui/logs.ui" line="66"/>
         <source>JACK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/logs.ui" line="117"/>
+        <location filename="../resources/ui/logs.ui" line="107"/>
         <source>Loading...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/logs.ui" line="50"/>
+        <location filename="../resources/ui/logs.ui" line="92"/>
         <source>A2J</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/logs.ui" line="76"/>
-        <source>LASH</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/logs.ui" line="102"/>
-        <source>LADISH</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/logs.ui" line="138"/>
+        <location filename="../resources/ui/logs.ui" line="40"/>
         <source>Purge all logs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/logs.ui" line="149"/>
+        <location filename="../resources/ui/logs.ui" line="51"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ProjectNameW</name>
-    <message>
-        <location filename="../resources/ui/claudia_projectname.ui" line="14"/>
-        <source>Save project</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_projectname.ui" line="20"/>
-        <source>Path:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_projectname.ui" line="50"/>
-        <source>Name:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="332"/>
-        <source>New project</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="334"/>
-        <source>Save project as</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>ProjectPropertiesW</name>
-    <message>
-        <location filename="../resources/ui/claudia_projectproperties.ui" line="14"/>
-        <source>Project Properties</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_projectproperties.ui" line="20"/>
-        <source>Project name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_projectproperties.ui" line="32"/>
-        <source>Description</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_projectproperties.ui" line="44"/>
-        <source>Notes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_projectproperties.ui" line="71"/>
-        <source>Save Now</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>RenderW</name>
@@ -4492,46 +3183,6 @@ Is not possible to render without it!</source>
 </context>
 <context>
     <name>RunCustomW</name>
-    <message>
-        <location filename="../resources/ui/claudia_runcustom.ui" line="14"/>
-        <source>New application</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_runcustom.ui" line="22"/>
-        <source>Command:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_runcustom.ui" line="38"/>
-        <source>Name:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_runcustom.ui" line="56"/>
-        <source>Run in Terminal</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_runcustom.ui" line="63"/>
-        <source>Level 0</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_runcustom.ui" line="70"/>
-        <source>Level 1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_runcustom.ui" line="77"/>
-        <source>Level 2 (LASH)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_runcustom.ui" line="84"/>
-        <source>Level 2 (Jack Session)</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>SettingsW</name>
@@ -4552,235 +3203,145 @@ Is not possible to render without it!</source>
     </message>
     <message>
         <location filename="../resources/ui/settings_app.ui" line="87"/>
-        <source>ladish</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="92"/>
         <source>Widget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_app.ui" line="97"/>
+        <location filename="../resources/ui/settings_app.ui" line="92"/>
         <source>Main</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_app.ui" line="118"/>
+        <location filename="../resources/ui/settings_app.ui" line="113"/>
         <source>Canvas</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_app.ui" line="136"/>
-        <source>LADISH</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="172"/>
+        <location filename="../resources/ui/settings_app.ui" line="158"/>
         <source>&lt;b&gt;Main&lt;/b&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_app.ui" line="210"/>
+        <location filename="../resources/ui/settings_app.ui" line="196"/>
         <source>Paths</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_app.ui" line="218"/>
+        <location filename="../resources/ui/settings_app.ui" line="204"/>
         <source>Default project folder:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_app.ui" line="250"/>
+        <location filename="../resources/ui/settings_app.ui" line="236"/>
         <source>System Tray</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_app.ui" line="259"/>
+        <location filename="../resources/ui/settings_app.ui" line="245"/>
         <source>Close Main Window to System Tray</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_app.ui" line="266"/>
+        <location filename="../resources/ui/settings_app.ui" line="252"/>
         <source>Use System Tray (App-Indicator support)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_app.ui" line="276"/>
+        <location filename="../resources/ui/settings_app.ui" line="262"/>
         <source>Misc</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_app.ui" line="282"/>
+        <location filename="../resources/ui/settings_app.ui" line="268"/>
         <source>GUI Refresh interval:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_app.ui" line="292"/>
+        <location filename="../resources/ui/settings_app.ui" line="278"/>
         <source> ms</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_app.ui" line="324"/>
+        <location filename="../resources/ui/settings_app.ui" line="310"/>
         <source>JACK Port Aliases:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_app.ui" line="335"/>
+        <location filename="../resources/ui/settings_app.ui" line="321"/>
         <source>0 (none)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_app.ui" line="340"/>
+        <location filename="../resources/ui/settings_app.ui" line="326"/>
         <source>1st alias</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_app.ui" line="345"/>
+        <location filename="../resources/ui/settings_app.ui" line="331"/>
         <source>2nd alias</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_app.ui" line="378"/>
+        <location filename="../resources/ui/settings_app.ui" line="373"/>
         <source>&lt;b&gt;Canvas&lt;/b&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_app.ui" line="416"/>
+        <location filename="../resources/ui/settings_app.ui" line="411"/>
         <source>Theme</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_app.ui" line="448"/>
+        <location filename="../resources/ui/settings_app.ui" line="443"/>
         <source>Bezier Lines</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_app.ui" line="458"/>
+        <location filename="../resources/ui/settings_app.ui" line="453"/>
         <source>Theme:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_app.ui" line="606"/>
+        <location filename="../resources/ui/settings_app.ui" line="479"/>
         <source>Options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_app.ui" line="490"/>
+        <location filename="../resources/ui/settings_app.ui" line="485"/>
         <source>Auto-hide groups with no ports</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_app.ui" line="497"/>
+        <location filename="../resources/ui/settings_app.ui" line="492"/>
         <source>Fancy Eye-candy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_app.ui" line="507"/>
+        <location filename="../resources/ui/settings_app.ui" line="502"/>
         <source>Use OpenGL for rendering (EXPERIMENTAL, needs restart)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_app.ui" line="517"/>
+        <location filename="../resources/ui/settings_app.ui" line="512"/>
         <source>Render Hints</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_app.ui" line="523"/>
+        <location filename="../resources/ui/settings_app.ui" line="518"/>
         <source>Antialiasing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_app.ui" line="536"/>
+        <location filename="../resources/ui/settings_app.ui" line="531"/>
         <source>High Quality Antiliasing (OpenGL only)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="568"/>
-        <source>&lt;b&gt;LADISH&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="612"/>
-        <source>Start studio on load</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="619"/>
-        <source>Send notifications</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="631"/>
-        <source>Shell to use:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="644"/>
-        <source>Terminal to use:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="657"/>
-        <source>JS delay:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="667"/>
-        <source> seconds</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>StudioListW</name>
-    <message>
-        <location filename="../resources/ui/claudia_studiolist.ui" line="14"/>
-        <source>Load Studio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_studiolist.ui" line="20"/>
-        <source>Studio list</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_studiolist.ui" line="51"/>
-        <source>Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_studiolist.ui" line="56"/>
-        <source>Date</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>StudioNameW</name>
-    <message>
-        <location filename="../resources/ui/claudia_studioname.ui" line="14"/>
-        <source>Set name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/claudia_studioname.ui" line="20"/>
-        <source>Studio name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="198"/>
-        <source>New studio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="200"/>
-        <source>Rename studio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/claudia.py" line="202"/>
-        <source>Save studio as</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>XYControllerW</name>
@@ -4953,7 +3514,7 @@ Is not possible to render without it!</source>
 <context>
     <name>gui</name>
     <message>
-        <location filename="../src/claudia.py" line="2774"/>
+        <location filename="../src/cadence.py" line="2370"/>
         <source>Restore</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4961,7 +3522,7 @@ Is not possible to render without it!</source>
 <context>
     <name>self._parent</name>
     <message>
-        <location filename="../src/systray.py" line="628"/>
+        <location filename="../src/systray.py" line="593"/>
         <source>Minimize</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4971,7 +3532,7 @@ Is not possible to render without it!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/systray.py" line="621"/>
+        <location filename="../src/systray.py" line="586"/>
         <source>Restore</source>
         <translation type="unfinished"></translation>
     </message>
