@@ -34,7 +34,7 @@ TRANSLATIONS += cadence_en.ts
 TRANSLATIONS += cadence_fr.ts
 "
 
-echo "$contents" > "$locale_root/raysession.pro"
+echo "$contents" > "$locale_root/cadence.pro"
 
-pylupdate5 "$locale_root/raysession.pro"
+pylupdate5 "$locale_root/cadence.pro"
 

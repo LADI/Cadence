@@ -109,7 +109,7 @@ Voulez-vous le modifier dès que JACK s&apos;arrêtera ?</translation>
         <translation>Test du nom :</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1556"/>
+        <location filename="../src/cadence.py" line="1561"/>
         <source>JACK Status</source>
         <translation>Statut JACK</translation>
     </message>
@@ -149,12 +149,12 @@ Voulez-vous le modifier dès que JACK s&apos;arrêtera ?</translation>
         <translation>Latence de bloc :</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1083"/>
+        <location filename="../src/cadence.py" line="1088"/>
         <source>Start</source>
         <translation>Démarrer</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1084"/>
+        <location filename="../src/cadence.py" line="1089"/>
         <source>Stop</source>
         <translation>Arrêter</translation>
     </message>
@@ -195,7 +195,7 @@ Voulez-vous le modifier dès que JACK s&apos;arrêtera ?</translation>
         <translation>Audio ALSA</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1446"/>
+        <location filename="../src/cadence.py" line="1451"/>
         <source>No bridge in use</source>
         <translation>Pas de pont en utilisation</translation>
     </message>
@@ -255,7 +255,7 @@ Voulez-vous le modifier dès que JACK s&apos;arrêtera ?</translation>
         <translation>État de PulseAudio</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1085"/>
+        <location filename="../src/cadence.py" line="1090"/>
         <source>Channels</source>
         <translation>Canaux</translation>
     </message>
@@ -265,7 +265,7 @@ Voulez-vous le modifier dès que JACK s&apos;arrêtera ?</translation>
         <translation>Démarrage automatique à la connexion</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1109"/>
+        <location filename="../src/cadence.py" line="1114"/>
         <source>Tools</source>
         <translation>Outils</translation>
     </message>
@@ -305,7 +305,7 @@ Voulez-vous le modifier dès que JACK s&apos;arrêtera ?</translation>
         <translation>Mesureur de pic numérique, auto-connecté à toutes les entrées et sorties du système</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1114"/>
+        <location filename="../src/cadence.py" line="1119"/>
         <source>Logs</source>
         <translation>Journaux</translation>
     </message>
@@ -315,7 +315,7 @@ Voulez-vous le modifier dès que JACK s&apos;arrêtera ?</translation>
         <translation>Affiche les journaux de JACK, A2J et LADISH</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1117"/>
+        <location filename="../src/cadence.py" line="1122"/>
         <source>Render</source>
         <translation>Rendu</translation>
     </message>
@@ -325,7 +325,7 @@ Voulez-vous le modifier dès que JACK s&apos;arrêtera ?</translation>
         <translation>Faire un rendu d&apos;un projet JACK</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1118"/>
+        <location filename="../src/cadence.py" line="1123"/>
         <source>XY-Controller</source>
         <translation>Contrôleur XY</translation>
     </message>
@@ -530,237 +530,237 @@ Désenclenché par défaut</translation>
         <translation>Taille du tampon préferrée :</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="895"/>
+        <location filename="../src/cadence.py" line="900"/>
         <source>PulseAudio is not installed</source>
         <translation>PulseAudio n&apos;est pas installé</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1071"/>
+        <location filename="../src/cadence.py" line="1076"/>
         <source>Start JACK</source>
         <translation>Démarrer JACK</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1072"/>
+        <location filename="../src/cadence.py" line="1077"/>
         <source>Stop JACK</source>
         <translation>Arrêter JACK</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1073"/>
+        <location filename="../src/cadence.py" line="1078"/>
         <source>Configure JACK</source>
         <translation>Configurer JACK</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1076"/>
+        <location filename="../src/cadence.py" line="1081"/>
         <source>ALSA Audio Bridge</source>
         <translation>Pont ALSA Audio</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1079"/>
+        <location filename="../src/cadence.py" line="1084"/>
         <source>ALSA MIDI Bridge</source>
         <translation>Pont ALSA MIDI</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1082"/>
+        <location filename="../src/cadence.py" line="1087"/>
         <source>PulseAudio Bridge</source>
         <translation>Pont PulseAudio</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1115"/>
+        <location filename="../src/cadence.py" line="1120"/>
         <source>Meter (Inputs)</source>
         <translation>Vu-mètre (entrée)</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1116"/>
+        <location filename="../src/cadence.py" line="1121"/>
         <source>Meter (Output)</source>
         <translation>Vu-mètre (sortie)</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1352"/>
+        <location filename="../src/cadence.py" line="1357"/>
         <source>Yes</source>
         <translation>Oui</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1355"/>
+        <location filename="../src/cadence.py" line="1360"/>
         <source>No</source>
         <translation>Non</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1268"/>
+        <location filename="../src/cadence.py" line="1273"/>
         <source>Unavailable</source>
         <translation>Indisponible</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1270"/>
+        <location filename="../src/cadence.py" line="1275"/>
         <source>Unknown</source>
         <translation>Inconnu</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1273"/>
+        <location filename="../src/cadence.py" line="1278"/>
         <source>-- jackdbus is not available --</source>
         <translation>-- jackdbus n&apos;est pas disponible</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1295"/>
+        <location filename="../src/cadence.py" line="1300"/>
         <source>ALSA MIDI Bridge is not installed</source>
         <translation>Le pont ALSA MIDI (a2j) n&apos;est pas installé</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1348"/>
+        <location filename="../src/cadence.py" line="1353"/>
         <source>Started</source>
         <translation>Démarré</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="2390"/>
+        <location filename="../src/cadence.py" line="2395"/>
         <source>%i samples</source>
         <translation type="unfinished">%i échantillons</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1397"/>
+        <location filename="../src/cadence.py" line="1402"/>
         <source>Stopped</source>
         <translation>Arrêté</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1426"/>
+        <location filename="../src/cadence.py" line="1431"/>
         <source>ALSA MIDI Bridge is running, ports are exported</source>
         <translation>Le pont ALSA MIDI est démarré, les ports sont exportés</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1428"/>
+        <location filename="../src/cadence.py" line="1433"/>
         <source>ALSA MIDI Bridge is running</source>
         <translation>Le pont ALSA MIDI est démarré</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1436"/>
+        <location filename="../src/cadence.py" line="1441"/>
         <source>ALSA MIDI Bridge is stopped</source>
         <translation>Le pont ALSA MIDI est arrêté</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1460"/>
+        <location filename="../src/cadence.py" line="1465"/>
         <source>Using Cadence snd-aloop daemon, started</source>
         <translation>Utilisation du démon snd-aloop Cadence, démarré</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1470"/>
+        <location filename="../src/cadence.py" line="1475"/>
         <source>Using Cadence snd-aloop daemon, stopped</source>
         <translation>Utilisation du démon snd-aloop Cadence, arrêté</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1482"/>
+        <location filename="../src/cadence.py" line="1487"/>
         <source>Using JACK plugin bridge (Always on)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1491"/>
+        <location filename="../src/cadence.py" line="1496"/>
         <source>Using PulseAudio plugin bridge (Always on)</source>
         <translation>Utilisation du pont de plugin PulseAudio (toujours activé)</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1884"/>
+        <location filename="../src/cadence.py" line="1889"/>
         <source>Custom</source>
         <translation>Personnalisé</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1501"/>
+        <location filename="../src/cadence.py" line="1506"/>
         <source>Using custom asoundrc, not managed by Cadence</source>
         <translation>Utilisation d&apos;un asoundrc personnalisé, non géré par Cadence</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1517"/>
+        <location filename="../src/cadence.py" line="1522"/>
         <source>PulseAudio is started and bridged to JACK with %s inputs/%s outputs</source>
         <translation>PulseAudio est démarré et est ponté à JACK avec %s entrées/%s sorties</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1527"/>
+        <location filename="../src/cadence.py" line="1532"/>
         <source>PulseAudio is started but not bridged</source>
         <translation>PulseAudio est démarré mais non-ponté</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1534"/>
+        <location filename="../src/cadence.py" line="1539"/>
         <source>PulseAudio is not started</source>
         <translation>PulseAudio n&apos;est pas démarré</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1557"/>
+        <location filename="../src/cadence.py" line="1562"/>
         <source>Realtime</source>
         <translation>Temps réel</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1558"/>
+        <location filename="../src/cadence.py" line="1563"/>
         <source>DSP Load</source>
         <translation>Charge DSP</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1559"/>
+        <location filename="../src/cadence.py" line="1564"/>
         <source>Xruns</source>
         <translation>Décrochages</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1560"/>
+        <location filename="../src/cadence.py" line="1565"/>
         <source>Buffer Size</source>
         <translation>Taille du tampon</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1561"/>
+        <location filename="../src/cadence.py" line="1566"/>
         <source>Sample Rate</source>
         <translation>Fréquence d&apos;échantillonage</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1562"/>
+        <location filename="../src/cadence.py" line="1567"/>
         <source>Block Latency</source>
         <translation>Latence de bloc</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1780"/>
+        <location filename="../src/cadence.py" line="1785"/>
         <source>Warning</source>
         <translation>Attention</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1710"/>
+        <location filename="../src/cadence.py" line="1715"/>
         <source>Failed to start JACK, please check the logs for more information.</source>
         <translation>N&apos;a pas pu démarrer JACK, veuillez vérifier les journaux pour davantage d&apos;informations.</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1719"/>
+        <location filename="../src/cadence.py" line="1724"/>
         <source>Failed to stop JACK, please check the logs for more information.</source>
         <translation>N&apos;a pas pu arrêter JACK, veuillez vérifier les journaux pour davantage d&apos;informations.</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1724"/>
+        <location filename="../src/cadence.py" line="1729"/>
         <source>This will force kill all JACK applications!&lt;br&gt;Make sure to save your projects before continue.</source>
         <translation>Ceci forcera à tuer toutes les applications JACK !&lt;br&gt;Assurez-vous d&apos;avoir sauvegardé vos projets avant de continuer.</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1724"/>
+        <location filename="../src/cadence.py" line="1729"/>
         <source>Are you sure you want to force the restart of JACK?</source>
         <translation>Étes-vous certain de vouloir forcer un redémarrage de JACK ?</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1749"/>
+        <location filename="../src/cadence.py" line="1754"/>
         <source>Failed to switch JACK master, please check the logs for more information.</source>
         <translation>&apos;a pas pu modifier JACK à-la-volée, veuillez vérifier les journaux pour davantage d&apos;informations.</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1780"/>
+        <location filename="../src/cadence.py" line="1785"/>
         <source>You&apos;re using a custom ~/.asoundrc file not managed by Cadence.&lt;br/&gt;By choosing to use a Cadence ALSA-Audio bridge, &lt;b&gt;the file will be replaced&lt;/b&gt;.</source>
         <translation>Vous utilisez actuellement un fichier ~/.asoundrc personnalisé non-géré par Cadence.&lt;br/&gt;En choisissant d&apos;utiliser le pont ALSA-Audio Cadence, &lt;b&gt;le fichier sera remplacé&lt;/b&gt;.</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1780"/>
+        <location filename="../src/cadence.py" line="1785"/>
         <source>Are you sure you want to do this?</source>
         <translation>Êtes-vous certain de vouloir faire ceci ?</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1819"/>
+        <location filename="../src/cadence.py" line="1824"/>
         <source>Cadence::AlsaBridgeChanged(%i) - invalid index</source>
         <translation>Cadence::AlsaBridgeChanged(%i) - index invalide</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="2218"/>
+        <location filename="../src/cadence.py" line="2223"/>
         <source>Add Path</source>
         <translation>Ajouter un emplacement</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="2247"/>
+        <location filename="../src/cadence.py" line="2252"/>
         <source>Change Path</source>
         <translation>Modifier un emplacement</translation>
     </message>
@@ -788,7 +788,7 @@ Désenclenché par défaut</translation>
     <message>
         <location filename="../src/cadence.py" line="439"/>
         <source>User in audio group</source>
-        <translation>Utilisateur dans le groupe audio</translation>
+        <translation type="unfinished">Utilisateur dans le groupe audio </translation>
     </message>
     <message>
         <location filename="../src/cadence.py" line="446"/>
@@ -809,12 +809,12 @@ Désenclenché par défaut</translation>
 <context>
     <name>CadenceSystemCheck_kernel</name>
     <message>
-        <location filename="../src/cadence.py" line="475"/>
+        <location filename="../src/cadence.py" line="478"/>
         <source>Current kernel</source>
-        <translation>Noyau utilisé</translation>
+        <translation type="unfinished">Noyau utilisé </translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="494"/>
+        <location filename="../src/cadence.py" line="497"/>
         <source>Vanilla</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2432,7 +2432,7 @@ Veuillez le démarrer en premier lieu, puis relancer à nouveau Claudia-Launcher
     <message>
         <location filename="../resources/ui/claudia_launcher.ui" line="2068"/>
         <source>#</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">#</translation>
     </message>
     <message>
         <location filename="../resources/ui/claudia_launcher.ui" line="2095"/>
@@ -3561,22 +3561,22 @@ Veuillez le démarrer en premier lieu, puis relancer à nouveau Claudia-Launcher
 <context>
     <name>ForceWaitDialog</name>
     <message>
-        <location filename="../src/cadence.py" line="620"/>
+        <location filename="../src/cadence.py" line="625"/>
         <source>Info</source>
         <translation>Info</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="620"/>
+        <location filename="../src/cadence.py" line="625"/>
         <source>JACK was re-started sucessfully</source>
         <translation>JACK a été redémarré avec succès</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="622"/>
+        <location filename="../src/cadence.py" line="627"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="622"/>
+        <location filename="../src/cadence.py" line="627"/>
         <source>Could not start JACK!</source>
         <translation>Impossible de démarrer JACK !</translation>
     </message>
@@ -4333,7 +4333,7 @@ Il n&apos;est pas possible de configurer JACK à ce stade.</translation>
     <message>
         <location filename="../resources/ui/render.ui" line="52"/>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">...</translation>
     </message>
     <message>
         <location filename="../resources/ui/render.ui" line="59"/>
