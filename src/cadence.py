@@ -21,12 +21,8 @@
 
 from platform import architecture
 
-if True:
-    from PyQt5.QtCore import QFileSystemWatcher, QThread, QSemaphore
-    from PyQt5.QtWidgets import QApplication, QDialogButtonBox, QLabel, QMainWindow, QSizePolicy
-else:
-    from PyQt4.QtCore import QFileSystemWatcher, QThread, QSemaphore
-    from PyQt4.QtGui import QApplication, QDialogButtonBox, QLabel, QMainWindow, QSizePolicy
+from PyQt5.QtCore import QFileSystemWatcher, QThread, QSemaphore
+from PyQt5.QtWidgets import QApplication, QDialogButtonBox, QLabel, QMainWindow, QSizePolicy, QSpacerItem
 
 # ------------------------------------------------------------------------------------------------------------
 # Imports (Custom Stuff)
@@ -430,6 +426,9 @@ class CadenceSystemCheck(object):
 
     def tr(self, text):
         return app.translate("CadenceSystemCheck", text)
+    
+    def get_id(self)->str:
+        return ''
 
 class CadenceSystemCheck_audioGroup(CadenceSystemCheck):
     def __init__(self):
@@ -466,6 +465,9 @@ class CadenceSystemCheck_audioGroup(CadenceSystemCheck):
                 self.icon     = self.ICON_ERROR
                 self.result   = self.tr("No")
                 self.moreInfo = None
+
+    def get_id(self)->str:
+        return 'audio_group'
 
     def tr(self, text):
         return app.translate("CadenceSystemCheck_audioGroup", text)
@@ -522,6 +524,9 @@ class CadenceSystemCheck_kernel(CadenceSystemCheck):
             else:
                 self.icon     = self.ICON_ERROR
                 self.moreInfo = self.tr("No realtime options for this version of kernel.")
+
+    def get_id(self)->str:
+        return 'kernel'
 
     def tr(self, text):
         return app.translate("CadenceSystemCheck_kernel", text)
@@ -808,24 +813,18 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
         # -------------------------------------------------------------
         # Set-up GUI (System Checks)
 
-        index = 2
-        checksLayout = self.groupBox_checks.layout()
-
         for check in cadenceSystemChecks:
-            widgetName = QLabel("%s:" % check.name)
-            widgetIcon = QLabel("")
-            widgetResult = QLabel(check.result)
-
-            if check.moreInfo:
-                widgetName.setToolTip(check.moreInfo)
-                widgetIcon.setToolTip(check.moreInfo)
-                widgetResult.setToolTip(check.moreInfo)
-
-            #widgetName.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
-            #widgetIcon.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
-            #widgetIcon.setMinimumSize(16, 16)
-            #widgetIcon.setMaximumSize(16, 16)
-            #widgetResult.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
+            if check.get_id() == 'kernel':
+                self.labelUsedKernel.setText(check.result)
+                if check.moreInfo:
+                    self.labelUsedKernel.setToolTip(check.moreInfo)
+                widgetIcon = self.labelUsedKernelIcon
+                
+            elif check.get_id() == 'audio_group':
+                self.labelUserInAudioGroup.setText(check.result)
+                if check.moreInfo:
+                    self.labelUserInAudioGroup.setToolTip(check.moreInfo)
+                widgetIcon = self.labelUserInAudioGroupIcon
 
             if check.icon == check.ICON_ERROR:
                 widgetIcon.setPixmap(self.pix_error)
@@ -835,12 +834,6 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
                 widgetIcon.setPixmap(self.pix_apply)
             else:
                 widgetIcon.setPixmap(self.pix_cancel)
-
-            checksLayout.addWidget(widgetName, index, 0, Qt.AlignRight)
-            checksLayout.addWidget(widgetIcon, index, 1, Qt.AlignHCenter)
-            checksLayout.addWidget(widgetResult, index, 2, Qt.AlignLeft)
-
-            index += 1
 
         # -------------------------------------------------------------
         # Set-up GUI (JACK Bridges)
