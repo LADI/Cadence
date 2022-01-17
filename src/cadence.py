@@ -468,6 +468,9 @@ class CadenceSystemCheck_audioGroup(CadenceSystemCheck):
                 self.result   = self.tr("No")
                 self.moreInfo = None
 
+    def tr(self, text):
+        return app.translate("CadenceSystemCheck_audioGroup", text)
+
 class CadenceSystemCheck_kernel(CadenceSystemCheck):
     def __init__(self):
         CadenceSystemCheck.__init__(self)
@@ -511,6 +514,8 @@ class CadenceSystemCheck_kernel(CadenceSystemCheck):
             else:
                 self.icon     = self.ICON_ERROR
                 self.moreInfo = None
+    def tr(self, text):
+        return app.translate("CadenceSystemCheck_kernel", text)
 
 def initSystemChecks():
     if LINUX:

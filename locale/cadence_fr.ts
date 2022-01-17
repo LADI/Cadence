@@ -176,7 +176,8 @@ Voulez-vous le modifier dès que JACK s&apos;arrêtera ?</translation>
     <message>
         <location filename="../resources/ui/cadence.ui" line="519"/>
         <source>Auto-start JACK or LADISH at login</source>
-        <translation>Démarrer automatiquement JACK ou LADISH à la connexion de la session</translation>
+        <translation>Démarrer automatiquement JACK ou LADISH
+à la connexion de la session</translation>
     </message>
     <message>
         <location filename="../resources/ui/cadence.ui" line="694"/>
@@ -611,7 +612,7 @@ Désenclenché par défaut</translation>
     <message>
         <location filename="../src/cadence.py" line="2390"/>
         <source>%i samples</source>
-        <translation>%i échantillons</translation>
+        <translation type="unfinished">%i échantillons</translation>
     </message>
     <message>
         <location filename="../src/cadence.py" line="1397"/>
@@ -787,17 +788,17 @@ Désenclenché par défaut</translation>
     <message>
         <location filename="../src/cadence.py" line="439"/>
         <source>User in audio group</source>
-        <translation type="unfinished">Utilisateur dans le groupe audio</translation>
+        <translation>Utilisateur dans le groupe audio</translation>
     </message>
     <message>
         <location filename="../src/cadence.py" line="446"/>
         <source>Yes</source>
-        <translation type="unfinished">Oui</translation>
+        <translation>Oui</translation>
     </message>
     <message>
         <location filename="../src/cadence.py" line="464"/>
         <source>Yes, but needs relogin</source>
-        <translation type="unfinished">Oui, mais re-connexion nécessaire</translation>
+        <translation>Oui, mais re-connexion nécessaire</translation>
     </message>
     <message>
         <location filename="../src/cadence.py" line="468"/>
