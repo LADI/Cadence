@@ -812,8 +812,8 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
         checksLayout = self.groupBox_checks.layout()
 
         for check in cadenceSystemChecks:
-            widgetName   = QLabel("%s:" % check.name)
-            widgetIcon   = QLabel("")
+            widgetName = QLabel("%s:" % check.name)
+            widgetIcon = QLabel("")
             widgetResult = QLabel(check.result)
 
             if check.moreInfo:
