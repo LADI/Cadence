@@ -33,7 +33,6 @@ else:
 
 import systray
 import ui_cadence
-import ui_cadence_tb_jack
 import ui_cadence_tb_alsa
 import ui_cadence_tb_a2j
 import ui_cadence_tb_pa

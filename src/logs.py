@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-# JACK, A2J, LASH and LADISH Logs Viewer
+# JACK and A2J Logs Viewer
 # Copyright (C) 2011-2018 Filipe Coelho <falktx@falktx.com>
 #
 # This program is free software; you can redistribute it and/or modify
@@ -19,14 +19,9 @@
 # ------------------------------------------------------------------------------------------------------------
 # Imports (Global)
 
-if True:
-    from PyQt5.QtCore import pyqtSlot, Qt, QFile, QIODevice, QMutex, QMutexLocker, QTextStream, QThread, QSettings
-    from PyQt5.QtGui import QPalette, QSyntaxHighlighter
-    from PyQt5.QtWidgets import QDialog
-else:
-    from PyQt4.QtCore import pyqtSlot, Qt, QFile, QIODevice, QMutex, QMutexLocker, QTextStream, QThread, QSettings
-    from PyQt4.QtGui import QPalette, QSyntaxHighlighter
-    from PyQt4.QtGui import QDialog
+from PyQt5.QtCore import pyqtSlot, Qt, QFile, QIODevice, QMutex, QMutexLocker, QTextStream, QThread, QSettings
+from PyQt5.QtGui import QPalette, QSyntaxHighlighter
+from PyQt5.QtWidgets import QDialog
 
 # ------------------------------------------------------------------------------------------------------------
 # Imports (Custom Stuff)
@@ -102,22 +97,6 @@ class SyntaxHighlighter_LASH(QSyntaxHighlighter):
         elif ": ------------------" in text:
             self.setFormat(text.find(" ------------------"), len(text), self.fPalette.color(QPalette.Active, QPalette.Mid))
 
-# ------------------------------------------------------------------------------------------------------------
-# Syntax Highlighter for LADISH
-
-class SyntaxHighlighter_LADISH(QSyntaxHighlighter):
-    def __init__(self, parent):
-        QSyntaxHighlighter.__init__(self, parent)
-
-        self.fPalette = parent.palette()
-
-    def highlightBlock(self, text):
-        if ": ERROR: " in text:
-            self.setFormat(text.find(" ERROR: "), len(text), Qt.red)
-        elif ": WARNING: " in text:
-            self.setFormat(text.find(" WARNING: "), len(text), Qt.darkRed)
-        elif ": -------" in text:
-            self.setFormat(text.find(" -------"), len(text), self.fPalette.color(QPalette.Active, QPalette.Mid))
 
 # ------------------------------------------------------------------------------------------------------------
 # Lock-less file read thread

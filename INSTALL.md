@@ -38,7 +38,6 @@ Optional but recommended:
  - pulseaudio[-module-jack]
 
 The 'Cadence' app relies on jackdbus to work properly (either JACK2 or JACK1+DBus patch). <br/>
-Claudia is a LADISH frontend, so it will obviously require LADISH to run.
 
 The python version used and tested is python3.2. Older versions won't work! <br/>
 After install, the app/tools will still work on distributions with python2 as default, without any additional work.
@@ -76,7 +75,3 @@ No special requirements <br/>
 ### Catia
 Requires jack <br/>
 Recommends a2jmidid (>= 7) and jackdbus <br/>
-
-### Claudia [Linux only] <br/>
-Requires jackdbus and ladish <br/>
-Recommends a2jmidid <br/>

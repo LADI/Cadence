@@ -19,14 +19,10 @@
 # ------------------------------------------------------------------------------------------------------------
 # Imports (Global)
 
-if True:
-    from PyQt5.QtCore import pyqtSlot, QTimer
-    from PyQt5.QtGui import QCursor, QFontMetrics, QImage, QPainter
-    from PyQt5.QtWidgets import QMainWindow, QMenu
-else:
-    from PyQt4.QtCore import pyqtSlot, QTimer
-    from PyQt4.QtGui import QCursor, QFontMetrics, QImage, QPainter
-    from PyQt4.QtGui import QMainWindow, QMenu
+
+from PyQt5.QtCore import pyqtSlot, QTimer
+from PyQt5.QtGui import QCursor, QFontMetrics, QImage, QPainter
+from PyQt5.QtWidgets import QMainWindow, QMenu
 
 # ------------------------------------------------------------------------------------------------------------
 # Imports (Custom Stuff)
@@ -63,13 +59,6 @@ class DBusObject(object):
         'bus',
         'a2j',
         'jack',
-        'ladish_control',
-        'ladish_studio',
-        'ladish_room',
-        'ladish_graph',
-        'ladish_manager',
-        'ladish_app_iface',
-        'ladish_app_daemon',
         'patchbay'
     ]
 
@@ -78,12 +67,6 @@ gDBus.loop = None
 gDBus.bus  = None
 gDBus.a2j  = None
 gDBus.jack = None
-gDBus.ladish_control = None
-gDBus.ladish_studio  = None
-gDBus.ladish_room    = None
-gDBus.ladish_graph   = None
-gDBus.ladish_app_iface  = None
-gDBus.ladish_app_daemon = None
 gDBus.patchbay = None
 
 # ------------------------------------------------------------------------------------------------------------
