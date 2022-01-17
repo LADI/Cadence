@@ -111,6 +111,10 @@ XDG_APPLICATIONS_PATH = [
 
 WINEASIO_PREFIX = "HKEY_CURRENT_USER\Software\Wine\WineASIO"
 
+BRIDGE_PULSEAUDIO = 0
+BRIDGE_ALSA_AUDIO = 1
+BRIDGE_ALSA_MIDI = 2
+
 # ---------------------------------------------------------------------
 class PulseAudioJackBridgeValues(object):
     clientIdCapture    = -1
@@ -842,6 +846,9 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
             self.toolBox_pulseaudio.setEnabled(False)
             self.label_bridge_pulse.setText(self.tr("PulseAudio is not installed"))
 
+        self.tableWidgetBridges.setCurrentCell(0, 0)
+        self.stackedWidgetBridges.setCurrentIndex(0)
+        
         # Not available in cxfreeze builds
         if sys.argv[0].endswith("/cadence"):
             self.groupBox_bridges.setEnabled(False)
@@ -1083,6 +1090,9 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
         self.b_jack_restart.clicked.connect(self.slot_JackServerForceRestart)
         self.b_jack_configure.clicked.connect(self.slot_JackServerConfigure)
         self.b_jack_switchmaster.clicked.connect(self.slot_JackServerSwitchMaster)
+
+        self.tableWidgetBridges.currentCellChanged.connect(
+            self.slot_change_bridge_to_show)
 
         self.b_alsa_start.clicked.connect(self.slot_AlsaBridgeStart)
         self.b_alsa_stop.clicked.connect(self.slot_AlsaBridgeStop)
@@ -1458,7 +1468,7 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
                 self.systray.setActionEnabled("pulse_start", False)
                 self.systray.setActionEnabled("pulse_stop", True)
                 self.label_bridge_pulse.setText(
-                    self.tr("PulseAudio is started and bridged to JACK with %s inputs/%s outputs")
+                    self.tr("PulseAudio is started and bridged to JACK\nwith %s inputs/%s outputs")
                         % (pA_bridge_values.portCaptureNumber,
                            pA_bridge_values.portPlaybackNumber))
             else:
@@ -1694,6 +1704,10 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
     def slot_JackClearXruns(self):
         if gDBus.jack:
             gDBus.jack.ResetXruns()
+
+    @pyqtSlot(int, int)
+    def slot_change_bridge_to_show(self, row, column):
+        self.stackedWidgetBridges.setCurrentIndex(row)
 
     @pyqtSlot()
     def slot_AlsaBridgeStart(self):
