@@ -58,7 +58,7 @@ locale/%.qm: locale/%.ts
 # -----------------------------------------------------------------------------------------------------------------------------------------
 # UI code
 
-UI: cadence catarina catia claudia tools
+UI: cadence catarina catia tools
 
 cadence: src/ui_cadence.py \
 	src/ui_cadence_tb_jack.py src/ui_cadence_tb_alsa.py src/ui_cadence_tb_a2j.py src/ui_cadence_tb_pa.py \
@@ -70,11 +70,6 @@ catarina: src/ui_catarina.py \
 	src/ui_catarina_connectports.py src/ui_catarina_disconnectports.py
 
 catia: src/ui_catia.py
-
-claudia: src/ui_claudia.py \
-	src/ui_claudia_studioname.py src/ui_claudia_studiolist.py \
-	src/ui_claudia_createroom.py src/ui_claudia_projectname.py src/ui_claudia_projectproperties.py \
-	src/ui_claudia_runcustom.py src/ui_claudia_launcher.py src/ui_claudia_launcher_app.py
 
 tools: \
 	src/ui_logs.py src/ui_render.py \
@@ -128,8 +123,6 @@ install:
 		data/cadence-session-start \
 		data/catarina \
 		data/catia \
-		data/claudia \
-		data/claudia-launcher \
 		c++/jackmeter/cadence-jackmeter \
 		c++/xycontroller/cadence-xycontroller \
 		$(DESTDIR)$(PREFIX)/bin/
@@ -142,36 +135,26 @@ install:
 	install -m 644 resources/16x16/cadence.png             $(DESTDIR)$(PREFIX)/share/icons/hicolor/16x16/apps/
 	install -m 644 resources/16x16/catarina.png            $(DESTDIR)$(PREFIX)/share/icons/hicolor/16x16/apps/
 	install -m 644 resources/16x16/catia.png               $(DESTDIR)$(PREFIX)/share/icons/hicolor/16x16/apps/
-	install -m 644 resources/16x16/claudia.png             $(DESTDIR)$(PREFIX)/share/icons/hicolor/16x16/apps/
-	install -m 644 resources/16x16/claudia-launcher.png    $(DESTDIR)$(PREFIX)/share/icons/hicolor/16x16/apps/
 
 	# Install icons, 48x48
 	install -m 644 resources/48x48/cadence.png             $(DESTDIR)$(PREFIX)/share/icons/hicolor/48x48/apps/
 	install -m 644 resources/48x48/catarina.png            $(DESTDIR)$(PREFIX)/share/icons/hicolor/48x48/apps/
 	install -m 644 resources/48x48/catia.png               $(DESTDIR)$(PREFIX)/share/icons/hicolor/48x48/apps/
-	install -m 644 resources/48x48/claudia.png             $(DESTDIR)$(PREFIX)/share/icons/hicolor/48x48/apps/
-	install -m 644 resources/48x48/claudia-launcher.png    $(DESTDIR)$(PREFIX)/share/icons/hicolor/48x48/apps/
 
 	# Install icons, 128x128
 	install -m 644 resources/128x128/cadence.png           $(DESTDIR)$(PREFIX)/share/icons/hicolor/128x128/apps/
 	install -m 644 resources/128x128/catarina.png          $(DESTDIR)$(PREFIX)/share/icons/hicolor/128x128/apps/
 	install -m 644 resources/128x128/catia.png             $(DESTDIR)$(PREFIX)/share/icons/hicolor/128x128/apps/
-	install -m 644 resources/128x128/claudia.png           $(DESTDIR)$(PREFIX)/share/icons/hicolor/128x128/apps/
-	install -m 644 resources/128x128/claudia-launcher.png  $(DESTDIR)$(PREFIX)/share/icons/hicolor/128x128/apps/
 
 	# Install icons, 256x256
 	install -m 644 resources/256x256/cadence.png           $(DESTDIR)$(PREFIX)/share/icons/hicolor/256x256/apps/
 	install -m 644 resources/256x256/catarina.png          $(DESTDIR)$(PREFIX)/share/icons/hicolor/256x256/apps/
 	install -m 644 resources/256x256/catia.png             $(DESTDIR)$(PREFIX)/share/icons/hicolor/256x256/apps/
-	install -m 644 resources/256x256/claudia.png           $(DESTDIR)$(PREFIX)/share/icons/hicolor/256x256/apps/
-	install -m 644 resources/256x256/claudia-launcher.png  $(DESTDIR)$(PREFIX)/share/icons/hicolor/256x256/apps/
 
 	# Install icons, scalable
 	install -m 644 resources/scalable/cadence.svg          $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/
 	install -m 644 resources/scalable/catarina.svg         $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/
 	install -m 644 resources/scalable/catia.svg            $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/
-	install -m 644 resources/scalable/claudia.svg          $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/
-	install -m 644 resources/scalable/claudia-launcher.svg $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/
 
 	# Install main code
 	install -m 755 src/*.py $(DESTDIR)$(PREFIX)/share/cadence/src/
@@ -187,10 +170,6 @@ install:
 	install -m 644 data/pulse2loopback/* $(DESTDIR)$(PREFIX)/share/cadence/pulse2loopback/
 	install -m 755 data/61cadence-session-inject $(X11_RC_DIR)
 
-	# Install addtional stuff for Claudia
-	cp -r data/icons/*     $(DESTDIR)$(PREFIX)/share/cadence/icons/
-	cp -r data/templates/* $(DESTDIR)$(PREFIX)/share/cadence/templates/
-
 	# Adjust PREFIX value in script files
 	sed -i "s?X-PREFIX-X?$(PREFIX)?" \
 		$(DESTDIR)$(PREFIX)/bin/cadence \
@@ -203,8 +182,6 @@ install:
 		$(DESTDIR)$(PREFIX)/bin/cadence-session-start \
 		$(DESTDIR)$(PREFIX)/bin/catarina \
 		$(DESTDIR)$(PREFIX)/bin/catia \
-		$(DESTDIR)$(PREFIX)/bin/claudia \
-		$(DESTDIR)$(PREFIX)/bin/claudia-launcher \
 		$(X11_RC_DIR)/61cadence-session-inject
 
 	# Delete old files

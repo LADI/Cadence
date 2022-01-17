@@ -630,61 +630,6 @@ class ForceWaitDialog(QDialog, ui_cadence_rwait.Ui_Dialog):
         QDialog.done(self, r)
         self.close()
 
-# Additional JACK options
-class ToolBarJackDialog(QDialog, ui_cadence_tb_jack.Ui_Dialog):
-    def __init__(self, parent):
-        QDialog.__init__(self, parent)
-        self.setupUi(self)
-
-        self.m_ladishLoaded = False
-
-        if haveDBus:
-            if GlobalSettings.value("JACK/AutoLoadLadishStudio", False, type=bool):
-                self.rb_ladish.setChecked(True)
-                self.m_ladishLoaded = True
-            elif "org.ladish" in gDBus.bus.list_names():
-                self.m_ladishLoaded = True
-        else:
-            self.rb_ladish.setEnabled(False)
-            self.rb_jack.setChecked(True)
-
-        if self.m_ladishLoaded:
-            self.fillStudioNames()
-
-        self.accepted.connect(self.slot_setOptions)
-        self.rb_ladish.clicked.connect(self.slot_maybeFillStudioNames)
-
-    def fillStudioNames(self):
-        gDBus.ladish_control = gDBus.bus.get_object("org.ladish", "/org/ladish/Control")
-
-        ladishStudioName = dbus.String(GlobalSettings.value("JACK/LadishStudioName", "", type=str))
-        ladishStudioListDump = gDBus.ladish_control.GetStudioList()
-
-        if len(ladishStudioListDump) == 0:
-            self.rb_ladish.setEnabled(False)
-            self.rb_jack.setChecked(True)
-        else:
-            i=0
-            for thisStudioName, thisStudioDict in ladishStudioListDump:
-                self.cb_studio_name.addItem(thisStudioName)
-                if ladishStudioName and thisStudioName == ladishStudioName:
-                    self.cb_studio_name.setCurrentIndex(i)
-                i += 1
-
-    @pyqtSlot()
-    def slot_maybeFillStudioNames(self):
-        if not self.m_ladishLoaded:
-            self.fillStudioNames()
-            self.m_ladishLoaded = True
-
-    @pyqtSlot()
-    def slot_setOptions(self):
-        GlobalSettings.setValue("JACK/AutoLoadLadishStudio", self.rb_ladish.isChecked())
-        GlobalSettings.setValue("JACK/LadishStudioName", self.cb_studio_name.currentText())
-
-    def done(self, r):
-        QDialog.done(self, r)
-        self.close()
 
 # Additional ALSA Audio options
 class ToolBarAlsaAudioDialog(QDialog, ui_cadence_tb_alsa.Ui_Dialog):
@@ -854,10 +799,6 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
         # -------------------------------------------------------------
         # Set-up GUI (System Checks)
 
-        #self.label_check_helper1.setVisible(False)
-        #self.label_check_helper2.setVisible(False)
-        #self.label_check_helper3.setVisible(False)
-
         index = 2
         checksLayout = self.groupBox_checks.layout()
 
@@ -903,7 +844,6 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
         if sys.argv[0].endswith("/cadence"):
             self.groupBox_bridges.setEnabled(False)
             self.cb_jack_autostart.setEnabled(False)
-            self.tb_jack_options.setEnabled(False)
 
         # -------------------------------------------------------------
         # Set-up GUI (Tweaks)
@@ -1114,7 +1054,6 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
         self.systray.addMenu("tools", self.tr("Tools"))
         self.systray.addMenuAction("tools", "app_catarina", "Catarina")
         self.systray.addMenuAction("tools", "app_catia", "Catia")
-        self.systray.addMenuAction("tools", "app_claudia", "Claudia")
         self.systray.addMenuSeparator("tools", "tools_sep")
         self.systray.addMenuAction("tools", "app_logs", self.tr("Logs"))
         self.systray.addMenuAction("tools", "app_meter_in", self.tr("Meter (Inputs)"))
@@ -1125,7 +1064,6 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
 
         self.systray.connect("app_catarina", self.func_start_catarina)
         self.systray.connect("app_catia", self.func_start_catia)
-        self.systray.connect("app_claudia", self.func_start_claudia)
         self.systray.connect("app_logs", self.func_start_logs)
         self.systray.connect("app_meter_in", self.func_start_jackmeter_in)
         self.systray.connect("app_meter_out", self.func_start_jackmeter)
@@ -1143,7 +1081,6 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
         self.b_jack_restart.clicked.connect(self.slot_JackServerForceRestart)
         self.b_jack_configure.clicked.connect(self.slot_JackServerConfigure)
         self.b_jack_switchmaster.clicked.connect(self.slot_JackServerSwitchMaster)
-        self.tb_jack_options.clicked.connect(self.slot_JackOptions)
 
         self.b_alsa_start.clicked.connect(self.slot_AlsaBridgeStart)
         self.b_alsa_stop.clicked.connect(self.slot_AlsaBridgeStop)
@@ -1157,7 +1094,6 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
         self.b_pulse_channels.clicked.connect(self.slot_PulseAudioBridgeChannels)
 
         self.pic_catia.clicked.connect(self.func_start_catia)
-        self.pic_claudia.clicked.connect(self.func_start_claudia)
         self.pic_meter_in.clicked.connect(self.func_start_jackmeter_in)
         self.pic_meter_out.clicked.connect(self.func_start_jackmeter)
         self.pic_logs.clicked.connect(self.func_start_logs)
@@ -1578,10 +1514,6 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
         self.func_start_tool("catia")
 
     @pyqtSlot()
-    def func_start_claudia(self):
-        self.func_start_tool("claudia")
-
-    @pyqtSlot()
     def func_start_logs(self):
         self.func_start_tool("cadence-logs")
 
@@ -1755,10 +1687,6 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
             return
 
         self.jackStarted()
-
-    @pyqtSlot()
-    def slot_JackOptions(self):
-        ToolBarJackDialog(self).exec_()
 
     @pyqtSlot()
     def slot_JackClearXruns(self):

@@ -567,41 +567,6 @@ class GlobalSysTray(object):
             print("systray.py - Failed to get menu index for %s" % menu_name_id)
             return -1
 
-    #def get_parent_menu_widget(self, parent_menu_id):
-        #if parent_menu_id != None:
-            #menu_index = self.get_menu_index(parent_menu_id)
-            #if menu_index >= 0:
-                #return self.menu_indexes[menu_index][1]
-            #else:
-                #print("systray.py::Failed to get parent Menu widget for", parent_menu_id)
-                #return None
-        #else:
-            #return self.menu
-
-    #def remove_actions_by_menu_name_id(self, menu_name_id):
-        #h = 0
-        #for i in range(len(self.act_indexes)):
-            #act_name_id, act_widget, parent_menu_id, act_func = self.act_indexes[i - h]
-            #if parent_menu_id == menu_name_id:
-                #self.act_indexes.pop(i - h)
-                #h += 1
-
-    #def remove_separators_by_menu_name_id(self, menu_name_id):
-        #h = 0
-        #for i in range(len(self.sep_indexes)):
-            #sep_name_id, sep_widget, parent_menu_id = self.sep_indexes[i - h]
-            #if parent_menu_id == menu_name_id:
-                #self.sep_indexes.pop(i - h)
-                #h += 1
-
-    #def remove_submenus_by_menu_name_id(self, submenu_name_id):
-        #h = 0
-        #for i in range(len(self.menu_indexes)):
-            #menu_name_id, menu_widget, parent_menu_id = self.menu_indexes[i - h]
-            #if parent_menu_id == submenu_name_id:
-                #self.menu_indexes.pop(i - h)
-                #h += 1
-
     # -------------------------------------------------------------------------------------------
 
     def gtk_call_func(self, gtkmenu, act_name_id):
@@ -650,39 +615,3 @@ class GlobalSysTray(object):
     def __raiseWindow(self):
         self._parent.activateWindow()
         self._parent.raise_()
-
-#--------------- main ------------------
-if __name__ == '__main__':
-    from PyQt5.QtWidgets import QApplication, QDialog, QMessageBox
-
-    class ExampleGUI(QDialog):
-        def __init__(self, parent=None):
-            QDialog.__init__(self, parent)
-
-            self.setWindowIcon(getIcon("audacity"))
-
-            self.systray = GlobalSysTray(self, "Claudia", "claudia")
-            self.systray.addAction("about", self.tr("About"))
-            self.systray.setIcon("audacity")
-            self.systray.setToolTip("Demo systray app")
-
-            self.systray.connect("about", self.about)
-
-            self.systray.show()
-
-        def about(self):
-            QMessageBox.about(self, self.tr("About"), self.tr("Systray Demo"))
-
-        def done(self, r):
-            QDialog.done(self, r)
-            self.close()
-
-        def closeEvent(self, event):
-            self.systray.close()
-            QDialog.closeEvent(self, event)
-
-    app = QApplication(sys.argv)
-    setup_i18n()
-    gui = ExampleGUI()
-    gui.show()
-    sys.exit(gui.systray.exec_(app))
