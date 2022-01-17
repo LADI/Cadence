@@ -4338,7 +4338,8 @@ Il n&apos;est pas possible de configurer JACK à ce stade.</translation>
     <message>
         <location filename="../resources/ui/render.ui" line="59"/>
         <source>Bit &amp;Depth:</source>
-        <translation type="unfinished">Profondeur de &amp;donnée :</translation>
+        <translation type="unfinished">Profondeur
+de &amp;donnée :</translation>
     </message>
     <message>
         <location filename="../resources/ui/render.ui" line="101"/>
@@ -4388,7 +4389,7 @@ Il n&apos;est pas possible de configurer JACK à ce stade.</translation>
     <message>
         <location filename="../resources/ui/render.ui" line="214"/>
         <source>&amp;End Time:</source>
-        <translation type="unfinished">Temps d&amp;e fin :</translation>
+        <translation>Temps d&amp;e fin :</translation>
     </message>
     <message>
         <location filename="../resources/ui/render.ui" line="241"/>
@@ -4403,7 +4404,7 @@ Il n&apos;est pas possible de configurer JACK à ce stade.</translation>
     <message>
         <location filename="../resources/ui/render.ui" line="257"/>
         <source>Render &amp;Mode:</source>
-        <translation type="unfinished">&amp;Mode de rendu :</translation>
+        <translation>&amp;Mode de rendu :</translation>
     </message>
     <message>
         <location filename="../resources/ui/render.ui" line="271"/>
