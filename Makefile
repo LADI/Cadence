@@ -50,17 +50,6 @@ src/resources_rc.py: resources/resources.qrc
 
 # -----------------------------------------------------------------------------------------------------------------------------------------
 # Translations
-
-TS: $(patsubst %,resources/translations/cadence_%.ts,$(I18N_LANGUAGES))
-QM: $(patsubst %,resources/translations/cadence_%.qm,$(I18N_LANGUAGES))
-
-resources/translations/%.ts:
-	@install -d resources/translations
-	$(PYLUPDATE) src/*.py resources/ui/*.ui -ts $@
-
-resources/translations/%.qm: resources/translations/%.ts
-	$(LRELEASE) $< -qm $@
-
 locale: locale/cadence_en.qm locale/cadence_fr.qm
 	
 locale/%.qm: locale/%.ts
@@ -99,7 +88,7 @@ src/ui_%.py: resources/ui/%.ui
 clean:
 	$(MAKE) clean -C c++/jackmeter
 	$(MAKE) clean -C c++/xycontroller
-	rm -f *~ src/*~ src/*.pyc src/ui_*.py src/resources_rc.py resources/translations/*.qm
+	rm -f *~ src/*~ src/*.pyc src/ui_*.py src/resources_rc.py resources/locale/*.qm
 
 # -----------------------------------------------------------------------------------------------------------------------------------------
 
@@ -124,7 +113,7 @@ install:
 	install -d $(DESTDIR)$(PREFIX)/share/cadence/pulse2loopback/
 	install -d $(DESTDIR)$(PREFIX)/share/cadence/icons/
 	install -d $(DESTDIR)$(PREFIX)/share/cadence/templates/
-	install -d $(DESTDIR)$(PREFIX)/share/cadence/translations/
+	install -d $(DESTDIR)$(PREFIX)/share/cadence/locale/
 	install -d $(X11_RC_DIR)
 
 	# Install script files and binaries
@@ -189,8 +178,8 @@ install:
 
 	# Install translations
 	$(foreach l,$(I18N_LANGUAGES),install -m 644 \
-		resources/translations/cadence_$(l).qm \
-		$(DESTDIR)$(PREFIX)/share/cadence/translations/)
+		resources/locale/cadence_$(l).qm \
+		$(DESTDIR)$(PREFIX)/share/cadence/locale/)
 
 	# Install addtional stuff for Cadence
 	install -m 644 data/pulse2jack/*     $(DESTDIR)$(PREFIX)/share/cadence/pulse2jack/
