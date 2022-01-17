@@ -177,10 +177,11 @@ install:
 	install -m 755 src/*.py $(DESTDIR)$(PREFIX)/share/cadence/src/
 
 	# Install translations
-	$(foreach l,$(I18N_LANGUAGES),install -m 644 \
-		resources/locale/cadence_$(l).qm \
-		$(DESTDIR)$(PREFIX)/share/cadence/locale/)
+	install -m 644 locale/*.qm $(DESTDIR)$(PREFIX)/share/cadence/locale/
 
+	# compile python files
+	python3 -m compileall $(DESTDIR)$(PREFIX)/share/cadence/src/
+	
 	# Install addtional stuff for Cadence
 	install -m 644 data/pulse2jack/*     $(DESTDIR)$(PREFIX)/share/cadence/pulse2jack/
 	install -m 644 data/pulse2loopback/* $(DESTDIR)$(PREFIX)/share/cadence/pulse2loopback/
