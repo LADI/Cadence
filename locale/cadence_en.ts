@@ -52,705 +52,725 @@ Do you want to change as soon as JACK stops?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="38"/>
+        <location filename="../resources/ui/cadence.ui" line="723"/>
         <source>Welcome to Cadence</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="76"/>
+        <location filename="../resources/ui/cadence.ui" line="420"/>
         <source>System Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="82"/>
+        <location filename="../resources/ui/cadence.ui" line="428"/>
         <source>Operating System:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="410"/>
+        <location filename="../resources/ui/cadence.ui" line="675"/>
         <source>TextLabel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="99"/>
+        <location filename="../resources/ui/cadence.ui" line="496"/>
         <source>Kernel/Version:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="116"/>
+        <location filename="../resources/ui/cadence.ui" line="462"/>
         <source>Architecture:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="136"/>
-        <source>System Status</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/cadence.ui" line="142"/>
+        <location filename="../resources/ui/cadence.ui" line="549"/>
         <source>CPU Scaling Governor:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="164"/>
+        <location filename="../resources/ui/cadence.ui" line="574"/>
         <source>System Checks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1496"/>
+        <location filename="../src/cadence.py" line="1578"/>
         <source>JACK Status</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="237"/>
+        <location filename="../resources/ui/cadence.ui" line="151"/>
         <source>Sample Rate:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="253"/>
+        <location filename="../resources/ui/cadence.ui" line="199"/>
         <source>DSP Load:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="282"/>
+        <location filename="../resources/ui/cadence.ui" line="235"/>
         <source>Realtime:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="311"/>
+        <location filename="../resources/ui/cadence.ui" line="167"/>
         <source>Buffer Size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="334"/>
+        <location filename="../resources/ui/cadence.ui" line="112"/>
         <source>Xruns:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="363"/>
+        <location filename="../resources/ui/cadence.ui" line="128"/>
         <source>Server Status:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="379"/>
+        <location filename="../resources/ui/cadence.ui" line="183"/>
         <source>Block Latency:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1027"/>
+        <location filename="../src/cadence.py" line="1116"/>
         <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1028"/>
+        <location filename="../src/cadence.py" line="1117"/>
         <source>Stop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="458"/>
+        <location filename="../resources/ui/cadence.ui" line="323"/>
         <source>Force Restart</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="451"/>
+        <location filename="../resources/ui/cadence.ui" line="316"/>
         <source>Configure</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="479"/>
+        <location filename="../resources/ui/cadence.ui" line="344"/>
         <source>Switch Master</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="663"/>
+        <location filename="../resources/ui/cadence.ui" line="1138"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="504"/>
+        <location filename="../resources/ui/cadence.ui" line="734"/>
         <source>JACK Bridges</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="549"/>
+        <location filename="../resources/ui/cadence.ui" line="1023"/>
         <source>ALSA Audio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1386"/>
+        <location filename="../src/cadence.py" line="1470"/>
         <source>No bridge in use</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="629"/>
+        <location filename="../resources/ui/cadence.ui" line="1104"/>
         <source>Bridge Type:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="640"/>
+        <location filename="../resources/ui/cadence.ui" line="1115"/>
         <source>(None)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="645"/>
+        <location filename="../resources/ui/cadence.ui" line="1120"/>
         <source>ALSA -&gt; Loop -&gt; JACK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="650"/>
+        <location filename="../resources/ui/cadence.ui" line="1125"/>
         <source>ALSA -&gt; JACK (Plugin)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="655"/>
+        <location filename="../resources/ui/cadence.ui" line="1130"/>
         <source>ALSA -&gt; PulseAudio -&gt; JACK (Plugin)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="697"/>
-        <source>ALSA MIDI</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/cadence.ui" line="715"/>
+        <location filename="../resources/ui/cadence.ui" line="1180"/>
         <source>ALSA MIDI State</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="790"/>
+        <location filename="../resources/ui/cadence.ui" line="1223"/>
         <source>Export hardware ports</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="797"/>
+        <location filename="../resources/ui/cadence.ui" line="1230"/>
         <source>Start with Jack</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="831"/>
+        <location filename="../resources/ui/cadence.ui" line="761"/>
         <source>PulseAudio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="849"/>
+        <location filename="../resources/ui/cadence.ui" line="767"/>
         <source>PulseAudio state</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1029"/>
+        <location filename="../src/cadence.py" line="1118"/>
         <source>Channels</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="931"/>
+        <location filename="../resources/ui/cadence.ui" line="1011"/>
         <source>Auto-start at login</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1053"/>
+        <location filename="../src/cadence.py" line="1141"/>
         <source>Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="995"/>
+        <location filename="../resources/ui/cadence.ui" line="1290"/>
         <source>Applications</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1020"/>
+        <location filename="../resources/ui/cadence.ui" line="1315"/>
         <source>Catia</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1051"/>
+        <location filename="../resources/ui/cadence.ui" line="1346"/>
         <source>JACK Patchbay with A2J Bridge support and JACK Transport</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1211"/>
+        <location filename="../resources/ui/cadence.ui" line="1506"/>
         <source>Meter In / Out</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1259"/>
+        <location filename="../resources/ui/cadence.ui" line="1554"/>
         <source>Digital peak meter, auto-connected to all system inputs or outputs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1057"/>
+        <location filename="../src/cadence.py" line="1145"/>
         <source>Logs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1060"/>
+        <location filename="../src/cadence.py" line="1148"/>
         <source>Render</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1098"/>
+        <location filename="../resources/ui/cadence.ui" line="1393"/>
         <source>Render a JACK project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1061"/>
+        <location filename="../src/cadence.py" line="1149"/>
         <source>XY-Controller</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1306"/>
+        <location filename="../resources/ui/cadence.ui" line="1601"/>
         <source>Virtual XY Controller with MIDI Keyboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1351"/>
+        <location filename="../resources/ui/cadence.ui" line="1646"/>
         <source>Tweaks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1396"/>
+        <location filename="../resources/ui/cadence.ui" line="1691"/>
         <source>Settings have been changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1419"/>
+        <location filename="../resources/ui/cadence.ui" line="1714"/>
         <source>Apply Now</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1474"/>
+        <location filename="../resources/ui/cadence.ui" line="1769"/>
         <source>audio-plugins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1479"/>
+        <location filename="../resources/ui/cadence.ui" line="1774"/>
         <source>default-apps</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1484"/>
+        <location filename="../resources/ui/cadence.ui" line="1779"/>
         <source>wineasio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1489"/>
+        <location filename="../resources/ui/cadence.ui" line="1784"/>
         <source>name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1494"/>
+        <location filename="../resources/ui/cadence.ui" line="1789"/>
         <source>Audio Plugins PATH</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1505"/>
+        <location filename="../resources/ui/cadence.ui" line="1800"/>
         <source>Default Applications</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1516"/>
+        <location filename="../resources/ui/cadence.ui" line="1811"/>
         <source>WineASIO</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1553"/>
+        <location filename="../resources/ui/cadence.ui" line="1848"/>
         <source>Remove</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1589"/>
+        <location filename="../resources/ui/cadence.ui" line="1884"/>
         <source>Add...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1620"/>
+        <location filename="../resources/ui/cadence.ui" line="1915"/>
         <source>LADSPA</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1650"/>
+        <location filename="../resources/ui/cadence.ui" line="1945"/>
         <source>DSSI</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1680"/>
+        <location filename="../resources/ui/cadence.ui" line="1975"/>
         <source>LV2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1710"/>
+        <location filename="../resources/ui/cadence.ui" line="2005"/>
         <source>VST</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1751"/>
+        <location filename="../resources/ui/cadence.ui" line="2046"/>
         <source>Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1758"/>
+        <location filename="../resources/ui/cadence.ui" line="2053"/>
         <source>Change...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1784"/>
+        <location filename="../resources/ui/cadence.ui" line="2079"/>
         <source>Image Viewer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1804"/>
+        <location filename="../resources/ui/cadence.ui" line="2099"/>
         <source>Text Editor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1824"/>
+        <location filename="../resources/ui/cadence.ui" line="2119"/>
         <source>Video Player</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1844"/>
+        <location filename="../resources/ui/cadence.ui" line="2139"/>
         <source>Music Player</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1864"/>
+        <location filename="../resources/ui/cadence.ui" line="2159"/>
         <source>Web Browser</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1953"/>
+        <location filename="../resources/ui/cadence.ui" line="2248"/>
         <source>[App Name]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1976"/>
+        <location filename="../resources/ui/cadence.ui" line="2271"/>
         <source>[App Comment]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="2021"/>
+        <location filename="../resources/ui/cadence.ui" line="2316"/>
         <source>Audio Ports</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="2075"/>
+        <location filename="../resources/ui/cadence.ui" line="2370"/>
         <source>Number of jack ports that wineasio will try to open.
 Default is 16</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="2033"/>
+        <location filename="../resources/ui/cadence.ui" line="2328"/>
         <source>Number of inputs:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="2065"/>
+        <location filename="../resources/ui/cadence.ui" line="2360"/>
         <source>Number of outputs:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="2112"/>
+        <location filename="../resources/ui/cadence.ui" line="2407"/>
         <source>Try to connect the asio channels to the
 physical I/O ports on your hardware.
 Default is on</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="2117"/>
+        <location filename="../resources/ui/cadence.ui" line="2412"/>
         <source>Connect to hardware</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="2129"/>
+        <location filename="../resources/ui/cadence.ui" line="2424"/>
         <source>JACK Options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="2153"/>
+        <location filename="../resources/ui/cadence.ui" line="2448"/>
         <source>Enable wineasio to launch the jack server.
 Default is off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="2157"/>
+        <location filename="../resources/ui/cadence.ui" line="2452"/>
         <source>Autostart server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="2184"/>
+        <location filename="../resources/ui/cadence.ui" line="2479"/>
         <source>When on, an asio app will be able to change the jack buffer size.
 Default is off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="2188"/>
+        <location filename="../resources/ui/cadence.ui" line="2483"/>
         <source>Fixed buffersize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="2199"/>
+        <location filename="../resources/ui/cadence.ui" line="2494"/>
         <source>Preferred buffersize:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="840"/>
+        <location filename="../src/cadence.py" line="909"/>
         <source>PulseAudio is not installed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1015"/>
+        <location filename="../src/cadence.py" line="1104"/>
         <source>Start JACK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1016"/>
+        <location filename="../src/cadence.py" line="1105"/>
         <source>Stop JACK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1017"/>
+        <location filename="../src/cadence.py" line="1106"/>
         <source>Configure JACK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1020"/>
+        <location filename="../src/cadence.py" line="1109"/>
         <source>ALSA Audio Bridge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1023"/>
+        <location filename="../src/cadence.py" line="1112"/>
         <source>ALSA MIDI Bridge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1026"/>
+        <location filename="../src/cadence.py" line="1115"/>
         <source>PulseAudio Bridge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1058"/>
+        <location filename="../src/cadence.py" line="1146"/>
         <source>Meter (Inputs)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1059"/>
+        <location filename="../src/cadence.py" line="1147"/>
         <source>Meter (Output)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1292"/>
+        <location filename="../src/cadence.py" line="1376"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1295"/>
+        <location filename="../src/cadence.py" line="1379"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1208"/>
+        <location filename="../src/cadence.py" line="1296"/>
         <source>Unavailable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1210"/>
+        <location filename="../src/cadence.py" line="1298"/>
         <source>Unknown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1213"/>
+        <location filename="../src/cadence.py" line="1301"/>
         <source>-- jackdbus is not available --</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1235"/>
+        <location filename="../src/cadence.py" line="1323"/>
         <source>ALSA MIDI Bridge is not installed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1288"/>
+        <location filename="../src/cadence.py" line="1372"/>
         <source>Started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="2322"/>
+        <location filename="../src/cadence.py" line="2496"/>
         <source>%i samples</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1337"/>
+        <location filename="../src/cadence.py" line="1421"/>
         <source>Stopped</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1366"/>
+        <location filename="../src/cadence.py" line="1450"/>
         <source>ALSA MIDI Bridge is running, ports are exported</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1368"/>
+        <location filename="../src/cadence.py" line="1452"/>
         <source>ALSA MIDI Bridge is running</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1376"/>
+        <location filename="../src/cadence.py" line="1460"/>
         <source>ALSA MIDI Bridge is stopped</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1400"/>
+        <location filename="../src/cadence.py" line="1484"/>
         <source>Using Cadence snd-aloop daemon, started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1410"/>
+        <location filename="../src/cadence.py" line="1494"/>
         <source>Using Cadence snd-aloop daemon, stopped</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1422"/>
+        <location filename="../src/cadence.py" line="1506"/>
         <source>Using JACK plugin bridge (Always on)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1431"/>
+        <location filename="../src/cadence.py" line="1515"/>
         <source>Using PulseAudio plugin bridge (Always on)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1816"/>
+        <location filename="../src/cadence.py" line="1990"/>
         <source>Custom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1441"/>
+        <location filename="../src/cadence.py" line="1525"/>
         <source>Using custom asoundrc, not managed by Cadence</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1457"/>
-        <source>PulseAudio is started and bridged to JACK with %s inputs/%s outputs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/cadence.py" line="1467"/>
+        <location filename="../src/cadence.py" line="1549"/>
         <source>PulseAudio is started but not bridged</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1474"/>
+        <location filename="../src/cadence.py" line="1556"/>
         <source>PulseAudio is not started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1497"/>
+        <location filename="../src/cadence.py" line="1579"/>
         <source>Realtime</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1498"/>
+        <location filename="../src/cadence.py" line="1580"/>
         <source>DSP Load</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1499"/>
+        <location filename="../src/cadence.py" line="1581"/>
         <source>Xruns</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1500"/>
+        <location filename="../src/cadence.py" line="1582"/>
         <source>Buffer Size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1501"/>
+        <location filename="../src/cadence.py" line="1583"/>
         <source>Sample Rate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1502"/>
+        <location filename="../src/cadence.py" line="1584"/>
         <source>Block Latency</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1712"/>
+        <location filename="../src/cadence.py" line="1803"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1646"/>
+        <location filename="../src/cadence.py" line="1733"/>
         <source>Failed to start JACK, please check the logs for more information.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1655"/>
+        <location filename="../src/cadence.py" line="1742"/>
         <source>Failed to stop JACK, please check the logs for more information.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1660"/>
+        <location filename="../src/cadence.py" line="1747"/>
         <source>This will force kill all JACK applications!&lt;br&gt;Make sure to save your projects before continue.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1660"/>
+        <location filename="../src/cadence.py" line="1747"/>
         <source>Are you sure you want to force the restart of JACK?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1685"/>
+        <location filename="../src/cadence.py" line="1772"/>
         <source>Failed to switch JACK master, please check the logs for more information.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1712"/>
+        <location filename="../src/cadence.py" line="1803"/>
         <source>You&apos;re using a custom ~/.asoundrc file not managed by Cadence.&lt;br/&gt;By choosing to use a Cadence ALSA-Audio bridge, &lt;b&gt;the file will be replaced&lt;/b&gt;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1712"/>
+        <location filename="../src/cadence.py" line="1803"/>
         <source>Are you sure you want to do this?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="1751"/>
+        <location filename="../src/cadence.py" line="1842"/>
         <source>Cadence::AlsaBridgeChanged(%i) - invalid index</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="2150"/>
+        <location filename="../src/cadence.py" line="2324"/>
         <source>Add Path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="2179"/>
+        <location filename="../src/cadence.py" line="2353"/>
         <source>Change Path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="486"/>
+        <location filename="../resources/ui/cadence.ui" line="351"/>
         <source>Auto-start JACK at login</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/cadence.ui" line="1195"/>
+        <location filename="../resources/ui/cadence.ui" line="1490"/>
         <source>View JACK and A2J logs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resources/ui/cadence.ui" line="614"/>
+        <source>User in audio group :</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resources/ui/cadence.ui" line="637"/>
+        <source>Used kernel :</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resources/ui/cadence.ui" line="823"/>
+        <source>Add Source</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resources/ui/cadence.ui" line="893"/>
+        <source>Add Sink</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resources/ui/cadence.ui" line="948"/>
+        <source>Apply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resources/ui/cadence.ui" line="1161"/>
+        <source>ALSA MIDI (A2J)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cadence.py" line="1541"/>
+        <source>PulseAudio is started and bridged to JACK</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>CadenceSystemCheck</name>
     <message>
-        <location filename="../src/cadence.py" line="425"/>
+        <location filename="../src/cadence.py" line="424"/>
         <source>check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="427"/>
+        <location filename="../src/cadence.py" line="426"/>
         <source>yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="429"/>
+        <location filename="../src/cadence.py" line="428"/>
         <source>nothing to report</source>
         <translation type="unfinished"></translation>
     </message>
@@ -758,22 +778,22 @@ Default is off</source>
 <context>
     <name>CadenceSystemCheck_audioGroup</name>
     <message>
-        <location filename="../src/cadence.py" line="438"/>
+        <location filename="../src/cadence.py" line="440"/>
         <source>User in audio group</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="445"/>
+        <location filename="../src/cadence.py" line="447"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="463"/>
+        <location filename="../src/cadence.py" line="465"/>
         <source>Yes, but needs relogin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="467"/>
+        <location filename="../src/cadence.py" line="469"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
@@ -781,13 +801,43 @@ Default is off</source>
 <context>
     <name>CadenceSystemCheck_kernel</name>
     <message>
-        <location filename="../src/cadence.py" line="477"/>
+        <location filename="../src/cadence.py" line="482"/>
         <source>Current kernel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="496"/>
-        <source>Vanilla</source>
+        <location filename="../src/cadence.py" line="503"/>
+        <source>Be sure to properly configure your kernel.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cadence.py" line="504"/>
+        <source>PREEMPT</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cadence.py" line="508"/>
+        <source>PREEMPT_RT</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cadence.py" line="518"/>
+        <source>RT may be available if compiling this version w/CONFIG_PREEMPT or patching this kernel w/CONFIG_PREEMPT_RT.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cadence.py" line="523"/>
+        <source> Vanilla (PAE)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cadence.py" line="526"/>
+        <source> Vanilla</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/cadence.py" line="529"/>
+        <source>No realtime options for this version of kernel.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2202,21 +2252,6 @@ Default is off</source>
     </message>
 </context>
 <context>
-    <name>ClaudiaLauncher</name>
-</context>
-<context>
-    <name>ClaudiaLauncherApp</name>
-</context>
-<context>
-    <name>ClaudiaLauncherW</name>
-</context>
-<context>
-    <name>ClaudiaMainW</name>
-</context>
-<context>
-    <name>CreateRoomW</name>
-</context>
-<context>
     <name>Dialog</name>
     <message>
         <location filename="../resources/ui/cadence_rwait.ui" line="14"/>
@@ -2268,50 +2303,50 @@ Default is off</source>
         <source>zita_a2j/j2a</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="../resources/ui/cadence_tb_pa.ui" line="14"/>
-        <source>PulseAudio Options</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/cadence_tb_pa.ui" line="22"/>
-        <source>Input Channels :</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/cadence_tb_pa.ui" line="32"/>
-        <source>Output Channels :</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/cadence_tb_pa.ui" line="58"/>
-        <source>Default</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ExampleGUI</name>
 </context>
 <context>
     <name>ForceWaitDialog</name>
     <message>
-        <location filename="../src/cadence.py" line="624"/>
+        <location filename="../src/cadence.py" line="653"/>
         <source>Info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="624"/>
+        <location filename="../src/cadence.py" line="653"/>
         <source>JACK was re-started sucessfully</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="626"/>
+        <location filename="../src/cadence.py" line="655"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/cadence.py" line="626"/>
+        <location filename="../src/cadence.py" line="655"/>
         <source>Could not start JACK!</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Frame</name>
+    <message>
+        <location filename="../resources/ui/pulse_bridge.ui" line="14"/>
+        <source>Frame</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resources/ui/pulse_bridge.ui" line="52"/>
+        <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resources/ui/pulse_bridge.ui" line="97"/>
+        <source>Connect ports</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resources/ui/pulse_bridge.ui" line="107"/>
+        <source> channels</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2328,7 +2363,7 @@ Default is off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="750"/>
+        <location filename="../resources/ui/settings_jack.ui" line="789"/>
         <source>Properties</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2438,27 +2473,27 @@ Default is off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="863"/>
+        <location filename="../resources/ui/settings_jack.ui" line="902"/>
         <source>128</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="868"/>
+        <location filename="../resources/ui/settings_jack.ui" line="907"/>
         <source>256</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="873"/>
+        <location filename="../resources/ui/settings_jack.ui" line="912"/>
         <source>512</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="878"/>
+        <location filename="../resources/ui/settings_jack.ui" line="917"/>
         <source>1024</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="883"/>
+        <location filename="../resources/ui/settings_jack.ui" line="922"/>
         <source>2048</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2528,67 +2563,67 @@ Default is off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="443"/>
+        <location filename="../resources/ui/settings_jack.ui" line="470"/>
         <source>Driver</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="448"/>
+        <location filename="../resources/ui/settings_jack.ui" line="475"/>
         <source>ALSA</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="459"/>
+        <location filename="../resources/ui/settings_jack.ui" line="486"/>
         <source>Dummy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="470"/>
+        <location filename="../resources/ui/settings_jack.ui" line="497"/>
         <source>FireWire</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="481"/>
+        <location filename="../resources/ui/settings_jack.ui" line="508"/>
         <source>Loopback</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="492"/>
+        <location filename="../resources/ui/settings_jack.ui" line="519"/>
         <source>Net</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="503"/>
+        <location filename="../resources/ui/settings_jack.ui" line="530"/>
         <source>NetOne</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="517"/>
+        <location filename="../resources/ui/settings_jack.ui" line="550"/>
         <source>Device</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="542"/>
+        <location filename="../resources/ui/settings_jack.ui" line="634"/>
         <source>Hardware device/interface name to use</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="529"/>
+        <location filename="../resources/ui/settings_jack.ui" line="621"/>
         <source>Device/Interface:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="555"/>
+        <location filename="../resources/ui/settings_jack.ui" line="698"/>
         <source>Provide both capture and playback ports</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="558"/>
+        <location filename="../resources/ui/settings_jack.ui" line="701"/>
         <source>Duplex Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="585"/>
+        <location filename="../resources/ui/settings_jack.ui" line="734"/>
         <source>Whether to provide input/capture ports.
 On ALSA you can here set an alternate device for capture</source>
         <translation type="unfinished"></translation>
@@ -2599,7 +2634,7 @@ On ALSA you can here set an alternate device for capture</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="616"/>
+        <location filename="../resources/ui/settings_jack.ui" line="684"/>
         <source>Whether to provide output/playback ports.
 On ALSA you can here set an alternate device for playback</source>
         <translation type="unfinished"></translation>
@@ -2610,294 +2645,269 @@ On ALSA you can here set an alternate device for playback</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="630"/>
+        <location filename="../resources/ui/settings_jack.ui" line="592"/>
         <source>Provide output monitor ports</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="633"/>
+        <location filename="../resources/ui/settings_jack.ui" line="595"/>
         <source>Monitor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="659"/>
+        <location filename="../resources/ui/settings_jack.ui" line="767"/>
         <source>Number of capture channels (defaults to hardware max)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="646"/>
+        <location filename="../resources/ui/settings_jack.ui" line="770"/>
         <source>Input Channels:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="685"/>
+        <location filename="../resources/ui/settings_jack.ui" line="661"/>
         <source>Number of playback channels (defaults to hardware max)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="672"/>
+        <location filename="../resources/ui/settings_jack.ui" line="562"/>
         <source>Output Channels:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="711"/>
+        <location filename="../resources/ui/settings_jack.ui" line="721"/>
         <source>Enable hardware metering on cards that support it</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="714"/>
+        <location filename="../resources/ui/settings_jack.ui" line="724"/>
         <source>Hardware Metering</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="724"/>
+        <location filename="../resources/ui/settings_jack.ui" line="671"/>
         <source>Enable hardware monitoring of capture ports</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="727"/>
+        <location filename="../resources/ui/settings_jack.ui" line="674"/>
         <source>Hardware Monitoring</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="737"/>
+        <location filename="../resources/ui/settings_jack.ui" line="605"/>
         <source>Use hardware device name for alias instead of alsa_pcm</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="740"/>
+        <location filename="../resources/ui/settings_jack.ui" line="608"/>
         <source>Hardware Aliases</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="775"/>
+        <location filename="../resources/ui/settings_jack.ui" line="814"/>
         <source>Sample rate in frames per second</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="762"/>
+        <location filename="../resources/ui/settings_jack.ui" line="801"/>
         <source>Sample Rate:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="782"/>
+        <location filename="../resources/ui/settings_jack.ui" line="821"/>
         <source>22050</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="787"/>
+        <location filename="../resources/ui/settings_jack.ui" line="826"/>
         <source>32000</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="792"/>
+        <location filename="../resources/ui/settings_jack.ui" line="831"/>
         <source>44100</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="797"/>
+        <location filename="../resources/ui/settings_jack.ui" line="836"/>
         <source>48000</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="802"/>
+        <location filename="../resources/ui/settings_jack.ui" line="841"/>
         <source>88200</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="807"/>
+        <location filename="../resources/ui/settings_jack.ui" line="846"/>
         <source>96000</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="812"/>
+        <location filename="../resources/ui/settings_jack.ui" line="851"/>
         <source>192000</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="840"/>
+        <location filename="../resources/ui/settings_jack.ui" line="879"/>
         <source>Frames per period between process() calls.
 Also known as buffer size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="827"/>
+        <location filename="../resources/ui/settings_jack.ui" line="866"/>
         <source>Buffer Size:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="848"/>
+        <location filename="../resources/ui/settings_jack.ui" line="887"/>
         <source>16</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="853"/>
+        <location filename="../resources/ui/settings_jack.ui" line="892"/>
         <source>32</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="858"/>
+        <location filename="../resources/ui/settings_jack.ui" line="897"/>
         <source>64</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="888"/>
+        <location filename="../resources/ui/settings_jack.ui" line="927"/>
         <source>4096</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="893"/>
+        <location filename="../resources/ui/settings_jack.ui" line="932"/>
         <source>8192</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="920"/>
+        <location filename="../resources/ui/settings_jack.ui" line="959"/>
         <source>Number of periods of playback latency</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="907"/>
+        <location filename="../resources/ui/settings_jack.ui" line="946"/>
         <source>Periods/Buffer:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="936"/>
+        <location filename="../resources/ui/settings_jack.ui" line="975"/>
         <source>Dithering Mode:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="1146"/>
+        <location filename="../resources/ui/settings_jack.ui" line="1203"/>
         <source>None</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="955"/>
+        <location filename="../resources/ui/settings_jack.ui" line="994"/>
         <source>Rectangular</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="960"/>
+        <location filename="../resources/ui/settings_jack.ui" line="999"/>
         <source>Shaped</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="965"/>
+        <location filename="../resources/ui/settings_jack.ui" line="1004"/>
         <source>Triangular</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="994"/>
+        <location filename="../resources/ui/settings_jack.ui" line="1033"/>
         <source>Soft mode, no xrun handling</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="997"/>
+        <location filename="../resources/ui/settings_jack.ui" line="1036"/>
         <source>Soft Mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="1027"/>
+        <location filename="../resources/ui/settings_jack.ui" line="1066"/>
         <source>Try 16-bit samples before 32-bit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="1030"/>
+        <location filename="../resources/ui/settings_jack.ui" line="1069"/>
         <source>Force 16-bit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="1042"/>
+        <location filename="../resources/ui/settings_jack.ui" line="1087"/>
         <source>Extra Latency</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="1067"/>
+        <location filename="../resources/ui/settings_jack.ui" line="1112"/>
         <source>Extra input latency (frames)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="1054"/>
-        <source>Input Latency (frames):</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_jack.ui" line="1096"/>
+        <location filename="../resources/ui/settings_jack.ui" line="1144"/>
         <source>Extra output latency (frames)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="1083"/>
-        <source>Output Latency (frames):</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_jack.ui" line="1109"/>
+        <location filename="../resources/ui/settings_jack.ui" line="1166"/>
         <source>Misc</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="1142"/>
+        <location filename="../resources/ui/settings_jack.ui" line="1199"/>
         <source>ALSA MIDI backend driver to use</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="1129"/>
+        <location filename="../resources/ui/settings_jack.ui" line="1186"/>
         <source>MIDI Driver</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="1151"/>
+        <location filename="../resources/ui/settings_jack.ui" line="1208"/>
         <source>ALSA Sequencer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="1156"/>
+        <location filename="../resources/ui/settings_jack.ui" line="1213"/>
         <source>ALSA Raw-MIDI</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="1200"/>
+        <location filename="../resources/ui/settings_jack.ui" line="1257"/>
         <source>Number of usecs to wait between engine processes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="1187"/>
-        <source>Wait between processes (usecs):</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_jack.ui" line="1246"/>
+        <location filename="../resources/ui/settings_jack.ui" line="1306"/>
         <source>libffado verbose level</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="1233"/>
+        <location filename="../resources/ui/settings_jack.ui" line="1293"/>
         <source>Verbose Level</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="1287"/>
+        <location filename="../resources/ui/settings_jack.ui" line="1347"/>
         <source>Snoop FireWire Traffic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="1319"/>
+        <location filename="../resources/ui/settings_jack.ui" line="1379"/>
         <source>Maximum number of loopback ports</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/settings_jack.ui" line="1306"/>
+        <location filename="../resources/ui/settings_jack.ui" line="1366"/>
         <source>Maximum Loopback Ports:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_jack.ui" line="1347"/>
-        <source>Network</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_jack.ui" line="1358"/>
-        <source>Not Implemented Yet</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2942,6 +2952,31 @@ Is not possible to configure JACK at this point.</source>
         <source>DBus is not available, cannot continue.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../resources/ui/settings_jack.ui" line="1099"/>
+        <source>Input Latency :</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resources/ui/settings_jack.ui" line="1147"/>
+        <source> frames</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resources/ui/settings_jack.ui" line="1131"/>
+        <source>Output Latency :</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resources/ui/settings_jack.ui" line="1244"/>
+        <source>Wait between processes :</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="../resources/ui/settings_jack.ui" line="1260"/>
+        <source> µs</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LogsW</name>
@@ -2975,12 +3010,6 @@ Is not possible to configure JACK at this point.</source>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>ProjectNameW</name>
-</context>
-<context>
-    <name>ProjectPropertiesW</name>
 </context>
 <context>
     <name>RenderW</name>
@@ -3182,9 +3211,6 @@ Is not possible to render without it!</source>
     </message>
 </context>
 <context>
-    <name>RunCustomW</name>
-</context>
-<context>
     <name>SettingsW</name>
     <message>
         <location filename="../resources/ui/settings_app.ui" line="20"/>
@@ -3336,12 +3362,6 @@ Is not possible to render without it!</source>
         <source>High Quality Antiliasing (OpenGL only)</source>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>StudioListW</name>
-</context>
-<context>
-    <name>StudioNameW</name>
 </context>
 <context>
     <name>XYControllerW</name>
@@ -3514,7 +3534,7 @@ Is not possible to render without it!</source>
 <context>
     <name>gui</name>
     <message>
-        <location filename="../src/cadence.py" line="2370"/>
+        <location filename="../src/cadence.py" line="2544"/>
         <source>Restore</source>
         <translation type="unfinished"></translation>
     </message>

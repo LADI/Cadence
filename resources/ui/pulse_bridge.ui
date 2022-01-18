@@ -28,7 +28,8 @@
         <string>...</string>
        </property>
        <property name="icon">
-        <iconset theme="audio-input-microphone"/>
+        <iconset theme="audio-input-microphone">
+         <normaloff>.</normaloff>.</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -52,7 +53,8 @@
           <string>...</string>
          </property>
          <property name="icon">
-          <iconset theme="window-close"/>
+          <iconset theme="window-close">
+           <normaloff>.</normaloff>.</iconset>
          </property>
         </widget>
        </item>

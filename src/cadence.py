@@ -764,7 +764,7 @@ class PaBridgeItem(QListWidgetItem):
         QListWidgetItem.__init__(self, parent, QListWidgetItem.UserType + 1)
         self.widget = PaBridgeFrame(parent, self, edited_signal, bridge_dict)
         parent.setItemWidget(self, self.widget)
-        self.setSizeHint(QSize(160, 80))
+        self.setSizeHint(QSize(200, 80))
     
     def get_current_dict(self) -> dict:
         return self.widget.get_current_dict()
@@ -894,6 +894,8 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
 
         # -------------------------------------------------------------
         # Set-up GUI (JACK Bridges)
+        #self.tableWidgetJackBridges.cellActivated.connect(
+            #self.slot_change_bridge_to_show)
         
         self.pulse_bridges_edited.connect(self.slot_PulseAudioBridgeSetEdited)
         self._pulse_check_timer = QTimer()
