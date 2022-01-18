@@ -21,18 +21,22 @@
 
 from platform import architecture
 
-from PyQt5.QtCore import QFileSystemWatcher, QThread, QSemaphore
-from PyQt5.QtWidgets import QApplication, QDialogButtonBox, QLabel, QMainWindow, QSizePolicy, QSpacerItem
+from PyQt5.QtCore import QFileSystemWatcher, QThread, QSemaphore, QSize
+from PyQt5.QtWidgets import (QApplication, QDialogButtonBox, QLabel, QMainWindow,
+                             QSizePolicy, QSpacerItem, QFrame, QListWidgetItem, QPushButton)
+#from PyQt5.QtGui import QSize
 
 # ------------------------------------------------------------------------------------------------------------
 # Imports (Custom Stuff)
 
 import systray
+import pulse2jack_tool
 import ui_cadence
 import ui_cadence_tb_alsa
 import ui_cadence_tb_a2j
 import ui_cadence_tb_pa
 import ui_cadence_rwait
+import ui_pulse_bridge
 from shared_cadence import *
 from shared_canvasjack import *
 from shared_settings import *
@@ -338,11 +342,6 @@ def isAlsaAudioBridged():
 def isPulseAudioStarted():
     return bool("pulseaudio" in getProcList())
 
-def isPulseAudioBridged():
-    global jackClientIdPulse
-    return bool(pA_bridge_values.clientIdCapture != -1
-                or pA_bridge_values.clientIdPlayback != -1)
-
 def isDesktopFileInstalled(desktop):
     for X_PATH in XDG_APPLICATIONS_PATH:
         if os.path.exists(os.path.join(X_PATH, desktop)):
@@ -611,11 +610,22 @@ class ForceRestartThread(QThread):
         self.progressChanged.emit(96)
 
         # PulseAudio
-        if GlobalSettings.value("Pulse2JACK/AutoStart", True, type=bool) and not isPulseAudioBridged():
-            inputs  = GlobalSettings.value("Pulse2JACK/CaptureChannels",  -1, type=int)
-            outputs = GlobalSettings.value("Pulse2JACK/PlaybackChannels", -1, type=int)
-
-            os.system("cadence-pulse2jack -c %s -p %s" % (str(inputs), str(outputs)))
+        self._pulse_bridge_dicts = pulse2jack_tool.get_existing_modules_in_dicts()
+        if (GlobalSettings.value("Pulse2JACK/AutoStart", True, type=bool)
+                and not self._pulse_bridge_dicts):
+            bridge_dicts = GlobalSettings.value("PulseAudio_bridges", type=list)
+            if not bridge_dicts:
+                bridge_dicts = [
+                    {"type": "source",
+                    "name": "PulseAudio JACK Source",
+                    "channels": 2,
+                    "connected": True},
+                    {"type": "sink",
+                    "name": "PulseAudio JACK Sink",
+                    "channels": 2,
+                    "connected": True}]
+            
+            pulse2jack_tool.replace_hotly(bridge_dicts)
 
         self.progressChanged.emit(100)
 
@@ -694,28 +704,71 @@ class ToolBarAlsaAudioDialog(QDialog, ui_cadence_tb_alsa.Ui_Dialog):
         self.close()
 
 # Additional PulseAudio options
-class PAChannelsDialog(QDialog, ui_cadence_tb_pa.Ui_Dialog):
-    def __init__(self, parent):
-        QDialog.__init__(self, parent)
-        self.setupUi(self)
-        self.parent = parent
-
-        self.spinBoxPulseInputs.setValue(GlobalSettings.value("Pulse2JACK/CaptureChannels", 2, type=int))
-        self.spinBoxPulseOutputs.setValue(GlobalSettings.value("Pulse2JACK/PlaybackChannels", 2, type=int))
-
-        self.accepted.connect(self.slot_updateChannels)
-
-    @pyqtSlot()
-    def slot_updateChannels(self):
-        GlobalSettings.setValue("Pulse2JACK/CaptureChannels", self.spinBoxPulseInputs.value())
-        GlobalSettings.setValue("Pulse2JACK/PlaybackChannels", self.spinBoxPulseOutputs.value())
+class PaBridgeFrame(QFrame):
+    def __init__(self, parent, item, edited_signal, bridge_dict: dict):
+        QFrame.__init__(self, parent)
+        self.ui = ui_pulse_bridge.Ui_Frame()
+        self.ui.setupUi(self)
         
-        if isPulseAudioBridged():
-            self.parent.slot_PulseAudioBridgeStart()
+        self._parent = parent
+        self.item = item
+        self._edited_signal = edited_signal
+        self.ui.toolButtonRemove.clicked.connect(
+            self._remove_clicked)
+        
+        self.bridge_type = 'source'
+        
+        if bridge_dict['type'] == 'sink':
+            self.bridge_type = 'sink'
+            self.ui.toolButtonIcon.setIcon(
+                QIcon.fromTheme('audio-volume-medium'))
+        
+        name = bridge_dict['name']
+        if not name:
+            if bridge_dict['type'] == 'sink':
+                name = "PulseAudio JACK Sink"
+            else:
+                name = "PulseAudio JACK Source"
+        
+        self.ui.lineEditName.setText(name)
+        self.ui.checkBoxConnect.setChecked(bridge_dict['connected'])
+        self.ui.spinBoxChannels.setValue(bridge_dict['channels'])
 
-    def done(self, r):
-        QDialog.done(self, r)
-        self.close()
+        self.ui.lineEditName.textEdited.connect(self._edited)
+        self.ui.spinBoxChannels.valueChanged.connect(self._edited)
+        self.ui.checkBoxConnect.stateChanged.connect(self._edited)
+    
+    @pyqtSlot()
+    def _edited(self, *args):
+        self._edited_signal.emit()
+    
+    @pyqtSlot()
+    def _remove_clicked(self):
+        self._edited_signal.emit()
+        item = self._parent.takeItem(self._parent.row(self.item))
+        del item
+        del self
+
+    def get_current_dict(self) -> dict:
+        bridge_dict = {}
+        bridge_dict['type'] = self.bridge_type
+        bridge_dict['name'] = self.ui.lineEditName.text()
+        bridge_dict['connected'] = self.ui.checkBoxConnect.isChecked()
+        bridge_dict['channels'] = self.ui.spinBoxChannels.value()
+        return bridge_dict
+
+    
+
+class PaBridgeItem(QListWidgetItem):
+    def __init__(self, parent, edited_signal, bridge_dict: dict):
+        QListWidgetItem.__init__(self, parent, QListWidgetItem.UserType + 1)
+        self.widget = PaBridgeFrame(parent, self, edited_signal, bridge_dict)
+        parent.setItemWidget(self, self.widget)
+        self.setSizeHint(QSize(160, 80))
+    
+    def get_current_dict(self) -> dict:
+        return self.widget.get_current_dict()
+
 
 # Main Window
 class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
@@ -723,14 +776,14 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
     DBusJackServerStoppedCallback = pyqtSignal()
     DBusJackClientAppearedCallback = pyqtSignal(int, str)
     DBusJackClientDisappearedCallback = pyqtSignal(int)
-    DBusJackPortAppearedCallback = pyqtSignal(int)
-    DBusJackPortDisappearedCallback = pyqtSignal(int)
     DBusA2JBridgeStartedCallback = pyqtSignal()
     DBusA2JBridgeStoppedCallback = pyqtSignal()
 
     SIGTERM = pyqtSignal()
     SIGUSR1 = pyqtSignal()
     SIGUSR2 = pyqtSignal()
+    
+    pulse_bridges_edited = pyqtSignal()
 
     def __init__(self, parent=None):
         QMainWindow.__init__(self, parent)
@@ -841,13 +894,37 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
 
         # -------------------------------------------------------------
         # Set-up GUI (JACK Bridges)
+        
+        self.pulse_bridges_edited.connect(self.slot_PulseAudioBridgeSetEdited)
+        self._pulse_check_timer = QTimer()
+        self._pulse_check_timer.setInterval(500)
+        self._pulse_check_timer.setSingleShot(True)
+        self._pulse_check_timer.timeout.connect(
+            self.slot_checkPulseAudioBridges)
 
         if not havePulseAudio:
-            self.toolBox_pulseaudio.setEnabled(False)
+            #self.toolBox_pulseaudio.setEnabled(False)
             self.label_bridge_pulse.setText(self.tr("PulseAudio is not installed"))
+        
+        self._pulse_bridge_dicts = pulse2jack_tool.get_existing_modules_in_dicts()
+        for bridge_dict in self._pulse_bridge_dicts:
+            if bridge_dict['type'] == 'source':
+                source_item = PaBridgeItem(self.listWidgetPulseSources,
+                                           self.pulse_bridges_edited, bridge_dict)
+                self.listWidgetPulseSources.addItem(source_item)
+            else:
+                sink_item = PaBridgeItem(self.listWidgetPulseSinks,
+                                         self.pulse_bridges_edited, bridge_dict)
+                self.listWidgetPulseSinks.addItem(sink_item)
 
-        self.tableWidgetBridges.setCurrentCell(0, 0)
-        self.stackedWidgetBridges.setCurrentIndex(0)
+        #pulse_source_item = PaBridgeItem(self.listWidgetPulseSources, False)
+        #self.listWidgetPulseSources.addItem(pulse_source_item)
+        #self.listWidgetPulseSources.addItem(PaBridgePlusItem(self.listWidgetPulseSources))
+        
+        #pulse_sink_item = PaBridgeItem(self.listWidgetPulseSinks, True)
+        #self.listWidgetPulseSinks.addItem(pulse_sink_item)
+        #self.listWidgetPulseSinks.addItem(PaBridgePlusItem(self.listWidgetPulseSinks))
+        
         
         # Not available in cxfreeze builds
         if sys.argv[0].endswith("/cadence"):
@@ -1058,7 +1135,6 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
             self.systray.connect("a2j_stop", self.slot_A2JBridgeStop)
             self.systray.connect("pulse_start", self.slot_PulseAudioBridgeStart)
             self.systray.connect("pulse_stop", self.slot_PulseAudioBridgeStop)
-            self.systray.connect("pulse_channels", self.slot_PulseAudioBridgeChannels)
 
         self.systray.addMenu("tools", self.tr("Tools"))
         self.systray.addMenuAction("tools", "app_catarina", "Catarina")
@@ -1091,9 +1167,6 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
         self.b_jack_configure.clicked.connect(self.slot_JackServerConfigure)
         self.b_jack_switchmaster.clicked.connect(self.slot_JackServerSwitchMaster)
 
-        self.tableWidgetBridges.currentCellChanged.connect(
-            self.slot_change_bridge_to_show)
-
         self.b_alsa_start.clicked.connect(self.slot_AlsaBridgeStart)
         self.b_alsa_stop.clicked.connect(self.slot_AlsaBridgeStop)
         self.cb_alsa_type.currentIndexChanged[int].connect(self.slot_AlsaBridgeChanged)
@@ -1101,9 +1174,11 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
 
         self.b_a2j_start.clicked.connect(self.slot_A2JBridgeStart)
         self.b_a2j_stop.clicked.connect(self.slot_A2JBridgeStop)
+        self.b_pulse_apply.clicked.connect(self.slot_PulseAudioBridgeApply)
         self.b_pulse_start.clicked.connect(self.slot_PulseAudioBridgeStart)
         self.b_pulse_stop.clicked.connect(self.slot_PulseAudioBridgeStop)
-        self.b_pulse_channels.clicked.connect(self.slot_PulseAudioBridgeChannels)
+        self.pushButtonAddPulseSource.clicked.connect(self.slot_PulseAudioBridgeAddSource)
+        self.pushButtonAddPulseSink.clicked.connect(self.slot_PulseAudioBridgeAddSink)
 
         self.pic_catia.clicked.connect(self.func_start_catia)
         self.pic_meter_in.clicked.connect(self.func_start_jackmeter_in)
@@ -1154,8 +1229,6 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
         # org.jackaudio.JackPatchbay
         self.DBusJackClientAppearedCallback.connect(self.slot_DBusJackClientAppearedCallback)
         self.DBusJackClientDisappearedCallback.connect(self.slot_DBusJackClientDisappearedCallback)
-        self.DBusJackPortAppearedCallback.connect(self.slot_DBusJackPortAppearedCallback)
-        self.DBusJackPortDisappearedCallback.connect(self.slot_DBusJackPortDisappearedCallback)
 
         # org.gna.home.a2jmidid.control
         self.DBusA2JBridgeStartedCallback.connect(self.slot_DBusA2JBridgeStartedCallback)
@@ -1275,10 +1348,6 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
                     self.DBusJackClientAppearedCallback.emit(args[iJackClientId], args[iJackClientName])
                 elif kwds['member'] == "ClientDisappeared":
                     self.DBusJackClientDisappearedCallback.emit(args[iJackClientId])
-                elif kwds['member'] == "PortAppeared":
-                    self.DBusJackPortAppearedCallback.emit(args[iJackClientId])
-                elif kwds['member'] == "PortDisappeared":
-                    self.DBusJackPortDisappearedCallback.emit(args[iJackClientId])
 
         elif kwds['interface'] == "org.gna.home.a2jmidid.control":
             if DEBUG: print("org.gna.home.a2jmidid.control", kwds['member'])
@@ -1462,15 +1531,13 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
             return
 
         if isPulseAudioStarted():
-            if isPulseAudioBridged():
+            if self._pulse_bridge_dicts:
                 self.b_pulse_start.setEnabled(False)
                 self.b_pulse_stop.setEnabled(True)
                 self.systray.setActionEnabled("pulse_start", False)
                 self.systray.setActionEnabled("pulse_stop", True)
                 self.label_bridge_pulse.setText(
-                    self.tr("PulseAudio is started and bridged to JACK\nwith %s inputs/%s outputs")
-                        % (pA_bridge_values.portCaptureNumber,
-                           pA_bridge_values.portPlaybackNumber))
+                    self.tr("PulseAudio is started and bridged to JACK"))
             else:
                 jackRunning = bool(gDBus.jack and gDBus.jack.IsStarted())
                 self.b_pulse_start.setEnabled(jackRunning)
@@ -1602,12 +1669,13 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
             global jackClientIdALSA
             jackClientIdALSA = group_id
             self.checkAlsaAudio()
-        elif group_name == "PulseAudio JACK Source":
-            pA_bridge_values.clientIdCapture = group_id
-            self.checkPulseAudio()
-        elif group_name == "PulseAudio JACK Sink":
-            pA_bridge_values.clientIdPlayback = group_id
-            self.checkPulseAudio()
+        #elif group_name == "PulseAudio JACK Source":
+            #pA_bridge_values.clientIdCapture = group_id
+            #self.checkPulseAudio()
+        #elif group_name == "PulseAudio JACK Sink":
+            #pA_bridge_values.clientIdPlayback = group_id
+            #self.checkPulseAudio()
+        self._pulse_check_timer.start()
 
     @pyqtSlot(int)
     def slot_DBusJackClientDisappearedCallback(self, group_id):
@@ -1615,32 +1683,17 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
         if group_id == jackClientIdALSA:
             jackClientIdALSA = -1
             self.checkAlsaAudio()
-        elif group_id == pA_bridge_values.clientIdCapture:
-            pA_bridge_values.clientIdCapture = -1
-            pA_bridge_values.portCaptureNumber = 0
-            self.checkPulseAudio()
-        elif group_id == pA_bridge_values.clientIdPlayback:
-            pA_bridge_values.clientIdPlayback = -1
-            pA_bridge_values.portPlaybackNumber = 0
-            self.checkPulseAudio()
+        
+        self._pulse_check_timer.start()
+        #elif group_id == pA_bridge_values.clientIdCapture:
+            #pA_bridge_values.clientIdCapture = -1
+            #pA_bridge_values.portCaptureNumber = 0
+            #self.checkPulseAudio()
+        #elif group_id == pA_bridge_values.clientIdPlayback:
+            #pA_bridge_values.clientIdPlayback = -1
+            #pA_bridge_values.portPlaybackNumber = 0
+            #self.checkPulseAudio()
             
-    @pyqtSlot(int)
-    def slot_DBusJackPortAppearedCallback(self, group_id):
-        if group_id == pA_bridge_values.clientIdCapture:
-            pA_bridge_values.portCaptureNumber+=1
-            self.checkPulseAudio()
-        elif group_id == pA_bridge_values.clientIdPlayback:
-            pA_bridge_values.portPlaybackNumber+=1
-            self.checkPulseAudio()
-    
-    @pyqtSlot(int)
-    def slot_DBusJackPortDisappearedCallback(self, group_id):
-        if group_id == pA_bridge_values.clientIdCapture:
-            pA_bridge_values.portCaptureNumber+=1
-            self.checkPulseAudio()
-        elif group_id == pA_bridge_values.clientIdPlayback:
-            pA_bridge_values.portPlaybackNumber+=1
-            self.checkPulseAudio()
 
     @pyqtSlot()
     def slot_DBusA2JBridgeStartedCallback(self):
@@ -1649,6 +1702,25 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
     @pyqtSlot()
     def slot_DBusA2JBridgeStoppedCallback(self):
         self.a2jStopped()
+
+    @pyqtSlot()
+    def slot_checkPulseAudioBridges(self):
+        self._pulse_bridge_dicts = pulse2jack_tool.get_existing_modules_in_dicts()
+        self.listWidgetPulseSources.clear()
+        self.listWidgetPulseSinks.clear()
+        
+        for b_dict in self._pulse_bridge_dicts:
+            if b_dict['type'] == 'sink':
+                sink_item = PaBridgeItem(
+                    self.listWidgetPulseSinks, self.pulse_bridges_edited, b_dict)
+                self.listWidgetPulseSinks.addItem(sink_item)
+            else:
+                source_item = PaBridgeItem(
+                    self.listWidgetPulseSources, self.pulse_bridges_edited, b_dict)
+                self.listWidgetPulseSources.addItem(source_item)
+        
+        self.b_pulse_apply.setEnabled(False)
+        self.checkPulseAudio()
 
     @pyqtSlot()
     def slot_JackServerStart(self):
@@ -1794,19 +1866,102 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
             gDBus.a2j.start()
 
     @pyqtSlot()
-    def slot_PulseAudioBridgeStart(self):
-        inputs  = GlobalSettings.value("Pulse2JACK/CaptureChannels",  2, type=int)
-        outputs = GlobalSettings.value("Pulse2JACK/PlaybackChannels", 2, type=int)
+    def slot_PulseAudioBridgeApply(self):
+        bridge_dicts = []
+        for i in range(self.listWidgetPulseSources.count()):
+            item = self.listWidgetPulseSources.item(i)
+            bridge_dicts.append(item.get_current_dict())
+        for i in range(self.listWidgetPulseSinks.count()):
+            item = self.listWidgetPulseSinks.item(i)
+            bridge_dicts.append(item.get_current_dict())
         
-        os.system("cadence-pulse2jack -c %s -p %s" % (str(inputs), str(outputs)))
+        GlobalSettings.setValue('PulseAudio_bridges', bridge_dicts)
+        
+        pulse2jack_tool.replace_hotly(bridge_dicts)
+        
+    @pyqtSlot()
+    def slot_PulseAudioBridgeStart(self):
+        bridge_dicts = GlobalSettings.value('PulseAudio_bridges', type=list)
+        if not bridge_dicts:
+            bridge_dicts = [
+                {"type": "source",
+                "name": "PulseAudio JACK Source",
+                "channels": 2,
+                "connected": True},
+                {"type": "sink",
+                "name": "PulseAudio JACK Sink",
+                "channels": 2,
+                "connected": True}]
 
+        pulse2jack_tool.replace_hotly(bridge_dicts)
+    
     @pyqtSlot()
     def slot_PulseAudioBridgeStop(self):
         os.system("pulseaudio -k")
 
     @pyqtSlot()
-    def slot_PulseAudioBridgeChannels(self):
-        PAChannelsDialog(self).exec_()
+    def slot_PulseAudioBridgeSetEdited(self):
+        self.b_pulse_apply.setEnabled(True)
+
+    @pyqtSlot()
+    def slot_PulseAudioBridgeAddSource(self):
+        bridge_name = "PulseAudio JACK Source"
+        i = 2
+        
+        while True:
+            for j in range(self.listWidgetPulseSources.count()):
+                item = self.listWidgetPulseSources.item(j)
+                if item.get_current_dict()['name'] == bridge_name:
+                    break
+            else:
+                break
+            
+            if bridge_name.endswith(')'):
+                bridge_name = "%s%i)" % (bridge_name[:-2], i)
+            else:
+                bridge_name += ' (%i)' % i
+            i += 1
+        
+        self.listWidgetPulseSources.addItem(
+            PaBridgeItem(
+                self.listWidgetPulseSources,
+                self.pulse_bridges_edited,
+                {"type": "source",
+                 "name": bridge_name,
+                 "channels": 2,
+                 "connected": True}))
+
+        self.pulse_bridges_edited.emit()
+                
+    @pyqtSlot()
+    def slot_PulseAudioBridgeAddSink(self):
+        bridge_name = "PulseAudio JACK Sink"
+        i = 2
+        
+        while True:
+            for j in range(self.listWidgetPulseSinks.count()):
+                item = self.listWidgetPulseSinks.item(j)
+                if item.get_current_dict()['name'] == bridge_name:
+                    break
+            else:
+                break
+            
+            if bridge_name.endswith(')'):
+                bridge_name = "%s%i)" % (bridge_name[:-2], i)
+            else:
+                bridge_name += ' (%i)' % i
+            i += 1
+        
+        self.listWidgetPulseSinks.addItem(
+            PaBridgeItem(
+                self.listWidgetPulseSinks,
+                self.pulse_bridges_edited,
+                {"type": "sink",
+                 "name": bridge_name,
+                 "channels": 2,
+                 "connected": True}))
+        
+        self.pulse_bridges_edited.emit()
 
     @pyqtSlot()
     def slot_handleCrash_jack(self):

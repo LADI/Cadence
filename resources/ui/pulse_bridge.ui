@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Frame</class>
+ <widget class="QFrame" name="Frame">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>128</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Frame</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QFrame{background-color:#33888888}</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QToolButton" name="toolButtonIcon">
+       <property name="styleSheet">
+        <string notr="true">QToolButton{border:none}</string>
+       </property>
+       <property name="text">
+        <string>...</string>
+       </property>
+       <property name="icon">
+        <iconset theme="audio-input-microphone"/>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>24</width>
+         <height>24</height>
+        </size>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEditName"/>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QToolButton" name="toolButtonRemove">
+         <property name="styleSheet">
+          <string notr="true">QToolButton{border:none}</string>
+         </property>
+         <property name="text">
+          <string>...</string>
+         </property>
+         <property name="icon">
+          <iconset theme="window-close"/>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="verticalSpacer">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType">
+          <enum>QSizePolicy::Maximum</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>10</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="checkBoxConnect">
+       <property name="text">
+        <string>Connect ports</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="spinBoxChannels">
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+       <property name="suffix">
+        <string> channels</string>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="Line" name="line">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -61,8 +61,8 @@ locale/%.qm: locale/%.ts
 UI: cadence catarina catia tools
 
 cadence: src/ui_cadence.py \
-	src/ui_cadence_tb_alsa.py src/ui_cadence_tb_a2j.py src/ui_cadence_tb_pa.py \
-	src/ui_cadence_rwait.py
+	src/ui_cadence_tb_alsa.py src/ui_cadence_tb_a2j.py  \
+	src/ui_cadence_rwait.py src/ui_pulse_bridge.py
 
 catarina: src/ui_catarina.py \
 	src/ui_catarina_addgroup.py src/ui_catarina_removegroup.py src/ui_catarina_renamegroup.py \

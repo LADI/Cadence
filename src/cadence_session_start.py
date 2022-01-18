@@ -7,6 +7,7 @@ import sys
 from PyQt5.QtCore import QCoreApplication
 
 # Imports (Custom Stuff)
+import pulse2jack_tool
 from shared_cadence import *
 
 # Cadence Global Settings
@@ -94,10 +95,23 @@ def startSession(systemStarted, secondSystemStartAttempt):
 
     # PulseAudio
     if GlobalSettings.value("Pulse2JACK/AutoStart", True, type=bool):
-        inputs  = GlobalSettings.value("Pulse2JACK/CaptureChannels",  -1, type=int)
-        outputs = GlobalSettings.value("Pulse2JACK/PlaybackChannels", -1, type=int)
+        bridge_dicts = GlobalSettings.value("PulseAudio_bridges", type=list)
+        if not bridge_dicts:
+            bridge_dicts = [
+                {"type": "source",
+                "name": "PulseAudio JACK Source",
+                "channels": 2,
+                "connected": True},
+                {"type": "sink",
+                "name": "PulseAudio JACK Sink",
+                "channels": 2,
+                "connected": True}]
+            
+        pulse2jack_tool.replace_hotly(bridge_dicts)
+        #inputs  = GlobalSettings.value("Pulse2JACK/CaptureChannels",  -1, type=int)
+        #outputs = GlobalSettings.value("Pulse2JACK/PlaybackChannels", -1, type=int)
 
-        os.system("cadence-pulse2jack -c %s -p %s" % (str(inputs), str(outputs)))
+        #os.system("cadence-pulse2jack -c %s -p %s" % (str(inputs), str(outputs)))
 
     print("JACK Started Successfully")
     return True

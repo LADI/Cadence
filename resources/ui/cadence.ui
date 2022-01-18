@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>762</width>
-    <height>679</height>
+    <width>700</width>
+    <height>785</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -51,23 +51,6 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="0" colspan="3">
-         <widget class="QLabel" name="label_welcome">
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Welcome to Cadence</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
         <item row="3" column="2">
          <layout class="QVBoxLayout" name="verticalLayout_12">
           <item>
@@ -97,13 +80,62 @@
              <item>
               <widget class="QWidget" name="widget" native="true">
                <layout class="QGridLayout" name="gridLayout_2">
-                <item row="0" column="1">
-                 <widget class="QLabel" name="label_jack_status_ico">
+                <item row="1" column="1">
+                 <widget class="QLabel" name="label_jack_realtime_ico">
                   <property name="text">
                    <string/>
                   </property>
                   <property name="pixmap">
                    <pixmap resource="../resources.qrc">:/16x16/dialog-ok-apply.png</pixmap>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="1" colspan="2">
+                 <widget class="QLabel" name="label_jack_dsp">
+                  <property name="text">
+                   <string>TextLabel</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="0">
+                 <widget class="QLabel" name="label_jack_xruns_L">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="text">
+                   <string>Xruns:</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="0">
+                 <widget class="QLabel" name="label_jack_status_L">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="text">
+                   <string>Server Status:</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="5" column="1" colspan="2">
+                 <widget class="QLabel" name="label_jack_srate">
+                  <property name="text">
+                   <string>TextLabel</string>
                   </property>
                  </widget>
                 </item>
@@ -117,6 +149,38 @@
                   </property>
                   <property name="text">
                    <string>Sample Rate:</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="4" column="0">
+                 <widget class="QLabel" name="label_jack_bufsize_L">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="text">
+                   <string>Buffer Size:</string>
+                  </property>
+                  <property name="alignment">
+                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  </property>
+                 </widget>
+                </item>
+                <item row="6" column="0">
+                 <widget class="QLabel" name="label_jack_latency_L">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="text">
+                   <string>Block Latency:</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -152,6 +216,13 @@
                   </property>
                  </widget>
                 </item>
+                <item row="6" column="1" colspan="2">
+                 <widget class="QLabel" name="label_jack_latency">
+                  <property name="text">
+                   <string>TextLabel</string>
+                  </property>
+                 </widget>
+                </item>
                 <item row="1" column="0">
                  <widget class="QLabel" name="label_jack_realtime_L">
                   <property name="sizePolicy">
@@ -162,58 +233,6 @@
                   </property>
                   <property name="text">
                    <string>Realtime:</string>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                  </property>
-                 </widget>
-                </item>
-                <item row="1" column="1">
-                 <widget class="QLabel" name="label_jack_realtime_ico">
-                  <property name="text">
-                   <string/>
-                  </property>
-                  <property name="pixmap">
-                   <pixmap resource="../resources.qrc">:/16x16/dialog-ok-apply.png</pixmap>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignCenter</set>
-                  </property>
-                 </widget>
-                </item>
-                <item row="4" column="0">
-                 <widget class="QLabel" name="label_jack_bufsize_L">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="text">
-                   <string>Buffer Size:</string>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                  </property>
-                 </widget>
-                </item>
-                <item row="2" column="1" colspan="2">
-                 <widget class="QLabel" name="label_jack_dsp">
-                  <property name="text">
-                   <string>TextLabel</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="3" column="0">
-                 <widget class="QLabel" name="label_jack_xruns_L">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="text">
-                   <string>Xruns:</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -233,35 +252,13 @@
                   </property>
                  </widget>
                 </item>
-                <item row="0" column="0">
-                 <widget class="QLabel" name="label_jack_status_L">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
+                <item row="0" column="1">
+                 <widget class="QLabel" name="label_jack_status_ico">
                   <property name="text">
-                   <string>Server Status:</string>
+                   <string/>
                   </property>
-                  <property name="alignment">
-                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                  </property>
-                 </widget>
-                </item>
-                <item row="6" column="0">
-                 <widget class="QLabel" name="label_jack_latency_L">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="text">
-                   <string>Block Latency:</string>
-                  </property>
-                  <property name="alignment">
-                   <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                  <property name="pixmap">
+                   <pixmap resource="../resources.qrc">:/16x16/dialog-ok-apply.png</pixmap>
                   </property>
                  </widget>
                 </item>
@@ -274,20 +271,6 @@
                 </item>
                 <item row="4" column="1" colspan="2">
                  <widget class="QLabel" name="label_jack_bfsize">
-                  <property name="text">
-                   <string>TextLabel</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="5" column="1" colspan="2">
-                 <widget class="QLabel" name="label_jack_srate">
-                  <property name="text">
-                   <string>TextLabel</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="6" column="1" colspan="2">
-                 <widget class="QLabel" name="label_jack_latency">
                   <property name="text">
                    <string>TextLabel</string>
                   </property>
@@ -388,7 +371,7 @@
             <property name="title">
              <string>JACK Bridges</string>
             </property>
-            <layout class="QGridLayout" name="gridLayout_5">
+            <layout class="QVBoxLayout" name="verticalLayout_19">
              <property name="leftMargin">
               <number>2</number>
              </property>
@@ -401,409 +384,435 @@
              <property name="bottomMargin">
               <number>2</number>
              </property>
-             <item row="0" column="0">
-              <widget class="QTableWidget" name="tableWidgetBridges">
-               <property name="minimumSize">
-                <size>
-                 <width>100</width>
-                 <height>216</height>
-                </size>
+             <item>
+              <widget class="QTabWidget" name="tabWidgetBridges">
+               <property name="tabPosition">
+                <enum>QTabWidget::North</enum>
                </property>
-               <property name="maximumSize">
-                <size>
-                 <width>100</width>
-                 <height>16777215</height>
-                </size>
+               <property name="tabShape">
+                <enum>QTabWidget::Rounded</enum>
                </property>
-               <attribute name="horizontalHeaderVisible">
+               <property name="currentIndex">
+                <number>0</number>
+               </property>
+               <property name="elideMode">
+                <enum>Qt::ElideNone</enum>
+               </property>
+               <property name="tabBarAutoHide">
                 <bool>false</bool>
-               </attribute>
-               <attribute name="horizontalHeaderStretchLastSection">
-                <bool>false</bool>
-               </attribute>
-               <attribute name="verticalHeaderVisible">
-                <bool>false</bool>
-               </attribute>
-               <attribute name="verticalHeaderCascadingSectionResizes">
-                <bool>false</bool>
-               </attribute>
-               <attribute name="verticalHeaderDefaultSectionSize">
-                <number>70</number>
-               </attribute>
-               <attribute name="verticalHeaderStretchLastSection">
-                <bool>true</bool>
-               </attribute>
-               <row>
-                <property name="text">
+               </property>
+               <widget class="QWidget" name="tabPulseAudio" native="true">
+                <attribute name="title">
                  <string>PulseAudio</string>
-                </property>
-               </row>
-               <row>
-                <property name="text">
+                </attribute>
+                <layout class="QVBoxLayout" name="verticalLayout_24">
+                 <item>
+                  <layout class="QVBoxLayout" name="verticalLayout_21">
+                   <item>
+                    <widget class="QLabel" name="label_bridge_pulse">
+                     <property name="text">
+                      <string>PulseAudio state</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignCenter</set>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_9">
+                     <item>
+                      <layout class="QVBoxLayout" name="verticalLayout_18">
+                       <property name="spacing">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QListWidget" name="listWidgetPulseSources">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>50</height>
+                          </size>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QPushButton" name="pushButtonAddPulseSource">
+                         <property name="text">
+                          <string>Add Source</string>
+                         </property>
+                         <property name="icon">
+                          <iconset theme="project_add"/>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                     <item>
+                      <layout class="QVBoxLayout" name="verticalLayout_20">
+                       <property name="spacing">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QListWidget" name="listWidgetPulseSinks">
+                         <property name="sizePolicy">
+                          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                           <horstretch>0</horstretch>
+                           <verstretch>0</verstretch>
+                          </sizepolicy>
+                         </property>
+                         <property name="minimumSize">
+                          <size>
+                           <width>0</width>
+                           <height>100</height>
+                          </size>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QPushButton" name="pushButtonAddPulseSink">
+                         <property name="text">
+                          <string>Add Sink</string>
+                         </property>
+                         <property name="icon">
+                          <iconset theme="project_add"/>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_17">
+                     <item>
+                      <spacer name="horizontalSpacer_7">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>40</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="b_pulse_apply">
+                       <property name="enabled">
+                        <bool>false</bool>
+                       </property>
+                       <property name="text">
+                        <string>Apply</string>
+                       </property>
+                       <property name="icon">
+                        <iconset theme="dialog-ok"/>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="b_pulse_start">
+                       <property name="text">
+                        <string>Start</string>
+                       </property>
+                       <property name="icon">
+                        <iconset theme="media-playback-start"/>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <widget class="QPushButton" name="b_pulse_stop">
+                       <property name="text">
+                        <string>Stop</string>
+                       </property>
+                       <property name="icon">
+                        <iconset theme="media-playback-stop"/>
+                       </property>
+                      </widget>
+                     </item>
+                     <item>
+                      <spacer name="horizontalSpacer_8">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>40</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                    </layout>
+                   </item>
+                   <item>
+                    <layout class="QHBoxLayout" name="horizontalLayout_12">
+                     <item>
+                      <spacer name="horizontalSpacer_15">
+                       <property name="orientation">
+                        <enum>Qt::Horizontal</enum>
+                       </property>
+                       <property name="sizeHint" stdset="0">
+                        <size>
+                         <width>40</width>
+                         <height>20</height>
+                        </size>
+                       </property>
+                      </spacer>
+                     </item>
+                     <item>
+                      <widget class="QCheckBox" name="cb_pulse_autostart">
+                       <property name="text">
+                        <string>Auto-start at login</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </item>
+                  </layout>
+                 </item>
+                </layout>
+               </widget>
+               <widget class="QWidget" name="tabWidgetBridgesPage2" native="true">
+                <attribute name="title">
                  <string>ALSA Audio</string>
-                </property>
-               </row>
-               <row>
-                <property name="text">
-                 <string>ALSA MIDI</string>
-                </property>
-               </row>
-               <column>
-                <property name="text">
-                 <string>Bridge</string>
-                </property>
-               </column>
-               <item row="0" column="0">
-                <property name="text">
-                 <string>PulseAudio</string>
-                </property>
-                <property name="textAlignment">
-                 <set>AlignCenter</set>
-                </property>
-               </item>
-               <item row="1" column="0">
-                <property name="text">
-                 <string>ALSA Audio</string>
-                </property>
-                <property name="textAlignment">
-                 <set>AlignCenter</set>
-                </property>
-               </item>
-               <item row="2" column="0">
-                <property name="text">
-                 <string>ALSA MIDI</string>
-                </property>
-                <property name="textAlignment">
-                 <set>AlignCenter</set>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QGroupBox" name="groupBox">
-               <property name="title">
-                <string/>
-               </property>
-               <layout class="QVBoxLayout" name="verticalLayout_18">
-                <item>
-                 <widget class="QStackedWidget" name="stackedWidgetBridges">
-                  <property name="currentIndex">
-                   <number>1</number>
-                  </property>
-                  <widget class="QWidget" name="page">
-                   <layout class="QVBoxLayout" name="verticalLayout_24">
-                    <item>
-                     <layout class="QVBoxLayout" name="verticalLayout_21">
-                      <item>
-                       <widget class="QLabel" name="label_bridge_pulse">
-                        <property name="text">
-                         <string>PulseAudio state</string>
-                        </property>
-                        <property name="alignment">
-                         <set>Qt::AlignCenter</set>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <layout class="QHBoxLayout" name="horizontalLayout_17">
-                        <item>
-                         <widget class="QPushButton" name="b_pulse_start">
-                          <property name="text">
-                           <string>Start</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QPushButton" name="b_pulse_stop">
-                          <property name="text">
-                           <string>Stop</string>
-                          </property>
-                         </widget>
-                        </item>
-                        <item>
-                         <widget class="QPushButton" name="b_pulse_channels">
-                          <property name="text">
-                           <string>Channels</string>
-                          </property>
-                         </widget>
-                        </item>
-                       </layout>
-                      </item>
-                      <item>
-                       <layout class="QHBoxLayout" name="horizontalLayout_12">
-                        <item>
-                         <spacer name="horizontalSpacer_15">
-                          <property name="orientation">
-                           <enum>Qt::Horizontal</enum>
-                          </property>
-                          <property name="sizeHint" stdset="0">
-                           <size>
-                            <width>40</width>
-                            <height>20</height>
-                           </size>
-                          </property>
-                         </spacer>
-                        </item>
-                        <item>
-                         <widget class="QCheckBox" name="cb_pulse_autostart">
-                          <property name="text">
-                           <string>Auto-start at login</string>
-                          </property>
-                         </widget>
-                        </item>
-                       </layout>
-                      </item>
-                     </layout>
-                    </item>
-                   </layout>
+                </attribute>
+                <layout class="QVBoxLayout" name="verticalLayout_25">
+                 <item>
+                  <spacer name="verticalSpacer_12">
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>20</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="label_bridge_alsa">
+                   <property name="text">
+                    <string>No bridge in use</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
                   </widget>
-                  <widget class="QWidget" name="page_2">
-                   <layout class="QVBoxLayout" name="verticalLayout_25">
-                    <item>
-                     <spacer name="verticalSpacer_12">
-                      <property name="orientation">
-                       <enum>Qt::Vertical</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>20</width>
-                        <height>40</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                    <item>
-                     <widget class="QLabel" name="label_bridge_alsa">
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_8">
+                   <item>
+                    <spacer name="horizontalSpacer_5">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeType">
+                      <enum>QSizePolicy::Fixed</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>10</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="b_alsa_start">
+                     <property name="text">
+                      <string>Start</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="b_alsa_stop">
+                     <property name="text">
+                      <string>Stop</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="horizontalSpacer_6">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeType">
+                      <enum>QSizePolicy::Fixed</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>10</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_7">
+                   <item>
+                    <widget class="QLabel" name="label">
+                     <property name="text">
+                      <string>Bridge Type:</string>
+                     </property>
+                     <property name="alignment">
+                      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QComboBox" name="cb_alsa_type">
+                     <item>
                       <property name="text">
-                       <string>No bridge in use</string>
+                       <string>(None)</string>
                       </property>
-                      <property name="alignment">
-                       <set>Qt::AlignCenter</set>
-                      </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <layout class="QHBoxLayout" name="horizontalLayout_8">
-                      <item>
-                       <spacer name="horizontalSpacer_5">
-                        <property name="orientation">
-                         <enum>Qt::Horizontal</enum>
-                        </property>
-                        <property name="sizeType">
-                         <enum>QSizePolicy::Fixed</enum>
-                        </property>
-                        <property name="sizeHint" stdset="0">
-                         <size>
-                          <width>10</width>
-                          <height>20</height>
-                         </size>
-                        </property>
-                       </spacer>
-                      </item>
-                      <item>
-                       <widget class="QPushButton" name="b_alsa_start">
-                        <property name="text">
-                         <string>Start</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QPushButton" name="b_alsa_stop">
-                        <property name="text">
-                         <string>Stop</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <spacer name="horizontalSpacer_6">
-                        <property name="orientation">
-                         <enum>Qt::Horizontal</enum>
-                        </property>
-                        <property name="sizeType">
-                         <enum>QSizePolicy::Fixed</enum>
-                        </property>
-                        <property name="sizeHint" stdset="0">
-                         <size>
-                          <width>10</width>
-                          <height>20</height>
-                         </size>
-                        </property>
-                       </spacer>
-                      </item>
-                     </layout>
-                    </item>
-                    <item>
-                     <layout class="QHBoxLayout" name="horizontalLayout_7">
-                      <item>
-                       <widget class="QLabel" name="label">
-                        <property name="text">
-                         <string>Bridge Type:</string>
-                        </property>
-                        <property name="alignment">
-                         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QComboBox" name="cb_alsa_type">
-                        <item>
-                         <property name="text">
-                          <string>(None)</string>
-                         </property>
-                        </item>
-                        <item>
-                         <property name="text">
-                          <string>ALSA -&gt; Loop -&gt; JACK</string>
-                         </property>
-                        </item>
-                        <item>
-                         <property name="text">
-                          <string>ALSA -&gt; JACK (Plugin)</string>
-                         </property>
-                        </item>
-                        <item>
-                         <property name="text">
-                          <string>ALSA -&gt; PulseAudio -&gt; JACK (Plugin)</string>
-                         </property>
-                        </item>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QToolButton" name="tb_alsa_options">
-                        <property name="text">
-                         <string>...</string>
-                        </property>
-                       </widget>
-                      </item>
-                     </layout>
-                    </item>
-                    <item>
-                     <spacer name="verticalSpacer_13">
-                      <property name="orientation">
-                       <enum>Qt::Vertical</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>20</width>
-                        <height>40</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                   </layout>
-                  </widget>
-                  <widget class="QWidget" name="page_3">
-                   <layout class="QVBoxLayout" name="verticalLayout_26">
-                    <item>
-                     <spacer name="verticalSpacer_16">
-                      <property name="orientation">
-                       <enum>Qt::Vertical</enum>
-                      </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>20</width>
-                        <height>40</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                    <item>
-                     <widget class="QLabel" name="label_bridge_a2j">
+                     </item>
+                     <item>
                       <property name="text">
-                       <string>ALSA MIDI State</string>
+                       <string>ALSA -&gt; Loop -&gt; JACK</string>
                       </property>
-                      <property name="alignment">
-                       <set>Qt::AlignCenter</set>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>ALSA -&gt; JACK (Plugin)</string>
                       </property>
-                     </widget>
-                    </item>
-                    <item>
-                     <layout class="QHBoxLayout" name="horizontalLayout_25">
-                      <item>
-                       <widget class="QPushButton" name="b_a2j_start">
-                        <property name="text">
-                         <string>Start</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QPushButton" name="b_a2j_stop">
-                        <property name="text">
-                         <string>Stop</string>
-                        </property>
-                       </widget>
-                      </item>
-                     </layout>
-                    </item>
-                    <item>
-                     <layout class="QHBoxLayout" name="horizontalLayout_11">
-                      <item>
-                       <spacer name="horizontalSpacer_14">
-                        <property name="orientation">
-                         <enum>Qt::Horizontal</enum>
-                        </property>
-                        <property name="sizeHint" stdset="0">
-                         <size>
-                          <width>40</width>
-                          <height>20</height>
-                         </size>
-                        </property>
-                       </spacer>
-                      </item>
-                      <item>
-                       <widget class="QCheckBox" name="cb_a2j_autoexport">
-                        <property name="text">
-                         <string>Export hardware ports</string>
-                        </property>
-                       </widget>
-                      </item>
-                      <item>
-                       <widget class="QCheckBox" name="cb_a2j_autostart">
-                        <property name="text">
-                         <string>Start with Jack</string>
-                        </property>
-                       </widget>
-                      </item>
-                     </layout>
-                    </item>
-                    <item>
-                     <spacer name="verticalSpacer_17">
-                      <property name="orientation">
-                       <enum>Qt::Vertical</enum>
+                     </item>
+                     <item>
+                      <property name="text">
+                       <string>ALSA -&gt; PulseAudio -&gt; JACK (Plugin)</string>
                       </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>20</width>
-                        <height>40</height>
-                       </size>
-                      </property>
-                     </spacer>
-                    </item>
-                   </layout>
+                     </item>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QToolButton" name="tb_alsa_options">
+                     <property name="text">
+                      <string>...</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <spacer name="verticalSpacer_13">
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>20</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </widget>
+               <widget class="QWidget" name="tabWidgetBridgesPage3" native="true">
+                <attribute name="title">
+                 <string>ALSA MIDI (A2J)</string>
+                </attribute>
+                <layout class="QVBoxLayout" name="verticalLayout_26">
+                 <item>
+                  <spacer name="verticalSpacer_16">
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>20</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
+                  <widget class="QLabel" name="label_bridge_a2j">
+                   <property name="text">
+                    <string>ALSA MIDI State</string>
+                   </property>
+                   <property name="alignment">
+                    <set>Qt::AlignCenter</set>
+                   </property>
                   </widget>
-                 </widget>
-                </item>
-               </layout>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_25">
+                   <item>
+                    <widget class="QPushButton" name="b_a2j_start">
+                     <property name="text">
+                      <string>Start</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="b_a2j_stop">
+                     <property name="text">
+                      <string>Stop</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <layout class="QHBoxLayout" name="horizontalLayout_11">
+                   <item>
+                    <spacer name="horizontalSpacer_14">
+                     <property name="orientation">
+                      <enum>Qt::Horizontal</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>40</width>
+                       <height>20</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item>
+                    <widget class="QCheckBox" name="cb_a2j_autoexport">
+                     <property name="text">
+                      <string>Export hardware ports</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QCheckBox" name="cb_a2j_autostart">
+                     <property name="text">
+                      <string>Start with Jack</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <spacer name="verticalSpacer_17">
+                   <property name="orientation">
+                    <enum>Qt::Vertical</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>20</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                </layout>
+               </widget>
               </widget>
              </item>
             </layout>
            </widget>
-          </item>
-          <item>
-           <spacer name="verticalSpacer_4">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Preferred</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
           </item>
          </layout>
         </item>
@@ -1143,6 +1152,23 @@
             </spacer>
            </item>
           </layout>
+         </widget>
+        </item>
+        <item row="0" column="0" colspan="3">
+         <widget class="QLabel" name="label_welcome">
+          <property name="font">
+           <font>
+            <pointsize>9</pointsize>
+            <weight>75</weight>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>Welcome to Cadence</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
          </widget>
         </item>
        </layout>
@@ -1782,8 +1808,8 @@
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>618</width>
-                  <height>398</height>
+                  <width>375</width>
+                  <height>506</height>
                  </rect>
                 </property>
                 <attribute name="label">
