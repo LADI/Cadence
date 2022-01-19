@@ -585,6 +585,7 @@ class ForceRestartThread(QThread):
             else:
                 sleep(0.1)
 
+        sleep(0.1)
         self.progressChanged.emit(90)
 
         # Start it
@@ -603,8 +604,12 @@ class ForceRestartThread(QThread):
 
         self.progressChanged.emit(94)
 
+        ## ALSA-MIDI
+        #if GlobalSettings.value("A2J/AutoStart", True, type=bool) and not bool(gDBus.a2j.is_started()):
+            #runFunctionInMainThread(self.startA2J)
+            
         # ALSA-MIDI
-        if GlobalSettings.value("A2J/AutoStart", True, type=bool) and not bool(gDBus.a2j.is_started()):
+        if GlobalSettings.value("A2J/AutoStart", True, type=bool):
             runFunctionInMainThread(self.startA2J)
 
         self.progressChanged.emit(96)
@@ -1532,28 +1537,37 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
             self.systray.setActionEnabled("pulse_stop", False)
             return
 
+        mess = ""
+
         if isPulseAudioStarted():
             if self._pulse_bridge_dicts:
                 self.b_pulse_start.setEnabled(False)
                 self.b_pulse_stop.setEnabled(True)
                 self.systray.setActionEnabled("pulse_start", False)
                 self.systray.setActionEnabled("pulse_stop", True)
-                self.label_bridge_pulse.setText(
-                    self.tr("PulseAudio is started and bridged to JACK"))
+                mess = self.tr("PulseAudio is started and bridged to JACK")
             else:
                 jackRunning = bool(gDBus.jack and gDBus.jack.IsStarted())
                 self.b_pulse_start.setEnabled(jackRunning)
                 self.b_pulse_stop.setEnabled(False)
                 self.systray.setActionEnabled("pulse_start", jackRunning)
                 self.systray.setActionEnabled("pulse_stop", False)
-                self.label_bridge_pulse.setText(self.tr("PulseAudio is started but not bridged"))
+                if jackRunning:
+                    mess = self.tr("PulseAudio is started but not bridged")
+                else:
+                    mess = self.tr("PulseAudio is started but JACK is stopped")
         else:
             jackRunning = bool(gDBus.jack and gDBus.jack.IsStarted())
             self.b_pulse_start.setEnabled(jackRunning)
             self.b_pulse_stop.setEnabled(False)
             self.systray.setActionEnabled("pulse_start", jackRunning)
             self.systray.setActionEnabled("pulse_stop", False)
-            self.label_bridge_pulse.setText(self.tr("PulseAudio is not started"))
+            if jackRunning:
+                mess = self.tr("PulseAudio is not started")
+            else:
+                mess = self.tr("PulseAudio is not started, nor is JACK")
+
+        self.label_bridge_pulse.setText(mess)
 
     def setAppDetails(self, desktop):
         appContents = getDesktopFileContents(desktop)
@@ -1744,9 +1758,10 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
     @pyqtSlot()
     def slot_JackServerForceRestart(self):
         if gDBus.jack.IsStarted():
-            ask = CustomMessageBox(self, QMessageBox.Warning, self.tr("Warning"),
-                                   self.tr("This will force kill all JACK applications!<br>Make sure to save your projects before continue."),
-                                   self.tr("Are you sure you want to force the restart of JACK?"))
+            ask = CustomMessageBox(
+                self, QMessageBox.Warning, self.tr("Warning"),
+                self.tr("This will force kill all JACK applications!<br>Make sure to save your projects before continue."),
+                self.tr("Are you sure you want to force the restart of JACK?"))
 
             if ask != QMessageBox.Yes:
                 return

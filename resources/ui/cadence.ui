@@ -756,7 +756,21 @@
         </item>
         <item>
          <widget class="QToolBox" name="toolBoxBridges">
-          <widget class="QWidget" name="toolBoxBridgesPage1" native="true">
+          <property name="minimumSize">
+           <size>
+            <width>380</width>
+            <height>0</height>
+           </size>
+          </property>
+          <widget class="QWidget" name="toolBoxBridgesPage1">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>586</width>
+             <height>368</height>
+            </rect>
+           </property>
            <attribute name="label">
             <string>PulseAudio</string>
            </attribute>
@@ -1041,7 +1055,15 @@
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="toolBoxBridgesPage2" native="true">
+          <widget class="QWidget" name="toolBoxBridgesPage2">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>382</width>
+             <height>389</height>
+            </rect>
+           </property>
            <attribute name="label">
             <string>ALSA Audio</string>
            </attribute>
@@ -1061,6 +1083,12 @@
             </item>
             <item>
              <widget class="QLabel" name="label_bridge_alsa">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
               <property name="text">
                <string>No bridge in use</string>
               </property>
@@ -1179,7 +1207,15 @@
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="toolBoxBridgesPage3" native="true">
+          <widget class="QWidget" name="toolBoxBridgesPage3">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>350</width>
+             <height>389</height>
+            </rect>
+           </property>
            <attribute name="label">
             <string>ALSA MIDI (A2J)</string>
            </attribute>
@@ -1930,7 +1966,7 @@
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>775</width>
+                  <width>327</width>
                   <height>265</height>
                  </rect>
                 </property>
@@ -1960,7 +1996,7 @@
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>91</width>
+                  <width>96</width>
                   <height>89</height>
                  </rect>
                 </property>
@@ -1990,7 +2026,7 @@
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>91</width>
+                  <width>96</width>
                   <height>89</height>
                  </rect>
                 </property>
@@ -2020,7 +2056,7 @@
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>91</width>
+                  <width>96</width>
                   <height>89</height>
                  </rect>
                 </property>

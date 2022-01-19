@@ -108,10 +108,6 @@ def startSession(systemStarted, secondSystemStartAttempt):
                 "connected": True}]
             
         pulse2jack_tool.replace_hotly(bridge_dicts)
-        #inputs  = GlobalSettings.value("Pulse2JACK/CaptureChannels",  -1, type=int)
-        #outputs = GlobalSettings.value("Pulse2JACK/PlaybackChannels", -1, type=int)
-
-        #os.system("cadence-pulse2jack -c %s -p %s" % (str(inputs), str(outputs)))
 
     print("JACK Started Successfully")
     return True
