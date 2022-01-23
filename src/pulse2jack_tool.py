@@ -51,7 +51,7 @@ class Bridge:
 
         self.name = name
 
-        if channels.isdigit() and int(channels) > 0:
+        if channels.isdigit() and int(channels) >= 0:
             self.channels = channels
 
         if connected.lower() in ('false', 'no'):
@@ -220,7 +220,7 @@ to a list of Bridge class elements"""
         arguments = shlex.split(arguments_line)
 
         client_name = ""
-        channels = ""
+        channels = "0"
         connected = "yes"
 
         for argument in arguments:
@@ -299,7 +299,7 @@ def unload_and_load_modules(wanted_modules, existing_modules):
         process_args = ['pactl', 'load-module',
                         'module-jack-%s' % bridge.type]
 
-        if bridge.channels:
+        if bridge.channels and bridge.channels != "0":
             process_args.append('channels="%s"' % bridge.channels)
         if bridge.name:
             process_args.append('client_name="%s"'

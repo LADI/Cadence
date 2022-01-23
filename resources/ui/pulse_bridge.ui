@@ -105,11 +105,14 @@
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
        </property>
+       <property name="specialValueText">
+        <string>Default</string>
+       </property>
        <property name="suffix">
         <string> channels</string>
        </property>
        <property name="minimum">
-        <number>1</number>
+        <number>0</number>
        </property>
       </widget>
      </item>
