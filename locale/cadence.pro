@@ -1,5 +1,4 @@
 FORMS += ../resources/ui/cadence_rwait.ui
-FORMS += ../resources/ui/cadence_tb_a2j.ui
 FORMS += ../resources/ui/cadence_tb_alsa.ui
 FORMS += ../resources/ui/cadence.ui
 FORMS += ../resources/ui/catarina_addgroup.ui
@@ -20,7 +19,6 @@ FORMS += ../resources/ui/settings_jack.ui
 FORMS += ../resources/ui/xycontroller.ui
 SOURCES += ../src/bridgesourcesink.py
 SOURCES += ../src/cadence.py
-SOURCES += ../src/cadence_session_start.py
 SOURCES += ../src/catarina.py
 SOURCES += ../src/catia.py
 SOURCES += ../src/jacklib_helpers.py
