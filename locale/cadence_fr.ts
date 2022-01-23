@@ -767,12 +767,12 @@ Désactivé par défaut</translation>
     <message>
         <location filename="../resources/ui/cadence.ui" line="351"/>
         <source>Auto-start JACK at login</source>
-        <translation>Démarrer automatiquement JACK à la connection</translation>
+        <translation>Démarrer automatiquement JACK à la connexion</translation>
     </message>
     <message>
         <location filename="../resources/ui/cadence.ui" line="1490"/>
         <source>View JACK and A2J logs</source>
-        <translation>Voir les jouranux de JACK et de A2J</translation>
+        <translation>Voir les journaux de JACK et de A2J</translation>
     </message>
     <message>
         <location filename="../resources/ui/cadence.ui" line="614"/>
@@ -2271,7 +2271,7 @@ Désactivé par défaut</translation>
     <message>
         <location filename="../src/catia.py" line="1127"/>
         <source>Failed to start JACK, please check the logs for more information.</source>
-        <translation>N&apos;a pas pu démarrer JACK, veuillez vérifier les logs pour davantage d&apos;informations.</translation>
+        <translation>N&apos;a pas pu démarrer JACK, veuillez vérifier les journaux pour davantage d&apos;informations.</translation>
     </message>
     <message>
         <location filename="../src/catia.py" line="1161"/>
