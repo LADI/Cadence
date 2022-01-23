@@ -217,12 +217,12 @@ Voulez-vous le modifier dès que JACK s&apos;arrêtera ?</translation>
     <message>
         <location filename="../resources/ui/cadence.ui" line="1125"/>
         <source>ALSA -&gt; JACK (Plugin)</source>
-        <translation>ALSA -&gt; JACK (Greffon)</translation>
+        <translation>ALSA -&gt; JACK (greffon)</translation>
     </message>
     <message>
         <location filename="../resources/ui/cadence.ui" line="1130"/>
         <source>ALSA -&gt; PulseAudio -&gt; JACK (Plugin)</source>
-        <translation>ALSA -&gt; PulseAudio -&gt; JACK (Greffon)</translation>
+        <translation>ALSA -&gt; PulseAudio -&gt; JACK (greffon)</translation>
     </message>
     <message>
         <location filename="../resources/ui/cadence.ui" line="697"/>
@@ -488,7 +488,7 @@ physical I/O ports on your hardware.
 Default is on</source>
         <translation>Essayer de connecter les canaux ASIO
 aux entrées/sorties physiques de votre matériel.
-Enclenché par défaut</translation>
+Activé par défaut</translation>
     </message>
     <message>
         <location filename="../resources/ui/cadence.ui" line="2412"/>
@@ -505,7 +505,7 @@ Enclenché par défaut</translation>
         <source>Enable wineasio to launch the jack server.
 Default is off</source>
         <translation>Autoriser WineAsio à lancer le serveur JACK.
-Désenclenché par défaut</translation>
+Désactivé par défaut</translation>
     </message>
     <message>
         <location filename="../resources/ui/cadence.ui" line="2452"/>
@@ -516,8 +516,8 @@ Désenclenché par défaut</translation>
         <location filename="../resources/ui/cadence.ui" line="2479"/>
         <source>When on, an asio app will be able to change the jack buffer size.
 Default is off</source>
-        <translation>Si enclenché, une application ASIO sera capable de changer la taille du tampon de JACK.
-Désenclenché par défaut</translation>
+        <translation>Si activé, une application ASIO sera capable de changer la taille du tampon de JACK.
+Désactivé par défaut</translation>
     </message>
     <message>
         <location filename="../resources/ui/cadence.ui" line="2483"/>
@@ -527,7 +527,7 @@ Désenclenché par défaut</translation>
     <message>
         <location filename="../resources/ui/cadence.ui" line="2494"/>
         <source>Preferred buffersize:</source>
-        <translation>Taille du tampon préferrée :</translation>
+        <translation>Taille du tampon préférée :</translation>
     </message>
     <message>
         <location filename="../src/cadence.py" line="909"/>
@@ -652,7 +652,7 @@ Désenclenché par défaut</translation>
     <message>
         <location filename="../src/cadence.py" line="1515"/>
         <source>Using PulseAudio plugin bridge (Always on)</source>
-        <translation>Utilisation du pont de plugin PulseAudio (toujours activé)</translation>
+        <translation>Utilisation du pont de greffon PulseAudio (toujours activé)</translation>
     </message>
     <message>
         <location filename="../src/cadence.py" line="1990"/>
@@ -692,7 +692,7 @@ Désenclenché par défaut</translation>
     <message>
         <location filename="../src/cadence.py" line="1581"/>
         <source>Xruns</source>
-        <translation>Décrochages</translation>
+        <translation>Décrochage(s) (x-runs)</translation>
     </message>
     <message>
         <location filename="../src/cadence.py" line="1582"/>
@@ -702,7 +702,7 @@ Désenclenché par défaut</translation>
     <message>
         <location filename="../src/cadence.py" line="1583"/>
         <source>Sample Rate</source>
-        <translation>Fréquence d&apos;échantillonage</translation>
+        <translation>Taux d&apos;échantillonnage</translation>
     </message>
     <message>
         <location filename="../src/cadence.py" line="1584"/>
@@ -767,17 +767,17 @@ Désenclenché par défaut</translation>
     <message>
         <location filename="../resources/ui/cadence.ui" line="351"/>
         <source>Auto-start JACK at login</source>
-        <translation>Démarrer automatiquement JACK au démarrage</translation>
+        <translation>Démarrer automatiquement JACK à la connection</translation>
     </message>
     <message>
         <location filename="../resources/ui/cadence.ui" line="1490"/>
         <source>View JACK and A2J logs</source>
-        <translation>Voir les logs de JACK et de A2J</translation>
+        <translation>Voir les jouranux de JACK et de A2J</translation>
     </message>
     <message>
         <location filename="../resources/ui/cadence.ui" line="614"/>
         <source>User in audio group :</source>
-        <translation>Utilisateur dans le group audio :</translation>
+        <translation>Utilisateur dans le groupe audio :</translation>
     </message>
     <message>
         <location filename="../resources/ui/cadence.ui" line="637"/>
@@ -3860,7 +3860,7 @@ Avec ALSA, vous pouvez paramétrer ici un périphérique alternatif pour la lect
         <source>Frames per period between process() calls.
 Also known as buffer size</source>
         <translation>Trames par période entre les appels process().
-Également connu comme taille du tampon</translation>
+Également connu en tant que taille du tampon</translation>
     </message>
     <message>
         <location filename="../resources/ui/settings_jack.ui" line="866"/>
@@ -4137,7 +4137,7 @@ Il n&apos;est pas possible de configurer JACK à ce stade.</translation>
     <message>
         <location filename="../resources/ui/logs.ui" line="40"/>
         <source>Purge all logs</source>
-        <translation>Purger tous les logs</translation>
+        <translation>Purger tous les journaux</translation>
     </message>
     <message>
         <location filename="../resources/ui/logs.ui" line="51"/>
