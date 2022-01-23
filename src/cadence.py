@@ -33,8 +33,6 @@ import systray
 import pulse2jack_tool
 import ui_cadence
 import ui_cadence_tb_alsa
-import ui_cadence_tb_a2j
-import ui_cadence_tb_pa
 import ui_cadence_rwait
 import ui_pulse_bridge
 from shared_cadence import *
