@@ -768,7 +768,7 @@
              <x>0</x>
              <y>0</y>
              <width>586</width>
-             <height>368</height>
+             <height>288</height>
             </rect>
            </property>
            <attribute name="label">
@@ -1061,7 +1061,7 @@
              <x>0</x>
              <y>0</y>
              <width>382</width>
-             <height>389</height>
+             <height>126</height>
             </rect>
            </property>
            <attribute name="label">
@@ -1212,8 +1212,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>350</width>
-             <height>389</height>
+             <width>307</width>
+             <height>114</height>
             </rect>
            </property>
            <attribute name="label">
@@ -1966,8 +1966,8 @@
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>327</width>
-                  <height>265</height>
+                  <width>96</width>
+                  <height>89</height>
                  </rect>
                 </property>
                 <attribute name="label">
@@ -2588,6 +2588,62 @@ Default is off</string>
        <zorder>label_tweaks</zorder>
        <zorder>line_tweaks</zorder>
        <zorder>frame_tweaks_settings</zorder>
+      </widget>
+      <widget class="QWidget" name="tab_2">
+       <attribute name="title">
+        <string>About</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_21">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_11">
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>256</width>
+              <height>256</height>
+             </size>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="../resources.qrc">:/scalable/cadence.svg</pixmap>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_5">
+            <property name="text">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Cadence&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;Librazik version&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Cadence is a tool used to configure the JACK server, and commonly needed bridges for PulseAudio or ALSA MIDI.&lt;/p&gt;&lt;p&gt;This version is specific to Librazik.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Copyright (C) falkTX 2010 - 2021&lt;/p&gt;&lt;p&gt;Copyright (C) houston4444 2022&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;French translation: Olivier Humbert trebmuh@tuxfamily.org&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="wordWrap">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <spacer name="verticalSpacer_17">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>
