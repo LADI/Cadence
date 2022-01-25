@@ -73,6 +73,7 @@ if haveWine:
 
 # ---------------------------------------------------------------------
 
+
 DESKTOP_X_IMAGE = [
     "eog.desktop",
     "kde4/digikam.desktop",
@@ -896,8 +897,6 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
 
         # -------------------------------------------------------------
         # Set-up GUI (JACK Bridges)
-        #self.tableWidgetJackBridges.cellActivated.connect(
-            #self.slot_change_bridge_to_show)
         
         self.pulse_bridges_edited.connect(self.slot_PulseAudioBridgeSetEdited)
         self._pulse_check_timer = QTimer()
@@ -920,15 +919,6 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
                 sink_item = PaBridgeItem(self.listWidgetPulseSinks,
                                          self.pulse_bridges_edited, bridge_dict)
                 self.listWidgetPulseSinks.addItem(sink_item)
-
-        #pulse_source_item = PaBridgeItem(self.listWidgetPulseSources, False)
-        #self.listWidgetPulseSources.addItem(pulse_source_item)
-        #self.listWidgetPulseSources.addItem(PaBridgePlusItem(self.listWidgetPulseSources))
-        
-        #pulse_sink_item = PaBridgeItem(self.listWidgetPulseSinks, True)
-        #self.listWidgetPulseSinks.addItem(pulse_sink_item)
-        #self.listWidgetPulseSinks.addItem(PaBridgePlusItem(self.listWidgetPulseSinks))
-        
         
         # Not available in cxfreeze builds
         if sys.argv[0].endswith("/cadence"):
@@ -952,68 +942,27 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
         self.b_tweak_plugins_change.setEnabled(False)
         self.b_tweak_plugins_remove.setEnabled(False)
 
-        for iPath in DEFAULT_LADSPA_PATH:
-            self.list_LADSPA.addItem(iPath)
-
-        for iPath in DEFAULT_DSSI_PATH:
-            self.list_DSSI.addItem(iPath)
-
-        for iPath in DEFAULT_LV2_PATH:
-            self.list_LV2.addItem(iPath)
-
-        for iPath in DEFAULT_VST_PATH:
-            self.list_VST.addItem(iPath)
+        print('def vst path', DEFAULT_VST_PATH)
         
-        for iPath in DEFAULT_VST3_PATH:
-            self.list_VST3.addItem(iPath)
-        
-        for iPath in DEFAULT_LXVST_PATH:
-            self.list_LXVST.addItem(iPath)
+        self.plugins_dict = {
+            'LADSPA': {'index': 0, 'widget': self.list_LADSPA, 'paths': []},
+            'DSSI': {'index': 1, 'widget': self.list_DSSI, 'paths': []},
+            'LV2': {'index': 2, 'widget': self.list_LV2, 'paths': []},
+            'VST': {'index': 3, 'widget': self.list_VST, 'paths': []},
+            'VST3': {'index': 4, 'widget': self.list_VST3, 'paths': []},
+            'LXVST': {'index': 5, 'widget': self.list_LXVST, 'paths': []}}
 
-        EXTRA_LADSPA_DIRS = GlobalSettings.value("AudioPlugins/EXTRA_LADSPA_PATH", "", type=str)
-        EXTRA_DSSI_DIRS = GlobalSettings.value("AudioPlugins/EXTRA_DSSI_PATH", "", type=str)
-        EXTRA_LV2_DIRS = GlobalSettings.value("AudioPlugins/EXTRA_LV2_PATH", "", type=str)
-        EXTRA_VST_DIRS = GlobalSettings.value("AudioPlugins/EXTRA_VST_PATH", "", type=str)
-        EXTRA_VST3_DIRS = GlobalSettings.value("AudioPlugins/EXTRA_VST3_PATH", "", type=str)
-        EXTRA_LXVST_DIRS = GlobalSettings.value("AudioPlugins/EXTRA_LXVST_PATH", "", type=str)
-
-        for iPath in EXTRA_LADSPA_DIRS.split(":"):
-            if os.path.exists(iPath):
-                self.list_LADSPA.addItem(iPath)
-
-        for iPath in EXTRA_DSSI_DIRS.split(":"):
-            if os.path.exists(iPath):
-                self.list_DSSI.addItem(iPath)
-
-        for iPath in EXTRA_LV2_DIRS.split(":"):
-            if os.path.exists(iPath):
-                self.list_LV2.addItem(iPath)
-
-        for iPath in EXTRA_VST_DIRS.split(":"):
-            if os.path.exists(iPath):
-                self.list_VST.addItem(iPath)
-        
-        for iPath in EXTRA_VST3_DIRS.split(":"):
-            if os.path.exists(iPath):
-                self.list_VST3.addItem(iPath)
-        
-        for iPath in EXTRA_LXVST_DIRS.split(":"):
-            if os.path.exists(iPath):
-                self.list_LXVST.addItem(iPath)
-
-        self.list_LADSPA.sortItems(Qt.AscendingOrder)
-        self.list_DSSI.sortItems(Qt.AscendingOrder)
-        self.list_LV2.sortItems(Qt.AscendingOrder)
-        self.list_VST.sortItems(Qt.AscendingOrder)
-        self.list_VST3.sortItems(Qt.AscendingOrder)
-        self.list_LXVST.sortItems(Qt.AscendingOrder)
-
-        self.list_LADSPA.setCurrentRow(0)
-        self.list_DSSI.setCurrentRow(0)
-        self.list_LV2.setCurrentRow(0)
-        self.list_VST.setCurrentRow(0)
-        self.list_VST3.setCurrentRow(0)
-        self.list_LXVST.setCurrentRow(0)
+        for key, p_dict in self.plugins_dict.items():
+            paths = GlobalSettings.value(
+                "AudioPlugins/%s_PATH" % key,
+                DEFAULT_PLUGIN_PATH[key],
+                type=str)
+            
+            for path in paths.split(':'):
+                p_dict['paths'].append(path)
+                p_dict['widget'].addItem(path)
+            
+            p_dict['widget'].setCurrentRow(0)
 
         # -------------------------------------------------------------
         # Set-up GUI (Tweaks, Default Applications)
@@ -1218,16 +1167,16 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
         self.b_tweak_plugins_remove.clicked.connect(self.slot_tweakPluginRemove)
         self.b_tweak_plugins_reset.clicked.connect(self.slot_tweakPluginReset)
         self.tb_tweak_plugins.currentChanged.connect(self.slot_tweakPluginTypeChanged)
-        self.list_LADSPA.currentRowChanged.connect(self.slot_tweakPluginsLadspaRowChanged)
-        self.list_DSSI.currentRowChanged.connect(self.slot_tweakPluginsDssiRowChanged)
-        self.list_LV2.currentRowChanged.connect(self.slot_tweakPluginsLv2RowChanged)
-        self.list_VST.currentRowChanged.connect(self.slot_tweakPluginsVstRowChanged)
-        self.list_VST3.currentRowChanged.connect(self.slot_tweakPluginsVst3RowChanged)
-        self.list_LXVST.currentRowChanged.connect(self.slot_tweakPluginsLxVstRowChanged)
+        
+        for key, p_dict in self.plugins_dict.items():
+            p_dict['widget'].currentRowChanged.connect(
+                self.slot_tweakPluginsRowChanged)
+            p_dict['widget'].drop_event.connect(
+                self.slot_tweakPluginsOrderChanged)
 
         self.ch_app_image.clicked.connect(self.slot_tweaksSettingsChanged_apps)
         self.cb_app_image.highlighted.connect(self.slot_tweakAppImageHighlighted)
-        self.cb_app_image.currentIndexChanged[int].connect(self.slot_tweakAppImageChanged)
+        #self.cb_app_image.currentIndexChanged[int].connect(self.slot_tweakAppImageChanged)
         self.ch_app_music.clicked.connect(self.slot_tweaksSettingsChanged_apps)
         self.cb_app_music.highlighted.connect(self.slot_tweakAppMusicHighlighted)
         self.cb_app_music.currentIndexChanged[int].connect(self.slot_tweakAppMusicChanged)
@@ -1702,12 +1651,7 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
             global jackClientIdALSA
             jackClientIdALSA = group_id
             self.checkAlsaAudio()
-        #elif group_name == "PulseAudio JACK Source":
-            #pA_bridge_values.clientIdCapture = group_id
-            #self.checkPulseAudio()
-        #elif group_name == "PulseAudio JACK Sink":
-            #pA_bridge_values.clientIdPlayback = group_id
-            #self.checkPulseAudio()
+
         self._pulse_check_timer.start()
 
     @pyqtSlot(int)
@@ -2044,49 +1988,16 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
     @pyqtSlot()
     def slot_tweaksApply(self):
         if "plugins" in self.settings_changed_types:
-            EXTRA_LADSPA_DIRS = []
-            EXTRA_DSSI_DIRS = []
-            EXTRA_LV2_DIRS = []
-            EXTRA_VST_DIRS = []
-            EXTRA_VST3_DIRS = []
-            EXTRA_LXVST_DIRS = []
-
-            for i in range(self.list_LADSPA.count()):
-                iPath = self.list_LADSPA.item(i).text()
-                if iPath not in DEFAULT_LADSPA_PATH and iPath not in EXTRA_LADSPA_DIRS:
-                    EXTRA_LADSPA_DIRS.append(iPath)
-
-            for i in range(self.list_DSSI.count()):
-                iPath = self.list_DSSI.item(i).text()
-                if iPath not in DEFAULT_DSSI_PATH and iPath not in EXTRA_DSSI_DIRS:
-                    EXTRA_DSSI_DIRS.append(iPath)
-
-            for i in range(self.list_LV2.count()):
-                iPath = self.list_LV2.item(i).text()
-                if iPath not in DEFAULT_LV2_PATH and iPath not in EXTRA_LV2_DIRS:
-                    EXTRA_LV2_DIRS.append(iPath)
-
-            for i in range(self.list_VST.count()):
-                iPath = self.list_VST.item(i).text()
-                if iPath not in DEFAULT_VST_PATH and iPath not in EXTRA_VST_DIRS:
-                    EXTRA_VST_DIRS.append(iPath)
-                    
-            for i in range(self.list_VST3.count()):
-                iPath = self.list_VST3.item(i).text()
-                if iPath not in DEFAULT_VST3_PATH and iPath not in EXTRA_VST3_DIRS:
-                    EXTRA_VST3_DIRS.append(iPath)
-                    
-            for i in range(self.list_LXVST.count()):
-                iPath = self.list_LXVST.item(i).text()
-                if iPath not in DEFAULT_LXVST_PATH and iPath not in EXTRA_LXVST_DIRS:
-                    EXTRA_LXVST_DIRS.append(iPath)
-
-            GlobalSettings.setValue("AudioPlugins/EXTRA_LADSPA_PATH", ":".join(EXTRA_LADSPA_DIRS))
-            GlobalSettings.setValue("AudioPlugins/EXTRA_DSSI_PATH", ":".join(EXTRA_DSSI_DIRS))
-            GlobalSettings.setValue("AudioPlugins/EXTRA_LV2_PATH", ":".join(EXTRA_LV2_DIRS))
-            GlobalSettings.setValue("AudioPlugins/EXTRA_VST_PATH", ":".join(EXTRA_VST_DIRS))
-            GlobalSettings.setValue("AudioPlugins/EXTRA_VST3_PATH", ":".join(EXTRA_VST3_DIRS))
-            GlobalSettings.setValue("AudioPlugins/EXTRA_LXVST_PATH", ":".join(EXTRA_LXVST_DIRS))
+            for p_dict_key, p_dict in self.plugins_dict.items():
+                p_dict['paths'].clear()
+                
+                for i in range(p_dict['widget'].count()):
+                    i_path = p_dict['widget'].item(i).text()
+                    if i_path:
+                        p_dict['paths'].append(i_path)
+                
+                GlobalSettings.setValue("AudioPlugins/%s_PATH" % p_dict_key,
+                                        ':'.join(p_dict['paths']))
 
         if "apps" in self.settings_changed_types:
             mimeFileContent = ""
@@ -2367,178 +2278,100 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
 
     @pyqtSlot()
     def slot_tweakPluginAdd(self):
-        newPath = QFileDialog.getExistingDirectory(self, self.tr("Add Path"), "", QFileDialog.ShowDirsOnly)
+        newPath = QFileDialog.getExistingDirectory(
+            self, self.tr("Add Path"), "", QFileDialog.ShowDirsOnly)
 
         if not newPath:
             return
 
-        if self.tb_tweak_plugins.currentIndex() == 0:
-            self.list_LADSPA.addItem(newPath)
-        elif self.tb_tweak_plugins.currentIndex() == 1:
-            self.list_DSSI.addItem(newPath)
-        elif self.tb_tweak_plugins.currentIndex() == 2:
-            self.list_LV2.addItem(newPath)
-        elif self.tb_tweak_plugins.currentIndex() == 3:
-            self.list_VST.addItem(newPath)
-        elif self.tb_tweak_plugins.currentIndex() == 4:
-            self.list_VST3.addItem(newPath)
-        elif self.tb_tweak_plugins.currentIndex() == 5:
-            self.list_LXVST.addItem(newPath)
+        for key, p_dict in self.plugins_dict.items():
+            if p_dict['index'] == self.tb_tweak_plugins.currentIndex():
+                p_dict['widget'].insertItem(0, newPath)
+                break
 
         self.func_settings_changed("plugins")
 
     @pyqtSlot()
     def slot_tweakPluginChange(self):
-        if self.tb_tweak_plugins.currentIndex() == 0:
-            curPath = self.list_LADSPA.item(self.list_LADSPA.currentRow()).text()
-        elif self.tb_tweak_plugins.currentIndex() == 1:
-            curPath = self.list_DSSI.item(self.list_DSSI.currentRow()).text()
-        elif self.tb_tweak_plugins.currentIndex() == 2:
-            curPath = self.list_LV2.item(self.list_LV2.currentRow()).text()
-        elif self.tb_tweak_plugins.currentIndex() == 3:
-            curPath = self.list_VST.item(self.list_VST.currentRow()).text()
-        elif self.tb_tweak_plugins.currentIndex() == 4:
-            curPath = self.list_VST3.item(self.list_VST3.currentRow()).text()
-        elif self.tb_tweak_plugins.currentIndex() == 5:
-            curPath = self.list_LXVST.item(self.list_LXVST.currentRow()).text()
-        else:
-            curPath = ""
+        curPath = ""
+        current_index = self.tb_tweak_plugins.currentIndex()
 
-        newPath = QFileDialog.getExistingDirectory(self, self.tr("Change Path"), curPath, QFileDialog.ShowDirsOnly)
+        for key, p_dict in self.plugins_dict.items():
+            if p_dict['index'] == current_index:
+                curPath = p_dict['widget'].item(p_dict['widget'].currentRow()).text()
+                break
+
+        newPath = QFileDialog.getExistingDirectory(self, self.tr("Change Path"),
+                                                   curPath, QFileDialog.ShowDirsOnly)
 
         if not newPath:
             return
 
-        if self.tb_tweak_plugins.currentIndex() == 0:
-            self.list_LADSPA.item(self.list_LADSPA.currentRow()).setText(newPath)
-        elif self.tb_tweak_plugins.currentIndex() == 1:
-            self.list_DSSI.item(self.list_DSSI.currentRow()).setText(newPath)
-        elif self.tb_tweak_plugins.currentIndex() == 2:
-            self.list_LV2.item(self.list_LV2.currentRow()).setText(newPath)
-        elif self.tb_tweak_plugins.currentIndex() == 3:
-            self.list_VST.item(self.list_VST.currentRow()).setText(newPath)
-        elif self.tb_tweak_plugins.currentIndex() == 4:
-            self.list_VST3.item(self.list_VST3.currentRow()).setText(newPath)
-        elif self.tb_tweak_plugins.currentIndex() == 5:
-            self.list_LXVST.item(self.list_LXVST.currentRow()).setText(newPath)
+        for key, p_dict in self.plugins_dict.items():
+            if p_dict['index'] == current_index:
+                curPath = p_dict['widget'].item(p_dict['widget'].currentRow()).setText(newPath)
+                break
 
         self.func_settings_changed("plugins")
 
     @pyqtSlot()
     def slot_tweakPluginRemove(self):
-        if self.tb_tweak_plugins.currentIndex() == 0:
-            self.list_LADSPA.takeItem(self.list_LADSPA.currentRow())
-        elif self.tb_tweak_plugins.currentIndex() == 1:
-            self.list_DSSI.takeItem(self.list_DSSI.currentRow())
-        elif self.tb_tweak_plugins.currentIndex() == 2:
-            self.list_LV2.takeItem(self.list_LV2.currentRow())
-        elif self.tb_tweak_plugins.currentIndex() == 3:
-            self.list_VST.takeItem(self.list_VST.currentRow())
-        elif self.tb_tweak_plugins.currentIndex() == 4:
-            self.list_VST3.takeItem(self.list_VST3.currentRow())
-        elif self.tb_tweak_plugins.currentIndex() == 5:
-            self.list_LXVST.takeItem(self.list_LXVST.currentRow())
+        for key, p_dict in self.plugins_dict.items():
+            if p_dict['index'] == self.tb_tweak_plugins.currentIndex():
+                p_dict['widget'].takeItem(p_dict['widget'].currentRow())
+                break
 
         self.func_settings_changed("plugins")
 
     @pyqtSlot()
     def slot_tweakPluginReset(self):
-        if self.tb_tweak_plugins.currentIndex() == 0:
-            self.list_LADSPA.clear()
-
-            for iPath in DEFAULT_LADSPA_PATH:
-                self.list_LADSPA.addItem(iPath)
-
-        elif self.tb_tweak_plugins.currentIndex() == 1:
-            self.list_DSSI.clear()
-
-            for iPath in DEFAULT_DSSI_PATH:
-                self.list_DSSI.addItem(iPath)
-
-        elif self.tb_tweak_plugins.currentIndex() == 2:
-            self.list_LV2.clear()
-
-            for iPath in DEFAULT_LV2_PATH:
-                self.list_LV2.addItem(iPath)
-
-        elif self.tb_tweak_plugins.currentIndex() == 3:
-            self.list_VST.clear()
-
-            for iPath in DEFAULT_VST_PATH:
-                self.list_VST.addItem(iPath)
-
-        elif self.tb_tweak_plugins.currentIndex() == 4:
-            self.list_VST3.clear()
-
-            for iPath in DEFAULT_VST3_PATH:
-                self.list_VST3.addItem(iPath)
-                
-        elif self.tb_tweak_plugins.currentIndex() == 5:
-            self.list_LXVST.clear()
-
-            for iPath in DEFAULT_LXVST_PATH:
-                self.list_LXVST.addItem(iPath)
-
+        current_index = self.tb_tweak_plugins.currentIndex()
+        
+        for key, p_dict in self.plugins_dict.items():
+            if p_dict['index'] == current_index:
+                p_dict['widget'].clear()
+                for i_path in DEFAULT_PLUGIN_PATH[key].split(':'):
+                    p_dict['widget'].addItem(i_path)
+                break
 
         self.func_settings_changed("plugins")
 
     @pyqtSlot(int)
     def slot_tweakPluginTypeChanged(self, index):
         # Force row change
-        if index == 0:
-            self.list_LADSPA.setCurrentRow(-1)
-            self.list_LADSPA.setCurrentRow(0)
-        elif index == 1:
-            self.list_DSSI.setCurrentRow(-1)
-            self.list_DSSI.setCurrentRow(0)
-        elif index == 2:
-            self.list_LV2.setCurrentRow(-1)
-            self.list_LV2.setCurrentRow(0)
-        elif index == 3:
-            self.list_VST.setCurrentRow(-1)
-            self.list_VST.setCurrentRow(0)
-        elif index == 4:
-            self.list_VST3.setCurrentRow(-1)
-            self.list_VST3.setCurrentRow(0)
-        elif index == 5:
-            self.list_LXVST.setCurrentRow(-1)
-            self.list_LXVST.setCurrentRow(0)
+        for key, p_dict in self.plugins_dict.items():
+            if p_dict['index'] == index:
+                p_dict['widget'].setCurrentRow(-1)
+                p_dict['widget'].setCurrentRow(0)
+                break
 
     @pyqtSlot(int)
-    def slot_tweakPluginsLadspaRowChanged(self, index):
-        nonRemovable = (index >= 0 and self.list_LADSPA.item(index).text() not in DEFAULT_LADSPA_PATH)
-        self.b_tweak_plugins_change.setEnabled(nonRemovable)
-        self.b_tweak_plugins_remove.setEnabled(nonRemovable)
+    def slot_tweakPluginsRowChanged(self, path_index: int):
+        plugin_index = self.tb_tweak_plugins.currentIndex()
 
-    @pyqtSlot(int)
-    def slot_tweakPluginsDssiRowChanged(self, index):
-        nonRemovable = (index >= 0 and self.list_DSSI.item(index).text() not in DEFAULT_DSSI_PATH)
-        self.b_tweak_plugins_change.setEnabled(nonRemovable)
-        self.b_tweak_plugins_remove.setEnabled(nonRemovable)
+        for key, p_dict in self.plugins_dict.items():
+            if p_dict['index'] == plugin_index:
+                non_removable = bool(
+                    path_index >= 0
+                    and p_dict['widget'].item(path_index).text()
+                        not in DEFAULT_PLUGIN_PATH[key].split(':'))
 
-    @pyqtSlot(int)
-    def slot_tweakPluginsLv2RowChanged(self, index):
-        nonRemovable = (index >= 0 and self.list_LV2.item(index).text() not in DEFAULT_LV2_PATH)
-        self.b_tweak_plugins_change.setEnabled(nonRemovable)
-        self.b_tweak_plugins_remove.setEnabled(nonRemovable)
+                self.b_tweak_plugins_change.setEnabled(non_removable)
+                self.b_tweak_plugins_remove.setEnabled(non_removable)
+                break
 
-    @pyqtSlot(int)
-    def slot_tweakPluginsVstRowChanged(self, index):
-        nonRemovable = (index >= 0 and self.list_VST.item(index).text() not in DEFAULT_VST_PATH)
-        self.b_tweak_plugins_change.setEnabled(nonRemovable)
-        self.b_tweak_plugins_remove.setEnabled(nonRemovable)
-
-    @pyqtSlot(int)
-    def slot_tweakPluginsVst3RowChanged(self, index):
-        nonRemovable = (index >= 0 and self.list_VST3.item(index).text() not in DEFAULT_VST3_PATH)
-        self.b_tweak_plugins_change.setEnabled(nonRemovable)
-        self.b_tweak_plugins_remove.setEnabled(nonRemovable)
-
-    @pyqtSlot(int)
-    def slot_tweakPluginsLxVstRowChanged(self, index):
-        nonRemovable = (index >= 0 and self.list_LXVST.item(index).text() not in DEFAULT_LXVST_PATH)
-        self.b_tweak_plugins_change.setEnabled(nonRemovable)
-        self.b_tweak_plugins_remove.setEnabled(nonRemovable)
+    @pyqtSlot()
+    def slot_tweakPluginsOrderChanged(self):
+        for key, p_dict in self.plugins_dict.items():
+            current_path_list = []
+            
+            for i in range(p_dict['widget'].count()):
+                text = p_dict['widget'].item(i).text()
+                current_path_list.append(text)
+            
+            if current_path_list != p_dict['paths']:
+                self.func_settings_changed("plugins")
+                break
 
     def saveSettings(self):
         self.settings.setValue("Geometry", self.saveGeometry())

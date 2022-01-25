@@ -19,12 +19,8 @@
 # ------------------------------------------------------------------------------------------------------------
 # Imports (Global)
 
-if True:
-    from PyQt5.QtCore import pyqtSignal, pyqtSlot, Qt, QTimer
-    from PyQt5.QtWidgets import QLabel
-else:
-    from PyQt4.QtCore import pyqtSignal, pyqtSlot, Qt, QTimer
-    from PyQt4.QtGui import QLabel
+from PyQt5.QtCore import pyqtSignal, pyqtSlot, Qt, QTimer
+from PyQt5.QtWidgets import QLabel, QListWidget
 
 # ------------------------------------------------------------------------------------------------------------
 # Widget Class
@@ -49,3 +45,14 @@ class ClickableLabel(QLabel):
     @pyqtSlot()
     def slot_setNormalCursor(self):
         self.setCursor(Qt.PointingHandCursor)
+
+
+class DropSenderListWidget(QListWidget):
+    drop_event = pyqtSignal()
+    
+    def __init__(self, parent):
+        QListWidget.__init__(self, parent)
+    
+    def dropEvent(self, event):
+        QListWidget.dropEvent(self, event)
+        self.drop_event.emit()
