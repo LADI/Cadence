@@ -168,7 +168,7 @@ install:
 	# Install addtional stuff for Cadence
 	install -m 644 data/pulse2jack/*     $(DESTDIR)$(PREFIX)/share/cadence/pulse2jack/
 	install -m 644 data/pulse2loopback/* $(DESTDIR)$(PREFIX)/share/cadence/pulse2loopback/
-	install -m 755 data/61-cadence-session-inject.sh $(X11_RC_DIR)
+	install -m 755 data/61-cadence-session-inject $(X11_RC_DIR)
 
 	# Adjust PREFIX value in script files
 	sed -i "s?X-PREFIX-X?$(PREFIX)?" \
@@ -182,7 +182,7 @@ install:
 		$(DESTDIR)$(PREFIX)/bin/cadence-session-start \
 		$(DESTDIR)$(PREFIX)/bin/catarina \
 		$(DESTDIR)$(PREFIX)/bin/catia \
-		$(X11_RC_DIR)/61-cadence-session-inject.sh
+		$(X11_RC_DIR)/61-cadence-session-inject
 
 	# Delete old scripts
 	rm -f $(X11_RC_DIR)/21cadence-session-inject
@@ -213,7 +213,7 @@ uninstall:
 	rm -f $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/claudia.svg
 	rm -f $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/claudia-launcher.svg
 	rm -f $(DESTDIR)/etc/xdg/autostart/cadence-session-start.desktop
-	rm -f $(X11_RC_DIR)/61-cadence-session-inject.sh
+	rm -f $(X11_RC_DIR)/61-cadence-session-inject
 	rm -rf $(DESTDIR)$(PREFIX)/share/cadence/
 
 	# Delete old scripts
