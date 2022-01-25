@@ -941,8 +941,6 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
 
         self.b_tweak_plugins_change.setEnabled(False)
         self.b_tweak_plugins_remove.setEnabled(False)
-
-        print('def vst path', DEFAULT_VST_PATH)
         
         self.plugins_dict = {
             'LADSPA': {'index': 0, 'widget': self.list_LADSPA, 'paths': []},
@@ -957,6 +955,15 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
                 "AudioPlugins/%s_PATH" % key,
                 DEFAULT_PLUGIN_PATH[key],
                 type=str)
+            
+            # security, ensure default paths are here, else add them
+            if paths != DEFAULT_PLUGIN_PATH[key]:
+                path_list = paths.split(':')
+                def_list = DEFAULT_PLUGIN_PATH[key].split(':')
+                for path in def_list:
+                    if path not in path_list:
+                        path_list.append(path)
+                paths = ':'.join(path_list)
             
             for path in paths.split(':'):
                 p_dict['paths'].append(path)
@@ -2281,7 +2288,7 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
         newPath = QFileDialog.getExistingDirectory(
             self, self.tr("Add Path"), "", QFileDialog.ShowDirsOnly)
 
-        if not newPath:
+        if not newPath or ':' in newPath:
             return
 
         for key, p_dict in self.plugins_dict.items():

@@ -44,47 +44,6 @@ DEFAULT_PLUGIN_PATH = {
     'VST3': get_default_path('vst3'),
     'LXVST': get_default_path('lxvst')}
 
-DEFAULT_LADSPA_PATH = get_default_path('ladspa')
-DEFAULT_DSSI_PATH = get_default_path('dssi')
-DEFAULT_LV2_PATH = get_default_path('lv2')
-DEFAULT_VST_PATH = get_default_path('vst')
-DEFAULT_VST3_PATH = get_default_path('vst3')
-DEFAULT_LXVST_PATH = get_default_path('lxvst')
-#DEFAULT_LADSPA_PATH = [
-    #os.path.join(HOME, ".ladspa"),
-    #os.path.join("/", "usr", "lib", "ladspa"),
-    #os.path.join("/", "usr", "local", "lib", "ladspa")
-#]
-
-#DEFAULT_DSSI_PATH = [
-    #os.path.join(HOME, ".dssi"),
-    #os.path.join("/", "usr", "lib", "dssi"),
-    #os.path.join("/", "usr", "local", "lib", "dssi")
-#]
-
-#DEFAULT_LV2_PATH = [
-    #os.path.join(HOME, ".lv2"),
-    #os.path.join("/", "usr", "lib", "lv2"),
-    #os.path.join("/", "usr", "local", "lib", "lv2")
-#]
-
-#DEFAULT_VST_PATH = [
-    #os.path.join(HOME, ".vst"),
-    #os.path.join("/", "usr", "lib", "vst"),
-    #os.path.join("/", "usr", "local", "lib", "vst")
-#]
-
-#DEFAULT_VST3_PATH = [
-    #os.path.join(HOME, ".vst3"),
-    #os.path.join("/", "usr", "lib", "vst3"),
-    #os.path.join("/", "usr", "local", "lib", "vst3")]
-
-#DEFAULT_LXVST_PATH = [
-    #os.path.join(HOME, ".lxvst"),
-    #os.path.join("/", "usr", "lib", "lxvst"),
-    #os.path.join("/", "usr", "local", "lib", "lxvst")
-#]
-
 # ------------------------------------------------------------------------------------------------------------
 # ALSA file-type indexes
 
