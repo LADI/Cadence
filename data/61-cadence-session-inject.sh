@@ -13,6 +13,8 @@ export LADSPA_PATH="`$INSTALL_PREFIX/bin/cadence-session-start --printLADSPA_PAT
 export DSSI_PATH="`$INSTALL_PREFIX/bin/cadence-session-start --printDSSI_PATH`"
 export LV2_PATH="`$INSTALL_PREFIX/bin/cadence-session-start --printLV2_PATH`"
 export VST_PATH="`$INSTALL_PREFIX/bin/cadence-session-start --printVST_PATH`"
+export VST3_PATH="`$INSTALL_PREFIX/bin/cadence-session-start --printVST3_PATH`"
+export LXVST_PATH="`$INSTALL_PREFIX/bin/cadence-session-start --printLXVST_PATH`"
 
 STARTUP="$INSTALL_PREFIX/bin/cadence-session-start --system-start-by-x11-startup $STARTUP"
 

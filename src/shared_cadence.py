@@ -55,6 +55,17 @@ DEFAULT_VST_PATH = [
     os.path.join("/", "usr", "local", "lib", "vst")
 ]
 
+DEFAULT_VST3_PATH = [
+    os.path.join(HOME, ".vst3"),
+    os.path.join("/", "usr", "lib", "vst3"),
+    os.path.join("/", "usr", "local", "lib", "vst3")]
+
+DEFAULT_LXVST_PATH = [
+    os.path.join(HOME, ".lxvst"),
+    os.path.join("/", "usr", "lib", "lxvst"),
+    os.path.join("/", "usr", "local", "lib", "lxvst")
+]
+
 # ------------------------------------------------------------------------------------------------------------
 # ALSA file-type indexes
 

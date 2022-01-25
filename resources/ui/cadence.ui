@@ -1959,15 +1959,15 @@
                 <number>1</number>
                </property>
                <property name="currentIndex">
-                <number>0</number>
+                <number>5</number>
                </property>
                <widget class="QWidget" name="page_ladspa">
                 <property name="geometry">
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>327</width>
-                  <height>265</height>
+                  <width>96</width>
+                  <height>89</height>
                  </rect>
                 </property>
                 <attribute name="label">
@@ -2078,6 +2078,42 @@
                  </property>
                  <item>
                   <widget class="QListWidget" name="list_VST"/>
+                 </item>
+                </layout>
+               </widget>
+               <widget class="QWidget" name="page_vst3">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>0</y>
+                  <width>99</width>
+                  <height>99</height>
+                 </rect>
+                </property>
+                <attribute name="label">
+                 <string>VST3</string>
+                </attribute>
+                <layout class="QVBoxLayout" name="verticalLayout_24">
+                 <item>
+                  <widget class="QListWidget" name="list_VST3"/>
+                 </item>
+                </layout>
+               </widget>
+               <widget class="QWidget" name="page_lxvst">
+                <property name="geometry">
+                 <rect>
+                  <x>0</x>
+                  <y>0</y>
+                  <width>327</width>
+                  <height>201</height>
+                 </rect>
+                </property>
+                <attribute name="label">
+                 <string>LXVST</string>
+                </attribute>
+                <layout class="QVBoxLayout" name="verticalLayout_25">
+                 <item>
+                  <widget class="QListWidget" name="list_LXVST"/>
                  </item>
                 </layout>
                </widget>

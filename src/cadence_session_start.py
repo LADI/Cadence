@@ -118,7 +118,7 @@ def startJack():
 
 def printLADSPA_PATH():
     EXTRA_LADSPA_DIRS = GlobalSettings.value("AudioPlugins/EXTRA_LADSPA_PATH", "", type=str).split(":")
-    LADSPA_PATH_str   = ":".join(DEFAULT_LADSPA_PATH)
+    LADSPA_PATH_str = ":".join(DEFAULT_LADSPA_PATH)
 
     for i in range(len(EXTRA_LADSPA_DIRS)):
         if EXTRA_LADSPA_DIRS[i]:
@@ -128,7 +128,7 @@ def printLADSPA_PATH():
 
 def printDSSI_PATH():
     EXTRA_DSSI_DIRS = GlobalSettings.value("AudioPlugins/EXTRA_DSSI_PATH", "", type=str).split(":")
-    DSSI_PATH_str   = ":".join(DEFAULT_DSSI_PATH)
+    DSSI_PATH_str = ":".join(DEFAULT_DSSI_PATH)
 
     for i in range(len(EXTRA_DSSI_DIRS)):
         if EXTRA_DSSI_DIRS[i]:
@@ -138,7 +138,7 @@ def printDSSI_PATH():
 
 def printLV2_PATH():
     EXTRA_LV2_DIRS = GlobalSettings.value("AudioPlugins/EXTRA_LV2_PATH", "", type=str).split(":")
-    LV2_PATH_str   = ":".join(DEFAULT_LV2_PATH)
+    LV2_PATH_str = ":".join(DEFAULT_LV2_PATH)
 
     for i in range(len(EXTRA_LV2_DIRS)):
         if EXTRA_LV2_DIRS[i]:
@@ -148,13 +148,33 @@ def printLV2_PATH():
 
 def printVST_PATH():
     EXTRA_VST_DIRS = GlobalSettings.value("AudioPlugins/EXTRA_VST_PATH", "", type=str).split(":")
-    VST_PATH_str   = ":".join(DEFAULT_VST_PATH)
+    VST_PATH_str = ":".join(DEFAULT_VST_PATH)
 
     for i in range(len(EXTRA_VST_DIRS)):
       if EXTRA_VST_DIRS[i]:
         VST_PATH_str += ":"+EXTRA_VST_DIRS[i]
 
     print(VST_PATH_str)
+
+def printVST3_PATH():
+    EXTRA_VST3_DIRS = GlobalSettings.value("AudioPlugins/EXTRA_VST_PATH", "", type=str).split(":")
+    VST3_PATH_str = ":".join(DEFAULT_VST_PATH)
+
+    for i in range(len(EXTRA_VST3_DIRS)):
+      if EXTRA_VST3_DIRS[i]:
+        VST3_PATH_str += ":"+EXTRA_VST3_DIRS[i]
+
+    print(VST3_PATH_str)
+    
+def printLXVST_PATH():
+    EXTRA_LXVST_DIRS = GlobalSettings.value("AudioPlugins/EXTRA_LXVST_PATH", "", type=str).split(":")
+    LXVST_PATH_str = ":".join(DEFAULT_VST_PATH)
+
+    for i in range(len(EXTRA_LXVST_DIRS)):
+      if EXTRA_LXVST_DIRS[i]:
+        LXVST_PATH_str += ":"+EXTRA_LXVST_DIRS[i]
+
+    print(LXVST_PATH_str)
 
 def printArguments():
     print("\t-s|--start  \tStart session")
@@ -198,6 +218,10 @@ if __name__ == '__main__':
             printLV2_PATH()
         elif arg == "--printVST_PATH":
             printVST_PATH()
+        elif arg == "--printVST3_PATH":
+            printVST3_PATH()
+        elif arg == "--printLXVST_PATH":
+            printLXVST_PATH()
         elif arg == "--reset":
             forceReset()
         elif arg in ("--system-start", "--system-start-desktop"):
