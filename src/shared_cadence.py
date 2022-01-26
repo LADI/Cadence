@@ -113,7 +113,7 @@ def waitProcsEnd(procs, tries):
 # ------------------------------------------------------------------------------------------------------------
 # Cleanly close the jack dbus service
 
-def tryCloseJackDBus():
+def tryCloseJackDBus() -> bool:
     try:
         import dbus
         bus  = dbus.SessionBus()
@@ -121,6 +121,9 @@ def tryCloseJackDBus():
         jack.Exit()
     except:
         print("tryCloseJackDBus() failed")
+        return False
+    
+    return True
 
 # ------------------------------------------------------------------------------------------------------------
 # Stop all audio processes, used for force-restart

@@ -19,6 +19,8 @@
 # ------------------------------------------------------------------------------------------------------------
 # Imports (Global)
 
+import time
+
 from platform import architecture
 
 from PyQt5.QtCore import QFileSystemWatcher, QThread, QSemaphore, QSize
@@ -29,6 +31,7 @@ from PyQt5.QtWidgets import (QApplication, QDialogButtonBox, QLabel, QMainWindow
 # ------------------------------------------------------------------------------------------------------------
 # Imports (Custom Stuff)
 
+import force_restart
 import systray
 import pulse2jack_tool
 import ui_cadence
@@ -513,7 +516,8 @@ class CadenceSystemCheck_kernel(CadenceSystemCheck):
                 # https://wiki.linuxfoundation.org/realtime/preempt_rt_versions
                 # https://cateee.net/lkddb/web-lkddb/PREEMPT.html
                 self.icon     = self.ICON_WARN
-                self.moreInfo = self.tr("RT may be available if compiling this version w/CONFIG_PREEMPT or patching this kernel w/CONFIG_PREEMPT_RT.")
+                self.moreInfo = self.tr(
+                    "RT may be available if compiling this version w/CONFIG_PREEMPT or patching this kernel w/CONFIG_PREEMPT_RT.")
 
                 if "-" not in uname3:
                     if uname3.endswith("-pae"):
@@ -539,127 +543,6 @@ def initSystemChecks():
 
 # ---------------------------------------------------------------------
 
-# Wait while JACK restarts
-class ForceRestartThread(QThread):
-    progressChanged = pyqtSignal(int)
-
-    def __init__(self, parent):
-        QThread.__init__(self, parent)
-
-        self.m_wasStarted = False
-
-    def wasJackStarted(self):
-        return self.m_wasStarted
-
-    def startA2J(self):
-        if not gDBus.a2j.get_hw_export() and GlobalSettings.value("A2J/AutoExport", True, type=bool):
-            gDBus.a2j.set_hw_export(True)
-        gDBus.a2j.start()
-
-    def run(self):
-        # Not started yet
-        self.m_wasStarted = False
-        self.progressChanged.emit(0)
-
-        # Stop JACK safely first, if possible
-        runFunctionInMainThread(tryCloseJackDBus)
-        self.progressChanged.emit(20)
-
-        # Kill All
-        stopAllAudioProcesses(False)
-        self.progressChanged.emit(30)
-
-        # Connect to jackdbus
-        runFunctionInMainThread(self.parent().DBusReconnect)
-
-        if not gDBus.jack:
-            return
-
-        for x in range(30):
-            self.progressChanged.emit(30+x*2)
-            procsList = getProcList()
-            if "jackdbus" in procsList:
-                break
-            else:
-                sleep(0.1)
-
-        sleep(0.1)
-        self.progressChanged.emit(90)
-
-        # Start it
-        runFunctionInMainThread(gDBus.jack.StartServer)
-        self.progressChanged.emit(93)
-
-        # If we made it this far, then JACK is started
-        self.m_wasStarted = True
-
-        # Start bridges according to user settings
-
-        # ALSA-Audio
-        if GlobalSettings.value("ALSA-Audio/BridgeIndexType", iAlsaFileNone, type=int) == iAlsaFileLoop:
-            startAlsaAudioLoopBridge()
-            sleep(0.5)
-
-        self.progressChanged.emit(94)
-
-        ## ALSA-MIDI
-        #if GlobalSettings.value("A2J/AutoStart", True, type=bool) and not bool(gDBus.a2j.is_started()):
-            #runFunctionInMainThread(self.startA2J)
-            
-        # ALSA-MIDI
-        if GlobalSettings.value("A2J/AutoStart", True, type=bool):
-            runFunctionInMainThread(self.startA2J)
-
-        self.progressChanged.emit(96)
-
-        # PulseAudio
-        self._pulse_bridge_dicts = pulse2jack_tool.get_existing_modules_in_dicts()
-        if (GlobalSettings.value("Pulse2JACK/AutoStart", True, type=bool)
-                and not self._pulse_bridge_dicts):
-            bridge_dicts = GlobalSettings.value("PulseAudio_bridges", type=list)
-            if not bridge_dicts:
-                bridge_dicts = [
-                    {"type": "source",
-                    "name": "PulseAudio JACK Source",
-                    "channels": 2,
-                    "connected": True},
-                    {"type": "sink",
-                    "name": "PulseAudio JACK Sink",
-                    "channels": 2,
-                    "connected": True}]
-            
-            pulse2jack_tool.replace_hotly(bridge_dicts)
-
-        self.progressChanged.emit(100)
-
-# Force Restart Dialog
-class ForceWaitDialog(QDialog, ui_cadence_rwait.Ui_Dialog):
-    def __init__(self, parent):
-        QDialog.__init__(self, parent)
-        self.setupUi(self)
-        self.setWindowFlags(Qt.Dialog|Qt.WindowCloseButtonHint)
-
-        self.rThread = ForceRestartThread(self)
-        self.rThread.start()
-
-        self.rThread.progressChanged.connect(self.progressBar.setValue)
-        self.rThread.finished.connect(self.slot_rThreadFinished)
-
-    def DBusReconnect(self):
-        self.parent().DBusReconnect()
-
-    @pyqtSlot()
-    def slot_rThreadFinished(self):
-        self.close()
-
-        if self.rThread.wasJackStarted():
-            QMessageBox.information(self, self.tr("Info"), self.tr("JACK was re-started sucessfully"))
-        else:
-            QMessageBox.critical(self, self.tr("Error"), self.tr("Could not start JACK!"))
-
-    def done(self, r):
-        QDialog.done(self, r)
-        self.close()
 
 
 # Additional ALSA Audio options
@@ -759,8 +642,6 @@ class PaBridgeFrame(QFrame):
         bridge_dict['connected'] = self.ui.checkBoxConnect.isChecked()
         bridge_dict['channels'] = self.ui.spinBoxChannels.value()
         return bridge_dict
-
-    
 
 class PaBridgeItem(QListWidgetItem):
     def __init__(self, parent, edited_signal, bridge_dict: dict):
@@ -1235,15 +1116,17 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
     def DBusReconnect(self):
         if haveDBus:
             try:
-                gDBus.jack     = gDBus.bus.get_object("org.jackaudio.service", "/org/jackaudio/Controller")
+                gDBus.jack = gDBus.bus.get_object("org.jackaudio.service", "/org/jackaudio/Controller")
                 gDBus.patchbay = dbus.Interface(gDBus.jack, "org.jackaudio.JackPatchbay")
                 jacksettings.initBus(gDBus.bus)
             except:
-                gDBus.jack     = None
+                gDBus.jack = None
                 gDBus.patchbay = None
 
             try:
-                gDBus.a2j = dbus.Interface(gDBus.bus.get_object("org.gna.home.a2jmidid", "/"), "org.gna.home.a2jmidid.control")
+                gDBus.a2j = dbus.Interface(
+                    gDBus.bus.get_object("org.gna.home.a2jmidid", "/"),
+                    "org.gna.home.a2jmidid.control")
             except:
                 gDBus.a2j = None
 
@@ -1259,12 +1142,6 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
                     if group_name == "alsa2jack":
                         global jackClientIdALSA
                         jackClientIdALSA = group_id
-                    elif group_name == "PulseAudio JACK Source":
-                        pA_bridge_values.clientIdCapture = group_id
-                        pA_bridge_values.portCaptureNumber = len(ports)
-                    elif group_name == "PulseAudio JACK Sink":
-                        pA_bridge_values.clientIdPlayback = group_id
-                        pA_bridge_values.portPlaybackNumber = len(ports)
 
                 self.jackStarted()
 
@@ -1366,6 +1243,7 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
         self.label_jack_latency.setText("%.1f ms" % gDBus.jack.GetLatency())
 
         self.m_timer500 = self.startTimer(500)
+        self.m_timer2000 = self.startTimer(2000)
 
         if gDBus.a2j and not gDBus.a2j.is_started():
             portsExported = bool(gDBus.a2j.get_hw_export())
@@ -1385,6 +1263,9 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
         if self.m_timer500:
             self.killTimer(self.m_timer500)
             self.m_timer500 = None
+        if self.m_timer2000:
+            self.killTimer(self.m_timer2000)
+            self.m_timer2000 = None
 
         self.m_last_dsp_load = None
         self.m_last_xruns    = None
@@ -1737,9 +1618,13 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
         if self.m_timer500:
             self.killTimer(self.m_timer500)
             self.m_timer500 = None
+        
+        if self.m_timer2000:
+            self.killTimer(self.m_timer2000)
+            self.m_timer2000 = None
 
         self.saveSettings()
-        ForceWaitDialog(self).exec_()
+        force_restart.ForceWaitDialog(self).exec_()
 
     @pyqtSlot()
     def slot_JackServerConfigure(self):
@@ -2438,17 +2323,6 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
         self.saveSettings()
         self.systray.handleQtCloseEvent(event)
 
-# ------------------------------------------------------------------------------------------------------------
-
-def runFunctionInMainThread(task):
-    waiter = QSemaphore(1)
-
-    def taskInMainThread():
-        task()
-        waiter.release()
-
-    QTimer.singleShot(0, taskInMainThread)
-    waiter.tryAcquire()
 
 #--------------- main ------------------
 if __name__ == '__main__':
