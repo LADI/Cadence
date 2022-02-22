@@ -14,13 +14,13 @@ from shared_cadence import *
 GlobalSettings = QSettings("Cadence", "GlobalSettings")
 
 # DBus
-class DBus(object):
+class dBus(object):
     __slots__ = [
       'bus',
       'a2j',
       'jack'
     ]
-DBus = DBus()
+DBus = dBus()
 
 def forceReset():
     # Kill all audio processes
@@ -68,13 +68,22 @@ def startSession(systemStarted, secondSystemStartAttempt):
     # Connect to DBus
     DBus.bus  = dbus.SessionBus()
     DBus.jack = DBus.bus.get_object("org.jackaudio.service", "/org/jackaudio/Controller")
-
+    
     try:
         DBus.a2j = dbus.Interface(DBus.bus.get_object("org.gna.home.a2jmidid", "/"), "org.gna.home.a2jmidid.control")
     except:
         DBus.a2j = None
 
-    startJack()
+    
+    try:
+        startJack()
+    except dbus.exceptions.DBusException as e:
+        sys.stderr.write(e + '\n')
+        sys.stderr.write('First attempt to start JACK failed, retry one time\n')
+        # with some configs, it is possible that jack start failed this firt time
+        # but perfectly works the second time
+        # So, startJack failed, but we try one more time.
+        startJack()
 
     if not bool(DBus.jack.IsStarted()):
         print("JACK Failed to Start")
