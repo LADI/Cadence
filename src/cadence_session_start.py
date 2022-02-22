@@ -78,7 +78,7 @@ def startSession(systemStarted, secondSystemStartAttempt):
     try:
         startJack()
     except dbus.exceptions.DBusException as e:
-        sys.stderr.write(e + '\n')
+        sys.stderr.write(str(e) + '\n')
         sys.stderr.write('First attempt to start JACK failed, retry one time\n')
         # with some configs, it is possible that jack start failed this firt time
         # but perfectly works the second time
