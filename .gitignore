@@ -3,6 +3,7 @@
 .fuse-*
 .*.kate-swp
 .kdev4/
+.vscode
 
 # Temp files
 *~
