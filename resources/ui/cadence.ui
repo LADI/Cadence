@@ -1212,8 +1212,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>307</width>
-             <height>114</height>
+             <width>380</width>
+             <height>389</height>
             </rect>
            </property>
            <attribute name="label">
@@ -1276,21 +1276,31 @@
                 </property>
                </spacer>
               </item>
-              <item>
-               <widget class="QCheckBox" name="cb_a2j_autoexport">
-                <property name="text">
-                 <string>Export hardware ports</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QCheckBox" name="cb_a2j_autostart">
-                <property name="text">
-                 <string>Start with Jack</string>
-                </property>
-               </widget>
-              </item>
              </layout>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="cb_a2j_autoexport">
+              <property name="text">
+               <string>Export hardware ports</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="cb_a2j_unique_port_names">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;if checked, the JACK port names provided by the bridge contains their matching ALSA client ID. Check it only if you use simultaneously multiple identical MIDI devices.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="text">
+               <string>Unique port names</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="cb_a2j_autostart">
+              <property name="text">
+               <string>Start with Jack</string>
+              </property>
+             </widget>
             </item>
             <item>
              <spacer name="verticalSpacer_12">
@@ -1966,8 +1976,8 @@
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>327</width>
-                  <height>201</height>
+                  <width>96</width>
+                  <height>89</height>
                  </rect>
                 </property>
                 <attribute name="label">
@@ -2000,8 +2010,8 @@
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>327</width>
-                  <height>201</height>
+                  <width>96</width>
+                  <height>89</height>
                  </rect>
                 </property>
                 <attribute name="label">
@@ -2034,8 +2044,8 @@
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>327</width>
-                  <height>201</height>
+                  <width>96</width>
+                  <height>89</height>
                  </rect>
                 </property>
                 <attribute name="label">
@@ -2068,8 +2078,8 @@
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>327</width>
-                  <height>201</height>
+                  <width>96</width>
+                  <height>89</height>
                  </rect>
                 </property>
                 <attribute name="label">
@@ -2102,8 +2112,8 @@
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>327</width>
-                  <height>201</height>
+                  <width>99</width>
+                  <height>99</height>
                  </rect>
                 </property>
                 <attribute name="label">
@@ -2124,8 +2134,8 @@
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>327</width>
-                  <height>201</height>
+                  <width>99</width>
+                  <height>99</height>
                  </rect>
                 </property>
                 <attribute name="label">

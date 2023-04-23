@@ -70,7 +70,9 @@ def startSession(systemStarted, secondSystemStartAttempt):
     DBus.jack = DBus.bus.get_object("org.jackaudio.service", "/org/jackaudio/Controller")
 
     try:
-        DBus.a2j = dbus.Interface(DBus.bus.get_object("org.gna.home.a2jmidid", "/"), "org.gna.home.a2jmidid.control")
+        DBus.a2j = dbus.Interface(
+            DBus.bus.get_object("org.gna.home.a2jmidid", "/"),
+            "org.gna.home.a2jmidid.control")
     except:
         DBus.a2j = None
 
@@ -88,9 +90,12 @@ def startSession(systemStarted, secondSystemStartAttempt):
         sleep(0.5)
 
     # ALSA-MIDI
-    if GlobalSettings.value("A2J/AutoStart", True, type=bool) and DBus.a2j and not bool(DBus.a2j.is_started()):
+    if (GlobalSettings.value("A2J/AutoStart", True, type=bool)
+            and DBus.a2j and not bool(DBus.a2j.is_started())):
         a2jExportHW = GlobalSettings.value("A2J/ExportHW", True, type=bool)
+        a2j_unique_port_names = GlobalSettings.value("A2J/UniquePortNames", True, type=bool)
         DBus.a2j.set_hw_export(a2jExportHW)
+        DBus.a2j.set_disable_port_uniqueness(not a2j_unique_port_names)
         DBus.a2j.start()
 
     # PulseAudio
