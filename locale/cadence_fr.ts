@@ -352,7 +352,7 @@ Voulez-vous le modifier dès que JACK s&apos;arrêtera ?</translation>
     <message>
         <location filename="../resources/ui/cadence.ui" line="1838"/>
         <source>audio-plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>greffons-audio</translation>
     </message>
     <message>
         <location filename="../resources/ui/cadence.ui" line="1843"/>
@@ -362,7 +362,7 @@ Voulez-vous le modifier dès que JACK s&apos;arrêtera ?</translation>
     <message>
         <location filename="../resources/ui/cadence.ui" line="1848"/>
         <source>wineasio</source>
-        <translation type="unfinished"></translation>
+        <translation>wineasio</translation>
     </message>
     <message>
         <location filename="../resources/ui/cadence.ui" line="1853"/>
@@ -647,7 +647,7 @@ Désactivé par défaut</translation>
     <message>
         <location filename="../src/cadence.py" line="1375"/>
         <source>Using JACK plugin bridge (Always on)</source>
-        <translation type="unfinished"></translation>
+        <translation>Utilisation du pont de greffons JACK (toujours activé)</translation>
     </message>
     <message>
         <location filename="../src/cadence.py" line="1384"/>
@@ -847,12 +847,12 @@ Désactivé par défaut</translation>
     <message>
         <location filename="../resources/ui/cadence.ui" line="2120"/>
         <source>VST3</source>
-        <translation>VST3</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../resources/ui/cadence.ui" line="2142"/>
         <source>LXVST</source>
-        <translation>LXVST</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -878,7 +878,7 @@ Désactivé par défaut</translation>
     <message>
         <location filename="../src/cadence.py" line="440"/>
         <source>User in audio group</source>
-        <translation type="unfinished">Utilisateur dans le groupe audio </translation>
+        <translation>Utilisateur dans le groupe audio </translation>
     </message>
     <message>
         <location filename="../src/cadence.py" line="447"/>
@@ -901,27 +901,27 @@ Désactivé par défaut</translation>
     <message>
         <location filename="../src/cadence.py" line="482"/>
         <source>Current kernel</source>
-        <translation type="unfinished">Noyau utilisé </translation>
+        <translation>Noyau utilisé </translation>
     </message>
     <message>
         <location filename="../src/cadence.py" line="503"/>
         <source>Be sure to properly configure your kernel.</source>
-        <translation type="unfinished"></translation>
+        <translation>Veillez à configurer correctement votre noyau.</translation>
     </message>
     <message>
         <location filename="../src/cadence.py" line="504"/>
         <source>PREEMPT</source>
-        <translation type="unfinished"></translation>
+        <translation>PREEMPT</translation>
     </message>
     <message>
         <location filename="../src/cadence.py" line="508"/>
         <source>PREEMPT_RT</source>
-        <translation type="unfinished"></translation>
+        <translation>PREEMPT_RT</translation>
     </message>
     <message>
         <location filename="../src/cadence.py" line="518"/>
         <source>RT may be available if compiling this version w/CONFIG_PREEMPT or patching this kernel w/CONFIG_PREEMPT_RT.</source>
-        <translation type="unfinished"></translation>
+        <translation>Le temps-réel (RT) peut être disponible si cette version est compilée avec CONFIG_PREEMPT ou si le noyau est rustiné avec CONFIG_PREEMPT_RT.</translation>
     </message>
     <message>
         <location filename="../src/cadence.py" line="524"/>
@@ -936,7 +936,7 @@ Désactivé par défaut</translation>
     <message>
         <location filename="../src/cadence.py" line="530"/>
         <source>No realtime options for this version of kernel.</source>
-        <translation type="unfinished"></translation>
+        <translation>Pas d'options temps réel pour cette version du noyau.</translation>
     </message>
 </context>
 <context>
@@ -1851,37 +1851,37 @@ Désactivé par défaut</translation>
     <message>
         <location filename="../resources/ui/catia.ui" line="466"/>
         <source>&amp;File</source>
-        <translation type="unfinished">&amp;Fichier</translation>
+        <translation>&amp;Fichier</translation>
     </message>
     <message>
         <location filename="../resources/ui/catia.ui" line="472"/>
         <source>&amp;Help</source>
-        <translation type="unfinished">&amp;Aide</translation>
+        <translation>&amp;Aide</translation>
     </message>
     <message>
         <location filename="../resources/ui/catia.ui" line="479"/>
         <source>&amp;Transport</source>
-        <translation type="unfinished">&amp;Transport</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../resources/ui/catia.ui" line="488"/>
         <source>&amp;Canvas</source>
-        <translation type="unfinished">&amp;Canevas</translation>
+        <translation>&amp;Canevas</translation>
     </message>
     <message>
         <location filename="../resources/ui/catia.ui" line="492"/>
         <source>Zoom</source>
-        <translation type="unfinished">Zoom</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../resources/ui/catia.ui" line="508"/>
         <source>&amp;Tools</source>
-        <translation type="unfinished">&amp;Outils</translation>
+        <translation>&amp;Outils</translation>
     </message>
     <message>
         <location filename="../resources/ui/catia.ui" line="512"/>
         <source>&amp;JACK Server</source>
-        <translation type="unfinished">Serveur &amp;JACK</translation>
+        <translation>Serveur &amp;JACK</translation>
     </message>
     <message>
         <location filename="../resources/ui/catia.ui" line="516"/>
@@ -1891,17 +1891,17 @@ Désactivé par défaut</translation>
     <message>
         <location filename="../resources/ui/catia.ui" line="537"/>
         <source>&amp;ALSA-MIDI Bridge</source>
-        <translation type="unfinished">Pont &amp;ALSA-MIDI</translation>
+        <translation>Pont &amp;ALSA-MIDI</translation>
     </message>
     <message>
         <location filename="../resources/ui/catia.ui" line="553"/>
         <source>S&amp;ettings</source>
-        <translation type="unfinished">Réglag&amp;es</translation>
+        <translation>Réglag&amp;es</translation>
     </message>
     <message>
         <location filename="../resources/ui/catia.ui" line="574"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished">&amp;Quitter</translation>
+        <translation>&amp;Quitter</translation>
     </message>
     <message>
         <location filename="../resources/ui/catia.ui" line="577"/>
@@ -1951,7 +1951,7 @@ Désactivé par défaut</translation>
     <message>
         <location filename="../resources/ui/catia.ui" line="630"/>
         <source>1</source>
-        <translation type="unfinished">1</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../resources/ui/catia.ui" line="635"/>
@@ -2206,7 +2206,7 @@ Désactivé par défaut</translation>
     <message>
         <location filename="../resources/ui/catia.ui" line="1003"/>
         <source>&amp;Logs</source>
-        <translation type="unfinished">&amp;Journal</translation>
+        <translation>&amp;Journal</translation>
     </message>
     <message>
         <location filename="../resources/ui/catia.ui" line="1011"/>
@@ -3463,62 +3463,62 @@ Veuillez le démarrer en premier lieu, puis relancer à nouveau Claudia-Launcher
     <message>
         <location filename="../src/force_restart.py" line="171"/>
         <source>Info</source>
-        <translation type="unfinished">Info</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../src/force_restart.py" line="171"/>
         <source>JACK was re-started sucessfully</source>
-        <translation type="unfinished">JACK a été redémarré avec succès</translation>
+        <translation>JACK a été redémarré avec succès</translation>
     </message>
     <message>
         <location filename="../src/force_restart.py" line="174"/>
         <source>Error</source>
-        <translation type="unfinished">Erreur</translation>
+        <translation>Erreur</translation>
     </message>
     <message>
         <location filename="../src/force_restart.py" line="174"/>
         <source>Could not start JACK!</source>
-        <translation type="unfinished">Impossible de démarrer JACK !</translation>
+        <translation>Impossible de démarrer JACK !</translation>
     </message>
     <message>
         <location filename="../src/force_restart.py" line="187"/>
         <source>Closing DBus</source>
-        <translation type="unfinished"></translation>
+        <translation>Fermeture de DBus</translation>
     </message>
     <message>
         <location filename="../src/force_restart.py" line="189"/>
         <source>Stopping audio processes</source>
-        <translation type="unfinished"></translation>
+        <translation>Arrêt des processus audio</translation>
     </message>
     <message>
         <location filename="../src/force_restart.py" line="191"/>
         <source>Reconnecting to DBus</source>
-        <translation type="unfinished"></translation>
+        <translation>Reconnexion au DBus</translation>
     </message>
     <message>
         <location filename="../src/force_restart.py" line="193"/>
         <source>Waiting JACK DBus</source>
-        <translation type="unfinished"></translation>
+        <translation>Attente JACK DBus</translation>
     </message>
     <message>
         <location filename="../src/force_restart.py" line="195"/>
         <source>Starting JACK</source>
-        <translation type="unfinished"></translation>
+        <translation>Démarrage de JACK</translation>
     </message>
     <message>
         <location filename="../src/force_restart.py" line="197"/>
         <source>Launching ALSA Audio bridge</source>
-        <translation type="unfinished"></translation>
+        <translation>Lancement du pont ALSA audio</translation>
     </message>
     <message>
         <location filename="../src/force_restart.py" line="199"/>
         <source>Launching ALSA MIDI bridge (a2j)</source>
-        <translation type="unfinished"></translation>
+        <translation>Lancement du pont ALSA MIDI (a2j)</translation>
     </message>
     <message>
         <location filename="../src/force_restart.py" line="201"/>
         <source>Launching PulseAudio bridge</source>
-        <translation type="unfinished"></translation>
+        <translation>Lancement du pont PulseAudio</translation>
     </message>
 </context>
 <context>
@@ -3546,7 +3546,7 @@ Veuillez le démarrer en premier lieu, puis relancer à nouveau Claudia-Launcher
     <message>
         <location filename="../resources/ui/pulse_bridge.ui" line="109"/>
         <source>Default</source>
-        <translation type="unfinished">par défaut</translation>
+        <translation>par défaut</translation>
     </message>
 </context>
 <context>
@@ -4110,7 +4110,7 @@ Also known as buffer size</source>
     <message>
         <location filename="../resources/ui/settings_jack.ui" line="1293"/>
         <source>Verbose Level</source>
-        <translation type="unfinished">Niveau de verbosité :</translation>
+        <translation>Niveau de verbosité :</translation>
     </message>
     <message>
         <location filename="../resources/ui/settings_jack.ui" line="1347"/>
@@ -4311,23 +4311,22 @@ Il n&apos;est pas possible de configurer JACK à ce stade.</translation>
     <message>
         <location filename="../resources/ui/render.ui" line="33"/>
         <source>&amp;Format:</source>
-        <translation type="unfinished">&amp;Format :</translation>
+        <translation>&amp;Format :</translation>
     </message>
     <message>
         <location filename="../resources/ui/render.ui" line="52"/>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../resources/ui/render.ui" line="59"/>
         <source>Bit &amp;Depth:</source>
-        <translation type="unfinished">Profondeur
-de &amp;donnée :</translation>
+        <translation>Profondeur de &amp;donnée :</translation>
     </message>
     <message>
         <location filename="../resources/ui/render.ui" line="101"/>
         <source>Mono</source>
-        <translation type="unfinished">Mono</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../resources/ui/render.ui" line="108"/>
@@ -4342,17 +4341,17 @@ de &amp;donnée :</translation>
     <message>
         <location filename="../resources/ui/render.ui" line="150"/>
         <source>&amp;Render</source>
-        <translation type="unfinished">&amp;Rendu</translation>
+        <translation>&amp;Rendu</translation>
     </message>
     <message>
         <location filename="../resources/ui/render.ui" line="161"/>
         <source>&amp;Stop</source>
-        <translation type="unfinished">&amp;Arrêter</translation>
+        <translation>&amp;Arrêter</translation>
     </message>
     <message>
         <location filename="../resources/ui/render.ui" line="172"/>
         <source>&amp;Close</source>
-        <translation type="unfinished">&amp;Fermer</translation>
+        <translation>&amp;Fermer</translation>
     </message>
     <message>
         <location filename="../resources/ui/render.ui" line="185"/>
@@ -4362,7 +4361,7 @@ de &amp;donnée :</translation>
     <message>
         <location filename="../resources/ui/render.ui" line="194"/>
         <source>&amp;Start Time:</source>
-        <translation type="unfinished">Temp&amp;s de début :</translation>
+        <translation>Temp&amp;s de début :</translation>
     </message>
     <message>
         <location filename="../resources/ui/render.ui" line="227"/>
