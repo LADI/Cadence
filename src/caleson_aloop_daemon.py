@@ -137,11 +137,11 @@ def run_alsa_bridge():
         jacklib.connect(client, "system:capture_1", "jack2alsa:playback_1")
         jacklib.connect(client, "system:capture_2", "jack2alsa:playback_2")
 
-#--------------- main ------------------
-if __name__ == '__main__':
 
+if __name__ == '__main__':
     for i in range(len(sys.argv)):
-        if i == 0: continue
+        if i == 0:
+            continue
 
         argv = sys.argv[i]
 
@@ -161,7 +161,8 @@ if __name__ == '__main__':
         quit()
 
     if jacklib.JACK2:
-        jacklib.set_client_registration_callback(client, client_registration_callback, None)
+        jacklib.set_client_registration_callback(
+            client, client_registration_callback, None)
 
     jacklib.set_buffer_size_callback(client, buffer_size_callback, None)
     jacklib.set_sample_rate_callback(client, sample_rate_callback, None)

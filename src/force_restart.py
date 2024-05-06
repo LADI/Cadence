@@ -1,5 +1,6 @@
 
 
+from enum import Enum
 from PyQt5.QtCore import QThread, pyqtSignal, pyqtSlot, Qt
 from PyQt5.QtWidgets import QDialog, QMessageBox
 
@@ -12,14 +13,17 @@ from shared_canvasjack import gDBus
 
 import ui_caleson_rwait
 
-INFO_DBUS_CLOSE = 0
-INFO_STOPPING_AUDIO_PROCESSES = 1
-INFO_DBUS_RECONNECT = 2
-INFO_WAITING_JACK_DBUS = 3
-INFO_START_JACK = 4
-INFO_BRIDGING_ALSA_AUDIO = 5
-INFO_BRIDGING_A2J = 6
-INFO_BRIDGING_PULSEAUDIO = 7
+
+class Info(Enum):
+    DBUS_CLOSE = 0
+    STOPPING_AUDIO_PROCESSES = 1
+    DBUS_RECONNECT = 2
+    WAITING_JACK_DBUS = 3
+    START_JACK = 4
+    BRIDGING_ALSA_AUDIO = 5
+    BRIDGING_A2J = 6
+    BRIDGING_PULSEAUDIO = 7
+
 
 # Wait while JACK restarts
 class ForceRestartThread(QThread):
@@ -70,7 +74,7 @@ class ForceRestartThread(QThread):
         # Not started yet
         self.m_wasStarted = False
         self.progressChanged.emit(0)
-        self.display_info.emit(INFO_DBUS_CLOSE)
+        self.display_info.emit(Info.DBUS_CLOSE.value)
 
         # Stop JACK safely first, if possible
         self._mainThreadAction(tryCloseJackDBus, 10000)
@@ -82,12 +86,12 @@ class ForceRestartThread(QThread):
         
 
         # Kill All
-        self.display_info.emit(INFO_STOPPING_AUDIO_PROCESSES)
+        self.display_info.emit(Info.STOPPING_AUDIO_PROCESSES.value)
         stopAllAudioProcesses(False)
         self.progressChanged.emit(30)
 
         # Connect to jackdbus
-        self.display_info.emit(INFO_DBUS_RECONNECT)
+        self.display_info.emit(Info.DBUS_RECONNECT.value)
         if not self._mainThreadAction(self.parent().DBusReconnect, 10000):
             return
         
@@ -95,7 +99,7 @@ class ForceRestartThread(QThread):
             return
 
         # Start it
-        self.display_info.emit(INFO_START_JACK)
+        self.display_info.emit(Info.START_JACK.value)
         self.progressChanged.emit(70)
         if not self._mainThreadAction(gDBus.jack.StartServer, 10000):
             return
@@ -110,7 +114,7 @@ class ForceRestartThread(QThread):
         # ALSA-Audio
         if (GlobalSettings.value("ALSA-Audio/BridgeIndexType", iAlsaFileNone, type=int)
                 == iAlsaFileLoop):
-            self.display_info.emit(INFO_BRIDGING_ALSA_AUDIO)
+            self.display_info.emit(Info.BRIDGING_ALSA_AUDIO.value)
             startAlsaAudioLoopBridge()
             sleep(0.5)
 
@@ -118,7 +122,7 @@ class ForceRestartThread(QThread):
             
         # ALSA-MIDI
         if GlobalSettings.value("A2J/AutoStart", True, type=bool):
-            self.display_info.emit(INFO_BRIDGING_A2J)
+            self.display_info.emit(Info.BRIDGING_A2J.value)
             self._mainThreadAction(self.startA2J, 5000)
 
         self.progressChanged.emit(96)
@@ -136,17 +140,18 @@ class ForceRestartThread(QThread):
                     "name": "PulseAudio JACK Sink",
                     "channels": 2,
                     "connected": True}]
-            self.display_info.emit(INFO_BRIDGING_PULSEAUDIO)
+            self.display_info.emit(Info.BRIDGING_PULSEAUDIO.value)
             pulse2jack_tool.replace_hotly(bridge_dicts)
 
         self.progressChanged.emit(100)
 
 
 # Force Restart Dialog
-class ForceWaitDialog(QDialog, ui_caleson_rwait.Ui_Dialog):
+class ForceWaitDialog(QDialog):
     def __init__(self, parent):
         QDialog.__init__(self, parent)
-        self.setupUi(self)
+        self.ui = ui_caleson_rwait.Ui_Dialog()
+        self.ui.setupUi(self)
         self.setWindowFlags(Qt.Dialog|Qt.WindowCloseButtonHint)
 
         self.rThread = ForceRestartThread(self)
@@ -182,25 +187,28 @@ class ForceWaitDialog(QDialog, ui_caleson_rwait.Ui_Dialog):
         self.rThread.action_request_finished = True
         
     @pyqtSlot(int)
-    def slot_displayInfo(self, info: int):
-        text = ''
-        if info == INFO_DBUS_CLOSE:
-            text = self.tr("Closing DBus")
-        elif info == INFO_STOPPING_AUDIO_PROCESSES:
-            text = self.tr("Stopping audio processes")
-        elif info == INFO_DBUS_RECONNECT:
-            text = self.tr("Reconnecting to DBus")
-        elif info == INFO_WAITING_JACK_DBUS:
-            text = self.tr("Waiting JACK DBus")
-        elif info == INFO_START_JACK:
-            text = self.tr("Starting JACK")
-        elif info == INFO_BRIDGING_ALSA_AUDIO:
-            text = self.tr("Launching ALSA Audio bridge")
-        elif info == INFO_BRIDGING_A2J:
-            text = self.tr("Launching ALSA MIDI bridge (a2j)")
-        elif info == INFO_BRIDGING_PULSEAUDIO:
-            text = self.tr("Launching PulseAudio bridge")
+    def slot_displayInfo(self, info_int: int):
+        info = Info(info_int)
 
-        self.labelDisplayAction.setText(text)
+        if info is Info.DBUS_CLOSE:
+            text = self.tr("Closing DBus")
+        elif info is Info.STOPPING_AUDIO_PROCESSES:
+            text = self.tr("Stopping audio processes")
+        elif info is Info.DBUS_RECONNECT:
+            text = self.tr("Reconnecting to DBus")
+        elif info is Info.WAITING_JACK_DBUS:
+            text = self.tr("Waiting JACK DBus")
+        elif info is Info.START_JACK:
+            text = self.tr("Starting JACK")
+        elif info is Info.BRIDGING_ALSA_AUDIO:
+            text = self.tr("Launching ALSA Audio bridge")
+        elif info is Info.BRIDGING_A2J:
+            text = self.tr("Launching ALSA MIDI bridge (a2j)")
+        elif info is Info.BRIDGING_PULSEAUDIO:
+            text = self.tr("Launching PulseAudio bridge")
+        else:
+            text = ''
+
+        self.ui.labelDisplayAction.setText(text)
             
 
