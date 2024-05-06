@@ -21,6 +21,7 @@
 
 import os
 import sys
+import shutil
 from platform import architecture
 
 from PyQt5.QtCore import (
@@ -29,8 +30,7 @@ from PyQt5.QtCore import (
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import (
     QApplication, QDialogButtonBox, QMainWindow, QFrame,
-    QListWidgetItem, QComboBox, QDialog, QMessageBox,
-    QFileDialog)
+    QListWidgetItem, QComboBox, QDialog, QMessageBox)
 
 
 # Imports (Custom Stuff)
@@ -41,6 +41,8 @@ import pulse2jack_tool
 import ui_caleson
 import ui_caleson_tb_alsa
 import ui_pulse_bridge
+from asoundrc_strs import (
+    ASOUNDRC_ALOOP, ASOUNDRC_ALOOP_CHECK, ASOUNDRC_JACK, ASOUNDRC_PULSE)
 from shared import (
     LINUX, HAIKU, MACOS, WINDOWS, DEBUG, VERSION, getIcon,
     CustomMessageBox, setUpSignals)
@@ -72,8 +74,8 @@ except:
 
 # Check for PulseAudio and Wine
 
-havePulseAudio = os.path.exists("/usr/bin/pulseaudio")
-haveWine = os.path.exists("/usr/bin/regedit")
+havePulseAudio = bool(shutil.which('pulseaudio'))
+haveWine = bool(shutil.which('regedit'))
 
 if haveWine:
     WINEPREFIX = os.getenv("WINEPREFIX")
@@ -147,144 +149,6 @@ iJackPortName = 4
 iJackPortNewName = 5
 iJackPortFlags = 5
 iJackPortType = 6
-
-asoundrc_aloop = (""
-"# ------------------------------------------------------\n"
-"# Custom asoundrc file for use with snd-aloop and JACK\n"
-"#\n"
-"# use it like this:\n"
-"# env JACK_SAMPLE_RATE=44100 JACK_PERIOD_SIZE=1024 alsa_in (...)\n"
-"#\n"
-"\n"
-"# ------------------------------------------------------\n"
-"# playback device\n"
-"pcm.aloopPlayback {\n"
-"  type dmix\n"
-"  ipc_key 1\n"
-"  ipc_key_add_uid true\n"
-"  slave {\n"
-"    pcm \"hw:Loopback,0,0\"\n"
-"    format S32_LE\n"
-"    rate {\n"
-"      @func igetenv\n"
-"      vars [ JACK_SAMPLE_RATE ]\n"
-"      default 44100\n"
-"    }\n"
-"    period_size {\n"
-"      @func igetenv\n"
-"      vars [ JACK_PERIOD_SIZE ]\n"
-"      default 1024\n"
-"    }\n"
-"    buffer_size 4096\n"
-"  }\n"
-"}\n"
-"\n"
-"# capture device\n"
-"pcm.aloopCapture {\n"
-"  type dsnoop\n"
-"  ipc_key 2\n"
-"  ipc_key_add_uid true\n"
-"  slave {\n"
-"    pcm \"hw:Loopback,0,1\"\n"
-"    format S32_LE\n"
-"    rate {\n"
-"      @func igetenv\n"
-"      vars [ JACK_SAMPLE_RATE ]\n"
-"      default 44100\n"
-"    }\n"
-"    period_size {\n"
-"      @func igetenv\n"
-"      vars [ JACK_PERIOD_SIZE ]\n"
-"      default 1024\n"
-"    }\n"
-"    buffer_size 4096\n"
-"  }\n"
-"}\n"
-"\n"
-"# duplex device\n"
-"pcm.aloopDuplex {\n"
-"  type asym\n"
-"  playback.pcm \"aloopPlayback\"\n"
-"  capture.pcm \"aloopCapture\"\n"
-"}\n"
-"\n"
-"# ------------------------------------------------------\n"
-"# default device\n"
-"pcm.!default {\n"
-"  type plug\n"
-"  slave.pcm \"aloopDuplex\"\n"
-"}\n"
-"\n"
-"# ------------------------------------------------------\n"
-"# alsa_in -j alsa_in -dcloop -q 1\n"
-"pcm.cloop {\n"
-"  type dsnoop\n"
-"  ipc_key 3\n"
-"  ipc_key_add_uid true\n"
-"  slave {\n"
-"    pcm \"hw:Loopback,1,0\"\n"
-"    channels 2\n"
-"    format S32_LE\n"
-"    rate {\n"
-"      @func igetenv\n"
-"      vars [ JACK_SAMPLE_RATE ]\n"
-"      default 44100\n"
-"    }\n"
-"    period_size {\n"
-"      @func igetenv\n"
-"      vars [ JACK_PERIOD_SIZE ]\n"
-"      default 1024\n"
-"    }\n"
-"    buffer_size 32768\n"
-"  }\n"
-"}\n"
-"\n"
-"# ------------------------------------------------------\n"
-"# alsa_out -j alsa_out -dploop -q 1\n"
-"pcm.ploop {\n"
-"  type plug\n"
-"  slave.pcm \"hw:Loopback,1,1\"\n"
-"}")
-
-asoundrc_aloop_check = asoundrc_aloop.split("pcm.aloopPlayback", 1)[0]
-
-asoundrc_jack = (""
-"pcm.!default {\n"
-"    type plug\n"
-"    slave { pcm \"jack\" }\n"
-"}\n"
-"\n"
-"pcm.jack {\n"
-"    type jack\n"
-"    playback_ports {\n"
-"        0 system:playback_1\n"
-"        1 system:playback_2\n"
-"    }\n"
-"    capture_ports {\n"
-"        0 system:capture_1\n"
-"        1 system:capture_2\n"
-"    }\n"
-"}\n"
-"\n"
-"ctl.mixer0 {\n"
-"    type hw\n"
-"    card 0\n"
-"}")
-
-asoundrc_pulse = (""
-"pcm.!default {\n"
-"    type plug\n"
-"    slave { pcm \"pulse\" }\n"
-"}\n"
-"\n"
-"pcm.pulse {\n"
-"    type pulse\n"
-"}\n"
-"\n"
-"ctl.mixer0 {\n"
-"    type hw\n"
-"    card 0\n"
-"}")
 
 # ---------------------------------------------------------------------
 
@@ -595,7 +459,7 @@ class ToolBarAlsaAudioDialog(QDialog):
 
         with open(self.asoundrcFile, "w") as asoundrcFd:
             asoundrcFd.write(
-                asoundrc_aloop.replace(
+                ASOUNDRC_ALOOP.replace(
                     "channels 2\n", "channels %i\n" % channels) + "\n")
 
     def done(self, r):
@@ -1328,7 +1192,7 @@ class CalesonMainW(QMainWindow):
         asoundrcRead = asoundrcFd.read().strip()
         asoundrcFd.close()
 
-        if asoundrcRead.startswith(asoundrc_aloop_check):
+        if asoundrcRead.startswith(ASOUNDRC_ALOOP_CHECK):
             if isAlsaAudioBridged():
                 self.ui.b_alsa_start.setEnabled(False)
                 self.ui.b_alsa_stop.setEnabled(True)
@@ -1351,7 +1215,7 @@ class CalesonMainW(QMainWindow):
             self.ui.cb_alsa_type.setCurrentIndex(iAlsaFileLoop)
             self.ui.tb_alsa_options.setEnabled(True)
 
-        elif asoundrcRead == asoundrc_jack:
+        elif asoundrcRead == ASOUNDRC_JACK:
             self.ui.b_alsa_start.setEnabled(False)
             self.ui.b_alsa_stop.setEnabled(False)
             self.systray.setActionEnabled("alsa_start", False)
@@ -1361,7 +1225,7 @@ class CalesonMainW(QMainWindow):
             self.ui.label_bridge_alsa.setText(
                 self.tr("Using JACK plugin bridge (Always on)"))
 
-        elif asoundrcRead == asoundrc_pulse:
+        elif asoundrcRead == ASOUNDRC_PULSE:
             self.ui.b_alsa_start.setEnabled(False)
             self.ui.b_alsa_stop.setEnabled(False)
             self.systray.setActionEnabled("alsa_start", False)
@@ -1688,17 +1552,17 @@ class CalesonMainW(QMainWindow):
 
         elif index == iAlsaFileLoop:
             asoundrcFd = open(asoundrcFile, "w")
-            asoundrcFd.write(asoundrc_aloop+"\n")
+            asoundrcFd.write(ASOUNDRC_ALOOP+"\n")
             asoundrcFd.close()
 
         elif index == iAlsaFileJACK:
             asoundrcFd = open(asoundrcFile, "w")
-            asoundrcFd.write(asoundrc_jack+"\n")
+            asoundrcFd.write(ASOUNDRC_JACK+"\n")
             asoundrcFd.close()
 
         elif index == iAlsaFilePulse:
             asoundrcFd = open(asoundrcFile, "w")
-            asoundrcFd.write(asoundrc_pulse+"\n")
+            asoundrcFd.write(ASOUNDRC_PULSE+"\n")
             asoundrcFd.close()
 
         else:
@@ -1894,18 +1758,6 @@ class CalesonMainW(QMainWindow):
 
     @pyqtSlot()
     def slot_tweaksApply(self):
-        if "plugins" in self.settings_changed_types:
-            for p_dict_key, p_dict in self.plugins_dict.items():
-                p_dict['paths'].clear()
-                
-                for i in range(p_dict['widget'].count()):
-                    i_path = p_dict['widget'].item(i).text()
-                    if i_path:
-                        p_dict['paths'].append(i_path)
-                
-                GlobalSettings.setValue("AudioPlugins/%s_PATH" % p_dict_key,
-                                        ':'.join(p_dict['paths']))
-
         if "apps" in self.settings_changed_types:
             mimeFileContent = ""
 
