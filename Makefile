@@ -32,13 +32,10 @@ all: CPP RES UI locale
 # -----------------------------------------------------------------------------------------------------------------------------------------
 # C++ code
 
-CPP: jackmeter xycontroller
+CPP: jackmeter
 
 jackmeter:
 	$(MAKE) -C c++/jackmeter
-
-xycontroller:
-	$(MAKE) -C c++/xycontroller
 
 # -----------------------------------------------------------------------------------------------------------------------------------------
 # Resources
@@ -58,22 +55,16 @@ locale/%.qm: locale/%.ts
 # -----------------------------------------------------------------------------------------------------------------------------------------
 # UI code
 
-UI: cadence catarina catia tools
+UI: cadence tools
 
 cadence: src/ui_cadence.py \
 	src/ui_cadence_tb_alsa.py  \
 	src/ui_cadence_rwait.py src/ui_pulse_bridge.py
 
-catarina: src/ui_catarina.py \
-	src/ui_catarina_addgroup.py src/ui_catarina_removegroup.py src/ui_catarina_renamegroup.py \
-	src/ui_catarina_addport.py src/ui_catarina_removeport.py src/ui_catarina_renameport.py \
-	src/ui_catarina_connectports.py src/ui_catarina_disconnectports.py
-
-catia: src/ui_catia.py
-
 tools: \
-	src/ui_logs.py src/ui_render.py \
-	src/ui_settings_app.py src/ui_settings_jack.py
+	src/ui_logs.py \
+	src/ui_settings_app.py \
+	src/ui_settings_jack.py
 
 src/ui_%.py: resources/ui/%.ui
 	$(PYUIC) $< -o $@
@@ -82,7 +73,6 @@ src/ui_%.py: resources/ui/%.ui
 
 clean:
 	$(MAKE) clean -C c++/jackmeter
-	$(MAKE) clean -C c++/xycontroller
 	rm -f *~ src/*~ src/*.pyc src/ui_*.py src/resources_rc.py resources/locale/*.qm
 
 # -----------------------------------------------------------------------------------------------------------------------------------------
@@ -119,12 +109,8 @@ install:
 		data/cadence-logs \
 		data/cadence-pulse2jack \
 		data/cadence-pulse2loopback \
-		data/cadence-render \
 		data/cadence-session-start \
-		data/catarina \
-		data/catia \
 		c++/jackmeter/cadence-jackmeter \
-		c++/xycontroller/cadence-xycontroller \
 		$(DESTDIR)$(PREFIX)/bin/
 
 	# Install desktop files
@@ -133,28 +119,18 @@ install:
 
 	# Install icons, 16x16
 	install -m 644 resources/16x16/cadence.png             $(DESTDIR)$(PREFIX)/share/icons/hicolor/16x16/apps/
-	install -m 644 resources/16x16/catarina.png            $(DESTDIR)$(PREFIX)/share/icons/hicolor/16x16/apps/
-	install -m 644 resources/16x16/catia.png               $(DESTDIR)$(PREFIX)/share/icons/hicolor/16x16/apps/
 
 	# Install icons, 48x48
 	install -m 644 resources/48x48/cadence.png             $(DESTDIR)$(PREFIX)/share/icons/hicolor/48x48/apps/
-	install -m 644 resources/48x48/catarina.png            $(DESTDIR)$(PREFIX)/share/icons/hicolor/48x48/apps/
-	install -m 644 resources/48x48/catia.png               $(DESTDIR)$(PREFIX)/share/icons/hicolor/48x48/apps/
 
 	# Install icons, 128x128
 	install -m 644 resources/128x128/cadence.png           $(DESTDIR)$(PREFIX)/share/icons/hicolor/128x128/apps/
-	install -m 644 resources/128x128/catarina.png          $(DESTDIR)$(PREFIX)/share/icons/hicolor/128x128/apps/
-	install -m 644 resources/128x128/catia.png             $(DESTDIR)$(PREFIX)/share/icons/hicolor/128x128/apps/
 
 	# Install icons, 256x256
 	install -m 644 resources/256x256/cadence.png           $(DESTDIR)$(PREFIX)/share/icons/hicolor/256x256/apps/
-	install -m 644 resources/256x256/catarina.png          $(DESTDIR)$(PREFIX)/share/icons/hicolor/256x256/apps/
-	install -m 644 resources/256x256/catia.png             $(DESTDIR)$(PREFIX)/share/icons/hicolor/256x256/apps/
 
 	# Install icons, scalable
 	install -m 644 resources/scalable/cadence.svg          $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/
-	install -m 644 resources/scalable/catarina.svg         $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/
-	install -m 644 resources/scalable/catia.svg            $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/
 
 	# Install main code
 	install -m 644 src/*.py $(DESTDIR)$(PREFIX)/share/cadence/src/
@@ -178,10 +154,7 @@ install:
 		$(DESTDIR)$(PREFIX)/bin/cadence-logs \
 		$(DESTDIR)$(PREFIX)/bin/cadence-pulse2jack \
 		$(DESTDIR)$(PREFIX)/bin/cadence-pulse2loopback \
-		$(DESTDIR)$(PREFIX)/bin/cadence-render \
 		$(DESTDIR)$(PREFIX)/bin/cadence-session-start \
-		$(DESTDIR)$(PREFIX)/bin/catarina \
-		$(DESTDIR)$(PREFIX)/bin/catia \
 		$(X11_RC_DIR)/61-cadence-session-inject
 
 	# Delete old scripts
@@ -194,24 +167,9 @@ install:
 
 uninstall:
 	rm -f $(DESTDIR)$(PREFIX)/bin/cadence*
-	rm -f $(DESTDIR)$(PREFIX)/bin/catarina
-	rm -f $(DESTDIR)$(PREFIX)/bin/catia
-	rm -f $(DESTDIR)$(PREFIX)/bin/claudia*
 	rm -f $(DESTDIR)$(PREFIX)/share/applications/cadence.desktop
-	rm -f $(DESTDIR)$(PREFIX)/share/applications/catarina.desktop
-	rm -f $(DESTDIR)$(PREFIX)/share/applications/catia.desktop
-	rm -f $(DESTDIR)$(PREFIX)/share/applications/claudia.desktop
-	rm -f $(DESTDIR)$(PREFIX)/share/applications/claudia-launcher.desktop
 	rm -f $(DESTDIR)$(PREFIX)/share/icons/hicolor/*/apps/cadence.png
-	rm -f $(DESTDIR)$(PREFIX)/share/icons/hicolor/*/apps/catarina.png
-	rm -f $(DESTDIR)$(PREFIX)/share/icons/hicolor/*/apps/catia.png
-	rm -f $(DESTDIR)$(PREFIX)/share/icons/hicolor/*/apps/claudia.png
-	rm -f $(DESTDIR)$(PREFIX)/share/icons/hicolor/*/apps/claudia-launcher.png
 	rm -f $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/cadence.svg
-	rm -f $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/catarina.svg
-	rm -f $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/catia.svg
-	rm -f $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/claudia.svg
-	rm -f $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/claudia-launcher.svg
 	rm -f $(DESTDIR)/etc/xdg/autostart/cadence-session-start.desktop
 	rm -f $(X11_RC_DIR)/61-cadence-session-inject
 	rm -rf $(DESTDIR)$(PREFIX)/share/cadence/
