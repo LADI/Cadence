@@ -100,6 +100,7 @@ install:
 		data/caleson-pulse2jack \
 		data/caleson-pulse2loopback \
 		data/caleson-session-start \
+		data/caleson-jacksettings \
 		$(DESTDIR)$(PREFIX)/bin/
 
 	# Install desktop files
