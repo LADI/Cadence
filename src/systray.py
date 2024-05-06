@@ -23,30 +23,7 @@ from PyQt5.QtCore import QTimer
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QAction, QMainWindow, QMenu, QSystemTrayIcon
 
-try:
-    if False and os.getenv("DESKTOP_SESSION") in ("ubuntu", "ubuntu-2d") and not os.path.exists("/var/cadence/no_app_indicators"):
-        from gi import require_version
-        require_version('Gtk', '3.0')
-        from gi.repository import Gtk
-        require_version('AppIndicator3', '0.1')
-        from gi.repository import AppIndicator3 as AppIndicator
-        TrayEngine = "AppIndicator"
-
-    #elif os.getenv("KDE_SESSION_VERSION") >= 5:
-        #TrayEngine = "Qt"
-
-    #elif os.getenv("KDE_FULL_SESSION") or os.getenv("DESKTOP_SESSION") == "kde-plasma":
-        #from PyKDE5.kdeui import KAction, KIcon, KMenu, KStatusNotifierItem
-        #TrayEngine = "KDE"
-
-    else:
-        TrayEngine = "Qt"
-except:
-    TrayEngine = "Qt"
-
 from shared_i18n import *
-
-print("Using Tray Engine '%s'" % TrayEngine)
 
 iActNameId = 0
 iActWidget = 1
@@ -79,56 +56,18 @@ class GlobalSysTray(object):
         self.sep_indexes = []
         self.menu_indexes = []
 
-        if TrayEngine == "KDE":
-            self.menu = KMenu(parent)
-            self.menu.setTitle(name)
-            self.tray = KStatusNotifierItem()
-            self.tray.setAssociatedWidget(parent)
-            self.tray.setCategory(KStatusNotifierItem.ApplicationStatus)
-            self.tray.setContextMenu(self.menu)
-            self.tray.setIconByPixmap(getIcon(icon))
-            self.tray.setTitle(name)
-            self.tray.setToolTipTitle(" ")
-            self.tray.setToolTipIconByPixmap(getIcon(icon))
-            # Double-click is managed by KDE
-
-        elif TrayEngine == "AppIndicator":
-            self.menu = Gtk.Menu()
-            self.tray = AppIndicator.Indicator.new(name, icon, AppIndicator.IndicatorCategory.APPLICATION_STATUS)
-            self.tray.set_menu(self.menu)
-            # Double-click is not possible with App-Indicators
-
-        elif TrayEngine == "Qt":
-            self.menu = QMenu(parent)
-            self.tray = QSystemTrayIcon(getIcon(icon))
-            self.tray.setContextMenu(self.menu)
-            self.tray.setParent(parent)
-            self.tray.activated.connect(self.qt_systray_clicked)
+        self.menu = QMenu(parent)
+        self.tray = QSystemTrayIcon(getIcon(icon))
+        self.tray.setContextMenu(self.menu)
+        self.tray.setParent(parent)
+        self.tray.activated.connect(self.qt_systray_clicked)
 
     # -------------------------------------------------------------------------------------------
 
     def addAction(self, act_name_id, act_name_string, is_check=False):
-        if TrayEngine == "KDE":
-            act_widget = KAction(act_name_string, self.menu)
-            act_widget.setCheckable(is_check)
-            self.menu.addAction(act_widget)
-
-        elif TrayEngine == "AppIndicator":
-            if is_check:
-                act_widget = Gtk.CheckMenuItem(act_name_string)
-            else:
-                act_widget = Gtk.ImageMenuItem(act_name_string)
-                act_widget.set_image(None)
-            act_widget.show()
-            self.menu.append(act_widget)
-
-        elif TrayEngine == "Qt":
-            act_widget = QAction(act_name_string, self.menu)
-            act_widget.setCheckable(is_check)
-            self.menu.addAction(act_widget)
-
-        else:
-            act_widget = None
+        act_widget = QAction(act_name_string, self.menu)
+        act_widget.setCheckable(is_check)
+        self.menu.addAction(act_widget)
 
         act_obj = [None, None, None, None]
         act_obj[iActNameId] = act_name_id
@@ -137,19 +76,7 @@ class GlobalSysTray(object):
         self.act_indexes.append(act_obj)
 
     def addSeparator(self, sep_name_id):
-        if TrayEngine == "KDE":
-            sep_widget = self.menu.addSeparator()
-
-        elif TrayEngine == "AppIndicator":
-            sep_widget = Gtk.SeparatorMenuItem()
-            sep_widget.show()
-            self.menu.append(sep_widget)
-
-        elif TrayEngine == "Qt":
-            sep_widget = self.menu.addSeparator()
-
-        else:
-            sep_widget = None
+        sep_widget = self.menu.addSeparator()
 
         sep_obj = [None, None, None]
         sep_obj[iSepNameId] = sep_name_id
@@ -158,23 +85,8 @@ class GlobalSysTray(object):
         self.sep_indexes.append(sep_obj)
 
     def addMenu(self, menu_name_id, menu_name_string):
-        if TrayEngine == "KDE":
-            menu_widget = KMenu(menu_name_string, self.menu)
-            self.menu.addMenu(menu_widget)
-
-        elif TrayEngine == "AppIndicator":
-            menu_widget = Gtk.MenuItem(menu_name_string)
-            menu_parent = Gtk.Menu()
-            menu_widget.set_submenu(menu_parent)
-            menu_widget.show()
-            self.menu.append(menu_widget)
-
-        elif TrayEngine == "Qt":
-            menu_widget = QMenu(menu_name_string, self.menu)
-            self.menu.addMenu(menu_widget)
-
-        else:
-            menu_widget = None
+        menu_widget = QMenu(menu_name_string, self.menu)
+        self.menu.addMenu(menu_widget)
 
         menu_obj = [None, None, None]
         menu_obj[iMenuNameId] = menu_name_id
@@ -190,28 +102,9 @@ class GlobalSysTray(object):
 
         menu_widget = self.menu_indexes[i][iMenuWidget]
 
-        if TrayEngine == "KDE":
-            act_widget = KAction(act_name_string, menu_widget)
-            act_widget.setCheckable(is_check)
-            menu_widget.addAction(act_widget)
-
-        elif TrayEngine == "AppIndicator":
-            menu_widget = menu_widget.get_submenu()
-            if is_check:
-                act_widget = Gtk.CheckMenuItem(act_name_string)
-            else:
-                act_widget = Gtk.ImageMenuItem(act_name_string)
-                act_widget.set_image(None)
-            act_widget.show()
-            menu_widget.append(act_widget)
-
-        elif TrayEngine == "Qt":
-            act_widget = QAction(act_name_string, menu_widget)
-            act_widget.setCheckable(is_check)
-            menu_widget.addAction(act_widget)
-
-        else:
-            act_widget = None
+        act_widget = QAction(act_name_string, menu_widget)
+        act_widget.setCheckable(is_check)
+        menu_widget.addAction(act_widget)
 
         act_obj = [None, None, None, None]
         act_obj[iActNameId] = act_name_id
@@ -225,21 +118,7 @@ class GlobalSysTray(object):
         if i < 0: return
 
         menu_widget = self.menu_indexes[i][iMenuWidget]
-
-        if TrayEngine == "KDE":
-            sep_widget = menu_widget.addSeparator()
-
-        elif TrayEngine == "AppIndicator":
-            menu_widget = menu_widget.get_submenu()
-            sep_widget = Gtk.SeparatorMenuItem()
-            sep_widget.show()
-            menu_widget.append(sep_widget)
-
-        elif TrayEngine == "Qt":
-            sep_widget = menu_widget.addSeparator()
-
-        else:
-            sep_widget = None
+        sep_widget = menu_widget.addSeparator()
 
         sep_obj = [None, None, None]
         sep_obj[iSepNameId] = sep_name_id
@@ -247,25 +126,6 @@ class GlobalSysTray(object):
         sep_obj[iSepParentMenuId] = menu_name_id
 
         self.sep_indexes.append(sep_obj)
-
-    #def addSubMenu(self, menu_name_id, new_menu_name_id, new_menu_name_string):
-        #menu_index = self.get_menu_index(menu_name_id)
-        #if menu_index < 0: return
-        #menu_widget = self.menu_indexes[menu_index][1]
-        ##if TrayEngine == "KDE":
-            ##new_menu_widget = KMenu(new_menu_name_string, self.menu)
-            ##menu_widget.addMenu(new_menu_widget)
-        ##elif TrayEngine == "AppIndicator":
-            ##new_menu_widget = Gtk.MenuItem(new_menu_name_string)
-            ##new_menu_widget.show()
-            ##menu_widget.get_submenu().append(new_menu_widget)
-            ##parent_menu_widget = Gtk.Menu()
-            ##new_menu_widget.set_submenu(parent_menu_widget)
-        ##else:
-        #if (1):
-            #new_menu_widget = QMenu(new_menu_name_string, self.menu)
-            #menu_widget.addMenu(new_menu_widget)
-        #self.menu_indexes.append([new_menu_name_id, new_menu_widget, menu_name_id])
 
     # -------------------------------------------------------------------------------------------
 
@@ -275,210 +135,39 @@ class GlobalSysTray(object):
 
         act_widget = self.act_indexes[i][iActWidget]
 
-        if TrayEngine == "AppIndicator":
-            act_widget.connect("activate", self.gtk_call_func, act_name_id)
-
-        elif TrayEngine in ("KDE", "Qt"):
-            act_widget.triggered.connect(act_func)
-
         self.act_indexes[i][iActFunc] = act_func
 
     # -------------------------------------------------------------------------------------------
-
-    #def setActionChecked(self, act_name_id, yesno):
-        #index = self.get_act_index(act_name_id)
-        #if index < 0: return
-        #act_widget = self.act_indexes[index][1]
-        ##if TrayEngine == "KDE":
-            ##act_widget.setChecked(yesno)
-        ##elif TrayEngine == "AppIndicator":
-            ##if type(act_widget) != Gtk.CheckMenuItem:
-                ##return # Cannot continue
-            ##act_widget.set_active(yesno)
-        ##else:
-        #if (1):
-            #act_widget.setChecked(yesno)
 
     def setActionEnabled(self, act_name_id, yesno):
         i = self.get_act_index(act_name_id)
         if i < 0: return
 
         act_widget = self.act_indexes[i][iActWidget]
-
-        if TrayEngine == "KDE":
-            act_widget.setEnabled(yesno)
-
-        elif TrayEngine == "AppIndicator":
-            act_widget.set_sensitive(yesno)
-
-        elif TrayEngine == "Qt":
-            act_widget.setEnabled(yesno)
+        act_widget.setEnabled(yesno)
 
     def setActionIcon(self, act_name_id, icon):
         i = self.get_act_index(act_name_id)
         if i < 0: return
 
         act_widget = self.act_indexes[i][iActWidget]
-
-        if TrayEngine == "KDE":
-            act_widget.setIcon(KIcon(icon))
-
-        elif TrayEngine == "AppIndicator":
-            if not isinstance(act_widget, Gtk.ImageMenuItem):
-                # Cannot use icons here
-                return
-
-            act_widget.set_image(Gtk.Image.new_from_icon_name(icon, Gtk.IconSize.MENU))
-            #act_widget.set_always_show_image(True)
-
-        elif TrayEngine == "Qt":
-            act_widget.setIcon(getIcon(icon))
+        act_widget.setIcon(getIcon(icon))
 
     def setActionText(self, act_name_id, text):
         i = self.get_act_index(act_name_id)
         if i < 0: return
 
         act_widget = self.act_indexes[i][iActWidget]
-
-        if TrayEngine == "KDE":
-            act_widget.setText(text)
-
-        elif TrayEngine == "AppIndicator":
-            if isinstance(act_widget, Gtk.ImageMenuItem):
-                # Fix icon reset
-                last_icon = act_widget.get_image()
-                act_widget.set_label(text)
-                act_widget.set_image(last_icon)
-            else:
-                act_widget.set_label(text)
-
-        elif TrayEngine == "Qt":
-            act_widget.setText(text)
+        act_widget.setText(text)
 
     def setIcon(self, icon):
-        if TrayEngine == "KDE":
-            self.tray.setIconByPixmap(getIcon(icon))
-            #self.tray.setToolTipIconByPixmap(getIcon(icon))
-
-        elif TrayEngine == "AppIndicator":
-            self.tray.set_icon(icon)
-
-        elif TrayEngine == "Qt":
-            self.tray.setIcon(getIcon(icon))
+        self.tray.setIcon(getIcon(icon))
 
     def setToolTip(self, text):
-        if TrayEngine == "KDE":
-            self.tray.setToolTipSubTitle(text)
-
-        elif TrayEngine == "AppIndicator":
-            # ToolTips are disabled in App-Indicators by design
-            pass
-
-        elif TrayEngine == "Qt":
-            self.tray.setToolTip(text)
-
-    # -------------------------------------------------------------------------------------------
-
-    #def removeAction(self, act_name_id):
-        #index = self.get_act_index(act_name_id)
-        #if index < 0: return
-        #act_widget = self.act_indexes[index][1]
-        #parent_menu_widget = self.get_parent_menu_widget(self.act_indexes[index][2])
-        ##if TrayEngine == "KDE":
-            ##parent_menu_widget.removeAction(act_widget)
-        ##elif TrayEngine == "AppIndicator":
-            ##act_widget.hide()
-            ##parent_menu_widget.remove(act_widget)
-        ##else:
-        #if (1):
-            #parent_menu_widget.removeAction(act_widget)
-        #self.act_indexes.pop(index)
-
-    #def removeSeparator(self, sep_name_id):
-        #index = self.get_sep_index(sep_name_id)
-        #if index < 0: return
-        #sep_widget = self.sep_indexes[index][1]
-        #parent_menu_widget = self.get_parent_menu_widget(self.sep_indexes[index][2])
-        ##if TrayEngine == "KDE":
-            ##parent_menu_widget.removeAction(sep_widget)
-        ##elif TrayEngine == "AppIndicator":
-            ##sep_widget.hide()
-            ##parent_menu_widget.remove(sep_widget)
-        ##else:
-        #if (1):
-            #parent_menu_widget.removeAction(sep_widget)
-        #self.sep_indexes.pop(index)
-
-    #def removeMenu(self, menu_name_id):
-        #index = self.get_menu_index(menu_name_id)
-        #if index < 0: return
-        #menu_widget = self.menu_indexes[index][1]
-        #parent_menu_widget = self.get_parent_menu_widget(self.menu_indexes[index][2])
-        ##if TrayEngine == "KDE":
-            ##parent_menu_widget.removeAction(menu_widget.menuAction())
-        ##elif TrayEngine == "AppIndicator":
-            ##menu_widget.hide()
-            ##parent_menu_widget.remove(menu_widget.get_submenu())
-        ##else:
-        #if (1):
-            #parent_menu_widget.removeAction(menu_widget.menuAction())
-        #self.remove_actions_by_menu_name_id(menu_name_id)
-        #self.remove_separators_by_menu_name_id(menu_name_id)
-        #self.remove_submenus_by_menu_name_id(menu_name_id)
-
-    # -------------------------------------------------------------------------------------------
-
-    #def clearAll(self):
-        ##if TrayEngine == "KDE":
-            ##self.menu.clear()
-        ##elif TrayEngine == "AppIndicator":
-            ##for child in self.menu.get_children():
-                ##self.menu.remove(child)
-        ##else:
-        #if (1):
-            #self.menu.clear()
-
-        #self.act_indexes = []
-        #self.sep_indexes = []
-        #self.menu_indexes = []
-
-    #def clearMenu(self, menu_name_id):
-        #menu_index = self.get_menu_index(menu_name_id)
-        #if menu_index < 0: return
-        #menu_widget = self.menu_indexes[menu_index][1]
-        ##if TrayEngine == "KDE":
-            ##menu_widget.clear()
-        ##elif TrayEngine == "AppIndicator":
-            ##for child in menu_widget.get_submenu().get_children():
-                ##menu_widget.get_submenu().remove(child)
-        ##else:
-        #if (1):
-            #menu_widget.clear()
-        #list_of_submenus = [menu_name_id]
-        #for x in range(0, 10): # 10x level deep, should cover all cases...
-            #for this_menu_name_id, menu_widget, parent_menu_id in self.menu_indexes:
-                #if parent_menu_id in list_of_submenus and this_menu_name_id not in list_of_submenus:
-                    #list_of_submenus.append(this_menu_name_id)
-        #for this_menu_name_id in list_of_submenus:
-            #self.remove_actions_by_menu_name_id(this_menu_name_id)
-            #self.remove_separators_by_menu_name_id(this_menu_name_id)
-            #self.remove_submenus_by_menu_name_id(this_menu_name_id)
-
-    # -------------------------------------------------------------------------------------------
-
-    def getTrayEngine(self):
-        return TrayEngine
+        self.tray.setToolTip(text)
 
     def isTrayAvailable(self):
-        if TrayEngine in ("KDE", "Qt"):
-            # Ask Qt
-            return QSystemTrayIcon.isSystemTrayAvailable()
-
-        if TrayEngine == "AppIndicator":
-            # Ubuntu/Unity always has a systray
-            return True
-
-        return False
+        return QSystemTrayIcon.isSystemTrayAvailable()
 
     def handleQtCloseEvent(self, event):
         if self.isTrayAvailable() and self._parent.isVisible():
@@ -495,46 +184,24 @@ class GlobalSysTray(object):
         if not self._quit_added:
             self._quit_added = True
 
-            if TrayEngine != "KDE":
-                self.addSeparator("_quit")
-                self.addAction("show", self._parent.tr("Minimize"))
-                self.addAction("quit", self._parent.tr("Quit"))
-                self.setActionIcon("quit", "application-exit")
-                self.connect("show", self.__hideShowCall)
-                self.connect("quit", self.__quitCall)
+            self.addSeparator("_quit")
+            self.addAction("show", self._parent.tr("Minimize"))
+            self.addAction("quit", self._parent.tr("Quit"))
+            self.setActionIcon("quit", "application-exit")
+            self.connect("show", self.__hideShowCall)
+            self.connect("quit", self.__quitCall)
 
-        if TrayEngine == "KDE":
-            self.tray.setStatus(KStatusNotifierItem.Active)
-        elif TrayEngine == "AppIndicator":
-            self.tray.set_status(AppIndicator.IndicatorStatus.ACTIVE)
-        elif TrayEngine == "Qt":
-            self.tray.show()
+        self.tray.show()
 
     def hide(self):
-        if TrayEngine == "KDE":
-            self.tray.setStatus(KStatusNotifierItem.Passive)
-        elif TrayEngine == "AppIndicator":
-            self.tray.set_status(AppIndicator.IndicatorStatus.PASSIVE)
-        elif TrayEngine == "Qt":
-            self.tray.hide()
+        self.tray.hide()
 
     def close(self):
-        if TrayEngine == "KDE":
-            self.menu.close()
-        elif TrayEngine == "AppIndicator":
-            if self._gtk_running:
-                self._gtk_running = False
-                Gtk.main_quit()
-        elif TrayEngine == "Qt":
-            self.menu.close()
+        self.menu.close()
 
     def exec_(self, app):
         self._app = app
-        if TrayEngine == "AppIndicator":
-            self._gtk_running = True
-            return Gtk.main()
-        else:
-            return app.exec_()
+        return app.exec_()
 
     # -------------------------------------------------------------------------------------------
 
@@ -598,13 +265,16 @@ class GlobalSysTray(object):
             QTimer.singleShot(500, self.__raiseWindow)
 
     def __quitCall(self):
+        print('quiiitit')
         if self._app:
             self._app.setQuitOnLastWindowClosed(True)
+            print('zoff')
 
         self._parent.hide()
         self._parent.close()
 
         if self._app:
+            print('dmmmxx')
             self._app.quit()
 
     def __raiseWindow(self):
