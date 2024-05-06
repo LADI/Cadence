@@ -27,10 +27,8 @@ from PyQt5.QtWidgets import QMainWindow, QMenu
 # ------------------------------------------------------------------------------------------------------------
 # Imports (Custom Stuff)
 
-import patchcanvas
 import jacksettings
 import logs
-import render
 from shared import *
 from jacklib_helpers import *
 
@@ -447,82 +445,11 @@ class AbstractCanvasJackClass(QMainWindow):
 
     @pyqtSlot()
     def slot_showRender(self):
-        renderW = render.RenderW(self)
-        renderW.exec_()
-        del renderW
-
-    # -----------------------------------------------------------------
-    # Shared Canvas code
-
-    @pyqtSlot()
-    def slot_canvasArrange(self):
-        patchcanvas.arrange()
-
-    @pyqtSlot()
-    def slot_canvasRefresh(self):
-        patchcanvas.clear()
-        self.initPorts()
-
-    @pyqtSlot()
-    def slot_canvasZoomFit(self):
-        self.scene.zoom_fit()
-
-    @pyqtSlot()
-    def slot_canvasZoomIn(self):
-        self.scene.zoom_in()
-
-    @pyqtSlot()
-    def slot_canvasZoomOut(self):
-        self.scene.zoom_out()
-
-    @pyqtSlot()
-    def slot_canvasZoomReset(self):
-        self.scene.zoom_reset()
-
-    @pyqtSlot()
-    def slot_canvasSaveImage(self):
-        newPath = QFileDialog.getSaveFileName(self, self.tr("Save Image"), filter=self.tr("PNG Image (*.png);;JPEG Image (*.jpg)"))
-        newPath = newPath[0]
-
-        if not newPath:
-            return
-
-        self.scene.clearSelection()
-
-        if newPath.lower().endswith(".jpg"):
-            imgFormat = "JPG"
-        elif newPath.lower().endswith(".png"):
-            imgFormat = "PNG"
-        else:
-            # File-dialog may not auto-add the extension
-            imgFormat = "PNG"
-            newPath  += ".png"
-
-        self.fExportImage = QImage(self.scene.sceneRect().width(), self.scene.sceneRect().height(), QImage.Format_RGB32)
-        painter = QPainter(self.fExportImage)
-        painter.save()
-        painter.setRenderHint(QPainter.Antialiasing, True)
-        painter.setRenderHint(QPainter.TextAntialiasing, True)
-        self.scene.render(painter)
-        self.fExportImage.save(newPath, imgFormat, 100)
-        painter.restore()
+        # TODO execute QJackRecord if present
+        pass
 
     # -----------------------------------------------------------------
     # Shared Connections
-
-    def setCanvasConnections(self):
-        self.ui.act_canvas_arrange.setEnabled(False) # TODO, later
-        self.ui.act_canvas_arrange.triggered.connect(self.slot_canvasArrange)
-        self.ui.act_canvas_refresh.triggered.connect(self.slot_canvasRefresh)
-        self.ui.act_canvas_zoom_fit.triggered.connect(self.slot_canvasZoomFit)
-        self.ui.act_canvas_zoom_in.triggered.connect(self.slot_canvasZoomIn)
-        self.ui.act_canvas_zoom_out.triggered.connect(self.slot_canvasZoomOut)
-        self.ui.act_canvas_zoom_100.triggered.connect(self.slot_canvasZoomReset)
-        self.ui.act_canvas_save_image.triggered.connect(self.slot_canvasSaveImage)
-        self.ui.b_canvas_zoom_fit.clicked.connect(self.slot_canvasZoomFit)
-        self.ui.b_canvas_zoom_in.clicked.connect(self.slot_canvasZoomIn)
-        self.ui.b_canvas_zoom_out.clicked.connect(self.slot_canvasZoomOut)
-        self.ui.b_canvas_zoom_100.clicked.connect(self.slot_canvasZoomReset)
 
     def setJackConnections(self, modes):
         if "jack" in modes:

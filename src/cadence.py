@@ -23,9 +23,10 @@ import time
 
 from platform import architecture
 
-from PyQt5.QtCore import QFileSystemWatcher, QThread, QSemaphore, QSize
+from PyQt5.QtCore import QFileSystemWatcher, QThread, QSemaphore, QSize, Qt
 from PyQt5.QtWidgets import (QApplication, QDialogButtonBox, QLabel, QMainWindow,
-                             QSizePolicy, QSpacerItem, QFrame, QListWidgetItem, QPushButton)
+                             QSizePolicy, QSpacerItem, QFrame, QListWidgetItem, QPushButton,
+                             QComboBox)
 #from PyQt5.QtGui import QSize
 
 # ------------------------------------------------------------------------------------------------------------
@@ -392,7 +393,7 @@ def getWineAsioKeyValue(key, default):
   keyDumpSmall = keyDumpSplit[1].split(":")[1].split("\n")[0]
   return keyDumpSmall
 
-def searchAndSetComboBoxValue(comboBox, value):
+def searchAndSetComboBoxValue(comboBox: QComboBox, value):
     for i in range(comboBox.count()):
         if comboBox.itemText(i).replace("/","-") == value:
             comboBox.setCurrentIndex(i)
@@ -413,6 +414,7 @@ def smartHex(value, length):
 
 cadenceSystemChecks = []
 
+
 class CadenceSystemCheck(object):
     ICON_ERROR = 0
     ICON_WARN  = 1
@@ -432,6 +434,7 @@ class CadenceSystemCheck(object):
     
     def get_id(self)->str:
         return ''
+
 
 class CadenceSystemCheck_audioGroup(CadenceSystemCheck):
     def __init__(self):
@@ -474,6 +477,7 @@ class CadenceSystemCheck_audioGroup(CadenceSystemCheck):
 
     def tr(self, text):
         return app.translate("CadenceSystemCheck_audioGroup", text)
+
 
 class CadenceSystemCheck_kernel(CadenceSystemCheck):
     def __init__(self):
@@ -587,6 +591,7 @@ class ToolBarAlsaAudioDialog(QDialog, ui_cadence_tb_alsa.Ui_Dialog):
     def done(self, r):
         QDialog.done(self, r)
         self.close()
+
 
 # Additional PulseAudio options
 class PaBridgeFrame(QFrame):

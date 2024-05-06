@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Cadence</string>
+   <string>CaleSon</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -720,7 +720,7 @@
            </font>
           </property>
           <property name="text">
-           <string>Welcome to Cadence</string>
+           <string>LibraZiK dure plus longtemps avec CaleSon !!!</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -768,7 +768,7 @@
              <x>0</x>
              <y>0</y>
              <width>586</width>
-             <height>368</height>
+             <height>288</height>
             </rect>
            </property>
            <attribute name="label">
@@ -1212,8 +1212,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>380</width>
-             <height>389</height>
+             <width>188</width>
+             <height>196</height>
             </rect>
            </property>
            <attribute name="label">
