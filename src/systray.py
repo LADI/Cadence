@@ -134,6 +134,7 @@ class GlobalSysTray(object):
         if i < 0: return
 
         act_widget = self.act_indexes[i][iActWidget]
+        act_widget.triggered.connect(act_func)
 
         self.act_indexes[i][iActFunc] = act_func
 
@@ -265,16 +266,13 @@ class GlobalSysTray(object):
             QTimer.singleShot(500, self.__raiseWindow)
 
     def __quitCall(self):
-        print('quiiitit')
         if self._app:
             self._app.setQuitOnLastWindowClosed(True)
-            print('zoff')
 
         self._parent.hide()
         self._parent.close()
 
         if self._app:
-            print('dmmmxx')
             self._app.quit()
 
     def __raiseWindow(self):
