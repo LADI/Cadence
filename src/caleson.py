@@ -843,41 +843,6 @@ class CalesonMainW(QMainWindow):
         self.ui.tw_tweaks.setCurrentCell(0, 0)
 
         # -------------------------------------------------------------
-        # Set-up GUI (Tweaks, Audio Plugins PATH)
-
-        self.ui.b_tweak_plugins_change.setEnabled(False)
-        self.ui.b_tweak_plugins_remove.setEnabled(False)
-        
-        self.plugins_dict = {
-            'LADSPA': {'index': 0, 'widget': self.ui.list_LADSPA, 'paths': []},
-            'DSSI': {'index': 1, 'widget': self.ui.list_DSSI, 'paths': []},
-            'LV2': {'index': 2, 'widget': self.ui.list_LV2, 'paths': []},
-            'VST': {'index': 3, 'widget': self.ui.list_VST, 'paths': []},
-            'VST3': {'index': 4, 'widget': self.ui.list_VST3, 'paths': []},
-            'LXVST': {'index': 5, 'widget': self.ui.list_LXVST, 'paths': []}}
-
-        for key, p_dict in self.plugins_dict.items():
-            paths: str = GlobalSettings.value(
-                "AudioPlugins/%s_PATH" % key,
-                DEFAULT_PLUGIN_PATH[key],
-                type=str)
-            
-            # security, ensure default paths are here, else add them
-            if paths != DEFAULT_PLUGIN_PATH[key]:
-                path_list = paths.split(':')
-                def_list = DEFAULT_PLUGIN_PATH[key].split(':')
-                for path in def_list:
-                    if path not in path_list:
-                        path_list.append(path)
-                paths = ':'.join(path_list)
-            
-            for path in paths.split(':'):
-                p_dict['paths'].append(path)
-                p_dict['widget'].addItem(path)
-            
-            p_dict['widget'].setCurrentRow(0)
-
-        # -------------------------------------------------------------
         # Set-up GUI (Tweaks, Default Applications)
 
         for desktop in DESKTOP_X_IMAGE:
@@ -1079,18 +1044,6 @@ class CalesonMainW(QMainWindow):
         self.ui.pic_render.clicked.connect(self.func_start_render)
 
         self.ui.b_tweaks_apply_now.clicked.connect(self.slot_tweaksApply)
-
-        self.ui.b_tweak_plugins_add.clicked.connect(self.slot_tweakPluginAdd)
-        self.ui.b_tweak_plugins_change.clicked.connect(self.slot_tweakPluginChange)
-        self.ui.b_tweak_plugins_remove.clicked.connect(self.slot_tweakPluginRemove)
-        self.ui.b_tweak_plugins_reset.clicked.connect(self.slot_tweakPluginReset)
-        self.ui.tb_tweak_plugins.currentChanged.connect(self.slot_tweakPluginTypeChanged)
-        
-        for key, p_dict in self.plugins_dict.items():
-            p_dict['widget'].currentRowChanged.connect(
-                self.slot_tweakPluginsRowChanged)
-            p_dict['widget'].drop_event.connect(
-                self.slot_tweakPluginsOrderChanged)
 
         self.ui.ch_app_image.clicked.connect(self.slot_tweaksSettingsChanged_apps)
         self.ui.cb_app_image.highlighted.connect(self.slot_tweakAppImageHighlighted)
@@ -1381,7 +1334,8 @@ class CalesonMainW(QMainWindow):
                 self.ui.b_alsa_stop.setEnabled(True)
                 self.systray.setActionEnabled("alsa_start", False)
                 self.systray.setActionEnabled("alsa_stop", True)
-                self.ui.label_bridge_alsa.setText(self.tr("Using Caleson snd-aloop daemon, started"))
+                self.ui.label_bridge_alsa.setText(
+                    self.tr("Using Caleson snd-aloop daemon, started"))
             else:
                 try:
                     jackRunning = bool(gDBus.jack and gDBus.jack.IsStarted())
@@ -1391,7 +1345,8 @@ class CalesonMainW(QMainWindow):
                 self.ui.b_alsa_stop.setEnabled(False)
                 self.systray.setActionEnabled("alsa_start", jackRunning)
                 self.systray.setActionEnabled("alsa_stop", False)
-                self.ui.label_bridge_alsa.setText(self.tr("Using Caleson snd-aloop daemon, stopped"))
+                self.ui.label_bridge_alsa.setText(
+                    self.tr("Using Caleson snd-aloop daemon, stopped"))
 
             self.ui.cb_alsa_type.setCurrentIndex(iAlsaFileLoop)
             self.ui.tb_alsa_options.setEnabled(True)
@@ -1403,7 +1358,8 @@ class CalesonMainW(QMainWindow):
             self.systray.setActionEnabled("alsa_stop", False)
             self.ui.cb_alsa_type.setCurrentIndex(iAlsaFileJACK)
             self.ui.tb_alsa_options.setEnabled(False)
-            self.ui.label_bridge_alsa.setText(self.tr("Using JACK plugin bridge (Always on)"))
+            self.ui.label_bridge_alsa.setText(
+                self.tr("Using JACK plugin bridge (Always on)"))
 
         elif asoundrcRead == asoundrc_pulse:
             self.ui.b_alsa_start.setEnabled(False)
@@ -1412,7 +1368,8 @@ class CalesonMainW(QMainWindow):
             self.systray.setActionEnabled("alsa_stop", False)
             self.ui.cb_alsa_type.setCurrentIndex(iAlsaFilePulse)
             self.ui.tb_alsa_options.setEnabled(False)
-            self.ui.label_bridge_alsa.setText(self.tr("Using PulseAudio plugin bridge (Always on)"))
+            self.ui.label_bridge_alsa.setText(
+                self.tr("Using PulseAudio plugin bridge (Always on)"))
 
         else:
             self.ui.b_alsa_start.setEnabled(False)
@@ -1422,7 +1379,8 @@ class CalesonMainW(QMainWindow):
             self.ui.cb_alsa_type.addItem(self.tr("Custom"))
             self.ui.cb_alsa_type.setCurrentIndex(iAlsaFileMax)
             self.ui.tb_alsa_options.setEnabled(True)
-            self.ui.label_bridge_alsa.setText(self.tr("Using custom asoundrc, not managed by Caleson"))
+            self.ui.label_bridge_alsa.setText(
+                self.tr("Using custom asoundrc, not managed by Caleson"))
 
         self.m_lastAlsaIndexType = self.ui.cb_alsa_type.currentIndex()
 
@@ -1589,15 +1547,6 @@ class CalesonMainW(QMainWindow):
             self.checkAlsaAudio()
         
         self._pulse_check_timer.start()
-        #elif group_id == pA_bridge_values.clientIdCapture:
-            #pA_bridge_values.clientIdCapture = -1
-            #pA_bridge_values.portCaptureNumber = 0
-            #self.checkPulseAudio()
-        #elif group_id == pA_bridge_values.clientIdPlayback:
-            #pA_bridge_values.clientIdPlayback = -1
-            #pA_bridge_values.portPlaybackNumber = 0
-            #self.checkPulseAudio()
-            
 
     @pyqtSlot()
     def slot_DBusA2JBridgeStartedCallback(self):
@@ -1632,7 +1581,10 @@ class CalesonMainW(QMainWindow):
         try:
             gDBus.jack.StartServer()
         except:
-            QMessageBox.warning(self, self.tr("Warning"), self.tr("Failed to start JACK, please check the logs for more information."))
+            QMessageBox.warning(
+                self,
+                self.tr("Warning"),
+                self.tr("Failed to start JACK, please check the logs for more information."))
 
     @pyqtSlot()
     def slot_JackServerStop(self):
@@ -1641,7 +1593,10 @@ class CalesonMainW(QMainWindow):
         try:
             gDBus.jack.StopServer()
         except:
-            QMessageBox.warning(self, self.tr("Warning"), self.tr("Failed to stop JACK, please check the logs for more information."))
+            QMessageBox.warning(
+                self,
+                self.tr("Warning"),
+                self.tr("Failed to stop JACK, please check the logs for more information."))
 
     @pyqtSlot()
     def slot_JackServerForceRestart(self):
@@ -1676,7 +1631,10 @@ class CalesonMainW(QMainWindow):
         try:
             gDBus.jack.SwitchMaster()
         except:
-            QMessageBox.warning(self, self.tr("Warning"), self.tr("Failed to switch JACK master, please check the logs for more information."))
+            QMessageBox.warning(
+                self,
+                self.tr("Warning"),
+                self.tr("Failed to switch JACK master, please check the logs for more information."))
             return
 
         self.jackStarted()
@@ -1750,7 +1708,9 @@ class CalesonMainW(QMainWindow):
 
     @pyqtSlot()
     def slot_AlsaAudioBridgeOptions(self):
-        ToolBarAlsaAudioDialog(self, (self.ui.cb_alsa_type.currentIndex() != iAlsaFileLoop)).exec_()
+        ToolBarAlsaAudioDialog(
+            self,
+            (self.ui.cb_alsa_type.currentIndex() != iAlsaFileLoop)).exec_()
 
     @pyqtSlot()
     def slot_A2JBridgeStart(self):
@@ -2230,103 +2190,6 @@ class CalesonMainW(QMainWindow):
     def slot_tweakAppBrowserChanged(self, ignored):
         self.setAppDetails(self.ui.cb_app_browser.currentText())
         self.func_settings_changed("apps")
-
-    @pyqtSlot()
-    def slot_tweakPluginAdd(self):
-        newPath = QFileDialog.getExistingDirectory(
-            self, self.tr("Add Path"), "", QFileDialog.ShowDirsOnly)
-
-        if not newPath or ':' in newPath:
-            return
-
-        for key, p_dict in self.plugins_dict.items():
-            if p_dict['index'] == self.ui.tb_tweak_plugins.currentIndex():
-                p_dict['widget'].insertItem(0, newPath)
-                break
-
-        self.func_settings_changed("plugins")
-
-    @pyqtSlot()
-    def slot_tweakPluginChange(self):
-        curPath = ""
-        current_index = self.ui.tb_tweak_plugins.currentIndex()
-
-        for key, p_dict in self.plugins_dict.items():
-            if p_dict['index'] == current_index:
-                curPath = p_dict['widget'].item(p_dict['widget'].currentRow()).text()
-                break
-
-        newPath = QFileDialog.getExistingDirectory(self, self.tr("Change Path"),
-                                                   curPath, QFileDialog.ShowDirsOnly)
-
-        if not newPath:
-            return
-
-        for key, p_dict in self.plugins_dict.items():
-            if p_dict['index'] == current_index:
-                curPath = p_dict['widget'].item(p_dict['widget'].currentRow()).setText(newPath)
-                break
-
-        self.func_settings_changed("plugins")
-
-    @pyqtSlot()
-    def slot_tweakPluginRemove(self):
-        for key, p_dict in self.plugins_dict.items():
-            if p_dict['index'] == self.ui.tb_tweak_plugins.currentIndex():
-                p_dict['widget'].takeItem(p_dict['widget'].currentRow())
-                break
-
-        self.func_settings_changed("plugins")
-
-    @pyqtSlot()
-    def slot_tweakPluginReset(self):
-        current_index = self.ui.tb_tweak_plugins.currentIndex()
-        
-        for key, p_dict in self.plugins_dict.items():
-            if p_dict['index'] == current_index:
-                p_dict['widget'].clear()
-                for i_path in DEFAULT_PLUGIN_PATH[key].split(':'):
-                    p_dict['widget'].addItem(i_path)
-                break
-
-        self.func_settings_changed("plugins")
-
-    @pyqtSlot(int)
-    def slot_tweakPluginTypeChanged(self, index):
-        # Force row change
-        for key, p_dict in self.plugins_dict.items():
-            if p_dict['index'] == index:
-                p_dict['widget'].setCurrentRow(-1)
-                p_dict['widget'].setCurrentRow(0)
-                break
-
-    @pyqtSlot(int)
-    def slot_tweakPluginsRowChanged(self, path_index: int):
-        plugin_index = self.ui.tb_tweak_plugins.currentIndex()
-
-        for key, p_dict in self.plugins_dict.items():
-            if p_dict['index'] == plugin_index:
-                non_removable = bool(
-                    path_index >= 0
-                    and p_dict['widget'].item(path_index).text()
-                        not in DEFAULT_PLUGIN_PATH[key].split(':'))
-
-                self.ui.b_tweak_plugins_change.setEnabled(non_removable)
-                self.ui.b_tweak_plugins_remove.setEnabled(non_removable)
-                break
-
-    @pyqtSlot()
-    def slot_tweakPluginsOrderChanged(self):
-        for key, p_dict in self.plugins_dict.items():
-            current_path_list = []
-            
-            for i in range(p_dict['widget'].count()):
-                text = p_dict['widget'].item(i).text()
-                current_path_list.append(text)
-            
-            if current_path_list != p_dict['paths']:
-                self.func_settings_changed("plugins")
-                break
 
     def saveSettings(self):
         self.settings.setValue("Geometry", self.saveGeometry())
