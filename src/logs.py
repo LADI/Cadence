@@ -109,15 +109,15 @@ class LogsReadThread(QThread):
     def __init__(self, parent):
         QThread.__init__(self, parent)
 
-        self.fCloseNow   = False
-        self.fPurgeLogs  = False
+        self.fCloseNow = False
+        self.fPurgeLogs = False
         self.fRealParent = parent
 
         # -------------------------------------------------------------
         # Take some values from Logs Window
 
-        self.LOG_FILE_JACK   = LogsW.LOG_FILE_JACK
-        self.LOG_FILE_A2J    = LogsW.LOG_FILE_A2J
+        self.LOG_FILE_JACK = LogsW.LOG_FILE_JACK
+        self.LOG_FILE_A2J = LogsW.LOG_FILE_A2J
 
         # -------------------------------------------------------------
         # Init logs
@@ -200,8 +200,8 @@ class LogsReadThread(QThread):
 class LogsW(QDialog):
     LOG_PATH = os.path.join(HOME, ".log")
 
-    LOG_FILE_JACK   = os.path.join(LOG_PATH, "jack", "jackdbus.log")
-    LOG_FILE_A2J    = os.path.join(LOG_PATH, "a2j", "a2j.log")
+    LOG_FILE_JACK = os.path.join(LOG_PATH, "jack", "jackdbus.log")
+    LOG_FILE_A2J = os.path.join(LOG_PATH, "a2j", "a2j.log")
 
     if not os.path.exists(LOG_FILE_JACK):
         LOG_FILE_JACK = None
@@ -223,8 +223,8 @@ class LogsW(QDialog):
         self.fFirstRun = True
         self.fTextLock = QMutex()
 
-        self.fTextJACK   = ""
-        self.fTextA2J    = ""
+        self.fTextJACK = ""
+        self.fTextA2J = ""
 
         # -------------------------------------------------------------
         # Set-up GUI
@@ -273,8 +273,8 @@ class LogsW(QDialog):
     def setLogsText(self, textJACK, textA2J):
         QMutexLocker(self.fTextLock)
 
-        self.fTextJACK   = textJACK
-        self.fTextA2J    = textA2J
+        self.fTextJACK = textJACK
+        self.fTextA2J = textA2J
 
     @pyqtSlot()
     def slot_updateLogs(self):

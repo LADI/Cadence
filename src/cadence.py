@@ -67,7 +67,7 @@ except:
 # Check for PulseAudio and Wine
 
 havePulseAudio = os.path.exists("/usr/bin/pulseaudio")
-haveWine       = os.path.exists("/usr/bin/regedit")
+haveWine = os.path.exists("/usr/bin/regedit")
 
 if haveWine:
     WINEPREFIX = os.getenv("WINEPREFIX")
@@ -122,25 +122,25 @@ XDG_APPLICATIONS_PATH = [
 
 # ---------------------------------------------------------------------
 class PulseAudioJackBridgeValues(object):
-    clientIdCapture    = -1
-    clientIdPlayback   = -1
-    portCaptureNumber  =  0
+    clientIdCapture = -1
+    clientIdPlayback = -1
+    portCaptureNumber =  0
     portPlaybackNumber =  0 
 
 
 global jackClientIdALSA
-jackClientIdALSA  = -1
+jackClientIdALSA = -1
 pA_bridge_values = PulseAudioJackBridgeValues()
 
 # jackdbus indexes
-iGraphVersion    = 0
-iJackClientId    = 1
-iJackClientName  = 2
-iJackPortId      = 3
-iJackPortName    = 4
+iGraphVersion = 0
+iJackClientId = 1
+iJackClientName = 2
+iJackPortId = 3
+iJackPortName = 4
 iJackPortNewName = 5
-iJackPortFlags   = 5
-iJackPortType    = 6
+iJackPortFlags = 5
+iJackPortType = 6
 
 asoundrc_aloop = (""
 "# ------------------------------------------------------\n"
@@ -290,6 +290,7 @@ def get_haiku_information():
     return ("Haiku OS", "Unknown")
 
 def get_linux_information():
+    # TODO informs about Librazik
     if os.path.exists("/etc/lsb-release"):
         distro = getoutput(". /etc/lsb-release && echo $DISTRIB_DESCRIPTION")
     elif os.path.exists("/etc/arch-release"):
@@ -310,27 +311,27 @@ def get_windows_information():
     minor = sys.getwindowsversion()[1]
     servp = sys.getwindowsversion()[4]
 
-    os      = "Windows"
+    os = "Windows"
     version = servp
 
     if major == 4 and minor == 0:
-        os      = "Windows 95"
+        os = "Windows 95"
         version = "RTM"
     elif major == 4 and minor == 10:
-        os      = "Windows 98"
+        os = "Windows 98"
         version = "Second Edition"
     elif major == 5 and minor == 0:
-        os      = "Windows 2000"
+        os = "Windows 2000"
     elif major == 5 and minor == 1:
-        os      = "Windows XP"
+        os = "Windows XP"
     elif major == 5 and minor == 2:
-        os      = "Windows Server 2003"
+        os = "Windows Server 2003"
     elif major == 6 and minor == 0:
-        os      = "Windows Vista"
+        os = "Windows Vista"
     elif major == 6 and minor == 1:
-        os      = "Windows 7"
+        os = "Windows 7"
     elif major == 6 and minor == 2:
-        os      = "Windows 8"
+        os = "Windows 8"
 
     return (os, version)
 
@@ -362,7 +363,7 @@ def getXdgProperty(fileRead, key):
     fileReadSplit = fileRead.split(key, 1)
 
     if len(fileReadSplit) > 1:
-        fileReadLine         = fileReadSplit[1].split("\n",1)[0]
+        fileReadLine = fileReadSplit[1].split("\n",1)[0]
         fileReadLineStripped = fileReadLine.rsplit(";",1)[0].strip()
         value = fileReadLineStripped.replace("=","",1)
         return value
@@ -376,7 +377,7 @@ def getWineAsioKeyValue(key, default):
       return default
 
   wineDumpF = open(wineFile, "r")
-  wineDump  = wineDumpF.read()
+  wineDump = wineDumpF.read()
   wineDumpF.close()
 
   wineDumpSplit = wineDump.split("[Software\\\\Wine\\\\WineASIO]")
@@ -385,7 +386,7 @@ def getWineAsioKeyValue(key, default):
       return default
 
   wineDumpSmall = wineDumpSplit[1].split("[")[0]
-  keyDumpSplit  = wineDumpSmall.split('"%s"' % key)
+  keyDumpSplit = wineDumpSmall.split('"%s"' % key)
 
   if len(keyDumpSplit) <= 1:
       return default
@@ -417,14 +418,14 @@ cadenceSystemChecks = []
 
 class CadenceSystemCheck(object):
     ICON_ERROR = 0
-    ICON_WARN  = 1
-    ICON_OK    = 2
+    ICON_WARN = 1
+    ICON_OK = 2
 
     def __init__(self):
         object.__init__(self)
 
-        self.name   = self.tr("check")
-        self.icon   = self.ICON_OK
+        self.name = self.tr("check")
+        self.icon = self.ICON_OK
         self.result = self.tr("yes")
 
         self.moreInfo = self.tr("nothing to report")
@@ -442,12 +443,12 @@ class CadenceSystemCheck_audioGroup(CadenceSystemCheck):
 
         self.name = self.tr("User in audio group")
 
-        user   = getoutput("whoami").strip()
+        user = getoutput("whoami").strip()
         groups = getoutput("groups").strip().split(" ")
 
         if "audio" in groups:
-            self.icon     = self.ICON_OK
-            self.result   = self.tr("Yes")
+            self.icon = self.ICON_OK
+            self.result = self.tr("Yes")
             self.moreInfo = None
 
         else:
@@ -464,12 +465,12 @@ class CadenceSystemCheck_audioGroup(CadenceSystemCheck):
                     break
 
             if onAudioGroup:
-                self.icon     = self.ICON_WARN
-                self.result   = self.tr("Yes, but needs relogin")
+                self.icon = self.ICON_WARN
+                self.result = self.tr("Yes, but needs relogin")
                 self.moreInfo = None
             else:
-                self.icon     = self.ICON_ERROR
-                self.result   = self.tr("No")
+                self.icon = self.ICON_ERROR
+                self.result = self.tr("No")
                 self.moreInfo = None
 
     def get_id(self)->str:
@@ -488,8 +489,8 @@ class CadenceSystemCheck_kernel(CadenceSystemCheck):
         uname3 = os.uname()[2]
         uname4 = getoutput("uname -a").strip().split()
 
-        versionInt   = []
-        versionStr   = uname3.split("-",1)[0]
+        versionInt = []
+        versionStr = uname3.split("-",1)[0]
         versionSplit = versionStr.split(".")
 
         for split in versionSplit:
@@ -502,7 +503,7 @@ class CadenceSystemCheck_kernel(CadenceSystemCheck):
         self.result = versionStr + " "
 
         if "PREEMPT" in uname4 or "PREEMPT_RT" in uname4:
-            self.icon     = self.ICON_OK
+            self.icon = self.ICON_OK
             if "PREEMPT" in uname4:
                 self.moreInfo = self.tr("Be sure to properly configure your kernel.")
                 self.result  += self.tr("PREEMPT")
@@ -518,19 +519,19 @@ class CadenceSystemCheck_kernel(CadenceSystemCheck):
                 # sources
                 # https://wiki.linuxfoundation.org/realtime/preempt_rt_versions
                 # https://cateee.net/lkddb/web-lkddb/PREEMPT.html
-                self.icon     = self.ICON_WARN
+                self.icon = self.ICON_WARN
                 self.moreInfo = self.tr(
                     "RT may be available if compiling this version w/CONFIG_PREEMPT or patching this kernel w/CONFIG_PREEMPT_RT.")
 
                 if "-" not in uname3:
                     if uname3.endswith("-pae"):
-                        kernelType   = uname3.split("-")[-2].lower()
+                        kernelType = uname3.split("-")[-2].lower()
                         self.result += kernelType.title() + self.tr(" Vanilla (PAE)")
                     else:
-                        kernelType   = uname3.split("-")[-1].lower()
+                        kernelType = uname3.split("-")[-1].lower()
                         self.result += kernelType.title() + self.tr(" Vanilla")
             else:
-                self.icon     = self.ICON_ERROR
+                self.icon = self.ICON_ERROR
                 self.moreInfo = self.tr("No realtime options for this version of kernel.")
 
     def get_id(self)->str:
@@ -555,10 +556,10 @@ class ToolBarAlsaAudioDialog(QDialog, ui_cadence_tb_alsa.Ui_Dialog):
         self.setupUi(self)
 
         self.asoundrcFile = os.path.join(HOME, ".asoundrc")
-        self.fCustomMode  = customMode
+        self.fCustomMode = customMode
 
         if customMode:
-            asoundrcFd   = open(self.asoundrcFile, "r")
+            asoundrcFd = open(self.asoundrcFile, "r")
             asoundrcRead = asoundrcFd.read().strip()
             asoundrcFd.close()
             self.textBrowser.setPlainText(asoundrcRead)
@@ -680,9 +681,9 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
         self.settings = QSettings("Cadence", "Cadence")
         self.loadSettings(True)
 
-        self.pix_apply   = QIcon(getIcon("dialog-ok-apply", 16)).pixmap(16, 16)
-        self.pix_cancel  = QIcon(getIcon("dialog-cancel", 16)).pixmap(16, 16)
-        self.pix_error   = QIcon(getIcon("dialog-error", 16)).pixmap(16, 16)
+        self.pix_apply = QIcon(getIcon("dialog-ok-apply", 16)).pixmap(16, 16)
+        self.pix_cancel = QIcon(getIcon("dialog-cancel", 16)).pixmap(16, 16)
+        self.pix_error = QIcon(getIcon("dialog-error", 16)).pixmap(16, 16)
         self.pix_warning = QIcon(getIcon("dialog-warning", 16)).pixmap(16, 16)
 
         self.m_lastAlsaIndexType = -2 # invalid
@@ -712,12 +713,12 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
         # Set-up GUI (System Status)
 
         self.m_availGovPath = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors"
-        self.m_curGovPath   = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor"
-        self.m_curGovPaths  = []
-        self.m_curGovCPUs   = []
+        self.m_curGovPath = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor"
+        self.m_curGovPaths = []
+        self.m_curGovCPUs = []
 
         try:
-            fBus   = dbus.SystemBus(mainloop=gDBus.loop)
+            fBus = dbus.SystemBus(mainloop=gDBus.loop)
             fProxy = fBus.get_object("com.ubuntu.IndicatorCpufreqSelector", "/Selector", introspect=False)
             haveFreqSelector = True
         except:
@@ -729,7 +730,7 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
             self.m_govWatcher.fileChanged.connect(self.slot_governorFileChanged)
             QTimer.singleShot(0, self.slot_governorFileChanged)
 
-            availGovFd   = open(self.m_availGovPath, "r")
+            availGovFd = open(self.m_availGovPath, "r")
             availGovRead = availGovFd.read().strip()
             availGovFd.close()
 
@@ -901,10 +902,10 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
             mimeappsRead = fd.read()
             fd.close()
 
-            x_image   = getXdgProperty(mimeappsRead, "image/bmp")
-            x_music   = getXdgProperty(mimeappsRead, "audio/wav")
-            x_video   = getXdgProperty(mimeappsRead, "video/webm")
-            x_text    = getXdgProperty(mimeappsRead, "text/plain")
+            x_image = getXdgProperty(mimeappsRead, "image/bmp")
+            x_music = getXdgProperty(mimeappsRead, "audio/wav")
+            x_video = getXdgProperty(mimeappsRead, "video/webm")
+            x_text = getXdgProperty(mimeappsRead, "text/plain")
             x_browser = getXdgProperty(mimeappsRead, "text/html")
 
             if x_image and searchAndSetComboBoxValue(self.cb_app_image, x_image):
@@ -934,12 +935,12 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
         # Set-up GUI (Tweaks, WineASIO)
 
         if haveWine:
-            ins  = int(getWineAsioKeyValue("Number of inputs", "00000010"), 16)
+            ins = int(getWineAsioKeyValue("Number of inputs", "00000010"), 16)
             outs = int(getWineAsioKeyValue("Number of outputs", "00000010"), 16)
-            hw   = bool(int(getWineAsioKeyValue("Connect to hardware", "00000001"), 10))
+            hw = bool(int(getWineAsioKeyValue("Connect to hardware", "00000001"), 10))
 
-            autostart    = bool(int(getWineAsioKeyValue("Autostart server", "00000000"), 10))
-            fixed_bsize  = bool(int(getWineAsioKeyValue("Fixed buffersize", "00000001"), 10))
+            autostart = bool(int(getWineAsioKeyValue("Autostart server", "00000000"), 10))
+            fixed_bsize = bool(int(getWineAsioKeyValue("Fixed buffersize", "00000001"), 10))
             prefer_bsize = int(getWineAsioKeyValue("Preferred buffersize", "00000400"), 16)
 
             for bsize in BUFFER_SIZE_LIST:
@@ -1106,10 +1107,10 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
         # -------------------------------------------------------------
 
         self.m_last_dsp_load = None
-        self.m_last_xruns    = None
+        self.m_last_xruns = None
         self.m_last_buffer_size = None
 
-        self.m_timer500  = None
+        self.m_timer500 = None
         self.m_timer2000 = self.startTimer(2000)
 
         self.DBusReconnect()
@@ -1223,7 +1224,7 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
 
     def jackStarted(self):
         self.m_last_dsp_load = gDBus.jack.GetLoad()
-        self.m_last_xruns    = int(gDBus.jack.GetXruns())
+        self.m_last_xruns = int(gDBus.jack.GetXruns())
         self.m_last_buffer_size = gDBus.jack.GetBufferSize()
 
         self.b_jack_start.setEnabled(False)
@@ -1279,7 +1280,7 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
             self.m_timer2000 = None
 
         self.m_last_dsp_load = None
-        self.m_last_xruns    = None
+        self.m_last_xruns = None
         self.m_last_buffer_size = None
 
         self.b_jack_start.setEnabled(True)
@@ -1304,9 +1305,9 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
             self.systray.setActionEnabled("a2j_start", False)
 
         global jackClientIdALSA
-        jackClientIdALSA  = -1
+        jackClientIdALSA = -1
 
-        pA_bridge_values.clientIdCapture  = -1
+        pA_bridge_values.clientIdCapture = -1
         pA_bridge_values.clientIdPlayback = -1
 
         if haveDBus:
@@ -1345,7 +1346,7 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
             self.m_lastAlsaIndexType = -1 # null
             return
 
-        asoundrcFd   = open(asoundrcFile, "r")
+        asoundrcFd = open(asoundrcFile, "r")
         asoundrcRead = asoundrcFd.read().strip()
         asoundrcFd.close()
 
@@ -1440,8 +1441,8 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
 
     def setAppDetails(self, desktop):
         appContents = getDesktopFileContents(desktop)
-        name    = getXdgProperty(appContents, "Name")
-        icon    = getXdgProperty(appContents, "Icon")
+        name = getXdgProperty(appContents, "Name")
+        icon = getXdgProperty(appContents, "Icon")
         comment = getXdgProperty(appContents, "Comment")
 
         if not name:
@@ -1456,7 +1457,7 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
         self.label_app_comment.setText(comment)
 
     def updateSystrayTooltip(self):
-        systrayText  = "Cadence\n"
+        systrayText = "Cadence\n"
         systrayText += "%s: %s\n" % (self.tr("JACK Status"), self.label_jack_status.text())
         systrayText += "%s: %s\n" % (self.tr("Realtime"), self.label_jack_realtime.text())
         systrayText += "%s: %s\n" % (self.tr("DSP Load"), self.label_jack_dsp.text())
@@ -1505,7 +1506,7 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
             stool = tool.split(" ", 1)[0]
 
             if stool in ("cadence-jackmeter", "cadence-xycontroller"):
-                python    = ""
+                python = ""
                 localPath = os.path.join(sys.path[0], "..", "c++", stool.replace("cadence-", ""))
 
                 if os.path.exists(os.path.join(localPath, stool)):
@@ -1516,7 +1517,7 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
             else:
                 python = sys.executable
                 tool  += ".py"
-                base   = sys.argv[0].rsplit("cadence.py", 1)[0]
+                base = sys.argv[0].rsplit("cadence.py", 1)[0]
 
                 if python:
                     python += " "
@@ -1868,7 +1869,7 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
 
     @pyqtSlot(str)
     def slot_changeGovernorMode(self, newMode):
-        bus   = dbus.SystemBus(mainloop=gDBus.loop)
+        bus = dbus.SystemBus(mainloop=gDBus.loop)
         #proxy = bus.get_object("org.cadence.CpufreqSelector", "/Selector", introspect=False)
         #print(proxy.hello())
         proxy = bus.get_object("com.ubuntu.IndicatorCpufreqSelector", "/Selector", introspect=False)
@@ -1876,7 +1877,7 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
 
     @pyqtSlot()
     def slot_governorFileChanged(self):
-        curGovFd   = open(self.m_curGovPath, "r")
+        curGovFd = open(self.m_curGovPath, "r")
         curGovRead = curGovFd.read().strip()
         curGovFd.close()
 
@@ -2102,7 +2103,7 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
                 mimeFileContent +="text/html=%s;\n" % browserApp
                 mimeFileContent +="text/opml+xml=%s;\n" % browserApp
 
-            realMimeFileContent  ="[Default Applications]\n"
+            realMimeFileContent ="[Default Applications]\n"
             realMimeFileContent += mimeFileContent
             realMimeFileContent +="\n"
             realMimeFileContent +="[Added Associations]\n"
@@ -2121,7 +2122,7 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
             writeFile.close()
 
         if "wineasio" in self.settings_changed_types:
-            REGFILE  = 'REGEDIT4\n'
+            REGFILE = 'REGEDIT4\n'
             REGFILE += '\n'
             REGFILE += '[HKEY_CURRENT_USER\Software\Wine\WineASIO]\n'
             REGFILE += '"Autostart server"=dword:0000000%i\n' % int(1 if self.cb_wineasio_autostart.isChecked() else 0)
@@ -2318,7 +2319,7 @@ class CadenceMainW(QMainWindow, ui_cadence.Ui_CadenceMainW):
         if event.timerId() == self.m_timer500:
             if gDBus.jack and self.m_last_dsp_load != None:
                 next_dsp_load = gDBus.jack.GetLoad()
-                next_xruns    = int(gDBus.jack.GetXruns())
+                next_xruns = int(gDBus.jack.GetXruns())
                 needUpdateTip = False
 
                 if self.m_last_dsp_load != next_dsp_load:
@@ -2365,7 +2366,7 @@ if __name__ == '__main__':
 
     if haveDBus:
         gDBus.loop = DBusMainLoop(set_as_default=True)
-        gDBus.bus  = dbus.SessionBus(mainloop=gDBus.loop)
+        gDBus.bus = dbus.SessionBus(mainloop=gDBus.loop)
 
     initSystemChecks()
 

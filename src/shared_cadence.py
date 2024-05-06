@@ -47,11 +47,11 @@ DEFAULT_PLUGIN_PATH = {
 # ------------------------------------------------------------------------------------------------------------
 # ALSA file-type indexes
 
-iAlsaFileNone  = 0
-iAlsaFileLoop  = 1
-iAlsaFileJACK  = 2
+iAlsaFileNone = 0
+iAlsaFileLoop = 1
+iAlsaFileJACK = 2
 iAlsaFilePulse = 3
-iAlsaFileMax   = 4
+iAlsaFileMax = 4
 
 # ------------------------------------------------------------------------------------------------------------
 # Global Settings
@@ -92,7 +92,7 @@ def getProcList():
 
 def startAlsaAudioLoopBridge():
     channels = GlobalSettings.value("ALSA-Audio/BridgeChannels", 2, type=int)
-    useZita  = bool(GlobalSettings.value("ALSA-Audio/BridgeTool", "alsa_in", type=str) == "zita")
+    useZita = bool(GlobalSettings.value("ALSA-Audio/BridgeTool", "alsa_in", type=str) == "zita")
 
     os.system("cadence-aloop-daemon --channels=%i %s &" % (channels, "--zita" if useZita else ""))
 
@@ -116,7 +116,7 @@ def waitProcsEnd(procs, tries):
 def tryCloseJackDBus() -> bool:
     try:
         import dbus
-        bus  = dbus.SessionBus()
+        bus = dbus.SessionBus()
         jack = bus.get_object("org.jackaudio.service", "/org/jackaudio/Controller")
         jack.Exit()
     except:
@@ -144,7 +144,7 @@ def stopAllAudioProcesses(tryCloseJack = True):
 
     procsTerm = ["a2j", "a2jmidid", "artsd", "jackd", "jackdmp", "knotify4", "jmcore"]
     procsKill = ["jackdbus", "pulseaudio"]
-    tries     = 20
+    tries = 20
 
     process.start("killall", procsTerm)
     process.waitForFinished()

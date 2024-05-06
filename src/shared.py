@@ -24,14 +24,9 @@ import sys
 from codecs import open as codecopen
 from unicodedata import normalize
 
-if True:
-    from PyQt5.QtCore import pyqtSignal, qWarning
-    from PyQt5.QtGui import QIcon
-    from PyQt5.QtWidgets import QApplication, QFileDialog, QMessageBox
-else:
-    from PyQt4.QtCore import pyqtSignal, qWarning
-    from PyQt4.QtGui import QIcon
-    from PyQt4.QtGui import QApplication, QFileDialog, QMessageBox
+from PyQt5.QtCore import pyqtSignal, qWarning
+from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QApplication, QFileDialog, QMessageBox
 
 # ------------------------------------------------------------------------------------------------------------
 # Set Platform
@@ -39,30 +34,30 @@ else:
 if sys.platform == "darwin":
     from PyQt5.QtGui import qt_mac_set_menubar_icons
     qt_mac_set_menubar_icons(False)
-    HAIKU   = False
-    LINUX   = False
-    MACOS   = True
+    HAIKU = False
+    LINUX = False
+    MACOS = True
     WINDOWS = False
 elif "haiku" in sys.platform:
-    HAIKU   = True
-    LINUX   = False
-    MACOS   = False
+    HAIKU = True
+    LINUX = False
+    MACOS = False
     WINDOWS = False
 elif "linux" in sys.platform:
-    HAIKU   = False
-    LINUX   = True
-    MACOS   = False
+    HAIKU = False
+    LINUX = True
+    MACOS = False
     WINDOWS = False
 elif sys.platform in ("win32", "win64", "cygwin"):
-    WINDIR  = os.getenv("WINDIR")
-    HAIKU   = False
-    LINUX   = False
-    MACOS   = False
+    WINDIR = os.getenv("WINDIR")
+    HAIKU = False
+    LINUX = False
+    MACOS = False
     WINDOWS = True
 else:
-    HAIKU   = False
-    LINUX   = False
-    MACOS   = False
+    HAIKU = False
+    LINUX = False
+    MACOS = False
     WINDOWS = False
 
 # ------------------------------------------------------------------------------------------------------------

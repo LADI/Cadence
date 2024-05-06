@@ -19,14 +19,9 @@
 # Imports (Global)
 import os, sys
 
-if True:
-    from PyQt5.QtCore import QTimer
-    from PyQt5.QtGui import QIcon
-    from PyQt5.QtWidgets import QAction, QMainWindow, QMenu, QSystemTrayIcon
-else:
-    from PyQt4.QtCore import QTimer
-    from PyQt4.QtGui import QIcon
-    from PyQt4.QtGui import QAction, QMainWindow, QMenu, QSystemTrayIcon
+from PyQt5.QtCore import QTimer
+from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QAction, QMainWindow, QMenu, QSystemTrayIcon
 
 try:
     if False and os.getenv("DESKTOP_SESSION") in ("ubuntu", "ubuntu-2d") and not os.path.exists("/var/cadence/no_app_indicators"):
@@ -56,7 +51,7 @@ print("Using Tray Engine '%s'" % TrayEngine)
 iActNameId = 0
 iActWidget = 1
 iActParentMenuId = 2
-iActFunc   = 3
+iActFunc = 3
 
 iSepNameId = 0
 iSepWidget = 1
@@ -75,13 +70,13 @@ class GlobalSysTray(object):
     def __init__(self, parent, name, icon):
         object.__init__(self)
 
-        self._app    = None
+        self._app = None
         self._parent = parent
         self._gtk_running = False
-        self._quit_added  = False
+        self._quit_added = False
 
-        self.act_indexes  = []
-        self.sep_indexes  = []
+        self.act_indexes = []
+        self.sep_indexes = []
         self.menu_indexes = []
 
         if TrayEngine == "KDE":

@@ -21,14 +21,9 @@
 
 from sys import platform, version_info
 
-if True:
-    from PyQt5.QtCore import pyqtSlot, Qt, QSettings, QTimer
-    from PyQt5.QtGui import QFontMetrics
-    from PyQt5.QtWidgets import QDialog, QDialogButtonBox, QMessageBox
-else:
-    from PyQt4.QtCore import pyqtSlot, Qt, QSettings, QTimer
-    from PyQt4.QtGui import QFontMetrics
-    from PyQt4.QtGui import QDialog, QDialogButtonBox, QMessageBox
+from PyQt5.QtCore import pyqtSlot, Qt, QSettings, QTimer
+from PyQt5.QtGui import QFontMetrics
+from PyQt5.QtWidgets import QDialog, QDialogButtonBox, QMessageBox
 
 # ------------------------------------------------------------------------------------------------------------
 # Imports (Custom Stuff)
@@ -48,15 +43,15 @@ except:
 # Global object
 
 global gJackctl, gResetNeeded
-gJackctl     = None
+gJackctl = None
 gResetNeeded = False
 
 # ------------------------------------------------------------------------------------------------------------
 # enum jack_timer_type_t
 
-JACK_TIMER_SYSTEM_CLOCK  = 0
+JACK_TIMER_SYSTEM_CLOCK = 0
 JACK_TIMER_CYCLE_COUNTER = 1
-JACK_TIMER_HPET          = 2
+JACK_TIMER_HPET = 2
 
 # ------------------------------------------------------------------------------------------------------------
 # Set Platform
@@ -205,13 +200,13 @@ class JackSettingsW(QDialog):
 
         driverList = gJackctl.ReadContainer(["drivers"])[1]
         fontMetris = QFontMetrics(self.ui.obj_server_driver.font())
-        maxWidth   = 75
+        maxWidth = 75
 
         for i in range(self.ui.obj_server_driver.rowCount()):
             item = self.ui.obj_server_driver.item(i, 0)
             item.setTextAlignment(Qt.AlignCenter)
 
-            itexText  = item.text()
+            itexText = item.text()
             itemWidth = fontMetris.width(itexText)+25
 
             if itemWidth > maxWidth:
@@ -716,13 +711,13 @@ class JackSettingsW(QDialog):
         for line in aplay_out:
             line = line.strip()
             if line.startswith("card "):
-                cardInfo  = line.split(", ", 1)[0].split(": ")
+                cardInfo = line.split(", ", 1)[0].split(": ")
                 cardIndex = cardInfo[0].replace("card ", "")
-                cardName  = cardInfo[1].split(" [")[0]
+                cardName = cardInfo[1].split(" [")[0]
 
-                deviceInfo  = line.split(", ", 1)[1].split(": ")
+                deviceInfo = line.split(", ", 1)[1].split(": ")
                 deviceIndex = deviceInfo[0].replace("device ", "")
-                deviceName  = deviceInfo[1].split(" [")[0]
+                deviceName = deviceInfo[1].split(" [")[0]
 
                 if cardName != "Loopback":
                     fullName = "hw:%s,%s [%s]" % (cardName, deviceIndex, deviceName)

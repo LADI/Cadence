@@ -32,13 +32,13 @@ from shared import *
 # Global variables
 
 # Tab indexes
-TAB_INDEX_MAIN   = 0
+TAB_INDEX_MAIN = 0
 TAB_INDEX_CANVAS = 1
-TAB_INDEX_NONE   = 2
+TAB_INDEX_NONE = 2
 
 # PatchCanvas defines
 CANVAS_ANTIALIASING_SMALL = 1
-CANVAS_EYECANDY_SMALL     = 1
+CANVAS_EYECANDY_SMALL = 1
 
 # Internal defaults
 global SETTINGS_DEFAULT_PROJECT_FOLDER
@@ -64,9 +64,9 @@ class SettingsW(QDialog):
         # Set default settings
 
         self.fRefreshInterval = 120
-        self.fAutoHideGroups  = True
-        self.fUseSystemTray   = True
-        self.fCloseToTray     = False
+        self.fAutoHideGroups = True
+        self.fUseSystemTray = True
+        self.fCloseToTray = False
 
         # -------------------------------------------------------------
         # Set app-specific settings

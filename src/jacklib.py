@@ -50,7 +50,7 @@ except:
 # ------------------------------------------------------------------------------------------------------------
 # Pre-Types
 
-c_enum  = c_int
+c_enum = c_int
 c_uchar = c_uint8
 
 class _jack_port(Structure):
@@ -62,99 +62,99 @@ class _jack_client(Structure):
 # ------------------------------------------------------------------------------------------------------------
 # Defines
 
-JACK_MAX_FRAMES      = 4294967295
+JACK_MAX_FRAMES = 4294967295
 JACK_LOAD_INIT_LIMIT = 1024
 JACK_DEFAULT_AUDIO_TYPE = "32 bit float mono audio"
-JACK_DEFAULT_MIDI_TYPE  = "8 bit raw midi"
+JACK_DEFAULT_MIDI_TYPE = "8 bit raw midi"
 
 # ------------------------------------------------------------------------------------------------------------
 # Types
 
-jack_nframes_t   = c_uint32
-jack_port_id_t   = c_uint32
-jack_time_t      = c_uint64
-jack_unique_t    = c_uint64
+jack_nframes_t = c_uint32
+jack_port_id_t = c_uint32
+jack_time_t = c_uint64
+jack_unique_t = c_uint64
 jack_midi_data_t = c_uchar
 jack_default_audio_sample_t = c_float
 
 jack_options_t = c_enum # JackOptions
-jack_status_t  = c_enum # JackStatus
-jack_transport_state_t    = c_enum # JackTransportState
-jack_position_bits_t      = c_enum # JackPositionBits
+jack_status_t = c_enum # JackStatus
+jack_transport_state_t = c_enum # JackTransportState
+jack_position_bits_t = c_enum # JackPositionBits
 jack_session_event_type_t = c_enum # JackSessionEventType
-jack_session_flags_t      = c_enum # JackSessionFlags
-jack_custom_change_t      = c_enum # JackCustomChange
+jack_session_flags_t = c_enum # JackSessionFlags
+jack_custom_change_t = c_enum # JackCustomChange
 jack_latency_callback_mode_t = c_enum # JackLatencyCallbackMode
 
-jack_port_t   = _jack_port
+jack_port_t = _jack_port
 jack_client_t = _jack_client
 jack_port_type_id_t = c_uint32 # JACK2 only
 
 # enum JackOptions
-JackNullOption    = 0x00
+JackNullOption = 0x00
 JackNoStartServer = 0x01
-JackUseExactName  = 0x02
-JackServerName    = 0x04
-JackLoadName      = 0x08
-JackLoadInit      = 0x10
-JackSessionID     = 0x20
-JackOpenOptions   = JackSessionID|JackServerName|JackNoStartServer|JackUseExactName
-JackLoadOptions   = JackLoadInit|JackLoadName|JackUseExactName
+JackUseExactName = 0x02
+JackServerName = 0x04
+JackLoadName = 0x08
+JackLoadInit = 0x10
+JackSessionID = 0x20
+JackOpenOptions = JackSessionID|JackServerName|JackNoStartServer|JackUseExactName
+JackLoadOptions = JackLoadInit|JackLoadName|JackUseExactName
 
 # enum JackStatus
-JackFailure       = 0x01
+JackFailure  = 0x01
 JackInvalidOption = 0x02
 JackNameNotUnique = 0x04
 JackServerStarted = 0x08
-JackServerFailed  = 0x10
-JackServerError   = 0x20
-JackNoSuchClient  = 0x40
-JackLoadFailure   = 0x80
-JackInitFailure   = 0x100
-JackShmFailure    = 0x200
-JackVersionError  = 0x400
-JackBackendError  = 0x800
-JackClientZombie  = 0x1000
+JackServerFailed = 0x10
+JackServerError = 0x20
+JackNoSuchClient = 0x40
+JackLoadFailure = 0x80
+JackInitFailure = 0x100
+JackShmFailure = 0x200
+JackVersionError = 0x400
+JackBackendError = 0x800
+JackClientZombie = 0x1000
 
 # enum JackLatencyCallbackMode
-JackCaptureLatency  = 0
+JackCaptureLatency = 0
 JackPlaybackLatency = 1
 
 # enum JackPortFlags
-JackPortIsInput    = 0x1
-JackPortIsOutput   = 0x2
+JackPortIsInput = 0x1
+JackPortIsOutput = 0x2
 JackPortIsPhysical = 0x4
 JackPortCanMonitor = 0x8
 JackPortIsTerminal = 0x10
 JackPortIsControlVoltage = 0x100
 
 # enum JackTransportState
-JackTransportStopped     = 0
-JackTransportRolling     = 1
-JackTransportLooping     = 2
-JackTransportStarting    = 3
+JackTransportStopped = 0
+JackTransportRolling = 1
+JackTransportLooping = 2
+JackTransportStarting = 3
 JackTransportNetStarting = 4 # JACK2 only
 
 # enum JackPositionBits
-JackPositionBBT      = 0x10
+JackPositionBBT = 0x10
 JackPositionTimecode = 0x20
-JackBBTFrameOffset   = 0x40
-JackAudioVideoRatio  = 0x80
+JackBBTFrameOffset = 0x40
+JackAudioVideoRatio = 0x80
 JackVideoFrameOffset = 0x100
-JACK_POSITION_MASK   = JackPositionBBT|JackPositionTimecode|JackBBTFrameOffset|JackAudioVideoRatio|JackVideoFrameOffset
+JACK_POSITION_MASK = JackPositionBBT|JackPositionTimecode|JackBBTFrameOffset|JackAudioVideoRatio|JackVideoFrameOffset
 
 # enum JackSessionEventType
-JackSessionSave         = 1
-JackSessionSaveAndQuit  = 2
+JackSessionSave    = 1
+JackSessionSaveAndQuit = 2
 JackSessionSaveTemplate = 3
 
 # enum JackSessionFlags
-JackSessionSaveError    = 0x01
+JackSessionSaveError = 0x01
 JackSessionNeedTerminal = 0x02
 
 # enum JackCustomChange
-JackCustomRemoved  = 0
-JackCustomAdded    = 1
+JackCustomRemoved = 0
+JackCustomAdded = 1
 JackCustomReplaced = 2
 
 # ------------------------------------------------------------------------------------------------------------
@@ -220,23 +220,23 @@ class jack_session_command_t(Structure):
 
 JackLatencyCallback = CFUNCTYPE(None, jack_latency_callback_mode_t, c_void_p)
 JackProcessCallback = CFUNCTYPE(c_int, jack_nframes_t, c_void_p)
-JackThreadCallback  = CFUNCTYPE(c_void_p, c_void_p)
+JackThreadCallback = CFUNCTYPE(c_void_p, c_void_p)
 JackThreadInitCallback = CFUNCTYPE(None, c_void_p)
 JackGraphOrderCallback = CFUNCTYPE(c_int, c_void_p)
-JackXRunCallback       = CFUNCTYPE(c_int, c_void_p)
+JackXRunCallback  = CFUNCTYPE(c_int, c_void_p)
 JackBufferSizeCallback = CFUNCTYPE(c_int, jack_nframes_t, c_void_p)
 JackSampleRateCallback = CFUNCTYPE(c_int, jack_nframes_t, c_void_p)
-JackPortRegistrationCallback   = CFUNCTYPE(None, jack_port_id_t, c_int, c_void_p)
+JackPortRegistrationCallback = CFUNCTYPE(None, jack_port_id_t, c_int, c_void_p)
 JackClientRegistrationCallback = CFUNCTYPE(None, c_char_p, c_int, c_void_p)
 JackClientRenameCallback = CFUNCTYPE(c_int, c_char_p, c_char_p, c_void_p) # JACK2 only
-JackPortConnectCallback  = CFUNCTYPE(None, jack_port_id_t, jack_port_id_t, c_int, c_void_p)
-JackPortRenameCallback   = CFUNCTYPE(c_int, jack_port_id_t, c_char_p, c_char_p, c_void_p) # JACK2 only
-JackFreewheelCallback    = CFUNCTYPE(None, c_int, c_void_p)
-JackShutdownCallback     = CFUNCTYPE(None, c_void_p)
+JackPortConnectCallback = CFUNCTYPE(None, jack_port_id_t, jack_port_id_t, c_int, c_void_p)
+JackPortRenameCallback = CFUNCTYPE(c_int, jack_port_id_t, c_char_p, c_char_p, c_void_p) # JACK2 only
+JackFreewheelCallback = CFUNCTYPE(None, c_int, c_void_p)
+JackShutdownCallback = CFUNCTYPE(None, c_void_p)
 JackInfoShutdownCallback = CFUNCTYPE(None, jack_status_t, c_char_p, c_void_p)
-JackSyncCallback     = CFUNCTYPE(c_int, jack_transport_state_t, POINTER(jack_position_t), c_void_p)
+JackSyncCallback = CFUNCTYPE(c_int, jack_transport_state_t, POINTER(jack_position_t), c_void_p)
 JackTimebaseCallback = CFUNCTYPE(None, jack_transport_state_t, jack_nframes_t, POINTER(jack_position_t), c_int, c_void_p)
-JackSessionCallback  = CFUNCTYPE(None, POINTER(jack_session_event_t), c_void_p)
+JackSessionCallback = CFUNCTYPE(None, POINTER(jack_session_event_t), c_void_p)
 JackCustomDataAppearanceCallback = CFUNCTYPE(None, c_char_p, c_char_p, jack_custom_change_t, c_void_p)
 
 # ------------------------------------------------------------------------------------------------------------
@@ -244,61 +244,61 @@ JackCustomDataAppearanceCallback = CFUNCTYPE(None, c_char_p, c_char_p, jack_cust
 
 try:
     jacklib.jack_get_version_string.argtypes = None
-    jacklib.jack_get_version_string.restype  = c_char_p
+    jacklib.jack_get_version_string.restype = c_char_p
 except:
     jacklib.jack_get_version_string = None
 
 try:
     jacklib.jack_client_open.argtypes = [c_char_p, jack_options_t, POINTER(jack_status_t), c_char_p]
-    jacklib.jack_client_open.restype  = POINTER(jack_client_t)
+    jacklib.jack_client_open.restype = POINTER(jack_client_t)
 except:
     jacklib.jack_client_open = None
 
 try:
     jacklib.jack_client_rename.argtypes = [POINTER(jack_client_t), c_char_p]
-    jacklib.jack_client_rename.restype  = c_char_p
+    jacklib.jack_client_rename.restype = c_char_p
 except:
     jacklib.jack_client_rename = None
 
 try:
     jacklib.jack_client_close.argtypes = [POINTER(jack_client_t)]
-    jacklib.jack_client_close.restype  = c_int
+    jacklib.jack_client_close.restype = c_int
 except:
     jacklib.jack_client_close = None
 
 try:
     jacklib.jack_client_name_size.argtypes = None
-    jacklib.jack_client_name_size.restype  = c_int
+    jacklib.jack_client_name_size.restype = c_int
 except:
     jacklib.jack_client_name_size = None
 
 try:
     jacklib.jack_get_client_name.argtypes = [POINTER(jack_client_t)]
-    jacklib.jack_get_client_name.restype  = c_char_p
+    jacklib.jack_get_client_name.restype = c_char_p
 except:
     jacklib.jack_get_client_name = None
 
 try:
     jacklib.jack_activate.argtypes = [POINTER(jack_client_t)]
-    jacklib.jack_activate.restype  = c_int
+    jacklib.jack_activate.restype = c_int
 except:
     jacklib.jack_activate = None
 
 try:
     jacklib.jack_deactivate.argtypes = [POINTER(jack_client_t)]
-    jacklib.jack_deactivate.restype  = c_int
+    jacklib.jack_deactivate.restype = c_int
 except:
     jacklib.jack_deactivate = None
 
 try:
     jacklib.jack_get_client_pid.argtypes = [c_char_p]
-    jacklib.jack_get_client_pid.restype  = c_int
+    jacklib.jack_get_client_pid.restype = c_int
 except:
     jacklib.jack_get_client_pid = None
 
 try:
     jacklib.jack_is_realtime.argtypes = [POINTER(jack_client_t)]
-    jacklib.jack_is_realtime.restype  = c_int
+    jacklib.jack_is_realtime.restype = c_int
 except:
     jacklib.jack_is_realtime = None
 
@@ -360,19 +360,19 @@ _thread_callback = None
 
 try:
     jacklib.jack_cycle_wait.argtypes = [POINTER(jack_client_t)]
-    jacklib.jack_cycle_wait.restype  = jack_nframes_t
+    jacklib.jack_cycle_wait.restype = jack_nframes_t
 except:
     jacklib.jack_cycle_wait = None
 
 try:
     jacklib.jack_cycle_signal.argtypes = [POINTER(jack_client_t), c_int]
-    jacklib.jack_cycle_signal.restype  = None
+    jacklib.jack_cycle_signal.restype = None
 except:
     jacklib.jack_cycle_signal = None
 
 try:
     jacklib.jack_set_process_thread.argtypes = [POINTER(jack_client_t), JackThreadCallback, c_void_p]
-    jacklib.jack_set_process_thread.restype  = c_int
+    jacklib.jack_set_process_thread.restype = c_int
 except:
     jacklib.jack_set_process_thread = None
 
@@ -1217,31 +1217,31 @@ _custom_appearance_callback = None
 
 try:
     jacklib.jack_custom_publish_data.argtypes = [POINTER(jack_client_t), c_char_p, c_void_p, c_size_t]
-    jacklib.jack_custom_publish_data.restype  = c_int
+    jacklib.jack_custom_publish_data.restype = c_int
 except:
     jacklib.jack_custom_publish_data = None
 
 try:
     jacklib.jack_custom_get_data.argtypes = [POINTER(jack_client_t), c_char_p, c_char_p, POINTER(c_void_p), POINTER(c_size_t)]
-    jacklib.jack_custom_get_data.restype  = c_int
+    jacklib.jack_custom_get_data.restype = c_int
 except:
     jacklib.jack_custom_get_data = None
 
 try:
     jacklib.jack_custom_unpublish_data.argtypes = [POINTER(jack_client_t), c_char_p]
-    jacklib.jack_custom_unpublish_data.restype  = c_int
+    jacklib.jack_custom_unpublish_data.restype = c_int
 except:
     jacklib.jack_custom_unpublish_data = None
 
 try:
     jacklib.jack_custom_get_keys.argtypes = [POINTER(jack_client_t), c_char_p]
-    jacklib.jack_custom_get_keys.restype  = POINTER(c_char_p)
+    jacklib.jack_custom_get_keys.restype = POINTER(c_char_p)
 except:
     jacklib.jack_custom_get_keys = None
 
 try:
     jacklib.jack_custom_set_data_appearance_callback.argtypes = [POINTER(jack_client_t), JackCustomDataAppearanceCallback, c_void_p]
-    jacklib.jack_custom_set_data_appearance_callback.restype  = c_int
+    jacklib.jack_custom_set_data_appearance_callback.restype = c_int
 except:
     jacklib.jack_custom_set_data_appearance_callback = None
 
@@ -1257,7 +1257,7 @@ def custom_get_data(client, client_name, key):
     if jacklib.jack_custom_get_data:
         data = c_void_p(0)
         size = c_size_t(0)
-        ret  = jacklib.jack_custom_get_data(client, client_name.encode("utf-8"), key.encode("utf-8"), pointer(data), pointer(size))
+        ret = jacklib.jack_custom_get_data(client, client_name.encode("utf-8"), key.encode("utf-8"), pointer(data), pointer(size))
         return (ret, data, size)
 
     return (-1, None, 0)

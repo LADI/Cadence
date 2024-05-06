@@ -41,8 +41,8 @@ if DEBUG and jacklib and jacklib.JACK2:
 # ------------------------------------------------------------------------------------------------------------
 # Static Variables
 
-TRANSPORT_VIEW_HMS    = 0
-TRANSPORT_VIEW_BBT    = 1
+TRANSPORT_VIEW_HMS = 0
+TRANSPORT_VIEW_BBT = 1
 TRANSPORT_VIEW_FRAMES = 2
 
 BUFFER_SIZE_LIST = (16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192)
@@ -62,8 +62,8 @@ class DBusObject(object):
 
 gDBus = DBusObject()
 gDBus.loop = None
-gDBus.bus  = None
-gDBus.a2j  = None
+gDBus.bus = None
+gDBus.a2j = None
 gDBus.jack = None
 gDBus.patchbay = None
 
@@ -101,7 +101,7 @@ class AbstractCanvasJackClass(QMainWindow):
         self.ui = UiClass()
         self.ui.setupUi(self)
 
-        self.fAppName          = appName
+        self.fAppName = appName
         self.fCurTransportView = TRANSPORT_VIEW_HMS
 
         self.fLastBPM = None
@@ -113,7 +113,7 @@ class AbstractCanvasJackClass(QMainWindow):
         self.fNextSampleRate = 0.0
 
         self.fLogsW = None
-        self.scene  = None
+        self.scene = None
 
     # -----------------------------------------------------------------
     # Abstract calls
@@ -240,8 +240,8 @@ class AbstractCanvasJackClass(QMainWindow):
     @pyqtSlot()
     def slot_transportViewMenu(self):
         menu = QMenu(self)
-        actHMS    = menu.addAction("Hours:Minutes:Seconds")
-        actBBT    = menu.addAction("Beat:Bar:Tick")
+        actHMS = menu.addAction("Hours:Minutes:Seconds")
+        actBBT = menu.addAction("Beat:Bar:Tick")
         actFrames = menu.addAction("Frames")
 
         actHMS.setCheckable(True)
@@ -286,16 +286,16 @@ class AbstractCanvasJackClass(QMainWindow):
             time = pos.frame / int(self.fSampleRate)
             secs = time % 60
             mins = (time / 60) % 60
-            hrs  = (time / 3600) % 60
+            hrs = (time / 3600) % 60
             self.ui.label_time.setText("%02i:%02i:%02i" % (hrs, mins, secs))
 
         elif self.fCurTransportView == TRANSPORT_VIEW_BBT:
             if pos.valid & jacklib.JackPositionBBT:
-                bar  = pos.bar
+                bar = pos.bar
                 beat = pos.beat if bar != 0 else 0
                 tick = pos.tick if bar != 0 else 0
             else:
-                bar  = 0
+                bar = 0
                 beat = 0
                 tick = 0
 
@@ -400,7 +400,7 @@ class AbstractCanvasJackClass(QMainWindow):
 
         # not future
         else:
-            self.fSampleRate     = sampleRate
+            self.fSampleRate = sampleRate
             self.fNextSampleRate = 0.0
 
         for i in range(len(SAMPLE_RATE_LIST)):
