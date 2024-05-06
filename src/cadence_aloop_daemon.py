@@ -16,7 +16,7 @@
 #
 # For a full copy of the GNU General Public License see the COPYING file
 
-# ------------------------------------------------------------------------------------------------------------
+
 # Imports (Global)
 
 import os
@@ -24,12 +24,8 @@ import sys
 from signal import signal, SIGINT, SIGTERM
 from time import sleep
 
-if True:
-    from PyQt5.QtCore import QProcess
-else:
-    from PyQt4.QtCore import QProcess
+from PyQt5.QtCore import QProcess
 
-# ------------------------------------------------------------------------------------------------------------
 # Imports (Custom Stuff)
 
 import jacklib
@@ -39,17 +35,17 @@ import jacklib
 
 global reactivateCounter
 reactivateCounter = -1
-isKernelGood      = [int(i) for i in os.uname()[2].split("-", 1)[0].split(".", 2)[:2]] >= [3,8]
+isKernelGood = [int(i) for i in os.uname()[2].split("-", 1)[0].split(".", 2)[:2]] >= [3,8]
 
 # --------------------------------------------------
 # Global loop check
 
 global doLoop, doRunNow, useZita, procIn, procOut
-doLoop    = True
-doRunNow  = True
-useZita   = False
-procIn    = QProcess()
-procOut   = QProcess()
+doLoop = True
+doRunNow = True
+useZita = False
+procIn = QProcess()
+procOut = QProcess()
 checkFile = "/tmp/.cadence-aloop-daemon.x"
 
 # --------------------------------------------------
@@ -58,7 +54,7 @@ checkFile = "/tmp/.cadence-aloop-daemon.x"
 global bufferSize, sampleRate, channels
 bufferSize = 1024
 sampleRate = 44100
-channels   = 2
+channels = 2
 
 # --------------------------------------------------
 # quit on SIGINT or SIGTERM

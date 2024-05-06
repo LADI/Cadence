@@ -16,20 +16,23 @@
 #
 # For a full copy of the GNU General Public License see the COPYING file
 
-# ------------------------------------------------------------------------------------------------------------
+
 # Imports (Global)
 
-import time
-
+import os
+import sys
 from platform import architecture
 
-from PyQt5.QtCore import QFileSystemWatcher, QThread, QSemaphore, QSize, Qt
-from PyQt5.QtWidgets import (QApplication, QDialogButtonBox, QLabel, QMainWindow,
-                             QSizePolicy, QSpacerItem, QFrame, QListWidgetItem, QPushButton,
-                             QComboBox)
-#from PyQt5.QtGui import QSize
+from PyQt5.QtCore import (
+    QFileSystemWatcher, QSize, Qt, QTimer, pyqtSlot, pyqtSignal,
+    QSettings)
+from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import (
+    QApplication, QDialogButtonBox, QMainWindow, QFrame,
+    QListWidgetItem, QComboBox, QDialog, QMessageBox,
+    QFileDialog)
 
-# ------------------------------------------------------------------------------------------------------------
+
 # Imports (Custom Stuff)
 
 import force_restart
@@ -37,21 +40,24 @@ import systray
 import pulse2jack_tool
 import ui_cadence
 import ui_cadence_tb_alsa
-import ui_cadence_rwait
 import ui_pulse_bridge
-from shared_cadence import *
-from shared_canvasjack import *
-from shared_settings import *
-from shared_i18n import *
+from shared import (
+    LINUX, HAIKU, MACOS, WINDOWS, DEBUG, VERSION, getIcon,
+    CustomMessageBox, setUpSignals)
+from shared_cadence import (
+    getProcList, GlobalSettings, DEFAULT_PLUGIN_PATH,
+    iAlsaFileNone, iAlsaFileLoop, iAlsaFileJACK,
+    iAlsaFilePulse, iAlsaFileMax,
+    startAlsaAudioLoopBridge, wantJackStart)
+from shared_canvasjack import (
+    jacklib, gDBus, BUFFER_SIZE_LIST, jacksettings)
+from shared_settings import HOME
+from shared_i18n import setup_i18n
 
-# ------------------------------------------------------------------------------------------------------------
 # Import getoutput
-
 from subprocess import getoutput
 
-# ------------------------------------------------------------------------------------------------------------
 # Try Import DBus
-
 try:
     import dbus
     from dbus.mainloop.pyqt5 import DBusQtMainLoop as DBusMainLoop
@@ -63,7 +69,7 @@ except:
         haveDBus = True
     except:
         haveDBus = False
-# ------------------------------------------------------------------------------------------------------------
+
 # Check for PulseAudio and Wine
 
 havePulseAudio = os.path.exists("/usr/bin/pulseaudio")

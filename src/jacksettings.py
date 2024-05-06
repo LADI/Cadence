@@ -16,30 +16,21 @@
 #
 # For a full copy of the GNU General Public License see the COPYING file
 
-# ------------------------------------------------------------------------------------------------------------
-# Imports (Global)
-
-from sys import platform, version_info
+from sys import platform
 
 from PyQt5.QtCore import pyqtSlot, Qt, QSettings, QTimer
 from PyQt5.QtGui import QFontMetrics
 from PyQt5.QtWidgets import QDialog, QDialogButtonBox, QMessageBox
 
-# ------------------------------------------------------------------------------------------------------------
-# Imports (Custom Stuff)
 
 import ui_settings_jack
-from shared_i18n import *
-
-# ------------------------------------------------------------------------------------------------------------
-# Try Import DBus
+from shared_i18n import setup_i18n
 
 try:
     import dbus
 except:
     dbus = None
 
-# ------------------------------------------------------------------------------------------------------------
 # Global object
 
 global gJackctl, gResetNeeded
@@ -59,10 +50,7 @@ JACK_TIMER_HPET = 2
 if "linux" in platform:
     LINUX = True
 
-    if version_info >= (3, 0):
-        from subprocess import getoutput
-    else:
-        from commands import getoutput
+    from subprocess import getoutput
 else:
     LINUX = False
 
@@ -192,7 +180,7 @@ class JackSettingsW(QDialog):
         global gJackctl
 
         if gJackctl is None:
-            QTimer.singleShot(0, self, SLOT("slot_closeWithError()"))
+            QTimer.singleShot(0, self.slot_closeWithError)
             return
 
         # -------------------------------------------------------------

@@ -2,13 +2,19 @@
 # -*- coding: utf-8 -*-
 
 # Imports (Global)
-import dbus
+import os
 import sys
+import time
+
+import dbus
 from PyQt5.QtCore import QCoreApplication
 
 # Imports (Custom Stuff)
 import pulse2jack_tool
-from shared_cadence import *
+from shared_cadence import (
+    QSettings, stopAllAudioProcesses, HOME, wantJackStart, iAlsaFileNone,
+    iAlsaFileLoop, startAlsaAudioLoopBridge, DEFAULT_PLUGIN_PATH,
+    VERSION)
 
 # Cadence Global Settings
 GlobalSettings = QSettings("Cadence", "GlobalSettings")
@@ -96,7 +102,7 @@ def startSession(systemStarted, secondSystemStartAttempt):
     # ALSA-Audio
     if GlobalSettings.value("ALSA-Audio/BridgeIndexType", iAlsaFileNone, type=int) == iAlsaFileLoop:
         startAlsaAudioLoopBridge()
-        sleep(0.5)
+        time.sleep(0.5)
 
     # ALSA-MIDI
     if (GlobalSettings.value("A2J/AutoStart", True, type=bool)
@@ -169,7 +175,7 @@ def printVersion():
     print("Cadence version %s" % (VERSION))
     print("Developed by falkTX and the rest of the KXStudio Team")
 
-#--------------- main ------------------
+
 if __name__ == '__main__':
     # App initialization
     app = QCoreApplication(sys.argv)

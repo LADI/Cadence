@@ -16,27 +16,27 @@
 #
 # For a full copy of the GNU General Public License see the COPYING file
 
-# ------------------------------------------------------------------------------------------------------------
 # Imports (Global)
+import os
+import sys
 
-from PyQt5.QtCore import pyqtSlot, Qt, QFile, QIODevice, QMutex, QMutexLocker, QTextStream, QThread, QSettings
-from PyQt5.QtGui import QPalette, QSyntaxHighlighter
+from PyQt5.QtCore import (
+    pyqtSlot, pyqtSignal, Qt, QFile, QIODevice, QMutex, QMutexLocker,
+    QTextStream, QThread, QSettings)
+from PyQt5.QtGui import QPalette, QSyntaxHighlighter, QIcon
 from PyQt5.QtWidgets import QDialog
 
-# ------------------------------------------------------------------------------------------------------------
 # Imports (Custom Stuff)
 
 import ui_logs
-from shared import *
-from shared_i18n import *
+from shared import HOME, VERSION, getIcon, setUpSignals
+from shared_i18n import setup_i18n
 
-# ------------------------------------------------------------------------------------------------------------
 # Fix log text output (get rid of terminal colors stuff)
 
 def fixLogText(text):
     return text.replace("[1m[31m", "").replace("[1m[33m", "").replace("[31m", "").replace("[33m", "").replace("[0m", "")
 
-# ------------------------------------------------------------------------------------------------------------
 # Syntax Highlighter for JACK
 
 class SyntaxHighlighter_JACK(QSyntaxHighlighter):
@@ -56,10 +56,7 @@ class SyntaxHighlighter_JACK(QSyntaxHighlighter):
             self.setFormat(text.find(" Connecting "), len(text), self.fPalette.color(QPalette.Active, QPalette.Link))
         elif ": Disconnecting " in text:
             self.setFormat(text.find(" Disconnecting "), len(text), self.fPalette.color(QPalette.Active, QPalette.LinkVisited))
-        #elif (": New client " in text):
-            #self.setFormat(text.find(" New client "), len(text), self.fPalette.color(QPalette.Active, QPalette.Link))
 
-# ------------------------------------------------------------------------------------------------------------
 # Syntax Highlighter for A2J
 
 class SyntaxHighlighter_A2J(QSyntaxHighlighter):
@@ -80,7 +77,6 @@ class SyntaxHighlighter_A2J(QSyntaxHighlighter):
         elif ": port deleted: " in text:
             self.setFormat(text.find(" port deleted: "), len(text), self.fPalette.color(QPalette.Active, QPalette.LinkVisited))
 
-# ------------------------------------------------------------------------------------------------------------
 # Syntax Highlighter for LASH
 
 class SyntaxHighlighter_LASH(QSyntaxHighlighter):
@@ -98,7 +94,6 @@ class SyntaxHighlighter_LASH(QSyntaxHighlighter):
             self.setFormat(text.find(" ------------------"), len(text), self.fPalette.color(QPalette.Active, QPalette.Mid))
 
 
-# ------------------------------------------------------------------------------------------------------------
 # Lock-less file read thread
 
 class LogsReadThread(QThread):

@@ -17,13 +17,11 @@
 # For a full copy of the GNU General Public License see the COPYING file
 
 # Imports (Global)
-import os, sys
 
 from PyQt5.QtCore import QTimer
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QAction, QMainWindow, QMenu, QSystemTrayIcon
 
-from shared_i18n import *
 
 iActNameId = 0
 iActWidget = 1

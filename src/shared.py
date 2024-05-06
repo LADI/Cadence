@@ -24,7 +24,7 @@ import sys
 from codecs import open as codecopen
 from unicodedata import normalize
 
-from PyQt5.QtCore import pyqtSignal, qWarning
+from PyQt5.QtCore import qWarning
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QFileDialog, QMessageBox
 

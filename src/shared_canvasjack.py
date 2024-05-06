@@ -20,8 +20,8 @@
 # Imports (Global)
 
 
-from PyQt5.QtCore import pyqtSlot, QTimer
-from PyQt5.QtGui import QCursor, QFontMetrics, QImage, QPainter
+from PyQt5.QtCore import pyqtSlot, pyqtSignal
+from PyQt5.QtGui import QCursor, QFontMetrics
 from PyQt5.QtWidgets import QMainWindow, QMenu
 
 # ------------------------------------------------------------------------------------------------------------

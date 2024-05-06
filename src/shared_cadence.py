@@ -16,17 +16,16 @@
 #
 # For a full copy of the GNU General Public License see the COPYING file
 
-# ------------------------------------------------------------------------------------------------------------
 # Imports (Global)
 
+import os
 from time import sleep
 
 from PyQt5.QtCore import QProcess, QSettings
 
-# ------------------------------------------------------------------------------------------------------------
 # Imports (Custom Stuff)
 
-from shared import *
+from shared import (HOME, HAIKU, LINUX, MACOS)
 
 # ------------------------------------------------------------------------------------------------------------
 # Default Plugin PATHs
