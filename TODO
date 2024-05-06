@@ -4,7 +4,7 @@
 - GENERAL -
 
 Artwork:
-  - Add tools icons (logs, xy, meter)
+  - Add tools icons (logs)
 
 GUI:
   - Check shortcut consistency
@@ -21,22 +21,5 @@ Cadence:
  - add desktop decriptions
  - jacksettings, remember last tab
  - reset xruns, change BufSize (reset xrun also in Unity desktop)
-
-Claudia:
- - Handle sample-rate changes in JACK (made possible by switch-master)
- - rename canvas client should rename app name
-
-Claudia-Launcher:
- - Finish plugins
- - Auto-close option
- - jamin -p
-
--------------------
-- MODULES -
-
-PatchCanvas:
-  - Cleanup C++
-  - Implement export to Catarina file
-  - Implement auto-arrange
 
   

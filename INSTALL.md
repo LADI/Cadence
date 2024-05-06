@@ -54,24 +54,8 @@ Requires jack <br/>
 Recommends a2jmidid (>= 7) and jackdbus <br/>
 Suggests pulseaudio[-module-jack] <br/>
 
-### Cadence-JackMeter
-Requires jack <br/>
-
 ### Cadence-JackSettings
 Requires jackdbus <br/>
 
 ### Cadence-Logs
 No special requirements <br/>
-
-### Cadence-Render
-Requires jack-capture <br/>
-
-### Cadence-XY Controller
-Requires jack <br/>
-
-### Catarina
-No special requirements <br/>
-
-### Catia
-Requires jack <br/>
-Recommends a2jmidid (>= 7) and jackdbus <br/>

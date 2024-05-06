@@ -27,15 +27,7 @@ I18N_LANGUAGES :=
 
 # -----------------------------------------------------------------------------------------------------------------------------------------
 
-all: CPP RES UI locale
-
-# -----------------------------------------------------------------------------------------------------------------------------------------
-# C++ code
-
-CPP: jackmeter
-
-jackmeter:
-	$(MAKE) -C c++/jackmeter
+all: RES UI locale
 
 # -----------------------------------------------------------------------------------------------------------------------------------------
 # Resources
@@ -72,7 +64,6 @@ src/ui_%.py: resources/ui/%.ui
 # -----------------------------------------------------------------------------------------------------------------------------------------
 
 clean:
-	$(MAKE) clean -C c++/jackmeter
 	rm -f *~ src/*~ src/*.pyc src/ui_*.py src/resources_rc.py resources/locale/*.qm
 
 # -----------------------------------------------------------------------------------------------------------------------------------------
@@ -105,12 +96,10 @@ install:
 	install -m 755 \
 		data/cadence \
 		data/cadence-aloop-daemon \
-		data/cadence-jacksettings \
 		data/cadence-logs \
 		data/cadence-pulse2jack \
 		data/cadence-pulse2loopback \
 		data/cadence-session-start \
-		c++/jackmeter/cadence-jackmeter \
 		$(DESTDIR)$(PREFIX)/bin/
 
 	# Install desktop files
@@ -118,19 +107,19 @@ install:
 	install -m 644 data/*.desktop           $(DESTDIR)$(PREFIX)/share/applications/
 
 	# Install icons, 16x16
-	install -m 644 resources/16x16/cadence.png             $(DESTDIR)$(PREFIX)/share/icons/hicolor/16x16/apps/
+	install -m 644 resources/16x16/cadence.png    $(DESTDIR)$(PREFIX)/share/icons/hicolor/16x16/apps/
 
 	# Install icons, 48x48
-	install -m 644 resources/48x48/cadence.png             $(DESTDIR)$(PREFIX)/share/icons/hicolor/48x48/apps/
+	install -m 644 resources/48x48/cadence.png    $(DESTDIR)$(PREFIX)/share/icons/hicolor/48x48/apps/
 
 	# Install icons, 128x128
-	install -m 644 resources/128x128/cadence.png           $(DESTDIR)$(PREFIX)/share/icons/hicolor/128x128/apps/
+	install -m 644 resources/128x128/cadence.png  $(DESTDIR)$(PREFIX)/share/icons/hicolor/128x128/apps/
 
 	# Install icons, 256x256
-	install -m 644 resources/256x256/cadence.png           $(DESTDIR)$(PREFIX)/share/icons/hicolor/256x256/apps/
+	install -m 644 resources/256x256/cadence.png  $(DESTDIR)$(PREFIX)/share/icons/hicolor/256x256/apps/
 
 	# Install icons, scalable
-	install -m 644 resources/scalable/cadence.svg          $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/
+	install -m 644 resources/scalable/cadence.svg $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/
 
 	# Install main code
 	install -m 644 src/*.py $(DESTDIR)$(PREFIX)/share/cadence/src/
