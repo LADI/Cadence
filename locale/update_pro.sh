@@ -30,11 +30,11 @@ done
 # done
 
 contents+="
-TRANSLATIONS += cadence_en.ts
-TRANSLATIONS += cadence_fr.ts
+TRANSLATIONS += caleson_en.ts
+TRANSLATIONS += caleson_fr.ts
 "
 
-echo "$contents" > "$locale_root/cadence.pro"
+echo "$contents" > "$locale_root/caleson.pro"
 
-pylupdate5 "$locale_root/cadence.pro"
+pylupdate5 "$locale_root/caleson.pro"
 

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Name=Caleson session startup
+Comment=Caleson session startup
+Exec=caleson-session-start --maybe-system-start
+Icon=caleson
+Terminal=false
+GenericName=
+NoDisplay=true

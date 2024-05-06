@@ -20,10 +20,8 @@
 # Imports (Global)
 
 import os, sys
-if True:
-    from PyQt5.QtCore import QCoreApplication, QTranslator, QLocale, QLibraryInfo
-else:
-    from PyQt4.QtCore import QCoreApplication, QTranslator, QLocale, QLibraryInfo
+
+from PyQt5.QtCore import QCoreApplication, QTranslator, QLocale, QLibraryInfo
 
 def setup_i18n():
     app = QCoreApplication.instance()
@@ -32,9 +30,9 @@ def setup_i18n():
     syspath = sys.path[0]
     qmpath = os.path.join(syspath, "..", "locale")
 
-    # Load translations from Cadence resources
+    # Load translations from Caleson resources
     translator = QTranslator()
-    if not translator.load(locale, "cadence", "_", qmpath):
+    if not translator.load(locale, "caleson", "_", qmpath):
         return False
     app.installTranslator(translator)
     app.fAppTranslator = translator

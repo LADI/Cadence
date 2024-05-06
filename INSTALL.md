@@ -1,6 +1,6 @@
-# ---  INSTALL for Cadence  ---
+# ---  INSTALL for Caleson  ---
 
-To install Cadence and its tools, simply run as usual: <br/>
+To install Caleson and its tools, simply run as usual: <br/>
 `$ make` <br/>
 `$ [sudo] make install`
 
@@ -37,7 +37,7 @@ Optional but recommended:
  - jack-capture
  - pulseaudio[-module-jack]
 
-The 'Cadence' app relies on jackdbus to work properly (either JACK2 or JACK1+DBus patch). <br/>
+The 'Caleson' app relies on jackdbus to work properly (either JACK2 or JACK1+DBus patch). <br/>
 
 The python version used and tested is python3.2. Older versions won't work! <br/>
 After install, the app/tools will still work on distributions with python2 as default, without any additional work.
@@ -49,13 +49,13 @@ After install, the app/tools will still work on distributions with python2 as de
 All tools require Python3 and Qt5 (PyQt5), some of them work on Windows and Mac. <br/>
 Here's the required run-time dependencies of each of the main tools:
 
-### Cadence
+### Caleson
 Requires jack <br/>
 Recommends a2jmidid (>= 7) and jackdbus <br/>
 Suggests pulseaudio[-module-jack] <br/>
 
-### Cadence-JackSettings
+### Caleson-JackSettings
 Requires jackdbus <br/>
 
-### Cadence-Logs
+### Caleson-Logs
 No special requirements <br/>

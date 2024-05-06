@@ -1,4 +1,4 @@
-# Cadence tools TODO
+# Caleson tools TODO
 
 -------------------
 - GENERAL -
@@ -15,7 +15,7 @@ All:
 -------------------
 - APPS -
 
-Cadence:
+Caleson:
  - add freq info to systray tooltip
  - add freq Hz change
  - add desktop decriptions

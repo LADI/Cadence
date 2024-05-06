@@ -299,11 +299,11 @@ class LogsW(QDialog):
         self.ui.pte_a2j.clear()
 
     def loadSettings(self):
-        settings = QSettings("Cadence", "Cadence-Logs")
+        settings = QSettings("Caleson", "Caleson-Logs")
         self.restoreGeometry(settings.value("Geometry", b""))
 
     def saveSettings(self):
-        settings = QSettings("Cadence", "Cadence-Logs")
+        settings = QSettings("Caleson", "Caleson-Logs")
         settings.setValue("Geometry", self.saveGeometry())
 
     def closeEvent(self, event):
@@ -330,10 +330,10 @@ if __name__ == '__main__':
 
     # App initialization
     app = QApplication(sys.argv)
-    app.setApplicationName("Cadence-Logs")
+    app.setApplicationName("Caleson-Logs")
     app.setApplicationVersion(VERSION)
-    app.setOrganizationName("Cadence")
-    app.setWindowIcon(QIcon(":/scalable/cadence.svg"))
+    app.setOrganizationName("Caleson")
+    app.setWindowIcon(QIcon(":/scalable/caleson.svg"))
     setup_i18n()
 
     # Show GUI

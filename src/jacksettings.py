@@ -889,12 +889,12 @@ class JackSettingsW(QDialog):
         self.close()
 
     def saveSettings(self):
-        settings = QSettings("Cadence", "JackSettings")
+        settings = QSettings("Caleson", "JackSettings")
         settings.setValue("Geometry", self.saveGeometry())
         settings.setValue("CurrentTab", self.ui.tabWidget.currentIndex())
 
     def loadSettings(self):
-        settings = QSettings("Cadence", "JackSettings")
+        settings = QSettings("Caleson", "JackSettings")
         self.restoreGeometry(settings.value("Geometry", b""))
         self.ui.tabWidget.setCurrentIndex(settings.value("CurrentTab", 0, type=int))
 

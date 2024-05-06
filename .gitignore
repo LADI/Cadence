@@ -34,8 +34,8 @@ qrc_resources*.cpp
 *.qm
 
 # Binaries
-c++/jackmeter/cadence-jackmeter
-c++/xycontroller/cadence-xycontroller
+c++/jackmeter/caleson-jackmeter
+c++/xycontroller/caleson-xycontroller
 
 # CX-Freeze builds
 src/dist/

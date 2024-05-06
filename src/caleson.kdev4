@@ -1,0 +1,9 @@
+[Project]
+Manager=KDevGenericManager
+Name=Caleson
+
+[Filters]
+Excludes=*/.*,*/*~,*/*.pyc,*/ui_*.py,*/__pycache__/
+
+[Project]
+VersionControlSupport=kdevgit

@@ -5,12 +5,12 @@ from PyQt5.QtWidgets import QDialog, QMessageBox
 
 import pulse2jack_tool
 
-from shared_cadence import (
+from shared_caleson import (
     GlobalSettings, sleep, tryCloseJackDBus, getProcList,
     stopAllAudioProcesses, iAlsaFileNone, iAlsaFileLoop, startAlsaAudioLoopBridge)
 from shared_canvasjack import gDBus
 
-import ui_cadence_rwait
+import ui_caleson_rwait
 
 INFO_DBUS_CLOSE = 0
 INFO_STOPPING_AUDIO_PROCESSES = 1
@@ -143,7 +143,7 @@ class ForceRestartThread(QThread):
 
 
 # Force Restart Dialog
-class ForceWaitDialog(QDialog, ui_cadence_rwait.Ui_Dialog):
+class ForceWaitDialog(QDialog, ui_caleson_rwait.Ui_Dialog):
     def __init__(self, parent):
         QDialog.__init__(self, parent)
         self.setupUi(self)

@@ -1,0 +1,37 @@
+FORMS += ../resources/ui/caleson_rwait.ui
+FORMS += ../resources/ui/caleson_tb_alsa.ui
+FORMS += ../resources/ui/caleson.ui
+FORMS += ../resources/ui/catarina_addgroup.ui
+FORMS += ../resources/ui/catarina_addport.ui
+FORMS += ../resources/ui/catarina_connectports.ui
+FORMS += ../resources/ui/catarina_disconnectports.ui
+FORMS += ../resources/ui/catarina_removegroup.ui
+FORMS += ../resources/ui/catarina_removeport.ui
+FORMS += ../resources/ui/catarina_renamegroup.ui
+FORMS += ../resources/ui/catarina_renameport.ui
+FORMS += ../resources/ui/catarina.ui
+FORMS += ../resources/ui/catia.ui
+FORMS += ../resources/ui/logs.ui
+FORMS += ../resources/ui/pulse_bridge.ui
+FORMS += ../resources/ui/render.ui
+FORMS += ../resources/ui/settings_app.ui
+FORMS += ../resources/ui/settings_jack.ui
+FORMS += ../resources/ui/xycontroller.ui
+SOURCES += ../src/caleson.py
+SOURCES += ../src/catarina.py
+SOURCES += ../src/catia.py
+SOURCES += ../src/force_restart.py
+SOURCES += ../src/jacklib_helpers.py
+SOURCES += ../src/jacklib.py
+SOURCES += ../src/jacksettings.py
+SOURCES += ../src/patchcanvas.py
+SOURCES += ../src/pulse2jack_tool.py
+SOURCES += ../src/render.py
+SOURCES += ../src/shared_caleson.py
+SOURCES += ../src/shared_canvasjack.py
+SOURCES += ../src/shared.py
+SOURCES += ../src/systray.py
+
+TRANSLATIONS += caleson_en.ts
+TRANSLATIONS += caleson_fr.ts
+
