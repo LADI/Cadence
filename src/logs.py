@@ -34,8 +34,10 @@ from shared_i18n import setup_i18n
 
 # Fix log text output (get rid of terminal colors stuff)
 
-def fixLogText(text):
-    return text.replace("[1m[31m", "").replace("[1m[33m", "").replace("[31m", "").replace("[33m", "").replace("[0m", "")
+def fixLogText(text: str) -> str:
+    return text.replace(
+        "[1m[31m", "").replace("[1m[33m", "").replace(
+            "[31m", "").replace("[33m", "").replace("[0m", "")
 
 # Syntax Highlighter for JACK
 
@@ -45,17 +47,26 @@ class SyntaxHighlighter_JACK(QSyntaxHighlighter):
 
         self.fPalette = parent.palette()
 
-    def highlightBlock(self, text):
+    def highlightBlock(self, text: str):
         if ": ERROR: " in text:
             self.setFormat(text.find(" ERROR: "), len(text), Qt.red)
         elif ": WARNING: " in text:
             self.setFormat(text.find(" WARNING: "), len(text), Qt.darkRed)
         elif ": ------------------" in text:
-            self.setFormat(text.find(" ------------------"), len(text), self.fPalette.color(QPalette.Active, QPalette.Mid))
+            self.setFormat(
+                text.find(" ------------------"),
+                len(text),
+                self.fPalette.color(QPalette.Active, QPalette.Mid))
         elif ": Connecting " in text:
-            self.setFormat(text.find(" Connecting "), len(text), self.fPalette.color(QPalette.Active, QPalette.Link))
+            self.setFormat(
+                text.find(" Connecting "),
+                len(text),
+                self.fPalette.color(QPalette.Active, QPalette.Link))
         elif ": Disconnecting " in text:
-            self.setFormat(text.find(" Disconnecting "), len(text), self.fPalette.color(QPalette.Active, QPalette.LinkVisited))
+            self.setFormat(
+                text.find(" Disconnecting "),
+                len(text),
+                self.fPalette.color(QPalette.Active, QPalette.LinkVisited))
 
 # Syntax Highlighter for A2J
 
@@ -71,11 +82,20 @@ class SyntaxHighlighter_A2J(QSyntaxHighlighter):
         elif ": WARNING: " in text:
             self.setFormat(text.find(" WARNING: "), len(text), Qt.darkRed)
         elif ": ----------------------------" in text:
-            self.setFormat(text.find("----------------------------"), len(text), self.fPalette.color(QPalette.Active, QPalette.Mid))
+            self.setFormat
+            (text.find("----------------------------"),
+             len(text),
+             self.fPalette.color(QPalette.Active, QPalette.Mid))
         elif ": port created: " in text:
-            self.setFormat(text.find(" port created: "), len(text), self.fPalette.color(QPalette.Active, QPalette.Link))
+            self.setFormat(
+                text.find(" port created: "),
+                len(text),
+                self.fPalette.color(QPalette.Active, QPalette.Link))
         elif ": port deleted: " in text:
-            self.setFormat(text.find(" port deleted: "), len(text), self.fPalette.color(QPalette.Active, QPalette.LinkVisited))
+            self.setFormat(
+                text.find(" port deleted: "),
+                len(text),
+                self.fPalette.color(QPalette.Active, QPalette.LinkVisited))
 
 # Syntax Highlighter for LASH
 
@@ -91,7 +111,10 @@ class SyntaxHighlighter_LASH(QSyntaxHighlighter):
         elif ": WARNING: " in text:
             self.setFormat(text.find(" WARNING: "), len(text), Qt.darkRed)
         elif ": ------------------" in text:
-            self.setFormat(text.find(" ------------------"), len(text), self.fPalette.color(QPalette.Active, QPalette.Mid))
+            self.setFormat(
+                text.find(" ------------------"),
+                len(text),
+                self.fPalette.color(QPalette.Active, QPalette.Mid))
 
 
 # Lock-less file read thread
@@ -124,7 +147,8 @@ class LogsReadThread(QThread):
             self.fLogStreamJACK.setCodec("UTF-8")
 
             if self.fLogFileJACK.size() > self.MAX_INITIAL_SIZE:
-                self.fLogStreamJACK.seek(self.fLogFileJACK.size() - self.MAX_INITIAL_SIZE)
+                self.fLogStreamJACK.seek(
+                    self.fLogFileJACK.size() - self.MAX_INITIAL_SIZE)
 
         if self.LOG_FILE_A2J is not None:
             self.fLogFileA2J = QFile(self.LOG_FILE_A2J)
@@ -133,7 +157,8 @@ class LogsReadThread(QThread):
             self.fLogStreamA2J.setCodec("UTF-8")
 
             if self.fLogFileA2J.size() > self.MAX_INITIAL_SIZE:
-                self.fLogStreamA2J.seek(self.fLogFileA2J.size() - self.MAX_INITIAL_SIZE)
+                self.fLogStreamA2J.seek(
+                    self.fLogFileA2J.size() - self.MAX_INITIAL_SIZE)
 
     def closeNow(self):
         self.fCloseNow = True
@@ -165,7 +190,8 @@ class LogsReadThread(QThread):
 
             else:
                 if self.LOG_FILE_JACK:
-                    textJACK = fixLogText(self.fLogStreamJACK.readAll()).strip()
+                    textJACK = fixLogText(
+                        self.fLogStreamJACK.readAll()).strip()
                 else:
                     textJACK = ""
 
@@ -287,9 +313,11 @@ class LogsW(QDialog):
 
         if self.fFirstRun:
             self.ui.pte_jack.horizontalScrollBar().setValue(0)
-            self.ui.pte_jack.verticalScrollBar().setValue(self.ui.pte_jack.verticalScrollBar().maximum())
+            self.ui.pte_jack.verticalScrollBar().setValue(
+                self.ui.pte_jack.verticalScrollBar().maximum())
             self.ui.pte_a2j.horizontalScrollBar().setValue(0)
-            self.ui.pte_a2j.verticalScrollBar().setValue(self.ui.pte_a2j.verticalScrollBar().maximum())
+            self.ui.pte_a2j.verticalScrollBar().setValue(
+                self.ui.pte_a2j.verticalScrollBar().maximum())
             self.fFirstRun = False
 
     @pyqtSlot()

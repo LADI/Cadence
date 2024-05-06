@@ -419,9 +419,6 @@ def smartHex(value, length):
 
 # ---------------------------------------------------------------------
 
-calesonSystemChecks = []
-
-
 class CalesonSystemCheck(object):
     ICON_ERROR = 0
     ICON_WARN = 1
@@ -546,20 +543,20 @@ class CalesonSystemCheck_kernel(CalesonSystemCheck):
     def tr(self, text):
         return app.translate("CalesonSystemCheck_kernel", text)
 
+calesonSystemChecks = list[CalesonSystemCheck]()
+
 def initSystemChecks():
     if LINUX:
         calesonSystemChecks.append(CalesonSystemCheck_kernel())
         calesonSystemChecks.append(CalesonSystemCheck_audioGroup())
 
-# ---------------------------------------------------------------------
-
-
 
 # Additional ALSA Audio options
-class ToolBarAlsaAudioDialog(QDialog, ui_caleson_tb_alsa.Ui_Dialog):
+class ToolBarAlsaAudioDialog(QDialog):
     def __init__(self, parent, customMode):
         QDialog.__init__(self, parent)
-        self.setupUi(self)
+        self.ui = ui_caleson_tb_alsa.Ui_Dialog()
+        self.ui.setupUi(self)
 
         self.asoundrcFile = os.path.join(HOME, ".asoundrc")
         self.fCustomMode = customMode
@@ -568,32 +565,38 @@ class ToolBarAlsaAudioDialog(QDialog, ui_caleson_tb_alsa.Ui_Dialog):
             asoundrcFd = open(self.asoundrcFile, "r")
             asoundrcRead = asoundrcFd.read().strip()
             asoundrcFd.close()
-            self.textBrowser.setPlainText(asoundrcRead)
-            self.stackedWidget.setCurrentIndex(0)
-            self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel)
+            self.ui.textBrowser.setPlainText(asoundrcRead)
+            self.ui.stackedWidget.setCurrentIndex(0)
+            self.ui.buttonBox.setStandardButtons(QDialogButtonBox.Cancel)
         else:
-            self.textBrowser.hide()
-            self.stackedWidget.setCurrentIndex(1)
+            self.ui.textBrowser.hide()
+            self.ui.stackedWidget.setCurrentIndex(1)
             self.adjustSize()
 
-            self.spinBox.setValue(GlobalSettings.value("ALSA-Audio/BridgeChannels", 2, type=int))
+            self.ui.spinBox.setValue(
+                GlobalSettings.value("ALSA-Audio/BridgeChannels", 2, type=int))
 
-            if GlobalSettings.value("ALSA-Audio/BridgeTool", "alsa_in", type=str) == "zita":
-                self.comboBox.setCurrentIndex(1)
+            if (GlobalSettings.value(
+                        "ALSA-Audio/BridgeTool", "alsa_in", type=str)
+                    == "zita"):
+                self.ui.comboBox.setCurrentIndex(1)
             else:
-                self.comboBox.setCurrentIndex(0)
+                self.ui.comboBox.setCurrentIndex(0)
 
             self.accepted.connect(self.slot_setOptions)
 
     @pyqtSlot()
     def slot_setOptions(self):
-        channels = self.spinBox.value()
+        channels = self.ui.spinBox.value()
         GlobalSettings.setValue("ALSA-Audio/BridgeChannels", channels)
-        GlobalSettings.setValue("ALSA-Audio/BridgeTool", "zita" if (self.comboBox.currentIndex() == 1) else "alsa_in")
+        GlobalSettings.setValue(
+            "ALSA-Audio/BridgeTool",
+            "zita" if (self.ui.comboBox.currentIndex() == 1) else "alsa_in")
 
-        asoundrcFd = open(self.asoundrcFile, "w")
-        asoundrcFd.write(asoundrc_aloop.replace("channels 2\n", "channels %i\n" % channels) + "\n")
-        asoundrcFd.close()
+        with open(self.asoundrcFile, "w") as asoundrcFd:
+            asoundrcFd.write(
+                asoundrc_aloop.replace(
+                    "channels 2\n", "channels %i\n" % channels) + "\n")
 
     def done(self, r):
         QDialog.done(self, r)
@@ -654,6 +657,7 @@ class PaBridgeFrame(QFrame):
         bridge_dict['channels'] = self.ui.spinBoxChannels.value()
         return bridge_dict
 
+
 class PaBridgeItem(QListWidgetItem):
     def __init__(self, parent, edited_signal, bridge_dict: dict):
         QListWidgetItem.__init__(self, parent, QListWidgetItem.UserType + 1)
@@ -666,7 +670,7 @@ class PaBridgeItem(QListWidgetItem):
 
 
 # Main Window
-class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
+class CalesonMainW(QMainWindow):
     DBusJackServerStartedCallback = pyqtSignal()
     DBusJackServerStoppedCallback = pyqtSignal()
     DBusJackClientAppearedCallback = pyqtSignal(int, str)
@@ -682,7 +686,8 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
 
     def __init__(self, parent=None):
         QMainWindow.__init__(self, parent)
-        self.setupUi(self)
+        self.ui = ui_caleson.Ui_CalesonMainW()
+        self.ui.setupUi(self)
 
         self.settings = QSettings("Caleson", "Caleson")
         self.loadSettings(True)
@@ -695,7 +700,7 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
         self.m_lastAlsaIndexType = -2 # invalid
 
         if jacklib and not jacklib.JACK2:
-            self.b_jack_switchmaster.setEnabled(False)
+            self.ui.b_jack_switchmaster.setEnabled(False)
 
         # -------------------------------------------------------------
         # Set-up GUI (System Information)
@@ -711,29 +716,36 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
         else:
             info = ("Unknown", "Unknown")
 
-        self.label_info_os.setText(info[0])
-        self.label_info_version.setText(info[1])
-        self.label_info_arch.setText(get_architecture())
+        self.ui.label_info_os.setText(info[0])
+        self.ui.label_info_version.setText(info[1])
+        self.ui.label_info_arch.setText(get_architecture())
 
-        # -------------------------------------------------------------
         # Set-up GUI (System Status)
 
-        self.m_availGovPath = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors"
-        self.m_curGovPath = "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor"
-        self.m_curGovPaths = []
-        self.m_curGovCPUs = []
+        self.m_availGovPath = \
+            "/sys/devices/system/cpu/cpu0/cpufreq/scaling_available_governors"
+        self.m_curGovPath = \
+            "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor"
+        self.m_curGovPaths = list[str]()
+        self.m_curGovCPUs = list[int]()
 
         try:
             fBus = dbus.SystemBus(mainloop=gDBus.loop)
-            fProxy = fBus.get_object("com.ubuntu.IndicatorCpufreqSelector", "/Selector", introspect=False)
+            fProxy = fBus.get_object(
+                "com.ubuntu.IndicatorCpufreqSelector",
+                "/Selector",
+                introspect=False)
             haveFreqSelector = True
         except:
             haveFreqSelector = False
 
-        if haveFreqSelector and os.path.exists(self.m_availGovPath) and os.path.exists(self.m_curGovPath):
+        if (haveFreqSelector
+                and os.path.exists(self.m_availGovPath)
+                and os.path.exists(self.m_curGovPath)):
             self.m_govWatcher = QFileSystemWatcher(self)
             self.m_govWatcher.addPath(self.m_curGovPath)
-            self.m_govWatcher.fileChanged.connect(self.slot_governorFileChanged)
+            self.m_govWatcher.fileChanged.connect(
+                self.slot_governorFileChanged)
             QTimer.singleShot(0, self.slot_governorFileChanged)
 
             availGovFd = open(self.m_availGovPath, "r")
@@ -742,41 +754,43 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
 
             self.m_availGovList = availGovRead.split(" ")
             for availGov in self.m_availGovList:
-                self.cb_cpufreq.addItem(availGov)
+                self.ui.cb_cpufreq.addItem(availGov)
 
             for root, dirs, files in os.walk("/sys/devices/system/cpu/"):
                 for dir_ in [dir_ for dir_ in dirs if dir_.startswith("cpu")]:
                     if not dir_.replace("cpu", "", 1).isdigit():
                         continue
 
-                    cpuGovPath = os.path.join(root, dir_, "cpufreq", "scaling_governor")
+                    cpuGovPath = os.path.join(
+                        root, dir_, "cpufreq", "scaling_governor")
 
                     if os.path.exists(cpuGovPath):
                         self.m_curGovPaths.append(cpuGovPath)
-                        self.m_curGovCPUs.append(int(dir_.replace("cpu", "", 1)))
+                        self.m_curGovCPUs.append(
+                            int(dir_.replace("cpu", "", 1)))
 
-            self.cb_cpufreq.setCurrentIndex(-1)
+            self.ui.cb_cpufreq.setCurrentIndex(-1)
 
         else:
             self.m_govWatcher = None
-            self.cb_cpufreq.setEnabled(False)
-            self.label_cpufreq.setEnabled(False)
+            self.ui.cb_cpufreq.setEnabled(False)
+            self.ui.label_cpufreq.setEnabled(False)
 
         # -------------------------------------------------------------
         # Set-up GUI (System Checks)
 
         for check in calesonSystemChecks:
             if check.get_id() == 'kernel':
-                self.labelUsedKernel.setText(check.result)
+                self.ui.labelUsedKernel.setText(check.result)
                 if check.moreInfo:
-                    self.labelUsedKernel.setToolTip(check.moreInfo)
-                widgetIcon = self.labelUsedKernelIcon
+                    self.ui.labelUsedKernel.setToolTip(check.moreInfo)
+                widgetIcon = self.ui.labelUsedKernelIcon
                 
             elif check.get_id() == 'audio_group':
-                self.labelUserInAudioGroup.setText(check.result)
+                self.ui.labelUserInAudioGroup.setText(check.result)
                 if check.moreInfo:
-                    self.labelUserInAudioGroup.setToolTip(check.moreInfo)
-                widgetIcon = self.labelUserInAudioGroupIcon
+                    self.ui.labelUserInAudioGroup.setToolTip(check.moreInfo)
+                widgetIcon = self.ui.labelUserInAudioGroupIcon
 
             if check.icon == check.ICON_ERROR:
                 widgetIcon.setPixmap(self.pix_error)
@@ -799,51 +813,51 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
 
         if not havePulseAudio:
             #self.toolBox_pulseaudio.setEnabled(False)
-            self.label_bridge_pulse.setText(self.tr("PulseAudio is not installed"))
+            self.ui.label_bridge_pulse.setText(self.tr("PulseAudio is not installed"))
         
         self._pulse_bridge_dicts = pulse2jack_tool.get_existing_modules_in_dicts()
         for bridge_dict in self._pulse_bridge_dicts:
             if bridge_dict['type'] == 'source':
-                source_item = PaBridgeItem(self.listWidgetPulseSources,
+                source_item = PaBridgeItem(self.ui.listWidgetPulseSources,
                                            self.pulse_bridges_edited, bridge_dict)
-                self.listWidgetPulseSources.addItem(source_item)
+                self.ui.listWidgetPulseSources.addItem(source_item)
             else:
-                sink_item = PaBridgeItem(self.listWidgetPulseSinks,
+                sink_item = PaBridgeItem(self.ui.listWidgetPulseSinks,
                                          self.pulse_bridges_edited, bridge_dict)
-                self.listWidgetPulseSinks.addItem(sink_item)
+                self.ui.listWidgetPulseSinks.addItem(sink_item)
         
         # Not available in cxfreeze builds
         if sys.argv[0].endswith("/caleson"):
-            self.groupBox_bridges.setEnabled(False)
-            self.cb_jack_autostart.setEnabled(False)
+            # self.ui.groupBox_bridges.setEnabled(False)
+            self.ui.cb_jack_autostart.setEnabled(False)
 
         # -------------------------------------------------------------
         # Set-up GUI (Tweaks)
 
         self.settings_changed_types = []
-        self.frame_tweaks_settings.setVisible(False)
+        self.ui.frame_tweaks_settings.setVisible(False)
 
-        for i in range(self.tw_tweaks.rowCount()):
-            self.tw_tweaks.item(i, 0).setTextAlignment(Qt.AlignCenter)
+        for i in range(self.ui.tw_tweaks.rowCount()):
+            self.ui.tw_tweaks.item(i, 0).setTextAlignment(Qt.AlignCenter)
 
-        self.tw_tweaks.setCurrentCell(0, 0)
+        self.ui.tw_tweaks.setCurrentCell(0, 0)
 
         # -------------------------------------------------------------
         # Set-up GUI (Tweaks, Audio Plugins PATH)
 
-        self.b_tweak_plugins_change.setEnabled(False)
-        self.b_tweak_plugins_remove.setEnabled(False)
+        self.ui.b_tweak_plugins_change.setEnabled(False)
+        self.ui.b_tweak_plugins_remove.setEnabled(False)
         
         self.plugins_dict = {
-            'LADSPA': {'index': 0, 'widget': self.list_LADSPA, 'paths': []},
-            'DSSI': {'index': 1, 'widget': self.list_DSSI, 'paths': []},
-            'LV2': {'index': 2, 'widget': self.list_LV2, 'paths': []},
-            'VST': {'index': 3, 'widget': self.list_VST, 'paths': []},
-            'VST3': {'index': 4, 'widget': self.list_VST3, 'paths': []},
-            'LXVST': {'index': 5, 'widget': self.list_LXVST, 'paths': []}}
+            'LADSPA': {'index': 0, 'widget': self.ui.list_LADSPA, 'paths': []},
+            'DSSI': {'index': 1, 'widget': self.ui.list_DSSI, 'paths': []},
+            'LV2': {'index': 2, 'widget': self.ui.list_LV2, 'paths': []},
+            'VST': {'index': 3, 'widget': self.ui.list_VST, 'paths': []},
+            'VST3': {'index': 4, 'widget': self.ui.list_VST3, 'paths': []},
+            'LXVST': {'index': 5, 'widget': self.ui.list_LXVST, 'paths': []}}
 
         for key, p_dict in self.plugins_dict.items():
-            paths = GlobalSettings.value(
+            paths: str = GlobalSettings.value(
                 "AudioPlugins/%s_PATH" % key,
                 DEFAULT_PLUGIN_PATH[key],
                 type=str)
@@ -868,40 +882,41 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
 
         for desktop in DESKTOP_X_IMAGE:
             if isDesktopFileInstalled(desktop):
-                self.cb_app_image.addItem(desktop)
+                self.ui.cb_app_image.addItem(desktop)
 
         for desktop in DESKTOP_X_MUSIC:
             if isDesktopFileInstalled(desktop):
-                self.cb_app_music.addItem(desktop)
+                self.ui.cb_app_music.addItem(desktop)
 
         for desktop in DESKTOP_X_VIDEO:
             if isDesktopFileInstalled(desktop):
-                self.cb_app_video.addItem(desktop)
+                self.ui.cb_app_video.addItem(desktop)
 
         for desktop in DESKTOP_X_TEXT:
             if isDesktopFileInstalled(desktop):
-                self.cb_app_text.addItem(desktop)
+                self.ui.cb_app_text.addItem(desktop)
 
         for desktop in DESKTOP_X_BROWSER:
             if isDesktopFileInstalled(desktop):
-                self.cb_app_browser.addItem(desktop)
+                self.ui.cb_app_browser.addItem(desktop)
 
-        if self.cb_app_image.count() == 0:
-            self.ch_app_image.setEnabled(False)
+        if self.ui.cb_app_image.count() == 0:
+            self.ui.ch_app_image.setEnabled(False)
 
-        if self.cb_app_music.count() == 0:
-            self.ch_app_music.setEnabled(False)
+        if self.ui.cb_app_music.count() == 0:
+            self.ui.ch_app_music.setEnabled(False)
 
-        if self.cb_app_video.count() == 0:
-            self.ch_app_video.setEnabled(False)
+        if self.ui.cb_app_video.count() == 0:
+            self.ui.ch_app_video.setEnabled(False)
 
-        if self.cb_app_text.count() == 0:
-            self.ch_app_text.setEnabled(False)
+        if self.ui.cb_app_text.count() == 0:
+            self.ui.ch_app_text.setEnabled(False)
 
-        if self.cb_app_browser.count() == 0:
-            self.ch_app_browser.setEnabled(False)
+        if self.ui.cb_app_browser.count() == 0:
+            self.ui.ch_app_browser.setEnabled(False)
 
-        mimeappsPath = os.path.join(HOME, ".local", "share", "applications", "mimeapps.list")
+        mimeappsPath = os.path.join(
+            HOME, ".local", "share", "applications", "mimeapps.list")
 
         if os.path.exists(mimeappsPath):
             fd = open(mimeappsPath, "r")
@@ -914,20 +929,20 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
             x_text = getXdgProperty(mimeappsRead, "text/plain")
             x_browser = getXdgProperty(mimeappsRead, "text/html")
 
-            if x_image and searchAndSetComboBoxValue(self.cb_app_image, x_image):
-                self.ch_app_image.setChecked(True)
+            if x_image and searchAndSetComboBoxValue(self.ui.cb_app_image, x_image):
+                self.ui.ch_app_image.setChecked(True)
 
-            if x_music and searchAndSetComboBoxValue(self.cb_app_music, x_music):
-                self.ch_app_music.setChecked(True)
+            if x_music and searchAndSetComboBoxValue(self.ui.cb_app_music, x_music):
+                self.ui.ch_app_music.setChecked(True)
 
-            if x_video and searchAndSetComboBoxValue(self.cb_app_video, x_video):
-                self.ch_app_video.setChecked(True)
+            if x_video and searchAndSetComboBoxValue(self.ui.cb_app_video, x_video):
+                self.ui.ch_app_video.setChecked(True)
 
-            if x_text and searchAndSetComboBoxValue(self.cb_app_text, x_text):
-                self.ch_app_text.setChecked(True)
+            if x_text and searchAndSetComboBoxValue(self.ui.cb_app_text, x_text):
+                self.ui.ch_app_text.setChecked(True)
 
-            if x_browser and searchAndSetComboBoxValue(self.cb_app_browser, x_browser):
-                self.ch_app_browser.setChecked(True)
+            if x_browser and searchAndSetComboBoxValue(self.ui.cb_app_browser, x_browser):
+                self.ui.ch_app_browser.setChecked(True)
 
         else: # ~/.local/share/applications/mimeapps.list doesn't exist
             if not os.path.exists(os.path.join(HOME, ".local")):
@@ -941,29 +956,36 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
         # Set-up GUI (Tweaks, WineASIO)
 
         if haveWine:
-            ins = int(getWineAsioKeyValue("Number of inputs", "00000010"), 16)
-            outs = int(getWineAsioKeyValue("Number of outputs", "00000010"), 16)
-            hw = bool(int(getWineAsioKeyValue("Connect to hardware", "00000001"), 10))
+            ins = int(
+                getWineAsioKeyValue("Number of inputs", "00000010"), 16)
+            outs = int(
+                getWineAsioKeyValue("Number of outputs", "00000010"), 16)
+            hw = bool(int(
+                getWineAsioKeyValue("Connect to hardware", "00000001"), 10))
 
-            autostart = bool(int(getWineAsioKeyValue("Autostart server", "00000000"), 10))
-            fixed_bsize = bool(int(getWineAsioKeyValue("Fixed buffersize", "00000001"), 10))
-            prefer_bsize = int(getWineAsioKeyValue("Preferred buffersize", "00000400"), 16)
+            autostart = bool(int(
+                getWineAsioKeyValue("Autostart server", "00000000"), 10))
+            fixed_bsize = bool(int(
+                getWineAsioKeyValue("Fixed buffersize", "00000001"), 10))
+            prefer_bsize = int(
+                getWineAsioKeyValue("Preferred buffersize", "00000400"), 16)
 
             for bsize in BUFFER_SIZE_LIST:
-                self.cb_wineasio_bsizes.addItem(str(bsize))
+                self.ui.cb_wineasio_bsizes.addItem(str(bsize))
                 if bsize == prefer_bsize:
-                    self.cb_wineasio_bsizes.setCurrentIndex(self.cb_wineasio_bsizes.count()-1)
+                    self.ui.cb_wineasio_bsizes.setCurrentIndex(
+                        self.ui.cb_wineasio_bsizes.count()-1)
 
-            self.sb_wineasio_ins.setValue(ins)
-            self.sb_wineasio_outs.setValue(outs)
-            self.cb_wineasio_hw.setChecked(hw)
+            self.ui.sb_wineasio_ins.setValue(ins)
+            self.ui.sb_wineasio_outs.setValue(outs)
+            self.ui.cb_wineasio_hw.setChecked(hw)
 
-            self.cb_wineasio_autostart.setChecked(autostart)
-            self.cb_wineasio_fixed_bsize.setChecked(fixed_bsize)
+            self.ui.cb_wineasio_autostart.setChecked(autostart)
+            self.ui.cb_wineasio_fixed_bsize.setChecked(fixed_bsize)
 
         else:
             # No Wine
-            self.tw_tweaks.hideRow(2)
+            self.ui.tw_tweaks.hideRow(2)
 
         # -------------------------------------------------------------
         # Set-up systray
@@ -1033,39 +1055,36 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
         # -------------------------------------------------------------
         # Set-up connections
 
-        self.b_jack_start.clicked.connect(self.slot_JackServerStart)
-        self.b_jack_stop.clicked.connect(self.slot_JackServerStop)
-        self.b_jack_restart.clicked.connect(self.slot_JackServerForceRestart)
-        self.b_jack_configure.clicked.connect(self.slot_JackServerConfigure)
-        self.b_jack_switchmaster.clicked.connect(self.slot_JackServerSwitchMaster)
+        self.ui.b_jack_start.clicked.connect(self.slot_JackServerStart)
+        self.ui.b_jack_stop.clicked.connect(self.slot_JackServerStop)
+        self.ui.b_jack_restart.clicked.connect(self.slot_JackServerForceRestart)
+        self.ui.b_jack_configure.clicked.connect(self.slot_JackServerConfigure)
+        self.ui.b_jack_switchmaster.clicked.connect(self.slot_JackServerSwitchMaster)
 
-        self.b_alsa_start.clicked.connect(self.slot_AlsaBridgeStart)
-        self.b_alsa_stop.clicked.connect(self.slot_AlsaBridgeStop)
-        self.cb_alsa_type.currentIndexChanged[int].connect(self.slot_AlsaBridgeChanged)
-        self.tb_alsa_options.clicked.connect(self.slot_AlsaAudioBridgeOptions)
+        self.ui.b_alsa_start.clicked.connect(self.slot_AlsaBridgeStart)
+        self.ui.b_alsa_stop.clicked.connect(self.slot_AlsaBridgeStop)
+        self.ui.cb_alsa_type.currentIndexChanged[int].connect(self.slot_AlsaBridgeChanged)
+        self.ui.tb_alsa_options.clicked.connect(self.slot_AlsaAudioBridgeOptions)
 
-        self.b_a2j_start.clicked.connect(self.slot_A2JBridgeStart)
-        self.b_a2j_stop.clicked.connect(self.slot_A2JBridgeStop)
-        self.b_pulse_apply.clicked.connect(self.slot_PulseAudioBridgeApply)
-        self.b_pulse_start.clicked.connect(self.slot_PulseAudioBridgeStart)
-        self.b_pulse_stop.clicked.connect(self.slot_PulseAudioBridgeStop)
-        self.pushButtonAddPulseSource.clicked.connect(self.slot_PulseAudioBridgeAddSource)
-        self.pushButtonAddPulseSink.clicked.connect(self.slot_PulseAudioBridgeAddSink)
+        self.ui.b_a2j_start.clicked.connect(self.slot_A2JBridgeStart)
+        self.ui.b_a2j_stop.clicked.connect(self.slot_A2JBridgeStop)
+        self.ui.b_pulse_apply.clicked.connect(self.slot_PulseAudioBridgeApply)
+        self.ui.b_pulse_start.clicked.connect(self.slot_PulseAudioBridgeStart)
+        self.ui.b_pulse_stop.clicked.connect(self.slot_PulseAudioBridgeStop)
+        self.ui.pushButtonAddPulseSource.clicked.connect(self.slot_PulseAudioBridgeAddSource)
+        self.ui.pushButtonAddPulseSink.clicked.connect(self.slot_PulseAudioBridgeAddSink)
 
-        self.pic_catia.clicked.connect(self.func_start_catia)
-        self.pic_meter_in.clicked.connect(self.func_start_jackmeter_in)
-        self.pic_meter_out.clicked.connect(self.func_start_jackmeter)
-        self.pic_logs.clicked.connect(self.func_start_logs)
-        self.pic_render.clicked.connect(self.func_start_render)
-        self.pic_xycontroller.clicked.connect(self.func_start_xycontroller)
+        self.ui.pic_catia.clicked.connect(self.func_start_catia)
+        self.ui.pic_logs.clicked.connect(self.func_start_logs)
+        self.ui.pic_render.clicked.connect(self.func_start_render)
 
-        self.b_tweaks_apply_now.clicked.connect(self.slot_tweaksApply)
+        self.ui.b_tweaks_apply_now.clicked.connect(self.slot_tweaksApply)
 
-        self.b_tweak_plugins_add.clicked.connect(self.slot_tweakPluginAdd)
-        self.b_tweak_plugins_change.clicked.connect(self.slot_tweakPluginChange)
-        self.b_tweak_plugins_remove.clicked.connect(self.slot_tweakPluginRemove)
-        self.b_tweak_plugins_reset.clicked.connect(self.slot_tweakPluginReset)
-        self.tb_tweak_plugins.currentChanged.connect(self.slot_tweakPluginTypeChanged)
+        self.ui.b_tweak_plugins_add.clicked.connect(self.slot_tweakPluginAdd)
+        self.ui.b_tweak_plugins_change.clicked.connect(self.slot_tweakPluginChange)
+        self.ui.b_tweak_plugins_remove.clicked.connect(self.slot_tweakPluginRemove)
+        self.ui.b_tweak_plugins_reset.clicked.connect(self.slot_tweakPluginReset)
+        self.ui.tb_tweak_plugins.currentChanged.connect(self.slot_tweakPluginTypeChanged)
         
         for key, p_dict in self.plugins_dict.items():
             p_dict['widget'].currentRowChanged.connect(
@@ -1073,28 +1092,28 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
             p_dict['widget'].drop_event.connect(
                 self.slot_tweakPluginsOrderChanged)
 
-        self.ch_app_image.clicked.connect(self.slot_tweaksSettingsChanged_apps)
-        self.cb_app_image.highlighted.connect(self.slot_tweakAppImageHighlighted)
-        #self.cb_app_image.currentIndexChanged[int].connect(self.slot_tweakAppImageChanged)
-        self.ch_app_music.clicked.connect(self.slot_tweaksSettingsChanged_apps)
-        self.cb_app_music.highlighted.connect(self.slot_tweakAppMusicHighlighted)
-        self.cb_app_music.currentIndexChanged[int].connect(self.slot_tweakAppMusicChanged)
-        self.ch_app_video.clicked.connect(self.slot_tweaksSettingsChanged_apps)
-        self.cb_app_video.highlighted.connect(self.slot_tweakAppVideoHighlighted)
-        self.cb_app_video.currentIndexChanged[int].connect(self.slot_tweakAppVideoChanged)
-        self.ch_app_text.clicked.connect(self.slot_tweaksSettingsChanged_apps)
-        self.cb_app_text.highlighted.connect(self.slot_tweakAppTextHighlighted)
-        self.cb_app_text.currentIndexChanged[int].connect(self.slot_tweakAppTextChanged)
-        self.ch_app_browser.clicked.connect(self.slot_tweaksSettingsChanged_apps)
-        self.cb_app_browser.highlighted.connect(self.slot_tweakAppBrowserHighlighted)
-        self.cb_app_browser.currentIndexChanged[int].connect(self.slot_tweakAppBrowserChanged)
+        self.ui.ch_app_image.clicked.connect(self.slot_tweaksSettingsChanged_apps)
+        self.ui.cb_app_image.highlighted.connect(self.slot_tweakAppImageHighlighted)
+        #self.ui.cb_app_image.currentIndexChanged[int].connect(self.slot_tweakAppImageChanged)
+        self.ui.ch_app_music.clicked.connect(self.slot_tweaksSettingsChanged_apps)
+        self.ui.cb_app_music.highlighted.connect(self.slot_tweakAppMusicHighlighted)
+        self.ui.cb_app_music.currentIndexChanged[int].connect(self.slot_tweakAppMusicChanged)
+        self.ui.ch_app_video.clicked.connect(self.slot_tweaksSettingsChanged_apps)
+        self.ui.cb_app_video.highlighted.connect(self.slot_tweakAppVideoHighlighted)
+        self.ui.cb_app_video.currentIndexChanged[int].connect(self.slot_tweakAppVideoChanged)
+        self.ui.ch_app_text.clicked.connect(self.slot_tweaksSettingsChanged_apps)
+        self.ui.cb_app_text.highlighted.connect(self.slot_tweakAppTextHighlighted)
+        self.ui.cb_app_text.currentIndexChanged[int].connect(self.slot_tweakAppTextChanged)
+        self.ui.ch_app_browser.clicked.connect(self.slot_tweaksSettingsChanged_apps)
+        self.ui.cb_app_browser.highlighted.connect(self.slot_tweakAppBrowserHighlighted)
+        self.ui.cb_app_browser.currentIndexChanged[int].connect(self.slot_tweakAppBrowserChanged)
 
-        self.sb_wineasio_ins.valueChanged.connect(self.slot_tweaksSettingsChanged_wineasio)
-        self.sb_wineasio_outs.valueChanged.connect(self.slot_tweaksSettingsChanged_wineasio)
-        self.cb_wineasio_hw.clicked.connect(self.slot_tweaksSettingsChanged_wineasio)
-        self.cb_wineasio_autostart.clicked.connect(self.slot_tweaksSettingsChanged_wineasio)
-        self.cb_wineasio_fixed_bsize.clicked.connect(self.slot_tweaksSettingsChanged_wineasio)
-        self.cb_wineasio_bsizes.currentIndexChanged[int].connect(self.slot_tweaksSettingsChanged_wineasio)
+        self.ui.sb_wineasio_ins.valueChanged.connect(self.slot_tweaksSettingsChanged_wineasio)
+        self.ui.sb_wineasio_outs.valueChanged.connect(self.slot_tweaksSettingsChanged_wineasio)
+        self.ui.cb_wineasio_hw.clicked.connect(self.slot_tweaksSettingsChanged_wineasio)
+        self.ui.cb_wineasio_autostart.clicked.connect(self.slot_tweaksSettingsChanged_wineasio)
+        self.ui.cb_wineasio_fixed_bsize.clicked.connect(self.slot_tweaksSettingsChanged_wineasio)
+        self.ui.cb_wineasio_bsizes.currentIndexChanged[int].connect(self.slot_tweaksSettingsChanged_wineasio)
 
         # org.jackaudio.JackControl
         self.DBusJackServerStartedCallback.connect(self.slot_DBusJackServerStartedCallback)
@@ -1107,8 +1126,8 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
         # org.gna.home.a2jmidid.control
         self.DBusA2JBridgeStartedCallback.connect(self.slot_DBusA2JBridgeStartedCallback)
         self.DBusA2JBridgeStoppedCallback.connect(self.slot_DBusA2JBridgeStoppedCallback)
-        self.cb_a2j_autoexport.stateChanged[int].connect(self.slot_A2JBridgeExportHW)
-        self.cb_a2j_unique_port_names.stateChanged[int].connect(self.slot_A2JBridgeUniquePortNames)
+        self.ui.cb_a2j_autoexport.stateChanged[int].connect(self.slot_A2JBridgeExportHW)
+        self.ui.cb_a2j_unique_port_names.stateChanged[int].connect(self.slot_A2JBridgeUniquePortNames)
 
         # -------------------------------------------------------------
 
@@ -1159,21 +1178,21 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
 
             else:
                 self.jackStopped()
-                self.label_jack_realtime.setText(self.tr("Yes") if jacksettings.isRealtime() else self.tr("No"))
+                self.ui.label_jack_realtime.setText(self.tr("Yes") if jacksettings.isRealtime() else self.tr("No"))
         else:
             self.jackStopped()
-            self.label_jack_status.setText(self.tr("Unavailable"))
-            self.label_jack_status_ico.setPixmap(self.pix_error)
-            self.label_jack_realtime.setText(self.tr("Unknown"))
-            self.label_jack_realtime_ico.setPixmap(self.pix_error)
-            self.groupBox_jack.setEnabled(False)
-            self.groupBox_jack.setTitle(self.tr("-- jackdbus is not available --"))
-            self.b_jack_start.setEnabled(False)
-            self.b_jack_stop.setEnabled(False)
-            self.b_jack_restart.setEnabled(False)
-            self.b_jack_configure.setEnabled(False)
-            self.b_jack_switchmaster.setEnabled(False)
-            # self.groupBox_bridges.setEnabled(False)
+            self.ui.label_jack_status.setText(self.tr("Unavailable"))
+            self.ui.label_jack_status_ico.setPixmap(self.pix_error)
+            self.ui.label_jack_realtime.setText(self.tr("Unknown"))
+            self.ui.label_jack_realtime_ico.setPixmap(self.pix_error)
+            self.ui.groupBox_jack.setEnabled(False)
+            self.ui.groupBox_jack.setTitle(self.tr("-- jackdbus is not available --"))
+            self.ui.b_jack_start.setEnabled(False)
+            self.ui.b_jack_stop.setEnabled(False)
+            self.ui.b_jack_restart.setEnabled(False)
+            self.ui.b_jack_configure.setEnabled(False)
+            self.ui.b_jack_switchmaster.setEnabled(False)
+            # self.ui.groupBox_bridges.setEnabled(False)
 
         if gDBus.a2j:
             try:
@@ -1187,10 +1206,10 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
                 self.a2jStopped()
         else:
             # self.toolBox_alsamidi.setEnabled(False)
-            self.cb_a2j_autostart.setChecked(False)
-            self.cb_a2j_autoexport.setChecked(False)
-            self.cb_a2j_unique_port_names.setChecked(False)
-            self.label_bridge_a2j.setText(self.tr("ALSA MIDI Bridge is not installed"))
+            self.ui.cb_a2j_autostart.setChecked(False)
+            self.ui.cb_a2j_autoexport.setChecked(False)
+            self.ui.cb_a2j_unique_port_names.setChecked(False)
+            self.ui.label_bridge_a2j.setText(self.tr("ALSA MIDI Bridge is not installed"))
             self.settings.setValue("A2J/AutoStart", False)
 
         self.updateSystrayTooltip()
@@ -1233,27 +1252,27 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
         self.m_last_xruns = int(gDBus.jack.GetXruns())
         self.m_last_buffer_size = gDBus.jack.GetBufferSize()
 
-        self.b_jack_start.setEnabled(False)
-        self.b_jack_stop.setEnabled(True)
-        self.b_jack_switchmaster.setEnabled(True)
+        self.ui.b_jack_start.setEnabled(False)
+        self.ui.b_jack_stop.setEnabled(True)
+        self.ui.b_jack_switchmaster.setEnabled(True)
         self.systray.setActionEnabled("jack_start", False)
         self.systray.setActionEnabled("jack_stop", True)
 
-        self.label_jack_status.setText(self.tr("Started"))
-        self.label_jack_status_ico.setPixmap(self.pix_apply)
+        self.ui.label_jack_status.setText(self.tr("Started"))
+        self.ui.label_jack_status_ico.setPixmap(self.pix_apply)
 
         if gDBus.jack.IsRealtime():
-            self.label_jack_realtime.setText(self.tr("Yes"))
-            self.label_jack_realtime_ico.setPixmap(self.pix_apply)
+            self.ui.label_jack_realtime.setText(self.tr("Yes"))
+            self.ui.label_jack_realtime_ico.setPixmap(self.pix_apply)
         else:
-            self.label_jack_realtime.setText(self.tr("No"))
-            self.label_jack_realtime_ico.setPixmap(self.pix_cancel)
+            self.ui.label_jack_realtime.setText(self.tr("No"))
+            self.ui.label_jack_realtime_ico.setPixmap(self.pix_cancel)
 
-        self.label_jack_dsp.setText("%.2f%%" % self.m_last_dsp_load)
-        self.label_jack_xruns.setText(str(self.m_last_xruns))
-        self.label_jack_bfsize.setText(self.tr("%i samples") % self.m_last_buffer_size)
-        self.label_jack_srate.setText("%i Hz" % gDBus.jack.GetSampleRate())
-        self.label_jack_latency.setText("%.1f ms" % gDBus.jack.GetLatency())
+        self.ui.label_jack_dsp.setText("%.2f%%" % self.m_last_dsp_load)
+        self.ui.label_jack_xruns.setText(str(self.m_last_xruns))
+        self.ui.label_jack_bfsize.setText(self.tr("%i samples") % self.m_last_buffer_size)
+        self.ui.label_jack_srate.setText("%i Hz" % gDBus.jack.GetSampleRate())
+        self.ui.label_jack_latency.setText("%.1f ms" % gDBus.jack.GetLatency())
 
         self.m_timer500 = self.startTimer(500)
         self.m_timer2000 = self.startTimer(2000)
@@ -1271,7 +1290,7 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
 
                 gDBus.a2j.start()
             else:
-                self.b_a2j_start.setEnabled(True)
+                self.ui.b_a2j_start.setEnabled(True)
                 self.systray.setActionEnabled("a2j_start", True)
 
         self.checkAlsaAudio()
@@ -1289,25 +1308,25 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
         self.m_last_xruns = None
         self.m_last_buffer_size = None
 
-        self.b_jack_start.setEnabled(True)
-        self.b_jack_stop.setEnabled(False)
-        self.b_jack_switchmaster.setEnabled(False)
+        self.ui.b_jack_start.setEnabled(True)
+        self.ui.b_jack_stop.setEnabled(False)
+        self.ui.b_jack_switchmaster.setEnabled(False)
 
         if haveDBus:
             self.systray.setActionEnabled("jack_start", True)
             self.systray.setActionEnabled("jack_stop", False)
 
-        self.label_jack_status.setText(self.tr("Stopped"))
-        self.label_jack_status_ico.setPixmap(self.pix_cancel)
+        self.ui.label_jack_status.setText(self.tr("Stopped"))
+        self.ui.label_jack_status_ico.setPixmap(self.pix_cancel)
 
-        self.label_jack_dsp.setText("---")
-        self.label_jack_xruns.setText("---")
-        self.label_jack_bfsize.setText("---")
-        self.label_jack_srate.setText("---")
-        self.label_jack_latency.setText("---")
+        self.ui.label_jack_dsp.setText("---")
+        self.ui.label_jack_xruns.setText("---")
+        self.ui.label_jack_bfsize.setText("---")
+        self.ui.label_jack_srate.setText("---")
+        self.ui.label_jack_latency.setText("---")
 
         if gDBus.a2j:
-            self.b_a2j_start.setEnabled(False)
+            self.ui.b_a2j_start.setEnabled(False)
             self.systray.setActionEnabled("a2j_start", False)
 
         global jackClientIdALSA
@@ -1321,34 +1340,34 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
             self.checkPulseAudio()
 
     def a2jStarted(self):
-        self.b_a2j_start.setEnabled(False)
-        self.b_a2j_stop.setEnabled(True)
+        self.ui.b_a2j_start.setEnabled(False)
+        self.ui.b_a2j_stop.setEnabled(True)
         self.systray.setActionEnabled("a2j_start", False)
         self.systray.setActionEnabled("a2j_stop", True)
         if bool(gDBus.a2j.get_hw_export()):
-            self.label_bridge_a2j.setText(
+            self.ui.label_bridge_a2j.setText(
                 self.tr("ALSA MIDI Bridge is running, ports are exported"))
         else :
-            self.label_bridge_a2j.setText(
+            self.ui.label_bridge_a2j.setText(
                 self.tr("ALSA MIDI Bridge is running"))
 
     def a2jStopped(self):
         jackRunning = bool(gDBus.jack and gDBus.jack.IsStarted())
-        self.b_a2j_start.setEnabled(jackRunning)
-        self.b_a2j_stop.setEnabled(False)
+        self.ui.b_a2j_start.setEnabled(jackRunning)
+        self.ui.b_a2j_stop.setEnabled(False)
         self.systray.setActionEnabled("a2j_start", jackRunning)
         self.systray.setActionEnabled("a2j_stop", False)
-        self.label_bridge_a2j.setText(self.tr("ALSA MIDI Bridge is stopped"))
+        self.ui.label_bridge_a2j.setText(self.tr("ALSA MIDI Bridge is stopped"))
 
     def checkAlsaAudio(self):
         asoundrcFile = os.path.join(HOME, ".asoundrc")
 
         if not os.path.exists(asoundrcFile):
-            self.b_alsa_start.setEnabled(False)
-            self.b_alsa_stop.setEnabled(False)
-            self.cb_alsa_type.setCurrentIndex(iAlsaFileNone)
-            self.tb_alsa_options.setEnabled(False)
-            self.label_bridge_alsa.setText(self.tr("No bridge in use"))
+            self.ui.b_alsa_start.setEnabled(False)
+            self.ui.b_alsa_stop.setEnabled(False)
+            self.ui.cb_alsa_type.setCurrentIndex(iAlsaFileNone)
+            self.ui.tb_alsa_options.setEnabled(False)
+            self.ui.label_bridge_alsa.setText(self.tr("No bridge in use"))
             self.m_lastAlsaIndexType = -1 # null
             return
 
@@ -1358,54 +1377,54 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
 
         if asoundrcRead.startswith(asoundrc_aloop_check):
             if isAlsaAudioBridged():
-                self.b_alsa_start.setEnabled(False)
-                self.b_alsa_stop.setEnabled(True)
+                self.ui.b_alsa_start.setEnabled(False)
+                self.ui.b_alsa_stop.setEnabled(True)
                 self.systray.setActionEnabled("alsa_start", False)
                 self.systray.setActionEnabled("alsa_stop", True)
-                self.label_bridge_alsa.setText(self.tr("Using Caleson snd-aloop daemon, started"))
+                self.ui.label_bridge_alsa.setText(self.tr("Using Caleson snd-aloop daemon, started"))
             else:
                 try:
                     jackRunning = bool(gDBus.jack and gDBus.jack.IsStarted())
                 except:
                     jackRunning = False
-                self.b_alsa_start.setEnabled(jackRunning)
-                self.b_alsa_stop.setEnabled(False)
+                self.ui.b_alsa_start.setEnabled(jackRunning)
+                self.ui.b_alsa_stop.setEnabled(False)
                 self.systray.setActionEnabled("alsa_start", jackRunning)
                 self.systray.setActionEnabled("alsa_stop", False)
-                self.label_bridge_alsa.setText(self.tr("Using Caleson snd-aloop daemon, stopped"))
+                self.ui.label_bridge_alsa.setText(self.tr("Using Caleson snd-aloop daemon, stopped"))
 
-            self.cb_alsa_type.setCurrentIndex(iAlsaFileLoop)
-            self.tb_alsa_options.setEnabled(True)
+            self.ui.cb_alsa_type.setCurrentIndex(iAlsaFileLoop)
+            self.ui.tb_alsa_options.setEnabled(True)
 
         elif asoundrcRead == asoundrc_jack:
-            self.b_alsa_start.setEnabled(False)
-            self.b_alsa_stop.setEnabled(False)
+            self.ui.b_alsa_start.setEnabled(False)
+            self.ui.b_alsa_stop.setEnabled(False)
             self.systray.setActionEnabled("alsa_start", False)
             self.systray.setActionEnabled("alsa_stop", False)
-            self.cb_alsa_type.setCurrentIndex(iAlsaFileJACK)
-            self.tb_alsa_options.setEnabled(False)
-            self.label_bridge_alsa.setText(self.tr("Using JACK plugin bridge (Always on)"))
+            self.ui.cb_alsa_type.setCurrentIndex(iAlsaFileJACK)
+            self.ui.tb_alsa_options.setEnabled(False)
+            self.ui.label_bridge_alsa.setText(self.tr("Using JACK plugin bridge (Always on)"))
 
         elif asoundrcRead == asoundrc_pulse:
-            self.b_alsa_start.setEnabled(False)
-            self.b_alsa_stop.setEnabled(False)
+            self.ui.b_alsa_start.setEnabled(False)
+            self.ui.b_alsa_stop.setEnabled(False)
             self.systray.setActionEnabled("alsa_start", False)
             self.systray.setActionEnabled("alsa_stop", False)
-            self.cb_alsa_type.setCurrentIndex(iAlsaFilePulse)
-            self.tb_alsa_options.setEnabled(False)
-            self.label_bridge_alsa.setText(self.tr("Using PulseAudio plugin bridge (Always on)"))
+            self.ui.cb_alsa_type.setCurrentIndex(iAlsaFilePulse)
+            self.ui.tb_alsa_options.setEnabled(False)
+            self.ui.label_bridge_alsa.setText(self.tr("Using PulseAudio plugin bridge (Always on)"))
 
         else:
-            self.b_alsa_start.setEnabled(False)
-            self.b_alsa_stop.setEnabled(False)
+            self.ui.b_alsa_start.setEnabled(False)
+            self.ui.b_alsa_stop.setEnabled(False)
             self.systray.setActionEnabled("alsa_start", False)
             self.systray.setActionEnabled("alsa_stop", False)
-            self.cb_alsa_type.addItem(self.tr("Custom"))
-            self.cb_alsa_type.setCurrentIndex(iAlsaFileMax)
-            self.tb_alsa_options.setEnabled(True)
-            self.label_bridge_alsa.setText(self.tr("Using custom asoundrc, not managed by Caleson"))
+            self.ui.cb_alsa_type.addItem(self.tr("Custom"))
+            self.ui.cb_alsa_type.setCurrentIndex(iAlsaFileMax)
+            self.ui.tb_alsa_options.setEnabled(True)
+            self.ui.label_bridge_alsa.setText(self.tr("Using custom asoundrc, not managed by Caleson"))
 
-        self.m_lastAlsaIndexType = self.cb_alsa_type.currentIndex()
+        self.m_lastAlsaIndexType = self.ui.cb_alsa_type.currentIndex()
 
     def checkPulseAudio(self):
         if not havePulseAudio:
@@ -1417,15 +1436,15 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
 
         if isPulseAudioStarted():
             if self._pulse_bridge_dicts:
-                self.b_pulse_start.setEnabled(False)
-                self.b_pulse_stop.setEnabled(True)
+                self.ui.b_pulse_start.setEnabled(False)
+                self.ui.b_pulse_stop.setEnabled(True)
                 self.systray.setActionEnabled("pulse_start", False)
                 self.systray.setActionEnabled("pulse_stop", True)
                 mess = self.tr("PulseAudio is started and bridged to JACK")
             else:
                 jackRunning = bool(gDBus.jack and gDBus.jack.IsStarted())
-                self.b_pulse_start.setEnabled(jackRunning)
-                self.b_pulse_stop.setEnabled(False)
+                self.ui.b_pulse_start.setEnabled(jackRunning)
+                self.ui.b_pulse_stop.setEnabled(False)
                 self.systray.setActionEnabled("pulse_start", jackRunning)
                 self.systray.setActionEnabled("pulse_stop", False)
                 if jackRunning:
@@ -1434,8 +1453,8 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
                     mess = self.tr("PulseAudio is started but JACK is stopped")
         else:
             jackRunning = bool(gDBus.jack and gDBus.jack.IsStarted())
-            self.b_pulse_start.setEnabled(jackRunning)
-            self.b_pulse_stop.setEnabled(False)
+            self.ui.b_pulse_start.setEnabled(jackRunning)
+            self.ui.b_pulse_stop.setEnabled(False)
             self.systray.setActionEnabled("pulse_start", jackRunning)
             self.systray.setActionEnabled("pulse_stop", False)
             if jackRunning:
@@ -1443,7 +1462,7 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
             else:
                 mess = self.tr("PulseAudio is not started, nor is JACK")
 
-        self.label_bridge_pulse.setText(mess)
+        self.ui.label_bridge_pulse.setText(mess)
 
     def setAppDetails(self, desktop):
         appContents = getDesktopFileContents(desktop)
@@ -1452,25 +1471,25 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
         comment = getXdgProperty(appContents, "Comment")
 
         if not name:
-            name = self.cb_app_image.currentText().replace(".desktop","").title()
+            name = self.ui.cb_app_image.currentText().replace(".desktop","").title()
         if not icon:
             icon = ""
         if not comment:
            comment = ""
 
-        self.ico_app.setPixmap(getIcon(icon, 48).pixmap(48, 48))
-        self.label_app_name.setText(name)
-        self.label_app_comment.setText(comment)
+        self.ui.ico_app.setPixmap(getIcon(icon, 48).pixmap(48, 48))
+        self.ui.label_app_name.setText(name)
+        self.ui.label_app_comment.setText(comment)
 
     def updateSystrayTooltip(self):
         systrayText = "Caleson\n"
-        systrayText += "%s: %s\n" % (self.tr("JACK Status"), self.label_jack_status.text())
-        systrayText += "%s: %s\n" % (self.tr("Realtime"), self.label_jack_realtime.text())
-        systrayText += "%s: %s\n" % (self.tr("DSP Load"), self.label_jack_dsp.text())
-        systrayText += "%s: %s\n" % (self.tr("Xruns"), self.label_jack_xruns.text())
-        systrayText += "%s: %s\n" % (self.tr("Buffer Size"), self.label_jack_bfsize.text())
-        systrayText += "%s: %s\n" % (self.tr("Sample Rate"), self.label_jack_srate.text())
-        systrayText += "%s: %s" % (self.tr("Block Latency"), self.label_jack_latency.text())
+        systrayText += "%s: %s\n" % (self.tr("JACK Status"), self.ui.label_jack_status.text())
+        systrayText += "%s: %s\n" % (self.tr("Realtime"), self.ui.label_jack_realtime.text())
+        systrayText += "%s: %s\n" % (self.tr("DSP Load"), self.ui.label_jack_dsp.text())
+        systrayText += "%s: %s\n" % (self.tr("Xruns"), self.ui.label_jack_xruns.text())
+        systrayText += "%s: %s\n" % (self.tr("Buffer Size"), self.ui.label_jack_bfsize.text())
+        systrayText += "%s: %s\n" % (self.tr("Sample Rate"), self.ui.label_jack_srate.text())
+        systrayText += "%s: %s" % (self.tr("Block Latency"), self.ui.label_jack_latency.text())
 
         self.systray.setToolTip(systrayText)
 
@@ -1543,7 +1562,7 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
     def func_settings_changed(self, stype):
         if stype not in self.settings_changed_types:
             self.settings_changed_types.append(stype)
-        self.frame_tweaks_settings.setVisible(True)
+        self.ui.frame_tweaks_settings.setVisible(True)
 
     @pyqtSlot()
     def slot_DBusJackServerStartedCallback(self):
@@ -1591,20 +1610,20 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
     @pyqtSlot()
     def slot_checkPulseAudioBridges(self):
         self._pulse_bridge_dicts = pulse2jack_tool.get_existing_modules_in_dicts()
-        self.listWidgetPulseSources.clear()
-        self.listWidgetPulseSinks.clear()
+        self.ui.listWidgetPulseSources.clear()
+        self.ui.listWidgetPulseSinks.clear()
         
         for b_dict in self._pulse_bridge_dicts:
             if b_dict['type'] == 'sink':
                 sink_item = PaBridgeItem(
-                    self.listWidgetPulseSinks, self.pulse_bridges_edited, b_dict)
-                self.listWidgetPulseSinks.addItem(sink_item)
+                    self.ui.listWidgetPulseSinks, self.pulse_bridges_edited, b_dict)
+                self.ui.listWidgetPulseSinks.addItem(sink_item)
             else:
                 source_item = PaBridgeItem(
-                    self.listWidgetPulseSources, self.pulse_bridges_edited, b_dict)
-                self.listWidgetPulseSources.addItem(source_item)
+                    self.ui.listWidgetPulseSources, self.pulse_bridges_edited, b_dict)
+                self.ui.listWidgetPulseSources.addItem(source_item)
         
-        self.b_pulse_apply.setEnabled(False)
+        self.ui.b_pulse_apply.setEnabled(False)
         self.checkPulseAudio()
 
     @pyqtSlot()
@@ -1667,10 +1686,6 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
         if gDBus.jack:
             gDBus.jack.ResetXruns()
 
-    @pyqtSlot(int, int)
-    def slot_change_bridge_to_show(self, row, column):
-        self.stackedWidgetBridges.setCurrentIndex(row)
-
     @pyqtSlot()
     def slot_AlsaBridgeStart(self):
         self.slot_AlsaBridgeStop()
@@ -1688,22 +1703,24 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
             return
 
         if self.m_lastAlsaIndexType == iAlsaFileMax:
-            ask = CustomMessageBox(self, QMessageBox.Warning, self.tr("Warning"),
-                                   self.tr(""
-                                           "You're using a custom ~/.asoundrc file not managed by Caleson.<br/>"
-                                           "By choosing to use a Caleson ALSA-Audio bridge, <b>the file will be replaced</b>."
-                                           ""),
-                                   self.tr("Are you sure you want to do this?"))
+            ask = CustomMessageBox(
+                self, 
+                QMessageBox.Warning, self.tr("Warning"),
+                self.tr(""
+                        "You're using a custom ~/.asoundrc file not managed by Caleson.<br/>"
+                        "By choosing to use a Caleson ALSA-Audio bridge, <b>the file will be replaced</b>."
+                        ""),
+                self.tr("Are you sure you want to do this?"))
 
             if ask == QMessageBox.Yes:
-                self.cb_alsa_type.blockSignals(True)
-                self.cb_alsa_type.removeItem(iAlsaFileMax)
-                self.cb_alsa_type.setCurrentIndex(index)
-                self.cb_alsa_type.blockSignals(False)
+                self.ui.cb_alsa_type.blockSignals(True)
+                self.ui.cb_alsa_type.removeItem(iAlsaFileMax)
+                self.ui.cb_alsa_type.setCurrentIndex(index)
+                self.ui.cb_alsa_type.blockSignals(False)
             else:
-                self.cb_alsa_type.blockSignals(True)
-                self.cb_alsa_type.setCurrentIndex(iAlsaFileMax)
-                self.cb_alsa_type.blockSignals(False)
+                self.ui.cb_alsa_type.blockSignals(True)
+                self.ui.cb_alsa_type.setCurrentIndex(iAlsaFileMax)
+                self.ui.cb_alsa_type.blockSignals(False)
                 return
 
         asoundrcFile = os.path.join(HOME, ".asoundrc")
@@ -1733,7 +1750,7 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
 
     @pyqtSlot()
     def slot_AlsaAudioBridgeOptions(self):
-        ToolBarAlsaAudioDialog(self, (self.cb_alsa_type.currentIndex() != iAlsaFileLoop)).exec_()
+        ToolBarAlsaAudioDialog(self, (self.ui.cb_alsa_type.currentIndex() != iAlsaFileLoop)).exec_()
 
     @pyqtSlot()
     def slot_A2JBridgeStart(self):
@@ -1770,11 +1787,11 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
     @pyqtSlot()
     def slot_PulseAudioBridgeApply(self):
         bridge_dicts = []
-        for i in range(self.listWidgetPulseSources.count()):
-            item = self.listWidgetPulseSources.item(i)
+        for i in range(self.ui.listWidgetPulseSources.count()):
+            item = self.ui.listWidgetPulseSources.item(i)
             bridge_dicts.append(item.get_current_dict())
-        for i in range(self.listWidgetPulseSinks.count()):
-            item = self.listWidgetPulseSinks.item(i)
+        for i in range(self.ui.listWidgetPulseSinks.count()):
+            item = self.ui.listWidgetPulseSinks.item(i)
             bridge_dicts.append(item.get_current_dict())
         
         GlobalSettings.setValue('PulseAudio_bridges', bridge_dicts)
@@ -1803,7 +1820,7 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
 
     @pyqtSlot()
     def slot_PulseAudioBridgeSetEdited(self):
-        self.b_pulse_apply.setEnabled(True)
+        self.ui.b_pulse_apply.setEnabled(True)
 
     @pyqtSlot()
     def slot_PulseAudioBridgeAddSource(self):
@@ -1811,8 +1828,8 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
         i = 2
         
         while True:
-            for j in range(self.listWidgetPulseSources.count()):
-                item = self.listWidgetPulseSources.item(j)
+            for j in range(self.ui.listWidgetPulseSources.count()):
+                item = self.ui.listWidgetPulseSources.item(j)
                 if item.get_current_dict()['name'] == bridge_name:
                     break
             else:
@@ -1824,9 +1841,9 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
                 bridge_name += ' (%i)' % i
             i += 1
         
-        self.listWidgetPulseSources.addItem(
+        self.ui.listWidgetPulseSources.addItem(
             PaBridgeItem(
-                self.listWidgetPulseSources,
+                self.ui.listWidgetPulseSources,
                 self.pulse_bridges_edited,
                 {"type": "source",
                  "name": bridge_name,
@@ -1841,8 +1858,8 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
         i = 2
         
         while True:
-            for j in range(self.listWidgetPulseSinks.count()):
-                item = self.listWidgetPulseSinks.item(j)
+            for j in range(self.ui.listWidgetPulseSinks.count()):
+                item = self.ui.listWidgetPulseSinks.item(j)
                 if item.get_current_dict()['name'] == bridge_name:
                     break
             else:
@@ -1854,9 +1871,9 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
                 bridge_name += ' (%i)' % i
             i += 1
         
-        self.listWidgetPulseSinks.addItem(
+        self.ui.listWidgetPulseSinks.addItem(
             PaBridgeItem(
-                self.listWidgetPulseSinks,
+                self.ui.listWidgetPulseSinks,
                 self.pulse_bridges_edited,
                 {"type": "sink",
                  "name": bridge_name,
@@ -1878,8 +1895,12 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
         bus = dbus.SystemBus(mainloop=gDBus.loop)
         #proxy = bus.get_object("org.caleson.CpufreqSelector", "/Selector", introspect=False)
         #print(proxy.hello())
-        proxy = bus.get_object("com.ubuntu.IndicatorCpufreqSelector", "/Selector", introspect=False)
-        proxy.SetGovernor(self.m_curGovCPUs, newMode, dbus_interface="com.ubuntu.IndicatorCpufreqSelector")
+        proxy = bus.get_object(
+            "com.ubuntu.IndicatorCpufreqSelector", "/Selector",
+            introspect=False)
+        proxy.SetGovernor(
+            self.m_curGovCPUs, newMode,
+            dbus_interface="com.ubuntu.IndicatorCpufreqSelector")
 
     @pyqtSlot()
     def slot_governorFileChanged(self):
@@ -1889,25 +1910,27 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
 
         customTr = self.tr("Custom")
 
-        if self.cb_cpufreq.currentIndex() == -1:
+        if self.ui.cb_cpufreq.currentIndex() == -1:
             # First init
-            self.cb_cpufreq.currentIndexChanged[str].connect(self.slot_changeGovernorMode)
+            self.ui.cb_cpufreq.currentIndexChanged[str].connect(
+                self.slot_changeGovernorMode)
 
-        self.cb_cpufreq.blockSignals(True)
+        self.ui.cb_cpufreq.blockSignals(True)
 
         if curGovRead in self.m_availGovList:
-            self.cb_cpufreq.setCurrentIndex(self.m_availGovList.index(curGovRead))
+            self.ui.cb_cpufreq.setCurrentIndex(
+                self.m_availGovList.index(curGovRead))
 
             if customTr in self.m_availGovList:
                 self.m_availGovList.remove(customTr)
         else:
             if customTr not in self.m_availGovList:
-                self.cb_cpufreq.addItem(customTr)
+                self.ui.cb_cpufreq.addItem(customTr)
                 self.m_availGovList.append(customTr)
 
-            self.cb_cpufreq.setCurrentIndex(len(self.m_availGovList)-1)
+            self.ui.cb_cpufreq.setCurrentIndex(len(self.m_availGovList)-1)
 
-        self.cb_cpufreq.blockSignals(False)
+        self.ui.cb_cpufreq.blockSignals(False)
 
     @pyqtSlot()
     def slot_tweaksApply(self):
@@ -1932,8 +1955,8 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
             mimeFileContent += "audio/x-minipsf=audacious.desktop;\n"
             mimeFileContent += "audio/x-psf=audacious.desktop;\n"
 
-            if self.ch_app_image.isChecked():
-                imageApp = self.cb_app_image.currentText().replace("/","-")
+            if self.ui.ch_app_image.isChecked():
+                imageApp = self.ui.cb_app_image.currentText().replace("/","-")
                 mimeFileContent += "image/bmp=%s;\n" % imageApp
                 mimeFileContent += "image/gif=%s;\n" % imageApp
                 mimeFileContent += "image/jp2=%s;\n" % imageApp
@@ -1964,8 +1987,8 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
                 mimeFileContent += "image/x-xbitmap=%s;\n" % imageApp
                 mimeFileContent += "image/x-xpixmap=%s;\n" % imageApp
 
-            if self.ch_app_music.isChecked():
-                musicApp = self.cb_app_music.currentText().replace("/","-")
+            if self.ui.ch_app_music.isChecked():
+                musicApp = self.ui.cb_app_music.currentText().replace("/","-")
                 mimeFileContent += "application/vnd.apple.mpegurl=%s;\n" % musicApp
                 mimeFileContent += "application/xspf+xml=%s;\n" % musicApp
                 mimeFileContent += "application/x-smaf=%s;\n" % musicApp
@@ -2012,8 +2035,8 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
                 mimeFileContent += "audio/x-wav=%s;\n" % musicApp
                 mimeFileContent += "audio/x-wavpack=%s;\n" % musicApp
 
-            if self.ch_app_video.isChecked():
-                videoApp = self.cb_app_video.currentText().replace("/","-")
+            if self.ui.ch_app_video.isChecked():
+                videoApp = self.ui.cb_app_video.currentText().replace("/","-")
                 mimeFileContent +="application/mxf=%s;\n" % videoApp
                 mimeFileContent +="application/ogg=%s;\n" % videoApp
                 mimeFileContent +="application/ram=%s;\n" % videoApp
@@ -2057,9 +2080,9 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
                 mimeFileContent +="video/x-theora+ogg=%s;\n" % videoApp
                 mimeFileContent +="video/x-wmv=%s;\n" % videoApp
 
-            if self.ch_app_text.isChecked():
+            if self.ui.ch_app_text.isChecked():
                 # TODO - more mimetypes
-                textApp = self.cb_app_text.currentText().replace("/","-")
+                textApp = self.ui.cb_app_text.currentText().replace("/","-")
                 mimeFileContent +="application/rdf+xml=%s;\n" % textApp
                 mimeFileContent +="application/xml=%s;\n" % textApp
                 mimeFileContent +="application/xml-dtd=%s;\n" % textApp
@@ -2096,9 +2119,9 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
                 mimeFileContent +="text/x-readme=%s;\n" % textApp
                 mimeFileContent +="text/x-vhdl=%s;\n" % textApp
 
-            if self.ch_app_browser.isChecked():
+            if self.ui.ch_app_browser.isChecked():
                 # TODO - needs something else for default browser
-                browserApp = self.cb_app_browser.currentText().replace("/","-")
+                browserApp = self.ui.cb_app_browser.currentText().replace("/","-")
                 mimeFileContent +="application/atom+xml=%s;\n" % browserApp
                 mimeFileContent +="application/rss+xml=%s;\n" % browserApp
                 mimeFileContent +="application/vnd.mozilla.xul+xml=%s;\n" % browserApp
@@ -2116,8 +2139,10 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
             realMimeFileContent += mimeFileContent
             realMimeFileContent +="\n"
 
-            local_xdg_defaults = os.path.join(HOME, ".local", "share", "applications", "defaults.list")
-            local_xdg_mimeapps = os.path.join(HOME, ".local", "share", "applications", "mimeapps.list")
+            local_xdg_defaults = os.path.join(
+                HOME, ".local", "share", "applications", "defaults.list")
+            local_xdg_mimeapps = os.path.join(
+                HOME, ".local", "share", "applications", "mimeapps.list")
 
             writeFile = open(local_xdg_defaults, "w")
             writeFile.write(realMimeFileContent)
@@ -2131,12 +2156,18 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
             REGFILE = 'REGEDIT4\n'
             REGFILE += '\n'
             REGFILE += '[HKEY_CURRENT_USER\Software\Wine\WineASIO]\n'
-            REGFILE += '"Autostart server"=dword:0000000%i\n' % int(1 if self.cb_wineasio_autostart.isChecked() else 0)
-            REGFILE += '"Connect to hardware"=dword:0000000%i\n' % int(1 if self.cb_wineasio_hw.isChecked() else 0)
-            REGFILE += '"Fixed buffersize"=dword:0000000%i\n' % int(1 if self.cb_wineasio_fixed_bsize.isChecked() else 0)
-            REGFILE += '"Number of inputs"=dword:000000%s\n' % smartHex(self.sb_wineasio_ins.value(), 2)
-            REGFILE += '"Number of outputs"=dword:000000%s\n' % smartHex(self.sb_wineasio_outs.value(), 2)
-            REGFILE += '"Preferred buffersize"=dword:0000%s\n' % smartHex(int(self.cb_wineasio_bsizes.currentText()), 4)
+            REGFILE += '"Autostart server"=dword:0000000%i\n' % int(
+                1 if self.ui.cb_wineasio_autostart.isChecked() else 0)
+            REGFILE += '"Connect to hardware"=dword:0000000%i\n' % int(
+                1 if self.ui.cb_wineasio_hw.isChecked() else 0)
+            REGFILE += '"Fixed buffersize"=dword:0000000%i\n' % int(
+                1 if self.ui.cb_wineasio_fixed_bsize.isChecked() else 0)
+            REGFILE += '"Number of inputs"=dword:000000%s\n' % smartHex(
+                self.ui.sb_wineasio_ins.value(), 2)
+            REGFILE += '"Number of outputs"=dword:000000%s\n' % smartHex(
+                self.ui.sb_wineasio_outs.value(), 2)
+            REGFILE += '"Preferred buffersize"=dword:0000%s\n' % smartHex(
+                int(self.ui.cb_wineasio_bsizes.currentText()), 4)
 
             writeFile = open("/tmp/caleson-wineasio.reg", "w")
             writeFile.write(REGFILE)
@@ -2145,7 +2176,7 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
             os.system("regedit /tmp/caleson-wineasio.reg")
 
         self.settings_changed_types = []
-        self.frame_tweaks_settings.setVisible(False)
+        self.ui.frame_tweaks_settings.setVisible(False)
 
     @pyqtSlot()
     def slot_tweaksSettingsChanged_apps(self):
@@ -2157,47 +2188,47 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
 
     @pyqtSlot(int)
     def slot_tweakAppImageHighlighted(self, index):
-        self.setAppDetails(self.cb_app_image.itemText(index))
+        self.setAppDetails(self.ui.cb_app_image.itemText(index))
 
     @pyqtSlot(int)
     def slot_tweakAppImageChanged(self, ignored):
-        self.setAppDetails(self.cb_app_image.currentText())
+        self.setAppDetails(self.ui.cb_app_image.currentText())
         self.func_settings_changed("apps")
 
     @pyqtSlot(int)
     def slot_tweakAppMusicHighlighted(self, index):
-        self.setAppDetails(self.cb_app_music.itemText(index))
+        self.setAppDetails(self.ui.cb_app_music.itemText(index))
 
     @pyqtSlot(int)
     def slot_tweakAppMusicChanged(self, ignored):
-        self.setAppDetails(self.cb_app_music.currentText())
+        self.setAppDetails(self.ui.cb_app_music.currentText())
         self.func_settings_changed("apps")
 
     @pyqtSlot(int)
     def slot_tweakAppVideoHighlighted(self, index):
-        self.setAppDetails(self.cb_app_video.itemText(index))
+        self.setAppDetails(self.ui.cb_app_video.itemText(index))
 
     @pyqtSlot(int)
     def slot_tweakAppVideoChanged(self, ignored):
-        self.setAppDetails(self.cb_app_video.currentText())
+        self.setAppDetails(self.ui.cb_app_video.currentText())
         self.func_settings_changed("apps")
 
     @pyqtSlot(int)
     def slot_tweakAppTextHighlighted(self, index):
-        self.setAppDetails(self.cb_app_text.itemText(index))
+        self.setAppDetails(self.ui.cb_app_text.itemText(index))
 
     @pyqtSlot(int)
     def slot_tweakAppTextChanged(self, ignored):
-        self.setAppDetails(self.cb_app_text.currentText())
+        self.setAppDetails(self.ui.cb_app_text.currentText())
         self.func_settings_changed("apps")
 
     @pyqtSlot(int)
     def slot_tweakAppBrowserHighlighted(self, index):
-        self.setAppDetails(self.cb_app_browser.itemText(index))
+        self.setAppDetails(self.ui.cb_app_browser.itemText(index))
 
     @pyqtSlot(int)
     def slot_tweakAppBrowserChanged(self, ignored):
-        self.setAppDetails(self.cb_app_browser.currentText())
+        self.setAppDetails(self.ui.cb_app_browser.currentText())
         self.func_settings_changed("apps")
 
     @pyqtSlot()
@@ -2209,7 +2240,7 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
             return
 
         for key, p_dict in self.plugins_dict.items():
-            if p_dict['index'] == self.tb_tweak_plugins.currentIndex():
+            if p_dict['index'] == self.ui.tb_tweak_plugins.currentIndex():
                 p_dict['widget'].insertItem(0, newPath)
                 break
 
@@ -2218,7 +2249,7 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
     @pyqtSlot()
     def slot_tweakPluginChange(self):
         curPath = ""
-        current_index = self.tb_tweak_plugins.currentIndex()
+        current_index = self.ui.tb_tweak_plugins.currentIndex()
 
         for key, p_dict in self.plugins_dict.items():
             if p_dict['index'] == current_index:
@@ -2241,7 +2272,7 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
     @pyqtSlot()
     def slot_tweakPluginRemove(self):
         for key, p_dict in self.plugins_dict.items():
-            if p_dict['index'] == self.tb_tweak_plugins.currentIndex():
+            if p_dict['index'] == self.ui.tb_tweak_plugins.currentIndex():
                 p_dict['widget'].takeItem(p_dict['widget'].currentRow())
                 break
 
@@ -2249,7 +2280,7 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
 
     @pyqtSlot()
     def slot_tweakPluginReset(self):
-        current_index = self.tb_tweak_plugins.currentIndex()
+        current_index = self.ui.tb_tweak_plugins.currentIndex()
         
         for key, p_dict in self.plugins_dict.items():
             if p_dict['index'] == current_index:
@@ -2271,7 +2302,7 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
 
     @pyqtSlot(int)
     def slot_tweakPluginsRowChanged(self, path_index: int):
-        plugin_index = self.tb_tweak_plugins.currentIndex()
+        plugin_index = self.ui.tb_tweak_plugins.currentIndex()
 
         for key, p_dict in self.plugins_dict.items():
             if p_dict['index'] == plugin_index:
@@ -2280,8 +2311,8 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
                     and p_dict['widget'].item(path_index).text()
                         not in DEFAULT_PLUGIN_PATH[key].split(':'))
 
-                self.b_tweak_plugins_change.setEnabled(non_removable)
-                self.b_tweak_plugins_remove.setEnabled(non_removable)
+                self.ui.b_tweak_plugins_change.setEnabled(non_removable)
+                self.ui.b_tweak_plugins_remove.setEnabled(non_removable)
                 break
 
     @pyqtSlot()
@@ -2300,26 +2331,39 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
     def saveSettings(self):
         self.settings.setValue("Geometry", self.saveGeometry())
 
-        GlobalSettings.setValue("JACK/AutoStart", self.cb_jack_autostart.isChecked())
-        GlobalSettings.setValue("ALSA-Audio/BridgeIndexType", self.cb_alsa_type.currentIndex())
-        GlobalSettings.setValue("A2J/AutoStart", self.cb_a2j_autostart.isChecked())
-        GlobalSettings.setValue("A2J/AutoExport", self.cb_a2j_autoexport.isChecked())
-        GlobalSettings.setValue("A2J/UniquePortNames", self.cb_a2j_unique_port_names.isChecked())
         GlobalSettings.setValue(
-            "Pulse2JACK/AutoStart", (havePulseAudio and self.cb_pulse_autostart.isChecked()))
+            "JACK/AutoStart", self.ui.cb_jack_autostart.isChecked())
+        GlobalSettings.setValue(
+            "ALSA-Audio/BridgeIndexType", self.ui.cb_alsa_type.currentIndex())
+        GlobalSettings.setValue(
+            "A2J/AutoStart", self.ui.cb_a2j_autostart.isChecked())
+        GlobalSettings.setValue(
+            "A2J/AutoExport", self.ui.cb_a2j_autoexport.isChecked())
+        GlobalSettings.setValue(
+            "A2J/UniquePortNames", self.ui.cb_a2j_unique_port_names.isChecked())
+        GlobalSettings.setValue(
+            "Pulse2JACK/AutoStart",
+            (havePulseAudio and self.ui.cb_pulse_autostart.isChecked()))
 
     def loadSettings(self, geometry):
         if geometry:
             self.restoreGeometry(self.settings.value("Geometry", b""))
 
-        usingAlsaLoop = bool(GlobalSettings.value("ALSA-Audio/BridgeIndexType", iAlsaFileNone, type=int) == iAlsaFileLoop)
+        usingAlsaLoop = bool(
+            GlobalSettings.value("ALSA-Audio/BridgeIndexType", iAlsaFileNone, type=int)
+            == iAlsaFileLoop)
 
-        self.cb_jack_autostart.setChecked(GlobalSettings.value("JACK/AutoStart", wantJackStart, type=bool))
-        self.cb_a2j_autostart.setChecked(GlobalSettings.value("A2J/AutoStart", True, type=bool))
-        self.cb_a2j_autoexport.setChecked(GlobalSettings.value("A2J/AutoExport", True, type=bool))
-        self.cb_a2j_unique_port_names.setChecked(
+        self.ui.cb_jack_autostart.setChecked(
+            GlobalSettings.value("JACK/AutoStart", wantJackStart, type=bool))
+        self.ui.cb_a2j_autostart.setChecked(
+            GlobalSettings.value("A2J/AutoStart", True, type=bool))
+        self.ui.cb_a2j_autoexport.setChecked(
+            GlobalSettings.value("A2J/AutoExport", True, type=bool))
+        self.ui.cb_a2j_unique_port_names.setChecked(
             GlobalSettings.value("A2J/UniquePortNames", True, type=bool))
-        self.cb_pulse_autostart.setChecked(GlobalSettings.value("Pulse2JACK/AutoStart", havePulseAudio and not usingAlsaLoop, type=bool))
+        self.ui.cb_pulse_autostart.setChecked(
+            GlobalSettings.value("Pulse2JACK/AutoStart", havePulseAudio
+                                 and not usingAlsaLoop, type=bool))
 
     def timerEvent(self, event):
         if event.timerId() == self.m_timer500:
@@ -2330,12 +2374,12 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
 
                 if self.m_last_dsp_load != next_dsp_load:
                     self.m_last_dsp_load = next_dsp_load
-                    self.label_jack_dsp.setText("%.2f%%" % self.m_last_dsp_load)
+                    self.ui.label_jack_dsp.setText("%.2f%%" % self.m_last_dsp_load)
                     needUpdateTip = True
 
                 if self.m_last_xruns != next_xruns:
                     self.m_last_xruns = next_xruns
-                    self.label_jack_xruns.setText(str(self.m_last_xruns))
+                    self.ui.label_jack_xruns.setText(str(self.m_last_xruns))
                     needUpdateTip = True
 
                 if needUpdateTip:
@@ -2347,8 +2391,10 @@ class CalesonMainW(QMainWindow, ui_caleson.Ui_CalesonMainW):
 
                 if self.m_last_buffer_size != next_buffer_size:
                     self.m_last_buffer_size = next_buffer_size
-                    self.label_jack_bfsize.setText(self.tr("%i samples") % self.m_last_buffer_size)
-                    self.label_jack_latency.setText("%.1f ms" % gDBus.jack.GetLatency())
+                    self.ui.label_jack_bfsize.setText(
+                        self.tr("%i samples") % self.m_last_buffer_size)
+                    self.ui.label_jack_latency.setText(
+                        "%.1f ms" % gDBus.jack.GetLatency())
 
             else:
                 self.update()

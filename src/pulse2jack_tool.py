@@ -31,6 +31,7 @@ load-module module-rescue-streams
 ### Make sure we always have a sink around, even if it is a null sink.
 load-module module-always-sink
 """
+
 PULSE_CONFIG_DIR = os.path.join(os.getenv('HOME'), '.pulse')
 if os.getenv('PULSE_CONFIG_DIR'):
     PULSE_CONFIG_DIR = os.getenv('PULSE_CONFIG_DIR')
@@ -45,7 +46,8 @@ class Bridge:
     existing = False
     number_in_file = ''
 
-    def __init__(self, bridge_type, name, channels, connected):
+    def __init__(self, bridge_type: str, name: str,
+                 channels: str, connected: str):
         if bridge_type.lower() == 'sink':
             self.type = 'sink'
 
@@ -57,11 +59,12 @@ class Bridge:
         if connected.lower() in ('false', 'no'):
             self.connected = 'no'
 
-    def is_same_as(self, other)->bool:
-        return bool(self.type == other.type
-                    and self.name == other.name
-                    and self.channels == other.channels
-                    and self.connected == other.connected)
+    def is_same_as(self, other: 'Bridge') -> bool:
+        return bool(
+            self.type == other.type
+            and self.name == other.name
+            and self.channels == other.channels
+            and self.connected == other.connected)
 
     def set_module_id(self, module_id: str):
         self.module_id = module_id
@@ -75,25 +78,25 @@ class Bridge:
         elif key == 'connect':
             self.connected = value
     
-    def get_load_module_string(self)->str:
-        string = "load-module module-jack-%s" % self.type
+    def get_load_module_string(self) -> str:
+        string = f"load-module module-jack-{self.type}"
         if self.channels:
-            string += " channels=%s" % self.channels
+            string += f" channels={self.channels}"
         if self.connected:
-            string += " connected=%s" % self.connected
+            string += f" connected={self.connected}"
         if self.name:
             string += " client_name=\"%s\"" % self.name.replace('"', '\\"')
         return string
     
-    def get_save_string(self)->str:
-        str_base = "pulseaudio_%s%s" % (self.type, self.number_in_file)
-        save_list = []
+    def get_save_string(self) -> str:
+        str_base = f"pulseaudio_{self.type}{self.number_in_file}"
+        save_list = list[str]()
         if self.name:
-            save_list.append("%s_name:%s" % (str_base, self.name))
+            save_list.append(f"{str_base}_name:{self.name}")
         if self.channels:
-            save_list.append("%s_channels:%s" % (str_base, self.channels))
+            save_list.append(f"{str_base}_channels:{self.channels}")
         if self.connected:
-            save_list.append("%s_connect:%s" % (str_base, self.connected))
+            save_list.append(f"{str_base}_connect:{self.connected}")
         return '\n'.join(save_list)
         
 
@@ -198,10 +201,10 @@ def get_wanted_bridges_from_str(input_parameters: str)->list:
 
     return bridges
 
-def pactl_contents_to_bridge_list(pactl_contents: str)->list:
+def pactl_contents_to_bridge_list(pactl_contents: str) -> list[Bridge]:
     """Converts the contents of `pactl list modules short`
-to a list of Bridge class elements"""
-    modules = []
+    to a list of Bridge class elements"""
+    modules = list[Bridge]()
 
     # parse the pactl list
     for line in pactl_contents.split('\n'):
@@ -237,8 +240,9 @@ to a list of Bridge class elements"""
 
     return modules
 
-def get_existing_modules()->list:
-    """reads loaded pulseaudio modules and returns them in a list of Bridges"""
+def get_existing_modules() -> list[Bridge]:
+    """reads loaded pulseaudio modules
+    and returns them in a list of Bridges"""
 
     # will raise FileNotFoundError if pactl is missing
     # or subprocess.CalledProcessError if pulseaudio is not running
@@ -247,10 +251,10 @@ def get_existing_modules()->list:
 
     return pactl_contents_to_bridge_list(pactl_contents)
 
-def get_save_string(existing_modules: list)->str:
-    save_string = ''
+def get_save_string(existing_modules: list[Bridge]) -> str:
     n_sink = 1
     n_source = 1
+
     for bridge in existing_modules:
         if bridge.type == 'sink':
             if n_sink > 1:
@@ -263,7 +267,8 @@ def get_save_string(existing_modules: list)->str:
 
     return '\n'.join([b.get_save_string() for b in existing_modules]) 
 
-def unload_and_load_modules(wanted_modules, existing_modules):
+def unload_and_load_modules(
+        wanted_modules: list[Bridge], existing_modules: list[Bridge]):
     """Unload unwanted PulseAudio JACK modules
         and load wanted modules, skipping theses one already bridged"""
 
