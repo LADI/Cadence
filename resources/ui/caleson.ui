@@ -1295,36 +1295,6 @@
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_15">
         <item>
-         <widget class="QLabel" name="label_tweaks">
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>Tweaks</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="Line" name="line_tweaks">
-          <property name="lineWidth">
-           <number>0</number>
-          </property>
-          <property name="midLineWidth">
-           <number>1</number>
-          </property>
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-         </widget>
-        </item>
-        <item>
          <widget class="QFrame" name="frame_tweaks_settings">
           <property name="frameShape">
            <enum>QFrame::StyledPanel</enum>
@@ -1466,6 +1436,9 @@
             <property name="textAlignment">
              <set>AlignCenter</set>
             </property>
+            <property name="icon">
+             <iconset theme="MIDIutilities"/>
+            </property>
             <property name="flags">
              <set>ItemIsSelectable|ItemIsEnabled</set>
             </property>
@@ -1476,6 +1449,9 @@
             </property>
             <property name="textAlignment">
              <set>AlignCenter</set>
+            </property>
+            <property name="icon">
+             <iconset theme="wine"/>
             </property>
             <property name="flags">
              <set>ItemIsSelectable|ItemIsEnabled</set>
