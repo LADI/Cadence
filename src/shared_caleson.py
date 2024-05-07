@@ -27,8 +27,6 @@ from PyQt5.QtCore import QProcess, QSettings
 
 from shared import (HOME, HAIKU, LINUX, MACOS)
 
-# ------------------------------------------------------------------------------------------------------------
-# Default Plugin PATHs
 
 def get_default_path(plugin_format: str) -> list:
     return ':'.join(['%s/.%s' % (HOME, plugin_format),
@@ -43,28 +41,21 @@ DEFAULT_PLUGIN_PATH = {
     'VST3': get_default_path('vst3'),
     'LXVST': get_default_path('lxvst')}
 
-# ------------------------------------------------------------------------------------------------------------
 # ALSA file-type indexes
-
 iAlsaFileNone = 0
 iAlsaFileLoop = 1
 iAlsaFileJACK = 2
 iAlsaFilePulse = 3
 iAlsaFileMax = 4
 
-# ------------------------------------------------------------------------------------------------------------
-# Global Settings
 
 GlobalSettings = QSettings("Caleson", "GlobalSettings")
 
-# ------------------------------------------------------------------------------------------------------------
 # KXStudio Check
+wantJackStart = os.path.exists(
+    "/usr/share/kxstudio/config/config/Caleson/GlobalSettings.conf")
 
-wantJackStart = os.path.exists("/usr/share/kxstudio/config/config/Caleson/GlobalSettings.conf")
-
-# ------------------------------------------------------------------------------------------------------------
 # Get Process list
-
 def getProcList():
     retProcs = []
 
@@ -76,8 +67,11 @@ def getProcList():
         processDump = process.readAllStandardOutput().split("\n")
 
         for i in range(len(processDump)):
-            if (i == 0): continue
-            dumpTest = str(processDump[i], encoding="utf-8").rsplit(":", 1)[-1].split(" ")
+            if (i == 0):
+                continue
+
+            dumpTest = str(
+                processDump[i], encoding="utf-8").rsplit(":", 1)[-1].split(" ")
             if len(dumpTest) > 1 and dumpTest[1]:
                 retProcs.append(dumpTest[1])
 
@@ -86,18 +80,20 @@ def getProcList():
 
     return retProcs
 
-# ------------------------------------------------------------------------------------------------------------
 # Start ALSA-Audio Bridge, reading its settings
-
 def startAlsaAudioLoopBridge():
-    channels = GlobalSettings.value("ALSA-Audio/BridgeChannels", 2, type=int)
-    useZita = bool(GlobalSettings.value("ALSA-Audio/BridgeTool", "alsa_in", type=str) == "zita")
+    channels = GlobalSettings.value(
+        "ALSA-Audio/BridgeChannels", 2, type=int)
+    useZita = bool(
+        GlobalSettings.value(
+            "ALSA-Audio/BridgeTool", "alsa_in", type=str)
+        == "zita")
 
-    os.system("caleson-aloop-daemon --channels=%i %s &" % (channels, "--zita" if useZita else ""))
+    os.system(
+        "caleson-aloop-daemon --channels=%i %s &" % (
+            channels, "--zita" if useZita else ""))
 
-# ------------------------------------------------------------------------------------------------------------
 # Stop all audio processes, used for force-restart
-
 def waitProcsEnd(procs, tries):
     for x in range(tries):
         procsList = getProcList()
@@ -109,14 +105,13 @@ def waitProcsEnd(procs, tries):
         else:
             break
 
-# ------------------------------------------------------------------------------------------------------------
 # Cleanly close the jack dbus service
-
 def tryCloseJackDBus() -> bool:
     try:
         import dbus
         bus = dbus.SessionBus()
-        jack = bus.get_object("org.jackaudio.service", "/org/jackaudio/Controller")
+        jack = bus.get_object(
+            "org.jackaudio.service", "/org/jackaudio/Controller")
         jack.Exit()
     except:
         print("tryCloseJackDBus() failed")
@@ -124,9 +119,7 @@ def tryCloseJackDBus() -> bool:
     
     return True
 
-# ------------------------------------------------------------------------------------------------------------
 # Stop all audio processes, used for force-restart
-
 def stopAllAudioProcesses(tryCloseJack = True):
     if tryCloseJack:
         tryCloseJackDBus()
@@ -141,7 +134,8 @@ def stopAllAudioProcesses(tryCloseJack = True):
     process.start("caleson-pulse2jack", ["--dummy"])
     process.waitForFinished()
 
-    procsTerm = ["a2j", "a2jmidid", "artsd", "jackd", "jackdmp", "knotify4", "jmcore"]
+    procsTerm = ["a2j", "a2jmidid", "artsd", "jackd",
+                 "jackdmp", "knotify4", "jmcore"]
     procsKill = ["jackdbus", "pulseaudio"]
     tries = 20
 

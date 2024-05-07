@@ -13,8 +13,9 @@ from PyQt5.QtCore import QCoreApplication
 import pulse2jack_tool
 from shared_caleson import (
     QSettings, stopAllAudioProcesses, HOME, wantJackStart, iAlsaFileNone,
-    iAlsaFileLoop, startAlsaAudioLoopBridge, DEFAULT_PLUGIN_PATH,
-    VERSION)
+    iAlsaFileLoop, startAlsaAudioLoopBridge, DEFAULT_PLUGIN_PATH)
+from shared import VERSION
+
 
 # Caleson Global Settings
 GlobalSettings = QSettings("Caleson", "GlobalSettings")
@@ -49,16 +50,19 @@ def forceReset():
             os.remove(config)
 
 # Start JACK, A2J and Pulse, according to user settings
-def startSession(systemStarted, secondSystemStartAttempt):
+def startSession(systemStarted, secondSystemStartAttempt) -> bool:
     # Check if JACK is set to auto-start
-    if systemStarted and not GlobalSettings.value("JACK/AutoStart", wantJackStart, type=bool):
+    if (systemStarted
+            and not GlobalSettings.value(
+                "JACK/AutoStart", wantJackStart, type=bool)):
         print("JACK is set to NOT auto-start on login")
         return True
 
     # Called via autostart desktop file
     if systemStarted and secondSystemStartAttempt:
         tmp_bus  = dbus.SessionBus()
-        tmp_jack = tmp_bus.get_object("org.jackaudio.service", "/org/jackaudio/Controller")
+        tmp_jack = tmp_bus.get_object(
+            "org.jackaudio.service", "/org/jackaudio/Controller")
         started  = bool(tmp_jack.IsStarted())
 
         # Cleanup
@@ -73,7 +77,8 @@ def startSession(systemStarted, secondSystemStartAttempt):
 
     # Connect to DBus
     DBus.bus  = dbus.SessionBus()
-    DBus.jack = DBus.bus.get_object("org.jackaudio.service", "/org/jackaudio/Controller")
+    DBus.jack = DBus.bus.get_object(
+        "org.jackaudio.service", "/org/jackaudio/Controller")
     
     try:
         DBus.a2j = dbus.Interface(
@@ -100,15 +105,19 @@ def startSession(systemStarted, secondSystemStartAttempt):
     # Start bridges according to user settings
 
     # ALSA-Audio
-    if GlobalSettings.value("ALSA-Audio/BridgeIndexType", iAlsaFileNone, type=int) == iAlsaFileLoop:
+    if (GlobalSettings.value(
+                "ALSA-Audio/BridgeIndexType", iAlsaFileNone, type=int)
+            == iAlsaFileLoop):
         startAlsaAudioLoopBridge()
         time.sleep(0.5)
 
     # ALSA-MIDI
     if (GlobalSettings.value("A2J/AutoStart", True, type=bool)
             and DBus.a2j and not bool(DBus.a2j.is_started())):
-        a2jExportHW = GlobalSettings.value("A2J/ExportHW", True, type=bool)
-        a2j_unique_port_names = GlobalSettings.value("A2J/UniquePortNames", True, type=bool)
+        a2jExportHW = GlobalSettings.value(
+            "A2J/ExportHW", True, type=bool)
+        a2j_unique_port_names = GlobalSettings.value(
+            "A2J/UniquePortNames", True, type=bool)
         DBus.a2j.set_hw_export(a2jExportHW)
         DBus.a2j.set_disable_port_uniqueness(not a2j_unique_port_names)
         DBus.a2j.start()
@@ -136,29 +145,10 @@ def startJack():
     if not bool(DBus.jack.IsStarted()):
         DBus.jack.StartServer()
 
-def print_plugin_path(plugin_type: str):
-    if plugin_type not in DEFAULT_PLUGIN_PATH.keys():
-        return
-    
-    plugin_path = GlobalSettings.value(
-        "AudioPlugins/%s_PATH" % plugin_type,
-        DEFAULT_PLUGIN_PATH[plugin_type],
-        type=str)
-    
-    if plugin_path != DEFAULT_PLUGIN_PATH[plugin_type]:
-        path_list = plugin_path.split(':')
-        def_list = DEFAULT_PLUGIN_PATH[plugin_type].split(':')
-        for path in def_list:
-            if path not in path_list:
-                path_list.append(path)
-        
-        plugin_path = ':'.join(path_list)
-
-    print(plugin_path)
-
 def printArguments():
     print("\t-s|--start  \tStart session")
-    print("\t   --reset  \tForce-reset all JACK daemons and settings (disables auto-start at login)")
+    print("\t   --reset  \tForce-reset all JACK daemons and settings "
+          "(disables auto-start at login)")
     print("")
     print("\t-h|--help   \tShow this help message")
     print("\t-v|--version\tShow version")
@@ -190,13 +180,12 @@ if __name__ == '__main__':
         printHelp(cmd)
     elif len(app.arguments()) == 2:
         arg = app.arguments()[1]
-        if (arg.startswith('--print') and arg.endswith('_PATH')
-                and arg[7:-5] in DEFAULT_PLUGIN_PATH.keys()):
-            print_plugin_path(arg[7:-5])
-        elif arg == "--reset":
+
+        if arg == "--reset":
             forceReset()
         elif arg in ("--system-start", "--system-start-desktop"):
-            sys.exit(0 if startSession(True, arg == "--system-start-desktop") else 1)
+            sys.exit(0 if startSession(True, arg == "--system-start-desktop")
+                     else 1)
         elif arg in ("-s", "--s", "-start", "--start"):
             sys.exit(0 if startSession(False, False) else 1)
         elif arg in ("-h", "--h", "-help", "--help"):

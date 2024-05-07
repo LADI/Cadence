@@ -19,18 +19,21 @@
 
 # Imports (Global)
 
+from asyncio import subprocess
+from enum import Enum
 import os
 import sys
 import shutil
 from platform import architecture
+import subprocess
 
 from PyQt5.QtCore import (
-    QFileSystemWatcher, QSize, Qt, QTimer, pyqtSlot, pyqtSignal,
-    QSettings)
+    QFileSystemWatcher, QSize, Qt, QTimer,
+    pyqtSlot, pyqtSignal, QSettings)
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import (
-    QApplication, QDialogButtonBox, QMainWindow, QFrame,
-    QListWidgetItem, QComboBox, QDialog, QMessageBox)
+    QApplication, QMainWindow, QFrame,
+    QListWidget, QListWidgetItem, QMessageBox)
 
 
 # Imports (Custom Stuff)
@@ -38,9 +41,8 @@ from PyQt5.QtWidgets import (
 import force_restart
 import systray
 import pulse2jack_tool
-import ui_caleson
-import ui_caleson_tb_alsa
-import ui_pulse_bridge
+
+from alsa_audio_dialog import AlsaAudioDialog
 from asoundrc_strs import (
     ASOUNDRC_ALOOP, ASOUNDRC_ALOOP_CHECK, ASOUNDRC_JACK, ASOUNDRC_PULSE)
 from shared import (
@@ -58,7 +60,9 @@ from shared_i18n import setup_i18n
 from system_checks import calesonSystemChecks, initSystemChecks
 
 # Import getoutput
-from subprocess import getoutput
+
+import ui_caleson
+import ui_pulse_bridge
 
 # Try Import DBus
 try:
@@ -74,7 +78,6 @@ except:
         haveDBus = False
 
 # Check for PulseAudio and Wine
-
 havePulseAudio = bool(shutil.which('pulseaudio'))
 haveWine = bool(shutil.which('regedit'))
 
@@ -84,7 +87,16 @@ if haveWine:
         WINEPREFIX = os.path.join(HOME, ".wine")
 
 
-# ---------------------------------------------------------------------
+class IJackDbus(Enum):
+    GRAPH_VERSION = 0
+    CLIENT_ID = 1
+    CLIENT_NAME = 2
+    PORT_ID = 3
+    PORT_NAME = 4
+    PORT_FLAGS = 5
+    PORT_TYPE = 6
+
+
 class PulseAudioJackBridgeValues(object):
     clientIdCapture = -1
     clientIdPlayback = -1
@@ -96,17 +108,6 @@ global jackClientIdALSA
 jackClientIdALSA = -1
 pA_bridge_values = PulseAudioJackBridgeValues()
 
-# jackdbus indexes
-iGraphVersion = 0
-iJackClientId = 1
-iJackClientName = 2
-iJackPortId = 3
-iJackPortName = 4
-iJackPortNewName = 5
-iJackPortFlags = 5
-iJackPortType = 6
-
-# ---------------------------------------------------------------------
 
 def get_architecture():
     return architecture()[0]
@@ -118,7 +119,8 @@ def get_haiku_information():
 def get_linux_information():
     # TODO informs about Librazik
     if os.path.exists("/etc/lsb-release"):
-        distro = getoutput(". /etc/lsb-release && echo $DISTRIB_DESCRIPTION")
+        distro = subprocess.getoutput(
+            ". /etc/lsb-release && echo $DISTRIB_DESCRIPTION")
     elif os.path.exists("/etc/arch-release"):
         distro = "ArchLinux"
     else:
@@ -170,7 +172,7 @@ def isAlsaAudioBridged():
 def isPulseAudioStarted():
     return bool("pulseaudio" in getProcList())
 
-def getWineAsioKeyValue(key, default):
+def getWineAsioKeyValue(key: str, default: int) -> str:
   wineFile = os.path.join(WINEPREFIX, "user.reg")
 
   if not os.path.exists(wineFile):
@@ -194,15 +196,7 @@ def getWineAsioKeyValue(key, default):
   keyDumpSmall = keyDumpSplit[1].split(":")[1].split("\n")[0]
   return keyDumpSmall
 
-def searchAndSetComboBoxValue(comboBox: QComboBox, value):
-    for i in range(comboBox.count()):
-        if comboBox.itemText(i).replace("/","-") == value:
-            comboBox.setCurrentIndex(i)
-            comboBox.setEnabled(True)
-            return True
-    return False
-
-def smartHex(value, length):
+def smartHex(value: int, length: int) -> str:
   hexStr = hex(value).replace("0x","")
 
   if len(hexStr) < length:
@@ -211,65 +205,11 @@ def smartHex(value, length):
 
   return hexStr
 
-# ---------------------------------------------------------------------
-
-
-
-# Additional ALSA Audio options
-class ToolBarAlsaAudioDialog(QDialog):
-    def __init__(self, parent, customMode):
-        QDialog.__init__(self, parent)
-        self.ui = ui_caleson_tb_alsa.Ui_Dialog()
-        self.ui.setupUi(self)
-
-        self.asoundrcFile = os.path.join(HOME, ".asoundrc")
-        self.fCustomMode = customMode
-
-        if customMode:
-            asoundrcFd = open(self.asoundrcFile, "r")
-            asoundrcRead = asoundrcFd.read().strip()
-            asoundrcFd.close()
-            self.ui.textBrowser.setPlainText(asoundrcRead)
-            self.ui.stackedWidget.setCurrentIndex(0)
-            self.ui.buttonBox.setStandardButtons(QDialogButtonBox.Cancel)
-        else:
-            self.ui.textBrowser.hide()
-            self.ui.stackedWidget.setCurrentIndex(1)
-            self.adjustSize()
-
-            self.ui.spinBox.setValue(
-                GlobalSettings.value("ALSA-Audio/BridgeChannels", 2, type=int))
-
-            if (GlobalSettings.value(
-                        "ALSA-Audio/BridgeTool", "alsa_in", type=str)
-                    == "zita"):
-                self.ui.comboBox.setCurrentIndex(1)
-            else:
-                self.ui.comboBox.setCurrentIndex(0)
-
-            self.accepted.connect(self.slot_setOptions)
-
-    @pyqtSlot()
-    def slot_setOptions(self):
-        channels = self.ui.spinBox.value()
-        GlobalSettings.setValue("ALSA-Audio/BridgeChannels", channels)
-        GlobalSettings.setValue(
-            "ALSA-Audio/BridgeTool",
-            "zita" if (self.ui.comboBox.currentIndex() == 1) else "alsa_in")
-
-        with open(self.asoundrcFile, "w") as asoundrcFd:
-            asoundrcFd.write(
-                ASOUNDRC_ALOOP.replace(
-                    "channels 2\n", "channels %i\n" % channels) + "\n")
-
-    def done(self, r):
-        QDialog.done(self, r)
-        self.close()
-
 
 # Additional PulseAudio options
 class PaBridgeFrame(QFrame):
-    def __init__(self, parent, item, edited_signal, bridge_dict: dict):
+    def __init__(self, parent: QListWidget, item: QListWidgetItem,
+                 edited_signal: pyqtSignal, bridge_dict: dict):
         QFrame.__init__(self, parent)
         self.ui = ui_pulse_bridge.Ui_Frame()
         self.ui.setupUi(self)
@@ -323,7 +263,8 @@ class PaBridgeFrame(QFrame):
 
 
 class PaBridgeItem(QListWidgetItem):
-    def __init__(self, parent, edited_signal, bridge_dict: dict):
+    def __init__(self, parent: QListWidget, edited_signal: pyqtSignal,
+                 bridge_dict: dict):
         QListWidgetItem.__init__(self, parent, QListWidgetItem.UserType + 1)
         self.widget = PaBridgeFrame(parent, self, edited_signal, bridge_dict)
         parent.setItemWidget(self, self.widget)
@@ -498,7 +439,7 @@ class CalesonMainW(QMainWindow):
         # -------------------------------------------------------------
         # Set-up GUI (Tweaks)
 
-        self.settings_changed_types = []
+        self.settings_changed_types = list[str]()
         self.ui.frame_tweaks_settings.setVisible(False)
 
         for i in range(self.ui.tw_tweaks.rowCount()):
@@ -595,11 +536,7 @@ class CalesonMainW(QMainWindow):
         self.systray.addMenuAction("tools", "app_xy-controller", self.tr("XY-Controller"))
         self.systray.addSeparator("sep2")
 
-        self.systray.connect("app_catarina", self.func_start_catarina)
-        self.systray.connect("app_catia", self.func_start_catia)
         self.systray.connect("app_logs", self.func_start_logs)
-        self.systray.connect("app_meter_in", self.func_start_jackmeter_in)
-        self.systray.connect("app_meter_out", self.func_start_jackmeter)
         self.systray.connect("app_render",  self.func_start_render)
         self.systray.connect("app_xy-controller", self.func_start_xycontroller)
 
@@ -628,7 +565,6 @@ class CalesonMainW(QMainWindow):
         self.ui.pushButtonAddPulseSource.clicked.connect(self.slot_PulseAudioBridgeAddSource)
         self.ui.pushButtonAddPulseSink.clicked.connect(self.slot_PulseAudioBridgeAddSink)
 
-        self.ui.pic_catia.clicked.connect(self.func_start_catia)
         self.ui.pic_logs.clicked.connect(self.func_start_logs)
         self.ui.pic_render.clicked.connect(self.func_start_render)
 
@@ -772,9 +708,12 @@ class CalesonMainW(QMainWindow):
             if gDBus.patchbay and kwds['path'] == gDBus.patchbay.object_path:
                 if DEBUG: print("org.jackaudio.JackPatchbay,", kwds['member'])
                 if kwds['member'] == "ClientAppeared":
-                    self.DBusJackClientAppearedCallback.emit(args[iJackClientId], args[iJackClientName])
+                    self.DBusJackClientAppearedCallback.emit(
+                        args[IJackDbus.CLIENT_ID.value],
+                        args[IJackDbus.CLIENT_NAME.value])
                 elif kwds['member'] == "ClientDisappeared":
-                    self.DBusJackClientDisappearedCallback.emit(args[iJackClientId])
+                    self.DBusJackClientDisappearedCallback.emit(
+                        args[IJackDbus.CLIENT_ID.value])
 
         elif kwds['interface'] == "org.gna.home.a2jmidid.control":
             if DEBUG: print("org.gna.home.a2jmidid.control", kwds['member'])
@@ -1018,28 +957,13 @@ class CalesonMainW(QMainWindow):
         self.systray.setToolTip(systrayText)
 
     @pyqtSlot()
-    def func_start_catarina(self):
-        self.func_start_tool("catarina")
-
-    @pyqtSlot()
-    def func_start_catia(self):
-        self.func_start_tool("catia")
-
-    @pyqtSlot()
     def func_start_logs(self):
         self.func_start_tool("caleson-logs")
 
     @pyqtSlot()
-    def func_start_jackmeter(self):
-        self.func_start_tool("caleson-jackmeter")
-
-    @pyqtSlot()
-    def func_start_jackmeter_in(self):
-        self.func_start_tool("caleson-jackmeter -in")
-
-    @pyqtSlot()
     def func_start_render(self):
         self.func_start_tool("caleson-render")
+        subprocess.Popen(['qjackcapture'])
 
     @pyqtSlot()
     def func_start_xycontroller(self):
@@ -1056,7 +980,8 @@ class CalesonMainW(QMainWindow):
 
             if stool in ("caleson-jackmeter", "caleson-xycontroller"):
                 python = ""
-                localPath = os.path.join(sys.path[0], "..", "c++", stool.replace("caleson-", ""))
+                localPath = os.path.join(
+                    sys.path[0], "..", "c++", stool.replace("caleson-", ""))
 
                 if os.path.exists(os.path.join(localPath, stool)):
                     base = localPath + os.sep
@@ -1274,7 +1199,7 @@ class CalesonMainW(QMainWindow):
 
     @pyqtSlot()
     def slot_AlsaAudioBridgeOptions(self):
-        ToolBarAlsaAudioDialog(
+        AlsaAudioDialog(
             self,
             (self.ui.cb_alsa_type.currentIndex() != iAlsaFileLoop)).exec_()
 
@@ -1483,12 +1408,8 @@ class CalesonMainW(QMainWindow):
 
             os.system("regedit /tmp/caleson-wineasio.reg")
 
-        self.settings_changed_types = []
+        self.settings_changed_types.clear()
         self.ui.frame_tweaks_settings.setVisible(False)
-
-    @pyqtSlot()
-    def slot_tweaksSettingsChanged_apps(self):
-        self.func_settings_changed("apps")
 
     @pyqtSlot()
     def slot_tweaksSettingsChanged_wineasio(self):
