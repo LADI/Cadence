@@ -82,46 +82,6 @@ if haveWine:
     if not WINEPREFIX:
         WINEPREFIX = os.path.join(HOME, ".wine")
 
-# ---------------------------------------------------------------------
-
-
-DESKTOP_X_IMAGE = [
-    "eog.desktop",
-    "kde4/digikam.desktop",
-    "kde4/gwenview.desktop",
-    "org.kde.digikam.desktop",
-    "org.kde.gwenview.desktop",
-]
-
-DESKTOP_X_MUSIC = [
-    "audacious.desktop",
-    "clementine.desktop",
-    "smplayer.desktop",
-    "vlc.desktop",
-    "kde4/amarok.desktop",
-    "org.kde.amarok.desktop",
-]
-
-DESKTOP_X_VIDEO = [
-    "smplayer.desktop",
-    "vlc.desktop",
-]
-
-DESKTOP_X_TEXT = [
-    "gedit.desktop",
-    "kde4/kate.desktop",
-    "kde4/kwrite.desktop",
-    "org.kde.kate.desktop",
-    "org.kde.kwrite.desktop",
-]
-
-DESKTOP_X_BROWSER = [
-    "chrome.desktop",
-    "firefox.desktop",
-    "iceweasel.desktop",
-    "kde4/konqbrowser.desktop",
-    "org.kde.konqbrowser.desktop",
-]
 
 XDG_APPLICATIONS_PATH = [
     "/usr/share/applications",
@@ -227,17 +187,6 @@ def getDesktopFileContents(desktop):
             contents = fd.read()
             fd.close()
             return contents
-    return None
-
-def getXdgProperty(fileRead, key):
-    fileReadSplit = fileRead.split(key, 1)
-
-    if len(fileReadSplit) > 1:
-        fileReadLine = fileReadSplit[1].split("\n",1)[0]
-        fileReadLineStripped = fileReadLine.rsplit(";",1)[0].strip()
-        value = fileReadLineStripped.replace("=","",1)
-        return value
-
     return None
 
 def getWineAsioKeyValue(key, default):
@@ -707,81 +656,6 @@ class CalesonMainW(QMainWindow):
         self.ui.tw_tweaks.setCurrentCell(0, 0)
 
         # -------------------------------------------------------------
-        # Set-up GUI (Tweaks, Default Applications)
-
-        for desktop in DESKTOP_X_IMAGE:
-            if isDesktopFileInstalled(desktop):
-                self.ui.cb_app_image.addItem(desktop)
-
-        for desktop in DESKTOP_X_MUSIC:
-            if isDesktopFileInstalled(desktop):
-                self.ui.cb_app_music.addItem(desktop)
-
-        for desktop in DESKTOP_X_VIDEO:
-            if isDesktopFileInstalled(desktop):
-                self.ui.cb_app_video.addItem(desktop)
-
-        for desktop in DESKTOP_X_TEXT:
-            if isDesktopFileInstalled(desktop):
-                self.ui.cb_app_text.addItem(desktop)
-
-        for desktop in DESKTOP_X_BROWSER:
-            if isDesktopFileInstalled(desktop):
-                self.ui.cb_app_browser.addItem(desktop)
-
-        if self.ui.cb_app_image.count() == 0:
-            self.ui.ch_app_image.setEnabled(False)
-
-        if self.ui.cb_app_music.count() == 0:
-            self.ui.ch_app_music.setEnabled(False)
-
-        if self.ui.cb_app_video.count() == 0:
-            self.ui.ch_app_video.setEnabled(False)
-
-        if self.ui.cb_app_text.count() == 0:
-            self.ui.ch_app_text.setEnabled(False)
-
-        if self.ui.cb_app_browser.count() == 0:
-            self.ui.ch_app_browser.setEnabled(False)
-
-        mimeappsPath = os.path.join(
-            HOME, ".local", "share", "applications", "mimeapps.list")
-
-        if os.path.exists(mimeappsPath):
-            fd = open(mimeappsPath, "r")
-            mimeappsRead = fd.read()
-            fd.close()
-
-            x_image = getXdgProperty(mimeappsRead, "image/bmp")
-            x_music = getXdgProperty(mimeappsRead, "audio/wav")
-            x_video = getXdgProperty(mimeappsRead, "video/webm")
-            x_text = getXdgProperty(mimeappsRead, "text/plain")
-            x_browser = getXdgProperty(mimeappsRead, "text/html")
-
-            if x_image and searchAndSetComboBoxValue(self.ui.cb_app_image, x_image):
-                self.ui.ch_app_image.setChecked(True)
-
-            if x_music and searchAndSetComboBoxValue(self.ui.cb_app_music, x_music):
-                self.ui.ch_app_music.setChecked(True)
-
-            if x_video and searchAndSetComboBoxValue(self.ui.cb_app_video, x_video):
-                self.ui.ch_app_video.setChecked(True)
-
-            if x_text and searchAndSetComboBoxValue(self.ui.cb_app_text, x_text):
-                self.ui.ch_app_text.setChecked(True)
-
-            if x_browser and searchAndSetComboBoxValue(self.ui.cb_app_browser, x_browser):
-                self.ui.ch_app_browser.setChecked(True)
-
-        else: # ~/.local/share/applications/mimeapps.list doesn't exist
-            if not os.path.exists(os.path.join(HOME, ".local")):
-                os.mkdir(os.path.join(HOME, ".local"))
-            elif not os.path.exists(os.path.join(HOME, ".local", "share")):
-                os.mkdir(os.path.join(HOME, ".local", "share"))
-            elif not os.path.exists(os.path.join(HOME, ".local", "share", "applications")):
-                os.mkdir(os.path.join(HOME, ".local", "share", "applications"))
-
-        # -------------------------------------------------------------
         # Set-up GUI (Tweaks, WineASIO)
 
         if haveWine:
@@ -909,22 +783,6 @@ class CalesonMainW(QMainWindow):
 
         self.ui.b_tweaks_apply_now.clicked.connect(self.slot_tweaksApply)
 
-        self.ui.ch_app_image.clicked.connect(self.slot_tweaksSettingsChanged_apps)
-        self.ui.cb_app_image.highlighted.connect(self.slot_tweakAppImageHighlighted)
-        #self.ui.cb_app_image.currentIndexChanged[int].connect(self.slot_tweakAppImageChanged)
-        self.ui.ch_app_music.clicked.connect(self.slot_tweaksSettingsChanged_apps)
-        self.ui.cb_app_music.highlighted.connect(self.slot_tweakAppMusicHighlighted)
-        self.ui.cb_app_music.currentIndexChanged[int].connect(self.slot_tweakAppMusicChanged)
-        self.ui.ch_app_video.clicked.connect(self.slot_tweaksSettingsChanged_apps)
-        self.ui.cb_app_video.highlighted.connect(self.slot_tweakAppVideoHighlighted)
-        self.ui.cb_app_video.currentIndexChanged[int].connect(self.slot_tweakAppVideoChanged)
-        self.ui.ch_app_text.clicked.connect(self.slot_tweaksSettingsChanged_apps)
-        self.ui.cb_app_text.highlighted.connect(self.slot_tweakAppTextHighlighted)
-        self.ui.cb_app_text.currentIndexChanged[int].connect(self.slot_tweakAppTextChanged)
-        self.ui.ch_app_browser.clicked.connect(self.slot_tweaksSettingsChanged_apps)
-        self.ui.cb_app_browser.highlighted.connect(self.slot_tweakAppBrowserHighlighted)
-        self.ui.cb_app_browser.currentIndexChanged[int].connect(self.slot_tweakAppBrowserChanged)
-
         self.ui.sb_wineasio_ins.valueChanged.connect(self.slot_tweaksSettingsChanged_wineasio)
         self.ui.sb_wineasio_outs.valueChanged.connect(self.slot_tweaksSettingsChanged_wineasio)
         self.ui.cb_wineasio_hw.clicked.connect(self.slot_tweaksSettingsChanged_wineasio)
@@ -958,14 +816,21 @@ class CalesonMainW(QMainWindow):
         self.DBusReconnect()
 
         if haveDBus:
-            gDBus.bus.add_signal_receiver(self.DBusSignalReceiver, destination_keyword='dest', path_keyword='path',
-                member_keyword='member', interface_keyword='interface', sender_keyword='sender', )
+            gDBus.bus.add_signal_receiver(
+                self.DBusSignalReceiver,
+                destination_keyword='dest',
+                path_keyword='path',
+                member_keyword='member',
+                interface_keyword='interface',
+                sender_keyword='sender')
 
     def DBusReconnect(self):
         if haveDBus:
             try:
-                gDBus.jack = gDBus.bus.get_object("org.jackaudio.service", "/org/jackaudio/Controller")
-                gDBus.patchbay = dbus.Interface(gDBus.jack, "org.jackaudio.JackPatchbay")
+                gDBus.jack = gDBus.bus.get_object(
+                    "org.jackaudio.service", "/org/jackaudio/Controller")
+                gDBus.patchbay = dbus.Interface(
+                    gDBus.jack, "org.jackaudio.JackPatchbay")
                 jacksettings.initBus(gDBus.bus)
             except:
                 gDBus.jack = None
@@ -995,7 +860,8 @@ class CalesonMainW(QMainWindow):
 
             else:
                 self.jackStopped()
-                self.ui.label_jack_realtime.setText(self.tr("Yes") if jacksettings.isRealtime() else self.tr("No"))
+                self.ui.label_jack_realtime.setText(
+                    self.tr("Yes") if jacksettings.isRealtime() else self.tr("No"))
         else:
             self.jackStopped()
             self.ui.label_jack_status.setText(self.tr("Unavailable"))
@@ -1032,7 +898,9 @@ class CalesonMainW(QMainWindow):
         self.updateSystrayTooltip()
 
     def DBusSignalReceiver(self, *args, **kwds):
-        if kwds['interface'] == "org.freedesktop.DBus" and kwds['path'] == "/org/freedesktop/DBus" and kwds['member'] == "NameOwnerChanged":
+        if (kwds['interface'] == "org.freedesktop.DBus"
+                and kwds['path'] == "/org/freedesktop/DBus"
+                and kwds['member'] == "NameOwnerChanged"):
             appInterface, appId, newId = args
 
             if not newId:
@@ -1285,23 +1153,6 @@ class CalesonMainW(QMainWindow):
                 mess = self.tr("PulseAudio is not started, nor is JACK")
 
         self.ui.label_bridge_pulse.setText(mess)
-
-    def setAppDetails(self, desktop):
-        appContents = getDesktopFileContents(desktop)
-        name = getXdgProperty(appContents, "Name")
-        icon = getXdgProperty(appContents, "Icon")
-        comment = getXdgProperty(appContents, "Comment")
-
-        if not name:
-            name = self.ui.cb_app_image.currentText().replace(".desktop","").title()
-        if not icon:
-            icon = ""
-        if not comment:
-           comment = ""
-
-        self.ui.ico_app.setPixmap(getIcon(icon, 48).pixmap(48, 48))
-        self.ui.label_app_name.setText(name)
-        self.ui.label_app_comment.setText(comment)
 
     def updateSystrayTooltip(self):
         systrayText = "Caleson\n"
@@ -1758,212 +1609,6 @@ class CalesonMainW(QMainWindow):
 
     @pyqtSlot()
     def slot_tweaksApply(self):
-        if "apps" in self.settings_changed_types:
-            mimeFileContent = ""
-
-            # Fix common mime errors
-            mimeFileContent += "application/x-designer=designer-qt4.desktop;\n"
-            mimeFileContent += "application/x-ms-dos-executable=wine.desktop;\n"
-            mimeFileContent += "audio/x-minipsf=audacious.desktop;\n"
-            mimeFileContent += "audio/x-psf=audacious.desktop;\n"
-
-            if self.ui.ch_app_image.isChecked():
-                imageApp = self.ui.cb_app_image.currentText().replace("/","-")
-                mimeFileContent += "image/bmp=%s;\n" % imageApp
-                mimeFileContent += "image/gif=%s;\n" % imageApp
-                mimeFileContent += "image/jp2=%s;\n" % imageApp
-                mimeFileContent += "image/jpeg=%s;\n" % imageApp
-                mimeFileContent += "image/png=%s;\n" % imageApp
-                mimeFileContent += "image/svg+xml=%s;\n" % imageApp
-                mimeFileContent += "image/svg+xml-compressed=%s;\n" % imageApp
-                mimeFileContent += "image/tiff=%s;\n" % imageApp
-                mimeFileContent += "image/x-canon-cr2=%s;\n" % imageApp
-                mimeFileContent += "image/x-canon-crw=%s;\n" % imageApp
-                mimeFileContent += "image/x-eps=%s;\n" % imageApp
-                mimeFileContent += "image/x-kodak-dcr=%s;\n" % imageApp
-                mimeFileContent += "image/x-kodak-k25=%s;\n" % imageApp
-                mimeFileContent += "image/x-kodak-kdc=%s;\n" % imageApp
-                mimeFileContent += "image/x-nikon-nef=%s;\n" % imageApp
-                mimeFileContent += "image/x-olympus-orf=%s;\n" % imageApp
-                mimeFileContent += "image/x-panasonic-raw=%s;\n" % imageApp
-                mimeFileContent += "image/x-pcx=%s;\n" % imageApp
-                mimeFileContent += "image/x-pentax-pef=%s;\n" % imageApp
-                mimeFileContent += "image/x-portable-anymap=%s;\n" % imageApp
-                mimeFileContent += "image/x-portable-bitmap=%s;\n" % imageApp
-                mimeFileContent += "image/x-portable-graymap=%s;\n" % imageApp
-                mimeFileContent += "image/x-portable-pixmap=%s;\n" % imageApp
-                mimeFileContent += "image/x-sony-arw=%s;\n" % imageApp
-                mimeFileContent += "image/x-sony-sr2=%s;\n" % imageApp
-                mimeFileContent += "image/x-sony-srf=%s;\n" % imageApp
-                mimeFileContent += "image/x-tga=%s;\n" % imageApp
-                mimeFileContent += "image/x-xbitmap=%s;\n" % imageApp
-                mimeFileContent += "image/x-xpixmap=%s;\n" % imageApp
-
-            if self.ui.ch_app_music.isChecked():
-                musicApp = self.ui.cb_app_music.currentText().replace("/","-")
-                mimeFileContent += "application/vnd.apple.mpegurl=%s;\n" % musicApp
-                mimeFileContent += "application/xspf+xml=%s;\n" % musicApp
-                mimeFileContent += "application/x-smaf=%s;\n" % musicApp
-                mimeFileContent += "audio/AMR=%s;\n" % musicApp
-                mimeFileContent += "audio/AMR-WB=%s;\n" % musicApp
-                mimeFileContent += "audio/aac=%s;\n" % musicApp
-                mimeFileContent += "audio/ac3=%s;\n" % musicApp
-                mimeFileContent += "audio/basic=%s;\n" % musicApp
-                mimeFileContent += "audio/flac=%s;\n" % musicApp
-                mimeFileContent += "audio/m3u=%s;\n" % musicApp
-                mimeFileContent += "audio/mp2=%s;\n" % musicApp
-                mimeFileContent += "audio/mp4=%s;\n" % musicApp
-                mimeFileContent += "audio/mpeg=%s;\n" % musicApp
-                mimeFileContent += "audio/ogg=%s;\n" % musicApp
-                mimeFileContent += "audio/vnd.rn-realaudio=%s;\n" % musicApp
-                mimeFileContent += "audio/vorbis=%s;\n" % musicApp
-                mimeFileContent += "audio/webm=%s;\n" % musicApp
-                mimeFileContent += "audio/wav=%s;\n" % musicApp
-                mimeFileContent += "audio/x-adpcm=%s;\n" % musicApp
-                mimeFileContent += "audio/x-aifc=%s;\n" % musicApp
-                mimeFileContent += "audio/x-aiff=%s;\n" % musicApp
-                mimeFileContent += "audio/x-aiffc=%s;\n" % musicApp
-                mimeFileContent += "audio/x-ape=%s;\n" % musicApp
-                mimeFileContent += "audio/x-cda=%s;\n" % musicApp
-                mimeFileContent += "audio/x-flac=%s;\n" % musicApp
-                mimeFileContent += "audio/x-flac+ogg=%s;\n" % musicApp
-                mimeFileContent += "audio/x-gsm=%s;\n" % musicApp
-                mimeFileContent += "audio/x-m4b=%s;\n" % musicApp
-                mimeFileContent += "audio/x-matroska=%s;\n" % musicApp
-                mimeFileContent += "audio/x-mp2=%s;\n" % musicApp
-                mimeFileContent += "audio/x-mpegurl=%s;\n" % musicApp
-                mimeFileContent += "audio/x-ms-asx=%s;\n" % musicApp
-                mimeFileContent += "audio/x-ms-wma=%s;\n" % musicApp
-                mimeFileContent += "audio/x-musepack=%s;\n" % musicApp
-                mimeFileContent += "audio/x-ogg=%s;\n" % musicApp
-                mimeFileContent += "audio/x-oggflac=%s;\n" % musicApp
-                mimeFileContent += "audio/x-pn-realaudio-plugin=%s;\n" % musicApp
-                mimeFileContent += "audio/x-riff=%s;\n" % musicApp
-                mimeFileContent += "audio/x-scpls=%s;\n" % musicApp
-                mimeFileContent += "audio/x-speex=%s;\n" % musicApp
-                mimeFileContent += "audio/x-speex+ogg=%s;\n" % musicApp
-                mimeFileContent += "audio/x-tta=%s;\n" % musicApp
-                mimeFileContent += "audio/x-vorbis+ogg=%s;\n" % musicApp
-                mimeFileContent += "audio/x-wav=%s;\n" % musicApp
-                mimeFileContent += "audio/x-wavpack=%s;\n" % musicApp
-
-            if self.ui.ch_app_video.isChecked():
-                videoApp = self.ui.cb_app_video.currentText().replace("/","-")
-                mimeFileContent +="application/mxf=%s;\n" % videoApp
-                mimeFileContent +="application/ogg=%s;\n" % videoApp
-                mimeFileContent +="application/ram=%s;\n" % videoApp
-                mimeFileContent +="application/vnd.ms-asf=%s;\n" % videoApp
-                mimeFileContent +="application/vnd.ms-wpl=%s;\n" % videoApp
-                mimeFileContent +="application/vnd.rn-realmedia=%s;\n" % videoApp
-                mimeFileContent +="application/x-ms-wmp=%s;\n" % videoApp
-                mimeFileContent +="application/x-ms-wms=%s;\n" % videoApp
-                mimeFileContent +="application/x-netshow-channel=%s;\n" % videoApp
-                mimeFileContent +="application/x-ogg=%s;\n" % videoApp
-                mimeFileContent +="application/x-quicktime-media-link=%s;\n" % videoApp
-                mimeFileContent +="video/3gpp=%s;\n" % videoApp
-                mimeFileContent +="video/3gpp2=%s;\n" % videoApp
-                mimeFileContent +="video/divx=%s;\n" % videoApp
-                mimeFileContent +="video/dv=%s;\n" % videoApp
-                mimeFileContent +="video/flv=%s;\n" % videoApp
-                mimeFileContent +="video/mp2t=%s;\n" % videoApp
-                mimeFileContent +="video/mp4=%s;\n" % videoApp
-                mimeFileContent +="video/mpeg=%s;\n" % videoApp
-                mimeFileContent +="video/ogg=%s;\n" % videoApp
-                mimeFileContent +="video/quicktime=%s;\n" % videoApp
-                mimeFileContent +="video/vivo=%s;\n" % videoApp
-                mimeFileContent +="video/vnd.rn-realvideo=%s;\n" % videoApp
-                mimeFileContent +="video/webm=%s;\n" % videoApp
-                mimeFileContent +="video/x-anim=%s;\n" % videoApp
-                mimeFileContent +="video/x-flic=%s;\n" % videoApp
-                mimeFileContent +="video/x-flv=%s;\n" % videoApp
-                mimeFileContent +="video/x-m4v=%s;\n" % videoApp
-                mimeFileContent +="video/x-matroska=%s;\n" % videoApp
-                mimeFileContent +="video/x-ms-asf=%s;\n" % videoApp
-                mimeFileContent +="video/x-ms-wm=%s;\n" % videoApp
-                mimeFileContent +="video/x-ms-wmp=%s;\n" % videoApp
-                mimeFileContent +="video/x-ms-wmv=%s;\n" % videoApp
-                mimeFileContent +="video/x-ms-wvx=%s;\n" % videoApp
-                mimeFileContent +="video/x-msvideo=%s;\n" % videoApp
-                mimeFileContent +="video/x-nsv=%s;\n" % videoApp
-                mimeFileContent +="video/x-ogg=%s;\n" % videoApp
-                mimeFileContent +="video/x-ogm=%s;\n" % videoApp
-                mimeFileContent +="video/x-ogm+ogg=%s;\n" % videoApp
-                mimeFileContent +="video/x-theora=%s;\n" % videoApp
-                mimeFileContent +="video/x-theora+ogg=%s;\n" % videoApp
-                mimeFileContent +="video/x-wmv=%s;\n" % videoApp
-
-            if self.ui.ch_app_text.isChecked():
-                # TODO - more mimetypes
-                textApp = self.ui.cb_app_text.currentText().replace("/","-")
-                mimeFileContent +="application/rdf+xml=%s;\n" % textApp
-                mimeFileContent +="application/xml=%s;\n" % textApp
-                mimeFileContent +="application/xml-dtd=%s;\n" % textApp
-                mimeFileContent +="application/xml-external-parsed-entity=%s;\n" % textApp
-                mimeFileContent +="application/xsd=%s;\n" % textApp
-                mimeFileContent +="application/xslt+xml=%s;\n" % textApp
-                mimeFileContent +="application/x-trash=%s;\n" % textApp
-                mimeFileContent +="application/x-wine-extension-inf=%s;\n" % textApp
-                mimeFileContent +="application/x-wine-extension-ini=%s;\n" % textApp
-                mimeFileContent +="application/x-zerosize=%s;\n" % textApp
-                mimeFileContent +="text/css=%s;\n" % textApp
-                mimeFileContent +="text/plain=%s;\n" % textApp
-                mimeFileContent +="text/x-authors=%s;\n" % textApp
-                mimeFileContent +="text/x-c++-hdr=%s;\n" % textApp
-                mimeFileContent +="text/x-c++-src=%s;\n" % textApp
-                mimeFileContent +="text/x-changelog=%s;\n" % textApp
-                mimeFileContent +="text/x-chdr=%s;\n" % textApp
-                mimeFileContent +="text/x-cmake=%s;\n" % textApp
-                mimeFileContent +="text/x-copying=%s;\n" % textApp
-                mimeFileContent +="text/x-credits=%s;\n" % textApp
-                mimeFileContent +="text/x-csharp=%s;\n" % textApp
-                mimeFileContent +="text/x-csrc=%s;\n" % textApp
-                mimeFileContent +="text/x-install=%s;\n" % textApp
-                mimeFileContent +="text/x-log=%s;\n" % textApp
-                mimeFileContent +="text/x-lua=%s;\n" % textApp
-                mimeFileContent +="text/x-makefile=%s;\n" % textApp
-                mimeFileContent +="text/x-ms-regedit=%s;\n" % textApp
-                mimeFileContent +="text/x-nfo=%s;\n" % textApp
-                mimeFileContent +="text/x-objchdr=%s;\n" % textApp
-                mimeFileContent +="text/x-objcsrc=%s;\n" % textApp
-                mimeFileContent +="text/x-pascal=%s;\n" % textApp
-                mimeFileContent +="text/x-patch=%s;\n" % textApp
-                mimeFileContent +="text/x-python=%s;\n" % textApp
-                mimeFileContent +="text/x-readme=%s;\n" % textApp
-                mimeFileContent +="text/x-vhdl=%s;\n" % textApp
-
-            if self.ui.ch_app_browser.isChecked():
-                # TODO - needs something else for default browser
-                browserApp = self.ui.cb_app_browser.currentText().replace("/","-")
-                mimeFileContent +="application/atom+xml=%s;\n" % browserApp
-                mimeFileContent +="application/rss+xml=%s;\n" % browserApp
-                mimeFileContent +="application/vnd.mozilla.xul+xml=%s;\n" % browserApp
-                mimeFileContent +="application/x-mozilla-bookmarks=%s;\n" % browserApp
-                mimeFileContent +="application/x-mswinurl=%s;\n" % browserApp
-                mimeFileContent +="application/x-xbel=%s;\n" % browserApp
-                mimeFileContent +="application/xhtml+xml=%s;\n" % browserApp
-                mimeFileContent +="text/html=%s;\n" % browserApp
-                mimeFileContent +="text/opml+xml=%s;\n" % browserApp
-
-            realMimeFileContent ="[Default Applications]\n"
-            realMimeFileContent += mimeFileContent
-            realMimeFileContent +="\n"
-            realMimeFileContent +="[Added Associations]\n"
-            realMimeFileContent += mimeFileContent
-            realMimeFileContent +="\n"
-
-            local_xdg_defaults = os.path.join(
-                HOME, ".local", "share", "applications", "defaults.list")
-            local_xdg_mimeapps = os.path.join(
-                HOME, ".local", "share", "applications", "mimeapps.list")
-
-            writeFile = open(local_xdg_defaults, "w")
-            writeFile.write(realMimeFileContent)
-            writeFile.close()
-
-            writeFile = open(local_xdg_mimeapps, "w")
-            writeFile.write(realMimeFileContent)
-            writeFile.close()
-
         if "wineasio" in self.settings_changed_types:
             REGFILE = 'REGEDIT4\n'
             REGFILE += '\n'
@@ -1997,51 +1642,6 @@ class CalesonMainW(QMainWindow):
     @pyqtSlot()
     def slot_tweaksSettingsChanged_wineasio(self):
         self.func_settings_changed("wineasio")
-
-    @pyqtSlot(int)
-    def slot_tweakAppImageHighlighted(self, index):
-        self.setAppDetails(self.ui.cb_app_image.itemText(index))
-
-    @pyqtSlot(int)
-    def slot_tweakAppImageChanged(self, ignored):
-        self.setAppDetails(self.ui.cb_app_image.currentText())
-        self.func_settings_changed("apps")
-
-    @pyqtSlot(int)
-    def slot_tweakAppMusicHighlighted(self, index):
-        self.setAppDetails(self.ui.cb_app_music.itemText(index))
-
-    @pyqtSlot(int)
-    def slot_tweakAppMusicChanged(self, ignored):
-        self.setAppDetails(self.ui.cb_app_music.currentText())
-        self.func_settings_changed("apps")
-
-    @pyqtSlot(int)
-    def slot_tweakAppVideoHighlighted(self, index):
-        self.setAppDetails(self.ui.cb_app_video.itemText(index))
-
-    @pyqtSlot(int)
-    def slot_tweakAppVideoChanged(self, ignored):
-        self.setAppDetails(self.ui.cb_app_video.currentText())
-        self.func_settings_changed("apps")
-
-    @pyqtSlot(int)
-    def slot_tweakAppTextHighlighted(self, index):
-        self.setAppDetails(self.ui.cb_app_text.itemText(index))
-
-    @pyqtSlot(int)
-    def slot_tweakAppTextChanged(self, ignored):
-        self.setAppDetails(self.ui.cb_app_text.currentText())
-        self.func_settings_changed("apps")
-
-    @pyqtSlot(int)
-    def slot_tweakAppBrowserHighlighted(self, index):
-        self.setAppDetails(self.ui.cb_app_browser.itemText(index))
-
-    @pyqtSlot(int)
-    def slot_tweakAppBrowserChanged(self, ignored):
-        self.setAppDetails(self.ui.cb_app_browser.currentText())
-        self.func_settings_changed("apps")
 
     def saveSettings(self):
         self.settings.setValue("Geometry", self.saveGeometry())

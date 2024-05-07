@@ -1,5 +1,5 @@
 
-asoundrc_aloop = """# ------------------------------------------------------
+ASOUNDRC_ALOOP = """# ------------------------------------------------------
 # Custom asoundrc file for use with snd-aloop and JACK
 #
 # use it like this:
@@ -96,7 +96,9 @@ pcm.ploop {
   slave.pcm "hw:Loopback,1,1"
 }"""
 
-asoundrc_jack = """pcm.!default {
+ASOUNDRC_ALOOP_CHECK = ASOUNDRC_ALOOP.split("pcm.aloopPlayback", 1)[0]
+
+ASOUNDRC_JACK = """pcm.!default {
     type plug
     slave { pcm "jack" }
 }
@@ -118,22 +120,7 @@ ctl.mixer0 {
     card 0
 }"""
 
-asoundrc_pulse = (""
-"pcm.!default {\n"
-"    type plug\n"
-"    slave { pcm \"pulse\" }\n"
-"}\n"
-"\n"
-"pcm.pulse {\n"
-"    type pulse\n"
-"}\n"
-"\n"
-"ctl.mixer0 {\n"
-"    type hw\n"
-"    card 0\n"
-"}")
-
-asoundrc_pulse2 = """pcm.!default {
+ASOUNDRC_PULSE = """pcm.!default {
     type plug
     slave { pcm "pulse" }
 }
@@ -146,5 +133,3 @@ ctl.mixer0 {
     type hw
     card 0
 }"""
-
-print(asoundrc_pulse == asoundrc_pulse2)
