@@ -18,7 +18,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>3</number>
       </property>
       <widget class="QWidget" name="tab_system">
        <attribute name="title">
@@ -767,8 +767,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>96</width>
-             <height>26</height>
+             <width>380</width>
+             <height>401</height>
             </rect>
            </property>
            <attribute name="label">
@@ -937,7 +937,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>96</width>
+             <width>79</width>
              <height>46</height>
             </rect>
            </property>
@@ -1427,12 +1427,12 @@
            </attribute>
            <row>
             <property name="text">
-             <string>audio-plugins</string>
+             <string>PulseAudio</string>
             </property>
            </row>
            <row>
             <property name="text">
-             <string>default-apps</string>
+             <string>ALSA MIDI (A2J)</string>
             </property>
            </row>
            <row>
@@ -1447,10 +1447,13 @@
            </column>
            <item row="0" column="0">
             <property name="text">
-             <string>Audio Plugins PATH</string>
+             <string>PulseAudio</string>
             </property>
             <property name="textAlignment">
              <set>AlignCenter</set>
+            </property>
+            <property name="icon">
+             <iconset theme="audio-volume-high"/>
             </property>
             <property name="flags">
              <set>ItemIsSelectable|ItemIsEnabled</set>
@@ -1458,7 +1461,7 @@
            </item>
            <item row="1" column="0">
             <property name="text">
-             <string>Default Applications</string>
+             <string>ALSA MIDI (A2J)</string>
             </property>
             <property name="textAlignment">
              <set>AlignCenter</set>
