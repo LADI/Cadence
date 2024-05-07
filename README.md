@@ -1,12 +1,18 @@
 # ---  README for Caleson  ---
 
 Caleson is a set of tools useful for audio production. <br/>
-It's being developed by falkTX, using Python3 and Qt5.
+It's a fork from Cadence (being developed by falkTX), using Python3 and Qt5.
 
-The tools share the same base source code, so most of them look quite similar (which is intentional). <br/>
-Also, lots of custom widgets were coded when needed (like pixmapdial, pixmapkeyboard and systray). <br/>
-They can be re-used in other projects. Contact the author if you need help on that.
+Many things have been removed from the fork:
+* Catia
+* Claudia
+* Catarina
+* Jack-meters
+* xy-controller
+* Tab for managing Plugins PATHS
+* Tab for managing default multimedia applications
 
+It is still work in progress, no interest to test it for the moment.
 
 ===== DESCRIPTIONS =====
 ------------------------
