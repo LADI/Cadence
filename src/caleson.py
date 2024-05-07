@@ -30,12 +30,11 @@ from platform import architecture
 import subprocess
 
 from PyQt5.QtCore import (
-    QFileSystemWatcher, QSize, Qt, QTimer,
+    QFileSystemWatcher, Qt, QTimer,
     pyqtSlot, pyqtSignal, QSettings)
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import (
-    QApplication, QMainWindow, QFrame,
-    QListWidget, QListWidgetItem, QMessageBox)
+    QApplication, QMainWindow,  QMessageBox)
 
 
 # Imports (Custom Stuff)
@@ -45,6 +44,7 @@ import systray
 import pulse2jack_tool
 
 from alsa_audio_dialog import AlsaAudioDialog
+from asio_tools import have_wine, getWineAsioKeyValue, smartHex
 from pa_bridge_item import PaBridgeItem
 from asoundrc_strs import (
     ASOUNDRC_ALOOP, ASOUNDRC_ALOOP_CHECK,
@@ -62,7 +62,6 @@ from shared_i18n import setup_i18n
 from system_checks import calesonSystemChecks, initSystemChecks
 
 import ui_caleson
-import ui_pulse_bridge
 
 # Try Import DBus
 try:
@@ -79,14 +78,8 @@ except:
 
 _logger = logging.getLogger(__name__)
 
-# Check for PulseAudio and Wine
+# Check for PulseAudio
 havePulseAudio = bool(shutil.which('pulseaudio'))
-haveWine = bool(shutil.which('regedit'))
-
-if haveWine:
-    WINEPREFIX = os.getenv("WINEPREFIX")
-    if not WINEPREFIX:
-        WINEPREFIX = os.path.join(HOME, ".wine")
 
 
 class IJackDbus(Enum):
@@ -99,16 +92,8 @@ class IJackDbus(Enum):
     PORT_TYPE = 6
 
 
-class PulseAudioJackBridgeValues(object):
-    clientIdCapture = -1
-    clientIdPlayback = -1
-    portCaptureNumber =  0
-    portPlaybackNumber =  0 
-
-
 global jackClientIdALSA
 jackClientIdALSA = -1
-pA_bridge_values = PulseAudioJackBridgeValues()
 
 
 def get_architecture():
@@ -173,39 +158,6 @@ def isAlsaAudioBridged():
 
 def isPulseAudioStarted():
     return bool("pulseaudio" in getProcList())
-
-def getWineAsioKeyValue(key: str, default: int) -> str:
-  wineFile = os.path.join(WINEPREFIX, "user.reg")
-
-  if not os.path.exists(wineFile):
-      return default
-
-  wineDumpF = open(wineFile, "r")
-  wineDump = wineDumpF.read()
-  wineDumpF.close()
-
-  wineDumpSplit = wineDump.split("[Software\\\\Wine\\\\WineASIO]")
-
-  if len(wineDumpSplit) <= 1:
-      return default
-
-  wineDumpSmall = wineDumpSplit[1].split("[")[0]
-  keyDumpSplit = wineDumpSmall.split('"%s"' % key)
-
-  if len(keyDumpSplit) <= 1:
-      return default
-
-  keyDumpSmall = keyDumpSplit[1].split(":")[1].split("\n")[0]
-  return keyDumpSmall
-
-def smartHex(value: int, length: int) -> str:
-  hexStr = hex(value).replace("0x","")
-
-  if len(hexStr) < length:
-      zeroCount = length - len(hexStr)
-      hexStr = "%s%s" % ("0"*zeroCount, hexStr)
-
-  return hexStr
 
 
 # Main Window
@@ -384,7 +336,7 @@ class CalesonMainW(QMainWindow):
         # -------------------------------------------------------------
         # Set-up GUI (Tweaks, WineASIO)
 
-        if haveWine:
+        if have_wine():
             ins = int(
                 getWineAsioKeyValue("Number of inputs", "00000010"), 16)
             outs = int(
@@ -596,7 +548,6 @@ class CalesonMainW(QMainWindow):
             self.ui.b_jack_restart.setEnabled(False)
             self.ui.b_jack_configure.setEnabled(False)
             self.ui.b_jack_switchmaster.setEnabled(False)
-            # self.ui.groupBox_bridges.setEnabled(False)
 
         if gDBus.a2j:
             try:
@@ -609,7 +560,6 @@ class CalesonMainW(QMainWindow):
             else:
                 self.a2jStopped()
         else:
-            # self.toolBox_alsamidi.setEnabled(False)
             self.ui.cb_a2j_autostart.setChecked(False)
             self.ui.cb_a2j_autoexport.setChecked(False)
             self.ui.cb_a2j_unique_port_names.setChecked(False)
@@ -740,9 +690,6 @@ class CalesonMainW(QMainWindow):
 
         global jackClientIdALSA
         jackClientIdALSA = -1
-
-        pA_bridge_values.clientIdCapture = -1
-        pA_bridge_values.clientIdPlayback = -1
 
         if haveDBus:
             self.checkAlsaAudio()
