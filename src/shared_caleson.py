@@ -3,6 +3,7 @@
 
 # Common/Shared code for Caleson
 # Copyright (C) 2012-2018 Filipe Coelho <falktx@falktx.com>
+# Copyright (C) 2023-2024 Houston4444 <picotmathieu@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,8 +19,9 @@
 
 # Imports (Global)
 
+from enum import Enum
 import os
-from time import sleep
+import time
 
 from PyQt5.QtCore import QProcess, QSettings
 
@@ -33,20 +35,15 @@ def get_default_path(plugin_format: str) -> list:
                      '/usr/local/lib/%s' % plugin_format,
                      '/usr/lib/%s' % plugin_format])
 
-DEFAULT_PLUGIN_PATH = {
-    'LADSPA': get_default_path('ladspa'),
-    'DSSI': get_default_path('dssi'),
-    'LV2': get_default_path('lv2'),
-    'VST': get_default_path('vst'),
-    'VST3': get_default_path('vst3'),
-    'LXVST': get_default_path('lxvst')}
 
-# ALSA file-type indexes
-iAlsaFileNone = 0
-iAlsaFileLoop = 1
-iAlsaFileJACK = 2
-iAlsaFilePulse = 3
-iAlsaFileMax = 4
+class AlsaFile(Enum):
+    INVALID = -2
+    NULL = -1
+    NONE = 0
+    LOOP = 1
+    JACK = 2
+    PULSE = 3
+    MAX = 4
 
 
 GlobalSettings = QSettings("Caleson", "GlobalSettings")
@@ -101,7 +98,7 @@ def waitProcsEnd(procs, tries):
             if proc in procsList:
                 break
             else:
-                sleep(0.1)
+                time.sleep(0.1)
         else:
             break
 

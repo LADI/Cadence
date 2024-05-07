@@ -3,6 +3,7 @@
 
 # Caleson, JACK utilities
 # Copyright (C) 2010-2018 Filipe Coelho <falktx@falktx.com>
+# Copyright (C) 2023-2024 Houston4444 <picotmathieu@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,6 +22,7 @@
 
 from asyncio import subprocess
 from enum import Enum
+import logging
 import os
 import sys
 import shutil
@@ -49,9 +51,7 @@ from shared import (
     LINUX, HAIKU, MACOS, WINDOWS, DEBUG, VERSION, getIcon,
     CustomMessageBox, setUpSignals)
 from shared_caleson import (
-    getProcList, GlobalSettings,
-    iAlsaFileNone, iAlsaFileLoop, iAlsaFileJACK,
-    iAlsaFilePulse, iAlsaFileMax,
+    getProcList, GlobalSettings, AlsaFile,
     startAlsaAudioLoopBridge, wantJackStart)
 from shared_canvasjack import (
     jacklib, gDBus, BUFFER_SIZE_LIST, jacksettings)
@@ -76,6 +76,8 @@ except:
         haveDBus = True
     except:
         haveDBus = False
+
+_logger = logging.getLogger(__name__)
 
 # Check for PulseAudio and Wine
 havePulseAudio = bool(shutil.which('pulseaudio'))
@@ -302,7 +304,7 @@ class CalesonMainW(QMainWindow):
         self.pix_error = QIcon(getIcon("dialog-error", 16)).pixmap(16, 16)
         self.pix_warning = QIcon(getIcon("dialog-warning", 16)).pixmap(16, 16)
 
-        self.m_lastAlsaIndexType = -2 # invalid
+        self.m_lastAlsaIndexType = AlsaFile.INVALID
 
         if jacklib and not jacklib.JACK2:
             self.ui.b_jack_switchmaster.setEnabled(False)
@@ -840,10 +842,10 @@ class CalesonMainW(QMainWindow):
         if not os.path.exists(asoundrcFile):
             self.ui.b_alsa_start.setEnabled(False)
             self.ui.b_alsa_stop.setEnabled(False)
-            self.ui.cb_alsa_type.setCurrentIndex(iAlsaFileNone)
+            self.ui.cb_alsa_type.setCurrentIndex(AlsaFile.NONE.value)
             self.ui.tb_alsa_options.setEnabled(False)
             self.ui.label_bridge_alsa.setText(self.tr("No bridge in use"))
-            self.m_lastAlsaIndexType = -1 # null
+            self.m_lastAlsaIndexType = AlsaFile.NULL
             return
 
         asoundrcFd = open(asoundrcFile, "r")
@@ -870,7 +872,7 @@ class CalesonMainW(QMainWindow):
                 self.ui.label_bridge_alsa.setText(
                     self.tr("Using Caleson snd-aloop daemon, stopped"))
 
-            self.ui.cb_alsa_type.setCurrentIndex(iAlsaFileLoop)
+            self.ui.cb_alsa_type.setCurrentIndex(AlsaFile.LOOP.value)
             self.ui.tb_alsa_options.setEnabled(True)
 
         elif asoundrcRead == ASOUNDRC_JACK:
@@ -878,7 +880,7 @@ class CalesonMainW(QMainWindow):
             self.ui.b_alsa_stop.setEnabled(False)
             self.systray.setActionEnabled("alsa_start", False)
             self.systray.setActionEnabled("alsa_stop", False)
-            self.ui.cb_alsa_type.setCurrentIndex(iAlsaFileJACK)
+            self.ui.cb_alsa_type.setCurrentIndex(AlsaFile.JACK.value)
             self.ui.tb_alsa_options.setEnabled(False)
             self.ui.label_bridge_alsa.setText(
                 self.tr("Using JACK plugin bridge (Always on)"))
@@ -888,7 +890,7 @@ class CalesonMainW(QMainWindow):
             self.ui.b_alsa_stop.setEnabled(False)
             self.systray.setActionEnabled("alsa_start", False)
             self.systray.setActionEnabled("alsa_stop", False)
-            self.ui.cb_alsa_type.setCurrentIndex(iAlsaFilePulse)
+            self.ui.cb_alsa_type.setCurrentIndex(AlsaFile.PULSE.value)
             self.ui.tb_alsa_options.setEnabled(False)
             self.ui.label_bridge_alsa.setText(
                 self.tr("Using PulseAudio plugin bridge (Always on)"))
@@ -899,12 +901,13 @@ class CalesonMainW(QMainWindow):
             self.systray.setActionEnabled("alsa_start", False)
             self.systray.setActionEnabled("alsa_stop", False)
             self.ui.cb_alsa_type.addItem(self.tr("Custom"))
-            self.ui.cb_alsa_type.setCurrentIndex(iAlsaFileMax)
+            self.ui.cb_alsa_type.setCurrentIndex(AlsaFile.MAX.value)
             self.ui.tb_alsa_options.setEnabled(True)
             self.ui.label_bridge_alsa.setText(
                 self.tr("Using custom asoundrc, not managed by Caleson"))
 
-        self.m_lastAlsaIndexType = self.ui.cb_alsa_type.currentIndex()
+        self.m_lastAlsaIndexType = AlsaFile(
+            self.ui.cb_alsa_type.currentIndex())
 
     def checkPulseAudio(self):
         if not havePulseAudio:
@@ -1147,11 +1150,18 @@ class CalesonMainW(QMainWindow):
             os.remove(checkFile)
 
     @pyqtSlot(int)
-    def slot_AlsaBridgeChanged(self, index):
-        if self.m_lastAlsaIndexType == -2 or self.m_lastAlsaIndexType == index:
+    def slot_AlsaBridgeChanged(self, index: int):
+        try:
+            alsa_index = AlsaFile(index)
+        except:
+            _logger.error(
+                f"Caleson::AlsaBridgeChanged({index}) - invalid index")
+            return
+        
+        if self.m_lastAlsaIndexType in (AlsaFile.INVALID,  alsa_index):
             return
 
-        if self.m_lastAlsaIndexType == iAlsaFileMax:
+        if self.m_lastAlsaIndexType is AlsaFile.MAX:
             ask = CustomMessageBox(
                 self, 
                 QMessageBox.Warning, self.tr("Warning"),
@@ -1163,37 +1173,31 @@ class CalesonMainW(QMainWindow):
 
             if ask == QMessageBox.Yes:
                 self.ui.cb_alsa_type.blockSignals(True)
-                self.ui.cb_alsa_type.removeItem(iAlsaFileMax)
+                self.ui.cb_alsa_type.removeItem(AlsaFile.MAX.value)
                 self.ui.cb_alsa_type.setCurrentIndex(index)
                 self.ui.cb_alsa_type.blockSignals(False)
             else:
                 self.ui.cb_alsa_type.blockSignals(True)
-                self.ui.cb_alsa_type.setCurrentIndex(iAlsaFileMax)
+                self.ui.cb_alsa_type.setCurrentIndex(AlsaFile.MAX.value)
                 self.ui.cb_alsa_type.blockSignals(False)
                 return
 
         asoundrcFile = os.path.join(HOME, ".asoundrc")
 
-        if index == iAlsaFileNone:
+        if index is AlsaFile.NONE:
             os.remove(asoundrcFile)
 
-        elif index == iAlsaFileLoop:
-            asoundrcFd = open(asoundrcFile, "w")
-            asoundrcFd.write(ASOUNDRC_ALOOP+"\n")
-            asoundrcFd.close()
+        elif index is AlsaFile.LOOP:
+            with open(asoundrcFile, "w") as asoundrcFd:                
+                asoundrcFd.write(ASOUNDRC_ALOOP+"\n")
 
-        elif index == iAlsaFileJACK:
-            asoundrcFd = open(asoundrcFile, "w")
-            asoundrcFd.write(ASOUNDRC_JACK+"\n")
-            asoundrcFd.close()
+        elif index is AlsaFile.JACK:
+            with open(asoundrcFile, "w") as asoundrcFd:
+                asoundrcFd.write(ASOUNDRC_JACK+"\n")
 
-        elif index == iAlsaFilePulse:
-            asoundrcFd = open(asoundrcFile, "w")
-            asoundrcFd.write(ASOUNDRC_PULSE+"\n")
-            asoundrcFd.close()
-
-        else:
-            print(self.tr("Caleson::AlsaBridgeChanged(%i) - invalid index") % index)
+        elif index is AlsaFile.PULSE:
+            with open(asoundrcFile, "w") as asoundrcFd:
+                asoundrcFd.write(ASOUNDRC_PULSE+"\n")
 
         self.checkAlsaAudio()
 
@@ -1201,7 +1205,7 @@ class CalesonMainW(QMainWindow):
     def slot_AlsaAudioBridgeOptions(self):
         AlsaAudioDialog(
             self,
-            (self.ui.cb_alsa_type.currentIndex() != iAlsaFileLoop)).exec_()
+            (self.ui.cb_alsa_type.currentIndex() != AlsaFile.LOOP.value)).exec_()
 
     @pyqtSlot()
     def slot_A2JBridgeStart(self):
@@ -1437,8 +1441,9 @@ class CalesonMainW(QMainWindow):
             self.restoreGeometry(self.settings.value("Geometry", b""))
 
         usingAlsaLoop = bool(
-            GlobalSettings.value("ALSA-Audio/BridgeIndexType", iAlsaFileNone, type=int)
-            == iAlsaFileLoop)
+            GlobalSettings.value(
+                "ALSA-Audio/BridgeIndexType", AlsaFile.NONE.value, type=int)
+            == AlsaFile.LOOP.value)
 
         self.ui.cb_jack_autostart.setChecked(
             GlobalSettings.value("JACK/AutoStart", wantJackStart, type=bool))

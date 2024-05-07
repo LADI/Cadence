@@ -7,8 +7,8 @@ from PyQt5.QtWidgets import QDialog, QMessageBox
 import pulse2jack_tool
 
 from shared_caleson import (
-    GlobalSettings, sleep, tryCloseJackDBus, getProcList,
-    stopAllAudioProcesses, iAlsaFileNone, iAlsaFileLoop, startAlsaAudioLoopBridge)
+    GlobalSettings, sleep, tryCloseJackDBus,
+    stopAllAudioProcesses, startAlsaAudioLoopBridge, AlsaFile)
 from shared_canvasjack import gDBus
 
 import ui_caleson_rwait
@@ -112,8 +112,8 @@ class ForceRestartThread(QThread):
         # Start bridges according to user settings
 
         # ALSA-Audio
-        if (GlobalSettings.value("ALSA-Audio/BridgeIndexType", iAlsaFileNone, type=int)
-                == iAlsaFileLoop):
+        if (GlobalSettings.value("ALSA-Audio/BridgeIndexType", AlsaFile.NONE.value, type=int)
+                == AlsaFile.LOOP.value):
             self.display_info.emit(Info.BRIDGING_ALSA_AUDIO.value)
             startAlsaAudioLoopBridge()
             sleep(0.5)

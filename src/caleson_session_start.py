@@ -12,8 +12,8 @@ from PyQt5.QtCore import QCoreApplication
 # Imports (Custom Stuff)
 import pulse2jack_tool
 from shared_caleson import (
-    QSettings, stopAllAudioProcesses, HOME, wantJackStart, iAlsaFileNone,
-    iAlsaFileLoop, startAlsaAudioLoopBridge, DEFAULT_PLUGIN_PATH)
+    QSettings, stopAllAudioProcesses, HOME, wantJackStart, AlsaFile,
+    startAlsaAudioLoopBridge)
 from shared import VERSION
 
 
@@ -106,8 +106,8 @@ def startSession(systemStarted, secondSystemStartAttempt) -> bool:
 
     # ALSA-Audio
     if (GlobalSettings.value(
-                "ALSA-Audio/BridgeIndexType", iAlsaFileNone, type=int)
-            == iAlsaFileLoop):
+                "ALSA-Audio/BridgeIndexType", AlsaFile.NONE.value, type=int)
+            == AlsaFile.LOOP.value):
         startAlsaAudioLoopBridge()
         time.sleep(0.5)
 
