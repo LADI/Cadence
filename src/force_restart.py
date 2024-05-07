@@ -1,13 +1,15 @@
 
 
 from enum import Enum
+import time
+
 from PyQt5.QtCore import QThread, pyqtSignal, pyqtSlot, Qt
 from PyQt5.QtWidgets import QDialog, QMessageBox
 
 import pulse2jack_tool
 
 from shared_caleson import (
-    GlobalSettings, sleep, tryCloseJackDBus,
+    GlobalSettings, tryCloseJackDBus,
     stopAllAudioProcesses, startAlsaAudioLoopBridge, AlsaFile)
 from shared_canvasjack import gDBus
 
@@ -64,7 +66,7 @@ class ForceRestartThread(QThread):
         for x in range(steps):
             if self.action_request_finished:
                 break
-            sleep(step_time * 0.001)
+            time.sleep(step_time * 0.001)
         else:
             return False
         
@@ -116,7 +118,7 @@ class ForceRestartThread(QThread):
                 == AlsaFile.LOOP.value):
             self.display_info.emit(Info.BRIDGING_ALSA_AUDIO.value)
             startAlsaAudioLoopBridge()
-            sleep(0.5)
+            time.sleep(0.5)
 
         self.progressChanged.emit(92)
             
