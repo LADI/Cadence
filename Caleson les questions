@@ -1,0 +1,35 @@
+Épuration déjà faite:
+    catia
+    claudia
+    catarina
+    xy-controller
+    jack-meters
+    render (QJackCapture fait la même chose en mieux)
+
+    ajustements:
+        chemin (PATH) des greffons (faut pas changer ces trucs là, ça sert à rien ! )
+        Applications par défaut (y a des outils dans l'environnement de bureau pour ça)
+
+
+Outils à proposer dans l'onglet "outils" (avec des captures d'écran):
+    Patchance
+    RaySession
+    Journaux (logs de JACK et d'A2J)
+    QJackCapture (remplace render)
+
+    d'autres idées ?
+
+
+Virer ou garder Le pont ALSA Audio ?
+
+    Je suis pour le virer, je ne suis pas sûr que quelqu'un s'en serve encore, proposer la solution unique du pont PulseAudio me paraît moins déroutant et tout à fait fonctionnel.
+    Son utilisation me paraît être un choix technique ingérable (pas de gestion du volume), et si vraiment quelqu'un veut le faire, il ou elle peut toujours utiliser les outils en ligne de commande.
+
+Gouvernance processeur
+
+    Une idée de comment faire marcher ça ? ce qui est existant fonctionne uniquement avec dbus sur Ubuntu (je suis pas sûr que ça fonctionne encore sous Ubuntu d'ailleurs). On peut appeler les lignes de commande cpufreq, mais ça exige d'être en root, alors avec une saisie de code.
+
+WineAsio
+
+    Je suis pour le garder et proposer le paquet pour le faire fonctionner.
+
