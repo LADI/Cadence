@@ -14,7 +14,7 @@
    <string>Frame</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QFrame{background-color:#33888888}</string>
+   <string notr="true">QFrame{background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #33aaaaaa, stop: 1 #33666666)}</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>

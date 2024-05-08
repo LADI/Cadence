@@ -93,8 +93,6 @@ class GlobalSysTray(object):
 
         self.menu_indexes.append(menu_obj)
 
-    # -------------------------------------------------------------------------------------------
-
     def addMenuAction(self, menu_name_id, act_name_id, act_name_string, is_check=False):
         i = self.get_menu_index(menu_name_id)
         if i < 0: return

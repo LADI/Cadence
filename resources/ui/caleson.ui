@@ -18,7 +18,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_system">
        <attribute name="title">
@@ -786,7 +786,7 @@
              <x>0</x>
              <y>0</y>
              <width>382</width>
-             <height>126</height>
+             <height>401</height>
             </rect>
            </property>
            <attribute name="label">
@@ -937,7 +937,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>79</width>
+             <width>96</width>
              <height>46</height>
             </rect>
            </property>
@@ -1423,7 +1423,8 @@
              <set>AlignCenter</set>
             </property>
             <property name="icon">
-             <iconset theme="audio-volume-high"/>
+             <iconset theme="audio-volume-high">
+              <normaloff>.</normaloff>.</iconset>
             </property>
             <property name="flags">
              <set>ItemIsSelectable|ItemIsEnabled</set>
@@ -1437,7 +1438,8 @@
              <set>AlignCenter</set>
             </property>
             <property name="icon">
-             <iconset theme="MIDIutilities"/>
+             <iconset theme="MIDIutilities">
+              <normaloff>.</normaloff>.</iconset>
             </property>
             <property name="flags">
              <set>ItemIsSelectable|ItemIsEnabled</set>
@@ -1451,7 +1453,8 @@
              <set>AlignCenter</set>
             </property>
             <property name="icon">
-             <iconset theme="wine"/>
+             <iconset theme="wine">
+              <normaloff>.</normaloff>.</iconset>
             </property>
             <property name="flags">
              <set>ItemIsSelectable|ItemIsEnabled</set>

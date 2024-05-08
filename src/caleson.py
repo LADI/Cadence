@@ -388,7 +388,6 @@ class CalesonMainW(QMainWindow):
             self.systray.addMenu("pulse", self.tr("PulseAudio Bridge"))
             self.systray.addMenuAction("pulse", "pulse_start", self.tr("Start"))
             self.systray.addMenuAction("pulse", "pulse_stop", self.tr("Stop"))
-            self.systray.addMenuAction("pulse", "pulse_channels", self.tr("Channels"))
 
             self.systray.setActionIcon("jack_start", "media-playback-start")
             self.systray.setActionIcon("jack_stop", "media-playback-stop")
@@ -399,7 +398,6 @@ class CalesonMainW(QMainWindow):
             self.systray.setActionIcon("a2j_stop", "media-playback-stop")
             self.systray.setActionIcon("pulse_start", "media-playback-start")
             self.systray.setActionIcon("pulse_stop", "media-playback-stop")
-            self.systray.setActionIcon("pulse_channels", "audio-card")
 
             self.systray.connect("jack_start", self.slot_JackServerStart)
             self.systray.connect("jack_stop", self.slot_JackServerStop)
@@ -416,15 +414,11 @@ class CalesonMainW(QMainWindow):
         self.systray.addMenuAction("tools", "app_catia", "Catia")
         self.systray.addMenuSeparator("tools", "tools_sep")
         self.systray.addMenuAction("tools", "app_logs", self.tr("Logs"))
-        self.systray.addMenuAction("tools", "app_meter_in", self.tr("Meter (Inputs)"))
-        self.systray.addMenuAction("tools", "app_meter_out", self.tr("Meter (Output)"))
         self.systray.addMenuAction("tools", "app_render", self.tr("Render"))
-        self.systray.addMenuAction("tools", "app_xy-controller", self.tr("XY-Controller"))
         self.systray.addSeparator("sep2")
 
         self.systray.connect("app_logs", self.func_start_logs)
         self.systray.connect("app_render",  self.func_start_render)
-        self.systray.connect("app_xy-controller", self.func_start_xycontroller)
 
         self.systray.setToolTip("Caleson")
         self.systray.show()
@@ -440,7 +434,7 @@ class CalesonMainW(QMainWindow):
 
         self.ui.b_alsa_start.clicked.connect(self.slot_AlsaBridgeStart)
         self.ui.b_alsa_stop.clicked.connect(self.slot_AlsaBridgeStop)
-        self.ui.cb_alsa_type.currentIndexChanged[int].connect(self.slot_AlsaBridgeChanged)
+        self.ui.cb_alsa_type.currentIndexChanged.connect(self.slot_AlsaBridgeChanged)
         self.ui.tb_alsa_options.clicked.connect(self.slot_AlsaAudioBridgeOptions)
 
         self.ui.b_a2j_start.clicked.connect(self.slot_A2JBridgeStart)
@@ -727,9 +721,8 @@ class CalesonMainW(QMainWindow):
             self.m_lastAlsaIndexType = AlsaFile.NULL
             return
 
-        asoundrcFd = open(asoundrcFile, "r")
-        asoundrcRead = asoundrcFd.read().strip()
-        asoundrcFd.close()
+        with open(asoundrcFile, "r") as asoundrcFd:
+            asoundrcRead = asoundrcFd.read().strip()
 
         if asoundrcRead.startswith(ASOUNDRC_ALOOP_CHECK):
             if isAlsaAudioBridged():
@@ -744,6 +737,7 @@ class CalesonMainW(QMainWindow):
                     jackRunning = bool(gDBus.jack and gDBus.jack.IsStarted())
                 except:
                     jackRunning = False
+
                 self.ui.b_alsa_start.setEnabled(jackRunning)
                 self.ui.b_alsa_stop.setEnabled(False)
                 self.systray.setActionEnabled("alsa_start", jackRunning)
@@ -1045,9 +1039,9 @@ class CalesonMainW(QMainWindow):
                 self, 
                 QMessageBox.Warning, self.tr("Warning"),
                 self.tr(""
-                        "You're using a custom ~/.asoundrc file not managed by Caleson.<br/>"
-                        "By choosing to use a Caleson ALSA-Audio bridge, <b>the file will be replaced</b>."
-                        ""),
+                    "You're using a custom ~/.asoundrc file not managed by Caleson.<br/>"
+                    "By choosing to use a Caleson ALSA-Audio bridge, <b>the file will be replaced</b>."
+                    ""),
                 self.tr("Are you sure you want to do this?"))
 
             if ask == QMessageBox.Yes:
@@ -1063,18 +1057,18 @@ class CalesonMainW(QMainWindow):
 
         asoundrcFile = os.path.join(HOME, ".asoundrc")
 
-        if index is AlsaFile.NONE:
+        if alsa_index is AlsaFile.NONE:
             os.remove(asoundrcFile)
 
-        elif index is AlsaFile.LOOP:
+        elif alsa_index is AlsaFile.LOOP:
             with open(asoundrcFile, "w") as asoundrcFd:                
                 asoundrcFd.write(ASOUNDRC_ALOOP+"\n")
 
-        elif index is AlsaFile.JACK:
+        elif alsa_index is AlsaFile.JACK:
             with open(asoundrcFile, "w") as asoundrcFd:
                 asoundrcFd.write(ASOUNDRC_JACK+"\n")
 
-        elif index is AlsaFile.PULSE:
+        elif alsa_index is AlsaFile.PULSE:
             with open(asoundrcFile, "w") as asoundrcFd:
                 asoundrcFd.write(ASOUNDRC_PULSE+"\n")
 
@@ -1163,7 +1157,7 @@ class CalesonMainW(QMainWindow):
         
         while True:
             for j in range(self.ui.listWidgetPulseSources.count()):
-                item = self.ui.listWidgetPulseSources.item(j)
+                item: PaBridgeItem = self.ui.listWidgetPulseSources.item(j)
                 if item.get_current_dict()['name'] == bridge_name:
                     break
             else:
@@ -1193,7 +1187,7 @@ class CalesonMainW(QMainWindow):
         
         while True:
             for j in range(self.ui.listWidgetPulseSinks.count()):
-                item = self.ui.listWidgetPulseSinks.item(j)
+                item: PaBridgeItem = self.ui.listWidgetPulseSinks.item(j)
                 if item.get_current_dict()['name'] == bridge_name:
                     break
             else:
@@ -1228,7 +1222,6 @@ class CalesonMainW(QMainWindow):
     def slot_changeGovernorMode(self, newMode):
         bus = dbus.SystemBus(mainloop=gDBus.loop)
         #proxy = bus.get_object("org.caleson.CpufreqSelector", "/Selector", introspect=False)
-        #print(proxy.hello())
         proxy = bus.get_object(
             "com.ubuntu.IndicatorCpufreqSelector", "/Selector",
             introspect=False)
