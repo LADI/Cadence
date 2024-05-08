@@ -1,7 +1,7 @@
 import os
 import shutil
 
-from shared_settings import HOME
+from shared import HOME
 
 
 class _MainObj:

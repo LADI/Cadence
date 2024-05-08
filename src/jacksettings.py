@@ -25,9 +25,9 @@ from PyQt5.QtCore import pyqtSlot, Qt, QSettings, QTimer
 from PyQt5.QtGui import QFontMetrics
 from PyQt5.QtWidgets import QDialog, QDialogButtonBox, QMessageBox
 
+from shared_i18n import setup_i18n
 
 import ui_settings_jack
-from shared_i18n import setup_i18n
 
 try:
     import dbus
@@ -100,9 +100,7 @@ def setBufferSize(bsize):
 def setSampleRate(srate):
     return setDriverParameter("rate", dbus.UInt32(srate))
 
-# ------------------------------------------------------------------------------------------------------------
 # Helper functions (engine)
-
 def engineHasFeature(feature):
     if gJackctl is None:
         return False
@@ -136,9 +134,7 @@ def setEngineParameter(parameter, value, optional=True):
     else:
         return bool(gJackctl.SetParameterValue(["engine", parameter], value))
 
-# ------------------------------------------------------------------------------------------------------------
 # Helper functions (driver)
-
 def driverHasFeature(feature) -> bool:
     if gJackctl is None:
         return False

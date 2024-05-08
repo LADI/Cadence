@@ -29,9 +29,8 @@ from PyQt5.QtCore import qWarning
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QFileDialog, QMessageBox
 
-# ------------------------------------------------------------------------------------------------------------
-# Set Platform
 
+# Set Platform
 if sys.platform == "darwin":
     from PyQt5.QtGui import qt_mac_set_menubar_icons
     qt_mac_set_menubar_icons(False)
@@ -61,42 +60,30 @@ else:
     MACOS = False
     WINDOWS = False
 
-# ------------------------------------------------------------------------------------------------------------
 # Try Import Signal
-
 try:
     from signal import signal, SIGINT, SIGTERM, SIGUSR1, SIGUSR2
     haveSignal = True
 except:
     haveSignal = False
 
-# ------------------------------------------------------------------------------------------------------------
 # Safe exception hook, needed for PyQt5
-
 def sys_excepthook(typ, value, tback):
     return sys.__excepthook__(typ, value, tback)
 
 sys.excepthook = sys_excepthook
 
-# ------------------------------------------------------------------------------------------------------------
 # Set Version
-
 VERSION = "0.9.0"
 
-# ------------------------------------------------------------------------------------------------------------
 # Set Debug mode
-
 DEBUG = bool("-d" in sys.argv or "-debug" in sys.argv or "--debug" in sys.argv)
 
-# ------------------------------------------------------------------------------------------------------------
 # Global variables
-
 global gGui
 gGui = None
 
-# ------------------------------------------------------------------------------------------------------------
 # Set TMP
-
 TMP = os.getenv("TMP")
 
 if TMP is None:
@@ -106,11 +93,8 @@ if TMP is None:
     else:
         TMP = "/tmp"
 
-# ------------------------------------------------------------------------------------------------------------
 # Set HOME
-
 HOME = os.getenv("HOME")
-
 if HOME is None:
     HOME = os.path.expanduser("~")
 
@@ -121,9 +105,7 @@ if not os.path.exists(HOME):
     qWarning("HOME does not exist")
     HOME = TMP
 
-# ------------------------------------------------------------------------------------------------------------
 # Set PATH
-
 PATH = os.getenv("PATH")
 
 if PATH is None:
@@ -139,15 +121,7 @@ if PATH is None:
 else:
     PATH = PATH.split(os.pathsep)
 
-# ------------------------------------------------------------------------------------------------------------
-# Remove/convert non-ascii chars from a string
-
-def asciiString(string):
-    return normalize("NFKD", string).encode("ascii", "ignore").decode("utf-8")
-
-# ------------------------------------------------------------------------------------------------------------
 # Convert a ctypes c_char_p into a python string
-
 def cString(value):
     if not value:
         return ""
@@ -155,52 +129,14 @@ def cString(value):
         return value
     return value.decode("utf-8", errors="ignore")
 
-# ------------------------------------------------------------------------------------------------------------
-# Check if a value is a number (float support)
-
-def isNumber(value):
-    try:
-        float(value)
-        return True
-    except:
-        return False
-
-# ------------------------------------------------------------------------------------------------------------
-# Convert a value to a list
-
-def toList(value):
-    if value is None:
-        return []
-    elif not isinstance(value, list):
-        return [value]
-    else:
-        return value
-
-# ------------------------------------------------------------------------------------------------------------
-# Unicode open
-
-def uopen(filename, mode="r"):
-    return codecopen(filename, encoding="utf-8", mode=mode)
-
-# ------------------------------------------------------------------------------------------------------------
-# QLineEdit and QPushButton combo
-
-def getAndSetPath(self_, currentPath, lineEdit):
-    newPath = QFileDialog.getExistingDirectory(self_, self_.tr("Set Path"), currentPath, QFileDialog.ShowDirsOnly)
-    if newPath:
-        lineEdit.setText(newPath)
-    return newPath
-
-# ------------------------------------------------------------------------------------------------------------
 # Get Icon from user theme, using our own as backup (Oxygen)
-
 def getIcon(icon, size=16):
     return QIcon.fromTheme(icon, QIcon(":/%ix%i/%s.png" % (size, size, icon)))
 
-# ------------------------------------------------------------------------------------------------------------
 # Custom MessageBox
-
-def CustomMessageBox(self_, icon, title, text, extraText="", buttons=QMessageBox.Yes|QMessageBox.No, defButton=QMessageBox.No):
+def CustomMessageBox(self_, icon, title, text, extraText="",
+                     buttons=QMessageBox.Yes|QMessageBox.No,
+                     defButton=QMessageBox.No):
     msgBox = QMessageBox(self_)
     msgBox.setIcon(icon)
     msgBox.setWindowTitle(title)
@@ -210,9 +146,7 @@ def CustomMessageBox(self_, icon, title, text, extraText="", buttons=QMessageBox
     msgBox.setDefaultButton(defButton)
     return msgBox.exec_()
 
-# ------------------------------------------------------------------------------------------------------------
 # Signal handler
-
 def setUpSignals(self_):
     global gGui
 
@@ -266,9 +200,7 @@ def showWindowHandler():
     else:
         gGui.showNormal()
 
-# ------------------------------------------------------------------------------------------------------------
 # Shared Icons
-
 def setIcons(self_, modes):
     global gGui
 

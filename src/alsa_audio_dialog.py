@@ -4,7 +4,7 @@ from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import QDialog, QDialogButtonBox
 
 from asoundrc_strs import ASOUNDRC_ALOOP
-from shared_settings import HOME
+from shared import HOME
 from shared_caleson import GlobalSettings
 
 import ui_caleson_tb_alsa

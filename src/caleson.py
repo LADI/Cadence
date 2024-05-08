@@ -20,7 +20,6 @@
 
 # Imports (Global)
 
-from asyncio import subprocess
 from enum import Enum
 import logging
 import os
@@ -51,14 +50,13 @@ from asoundrc_strs import (
     ASOUNDRC_ALOOP, ASOUNDRC_ALOOP_CHECK,
     ASOUNDRC_JACK, ASOUNDRC_PULSE)
 from shared import (
-    LINUX, HAIKU, MACOS, WINDOWS, DEBUG, VERSION, getIcon,
+    LINUX, HAIKU, MACOS, WINDOWS, DEBUG, VERSION, HOME, getIcon,
     CustomMessageBox, setUpSignals)
 from shared_caleson import (
     getProcList, GlobalSettings, AlsaFile,
     startAlsaAudioLoopBridge, wantJackStart)
 from shared_canvasjack import (
     jacklib, gDBus, BUFFER_SIZE_LIST, jacksettings)
-from shared_settings import HOME
 from shared_i18n import setup_i18n
 from system_checks import calesonSystemChecks, initSystemChecks
 
