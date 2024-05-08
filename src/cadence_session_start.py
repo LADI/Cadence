@@ -2,9 +2,11 @@
 # -*- coding: utf-8 -*-
 
 # Imports (Global)
-import dbus
-import sys
-from PyQt5.QtCore import QCoreApplication
+import dbus, sys
+if True:
+    from PyQt5.QtCore import QCoreApplication
+else:
+    from PyQt4.QtCore import QCoreApplication
 
 # Imports (Custom Stuff)
 from shared_cadence import *
@@ -73,7 +75,48 @@ def startSession(systemStarted, secondSystemStartAttempt):
     except:
         DBus.a2j = None
 
-    startJack()
+    if GlobalSettings.value("JACK/AutoLoadLadishStudio", False, type=bool):
+        try:
+            ladish_control = DBus.bus.get_object("org.ladish", "/org/ladish/Control")
+        except:
+            startJack()
+            return False
+
+        try:
+            ladish_conf = DBus.bus.get_object("org.ladish.conf", "/org/ladish/conf")
+        except:
+            ladish_conf = None
+
+        ladishStudioName = dbus.String(GlobalSettings.value("JACK/LadishStudioName", "", type=str))
+        ladishStudioListDump = ladish_control.GetStudioList()
+
+        for thisStudioName, thisStudioDict in ladishStudioListDump:
+            if ladishStudioName == thisStudioName:
+                try:
+                    if ladish_conf and ladish_conf.get('/org/ladish/daemon/notify')[0] == "true":
+                        ladish_conf.set('/org/ladish/daemon/notify', "false")
+                        ladishNotifyHack = True
+                    else:
+                      ladishNotifyHack = False
+                except:
+                    ladishNotifyHack = False
+
+                ladish_control.LoadStudio(thisStudioName)
+                ladish_studio = DBus.bus.get_object("org.ladish", "/org/ladish/Studio")
+
+                if not bool(ladish_studio.IsStarted()):
+                    ladish_studio.Start()
+
+                if ladishNotifyHack:
+                    ladish_conf.set('/org/ladish/daemon/notify', "true")
+
+                break
+
+        else:
+            startJack()
+
+    else:
+        startJack()
 
     if not bool(DBus.jack.IsStarted()):
         print("JACK Failed to Start")

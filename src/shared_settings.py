@@ -19,8 +19,12 @@
 # ------------------------------------------------------------------------------------------------------------
 # Imports (Global)
 
-from PyQt5.QtCore import pyqtSlot, QSettings
-from PyQt5.QtWidgets import QDialog, QDialogButtonBox
+if True:
+    from PyQt5.QtCore import pyqtSlot, QSettings
+    from PyQt5.QtWidgets import QDialog, QDialogButtonBox
+else:
+    from PyQt4.QtCore import pyqtSlot, QSettings
+    from PyQt4.QtGui import QDialog, QDialogButtonBox
 
 # ------------------------------------------------------------------------------------------------------------
 # Imports (Custom Stuff)
@@ -100,6 +104,13 @@ class SettingsW(QDialog):
             self.ui.group_tray.setEnabled(False)
             self.ui.group_tray.setVisible(False)
             self.ui.lw_page.hideRow(TAB_INDEX_LADISH)
+            self.ui.lw_page.setCurrentCell(TAB_INDEX_MAIN, 0)
+
+        elif appName == "claudia":
+            self.ui.cb_jack_port_alias.setEnabled(False)
+            self.ui.cb_jack_port_alias.setVisible(False)
+            self.ui.label_jack_port_alias.setEnabled(False)
+            self.ui.label_jack_port_alias.setVisible(False)
             self.ui.lw_page.setCurrentCell(TAB_INDEX_MAIN, 0)
 
         else:

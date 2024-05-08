@@ -139,6 +139,8 @@ class LogsReadThread(QThread):
 
         self.LOG_FILE_JACK   = LogsW.LOG_FILE_JACK
         self.LOG_FILE_A2J    = LogsW.LOG_FILE_A2J
+        self.LOG_FILE_LASH   = LogsW.LOG_FILE_LASH
+        self.LOG_FILE_LADISH = LogsW.LOG_FILE_LADISH
 
         # -------------------------------------------------------------
         # Init logs
@@ -160,6 +162,24 @@ class LogsReadThread(QThread):
 
             if self.fLogFileA2J.size() > self.MAX_INITIAL_SIZE:
                 self.fLogStreamA2J.seek(self.fLogFileA2J.size() - self.MAX_INITIAL_SIZE)
+
+        if self.LOG_FILE_LASH is not None:
+            self.fLogFileLASH = QFile(self.LOG_FILE_LASH)
+            self.fLogFileLASH.open(QIODevice.ReadOnly)
+            self.fLogStreamLASH = QTextStream(self.fLogFileLASH)
+            self.fLogStreamLASH.setCodec("UTF-8")
+
+            if self.fLogFileLASH.size() > self.MAX_INITIAL_SIZE:
+                self.fLogStreamLASH.seek(self.fLogFileLASH.size() - self.MAX_INITIAL_SIZE)
+
+        if self.LOG_FILE_LADISH is not None:
+            self.fLogFileLADISH = QFile(self.LOG_FILE_LADISH)
+            self.fLogFileLADISH.open(QIODevice.ReadOnly)
+            self.fLogStreamLADISH = QTextStream(self.fLogFileLADISH)
+            self.fLogStreamLADISH.setCodec("UTF-8")
+
+            if self.fLogFileLADISH.size() > self.MAX_INITIAL_SIZE:
+                self.fLogStreamLADISH.seek(self.fLogFileLADISH.size() - self.MAX_INITIAL_SIZE)
 
     def closeNow(self):
         self.fCloseNow = True
@@ -187,6 +207,20 @@ class LogsReadThread(QThread):
                     self.fLogFileA2J.close()
                     self.fLogFileA2J.open(QIODevice.ReadOnly)
 
+                if self.LOG_FILE_LASH:
+                    self.fLogStreamLASH.flush()
+                    self.fLogFileLASH.close()
+                    self.fLogFileLASH.open(QIODevice.WriteOnly)
+                    self.fLogFileLASH.close()
+                    self.fLogFileLASH.open(QIODevice.ReadOnly)
+
+                if self.LOG_FILE_LADISH:
+                    self.fLogStreamLADISH.flush()
+                    self.fLogFileLADISH.close()
+                    self.fLogFileLADISH.open(QIODevice.WriteOnly)
+                    self.fLogFileLADISH.close()
+                    self.fLogFileLADISH.open(QIODevice.ReadOnly)
+
                 self.fPurgeLogs = False
 
             else:
@@ -200,7 +234,17 @@ class LogsReadThread(QThread):
                 else:
                     textA2J = ""
 
-                self.fRealParent.setLogsText(textJACK, textA2J)
+                if self.LOG_FILE_LASH:
+                    textLASH = fixLogText(self.fLogStreamLASH.readAll()).strip()
+                else:
+                    textLASH = ""
+
+                if self.LOG_FILE_LADISH:
+                    textLADISH = fixLogText(self.fLogStreamLADISH.readAll()).strip()
+                else:
+                    textLADISH = ""
+
+                self.fRealParent.setLogsText(textJACK, textA2J, textLASH, textLADISH)
                 self.updateLogs.emit()
 
             if not self.fCloseNow:
@@ -215,6 +259,12 @@ class LogsReadThread(QThread):
         if self.LOG_FILE_A2J:
             self.fLogFileA2J.close()
 
+        if self.LOG_FILE_LASH:
+            self.fLogFileLASH.close()
+
+        if self.LOG_FILE_LADISH:
+            self.fLogFileLADISH.close()
+
 # ------------------------------------------------------------------------------------------------------------
 # Logs Window
 
@@ -223,12 +273,20 @@ class LogsW(QDialog):
 
     LOG_FILE_JACK   = os.path.join(LOG_PATH, "jack", "jackdbus.log")
     LOG_FILE_A2J    = os.path.join(LOG_PATH, "a2j", "a2j.log")
+    LOG_FILE_LASH   = os.path.join(LOG_PATH, "lash", "lash.log")
+    LOG_FILE_LADISH = os.path.join(LOG_PATH, "ladish", "ladish.log")
 
     if not os.path.exists(LOG_FILE_JACK):
         LOG_FILE_JACK = None
 
     if not os.path.exists(LOG_FILE_A2J):
         LOG_FILE_A2J = None
+
+    if not os.path.exists(LOG_FILE_LASH):
+        LOG_FILE_LASH = None
+
+    if not os.path.exists(LOG_FILE_LADISH):
+        LOG_FILE_LADISH = None
 
     SIGTERM = pyqtSignal()
     SIGUSR1 = pyqtSignal()
@@ -246,6 +304,8 @@ class LogsW(QDialog):
 
         self.fTextJACK   = ""
         self.fTextA2J    = ""
+        self.fTextLASH   = ""
+        self.fTextLADISH = ""
 
         # -------------------------------------------------------------
         # Set-up GUI
@@ -266,6 +326,14 @@ class LogsW(QDialog):
             self.ui.tabWidget.removeTab(1 - tabIndex)
             tabIndex += 1
 
+        if self.LOG_FILE_LASH is None:
+            self.ui.tabWidget.removeTab(2 - tabIndex)
+            tabIndex += 1
+
+        if self.LOG_FILE_LADISH is None:
+            self.ui.tabWidget.removeTab(3 - tabIndex)
+            tabIndex += 1
+
         # -------------------------------------------------------------
         # Init logs viewers
 
@@ -276,6 +344,14 @@ class LogsW(QDialog):
         if self.LOG_FILE_A2J:
             self.fSyntaxA2J = SyntaxHighlighter_A2J(self.ui.pte_a2j)
             self.fSyntaxA2J.setDocument(self.ui.pte_a2j.document())
+
+        if self.LOG_FILE_LASH:
+            self.fSyntaxLASH = SyntaxHighlighter_LASH(self.ui.pte_lash)
+            self.fSyntaxLASH.setDocument(self.ui.pte_lash.document())
+
+        if self.LOG_FILE_LADISH:
+            self.SyntaxLADISH = SyntaxHighlighter_LADISH(self.ui.pte_ladish)
+            self.SyntaxLADISH.setDocument(self.ui.pte_ladish.document())
 
         # -------------------------------------------------------------
         # Init file read thread
@@ -291,11 +367,13 @@ class LogsW(QDialog):
 
         # -------------------------------------------------------------
 
-    def setLogsText(self, textJACK, textA2J):
+    def setLogsText(self, textJACK, textA2J, textLASH, textLADISH):
         QMutexLocker(self.fTextLock)
 
         self.fTextJACK   = textJACK
         self.fTextA2J    = textA2J
+        self.fTextLASH   = textLASH
+        self.fTextLADISH = textLADISH
 
     @pyqtSlot()
     def slot_updateLogs(self):
@@ -304,6 +382,8 @@ class LogsW(QDialog):
         if self.fFirstRun:
             self.ui.pte_jack.clear()
             self.ui.pte_a2j.clear()
+            self.ui.pte_lash.clear()
+            self.ui.pte_ladish.clear()
 
         if self.LOG_FILE_JACK and self.fTextJACK:
             self.ui.pte_jack.appendPlainText(self.fTextJACK)
@@ -311,11 +391,21 @@ class LogsW(QDialog):
         if self.LOG_FILE_A2J and self.fTextA2J:
             self.ui.pte_a2j.appendPlainText(self.fTextA2J)
 
+        if self.LOG_FILE_LASH and self.fTextLASH:
+            self.ui.pte_lash.appendPlainText(self.fTextLASH)
+
+        if self.LOG_FILE_LADISH and self.fTextLADISH:
+            self.ui.pte_ladish.appendPlainText(self.fTextLADISH)
+
         if self.fFirstRun:
             self.ui.pte_jack.horizontalScrollBar().setValue(0)
             self.ui.pte_jack.verticalScrollBar().setValue(self.ui.pte_jack.verticalScrollBar().maximum())
             self.ui.pte_a2j.horizontalScrollBar().setValue(0)
             self.ui.pte_a2j.verticalScrollBar().setValue(self.ui.pte_a2j.verticalScrollBar().maximum())
+            self.ui.pte_lash.horizontalScrollBar().setValue(0)
+            self.ui.pte_lash.verticalScrollBar().setValue(self.ui.pte_lash.verticalScrollBar().maximum())
+            self.ui.pte_ladish.horizontalScrollBar().setValue(0)
+            self.ui.pte_ladish.verticalScrollBar().setValue(self.ui.pte_ladish.verticalScrollBar().maximum())
             self.fFirstRun = False
 
     @pyqtSlot()
@@ -323,6 +413,8 @@ class LogsW(QDialog):
         self.fReadThread.purgeLogs()
         self.ui.pte_jack.clear()
         self.ui.pte_a2j.clear()
+        self.ui.pte_lash.clear()
+        self.ui.pte_ladish.clear()
 
     def loadSettings(self):
         settings = QSettings("Cadence", "Cadence-Logs")
