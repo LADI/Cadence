@@ -18,7 +18,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_system">
        <attribute name="title">
@@ -689,8 +689,8 @@
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>299</width>
-                  <height>98</height>
+                  <width>392</width>
+                  <height>118</height>
                  </rect>
                 </property>
                 <attribute name="label">
@@ -823,8 +823,8 @@
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>302</width>
-                  <height>98</height>
+                  <width>392</width>
+                  <height>118</height>
                  </rect>
                 </property>
                 <attribute name="label">
@@ -1192,7 +1192,7 @@
              <item>
               <widget class="QLabel" name="label_tools_logs">
                <property name="text">
-                <string>View JACK and A2J logs</string>
+                <string>View JACK, A2J and LADISH logs</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -1612,8 +1612,8 @@
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>96</width>
-                  <height>89</height>
+                  <width>396</width>
+                  <height>401</height>
                  </rect>
                 </property>
                 <attribute name="label">
@@ -1642,7 +1642,7 @@
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>96</width>
+                  <width>91</width>
                   <height>89</height>
                  </rect>
                 </property>
@@ -1672,7 +1672,7 @@
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>96</width>
+                  <width>91</width>
                   <height>89</height>
                  </rect>
                 </property>
@@ -1702,7 +1702,7 @@
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>96</width>
+                  <width>91</width>
                   <height>89</height>
                  </rect>
                 </property>

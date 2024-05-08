@@ -35,11 +35,26 @@ from patchcanvas_theme import *
 # Tab indexes
 TAB_INDEX_MAIN   = 0
 TAB_INDEX_CANVAS = 1
-TAB_INDEX_NONE   = 2
+TAB_INDEX_LADISH = 2
+TAB_INDEX_NONE   = 3
 
 # PatchCanvas defines
 CANVAS_ANTIALIASING_SMALL = 1
 CANVAS_EYECANDY_SMALL     = 1
+
+# LADISH defines
+LADISH_CONF_KEY_DAEMON_NOTIFY           = "/org/ladish/daemon/notify"
+LADISH_CONF_KEY_DAEMON_SHELL            = "/org/ladish/daemon/shell"
+LADISH_CONF_KEY_DAEMON_TERMINAL         = "/org/ladish/daemon/terminal"
+LADISH_CONF_KEY_DAEMON_STUDIO_AUTOSTART = "/org/ladish/daemon/studio_autostart"
+LADISH_CONF_KEY_DAEMON_JS_SAVE_DELAY    = "/org/ladish/daemon/js_save_delay"
+
+# LADISH defaults
+LADISH_CONF_KEY_DAEMON_NOTIFY_DEFAULT           = True
+LADISH_CONF_KEY_DAEMON_SHELL_DEFAULT            = "sh"
+LADISH_CONF_KEY_DAEMON_TERMINAL_DEFAULT         = "x-terminal-emulator"
+LADISH_CONF_KEY_DAEMON_STUDIO_AUTOSTART_DEFAULT = True
+LADISH_CONF_KEY_DAEMON_JS_SAVE_DELAY_DEFAULT    = 0
 
 # Internal defaults
 global SETTINGS_DEFAULT_PROJECT_FOLDER
@@ -75,6 +90,7 @@ class SettingsW(QDialog):
         if appName == "catarina":
             self.fAutoHideGroups = False
             self.ui.lw_page.hideRow(TAB_INDEX_MAIN)
+            self.ui.lw_page.hideRow(TAB_INDEX_LADISH)
             self.ui.lw_page.setCurrentCell(TAB_INDEX_CANVAS, 0)
 
         elif appName == "catia":
@@ -83,11 +99,13 @@ class SettingsW(QDialog):
             self.ui.group_main_paths.setVisible(False)
             self.ui.group_tray.setEnabled(False)
             self.ui.group_tray.setVisible(False)
+            self.ui.lw_page.hideRow(TAB_INDEX_LADISH)
             self.ui.lw_page.setCurrentCell(TAB_INDEX_MAIN, 0)
 
         else:
             self.ui.lw_page.hideRow(TAB_INDEX_MAIN)
             self.ui.lw_page.hideRow(TAB_INDEX_CANVAS)
+            self.ui.lw_page.hideRow(TAB_INDEX_LADISH)
             self.ui.stackedWidget.setCurrentIndex(TAB_INDEX_NONE)
             return
 
@@ -143,6 +161,13 @@ class SettingsW(QDialog):
 
         # ---------------------------------------
 
+        if not self.ui.lw_page.isRowHidden(TAB_INDEX_LADISH):
+            self.ui.cb_ladish_notify.setChecked(settings.value(LADISH_CONF_KEY_DAEMON_NOTIFY, LADISH_CONF_KEY_DAEMON_NOTIFY_DEFAULT, type=bool))
+            self.ui.le_ladish_shell.setText(settings.value(LADISH_CONF_KEY_DAEMON_SHELL, LADISH_CONF_KEY_DAEMON_SHELL_DEFAULT, type=str))
+            self.ui.le_ladish_terminal.setText(settings.value(LADISH_CONF_KEY_DAEMON_TERMINAL, LADISH_CONF_KEY_DAEMON_TERMINAL_DEFAULT, type=str))
+            self.ui.cb_ladish_studio_autostart.setChecked(settings.value(LADISH_CONF_KEY_DAEMON_STUDIO_AUTOSTART, LADISH_CONF_KEY_DAEMON_STUDIO_AUTOSTART_DEFAULT, type=bool))
+            self.ui.sb_ladish_jsdelay.setValue(settings.value(LADISH_CONF_KEY_DAEMON_JS_SAVE_DELAY, LADISH_CONF_KEY_DAEMON_JS_SAVE_DELAY_DEFAULT, type=int))
+
     @pyqtSlot()
     def slot_saveSettings(self):
         settings = QSettings()
@@ -175,6 +200,13 @@ class SettingsW(QDialog):
 
         # ---------------------------------------
 
+        if not self.ui.lw_page.isRowHidden(TAB_INDEX_LADISH):
+            settings.setValue(LADISH_CONF_KEY_DAEMON_NOTIFY, self.ui.cb_ladish_notify.isChecked())
+            settings.setValue(LADISH_CONF_KEY_DAEMON_SHELL, self.ui.le_ladish_shell.text())
+            settings.setValue(LADISH_CONF_KEY_DAEMON_TERMINAL, self.ui.le_ladish_terminal.text())
+            settings.setValue(LADISH_CONF_KEY_DAEMON_STUDIO_AUTOSTART, self.ui.cb_ladish_studio_autostart.isChecked())
+            settings.setValue(LADISH_CONF_KEY_DAEMON_JS_SAVE_DELAY, self.ui.sb_ladish_jsdelay.value())
+
     @pyqtSlot()
     def slot_resetSettings(self):
         if self.ui.lw_page.currentRow() == TAB_INDEX_MAIN:
@@ -192,6 +224,12 @@ class SettingsW(QDialog):
             self.ui.cb_canvas_use_opengl.setChecked(False)
             self.ui.cb_canvas_render_aa.setCheckState(Qt.PartiallyChecked)
             self.ui.cb_canvas_render_hq_aa.setChecked(False)
+
+        elif self.ui.lw_page.currentRow() == TAB_INDEX_LADISH:
+            self.ui.cb_ladish_notify.setChecked(LADISH_CONF_KEY_DAEMON_NOTIFY_DEFAULT)
+            self.ui.cb_ladish_studio_autostart.setChecked(LADISH_CONF_KEY_DAEMON_STUDIO_AUTOSTART_DEFAULT)
+            self.ui.le_ladish_shell.setText(LADISH_CONF_KEY_DAEMON_SHELL_DEFAULT)
+            self.ui.le_ladish_terminal.setText(LADISH_CONF_KEY_DAEMON_TERMINAL_DEFAULT)
 
     @pyqtSlot()
     def slot_getAndSetProjectPath(self):

@@ -21,7 +21,10 @@
 
 from time import sleep
 
-from PyQt5.QtCore import QProcess, QSettings
+if True:
+    from PyQt5.QtCore import QProcess, QSettings
+else:
+    from PyQt4.QtCore import QProcess, QSettings
 
 # ------------------------------------------------------------------------------------------------------------
 # Imports (Custom Stuff)
@@ -150,7 +153,7 @@ def stopAllAudioProcesses(tryCloseJack = True):
     process.start("cadence-pulse2jack", ["--dummy"])
     process.waitForFinished()
 
-    procsTerm = ["a2j", "a2jmidid", "artsd", "jackd", "jackdmp", "knotify4", "jmcore"]
+    procsTerm = ["a2j", "a2jmidid", "artsd", "jackd", "jackdmp", "knotify4", "lash", "ladishd", "ladiappd", "ladiconfd", "jmcore"]
     procsKill = ["jackdbus", "pulseaudio"]
     tries     = 20
 
