@@ -11,14 +11,14 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>CaleSon</string>
+   <string>Caleson</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab_system">
        <attribute name="title">
@@ -720,7 +720,7 @@
            </font>
           </property>
           <property name="text">
-           <string>LibraZiK dure plus longtemps avec CaleSon !!!</string>
+           <string>Welcome to your Caleson !</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
@@ -786,7 +786,7 @@
              <x>0</x>
              <y>0</y>
              <width>382</width>
-             <height>401</height>
+             <height>126</height>
             </rect>
            </property>
            <attribute name="label">
@@ -937,7 +937,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>96</width>
+             <width>79</width>
              <height>46</height>
             </rect>
            </property>
@@ -1058,7 +1058,7 @@
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_2">
              <item>
-              <widget class="ClickableLabel" name="pic_catia">
+              <widget class="ClickableLabel" name="pic_patchance">
                <property name="minimumSize">
                 <size>
                  <width>0</width>
@@ -1075,7 +1075,7 @@
                 <string/>
                </property>
                <property name="pixmap">
-                <pixmap>:/screens/catia.png</pixmap>
+                <pixmap resource="../resources.qrc">:/screens/patchance.png</pixmap>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -1099,13 +1099,13 @@
            </widget>
           </item>
           <item>
-           <widget class="QGroupBox" name="groupBox_catia_2">
+           <widget class="QGroupBox" name="groupBoxRaySession">
             <property name="title">
              <string>RaySession</string>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_26">
              <item>
-              <widget class="ClickableLabel" name="pic_catia_2">
+              <widget class="ClickableLabel" name="pic_raysession">
                <property name="minimumSize">
                 <size>
                  <width>0</width>
@@ -1122,7 +1122,7 @@
                 <string/>
                </property>
                <property name="pixmap">
-                <pixmap>:/screens/catia.png</pixmap>
+                <pixmap resource="../resources.qrc">:/screens/raysession.png</pixmap>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -1130,7 +1130,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QLabel" name="label_tools_catia_2">
+              <widget class="QLabel" name="label_tools_raysession">
                <property name="text">
                 <string>Session Manager with NSM support</string>
                </property>
@@ -1228,7 +1228,7 @@
           <item>
            <widget class="QGroupBox" name="groupBox_render">
             <property name="title">
-             <string>QJackRecord</string>
+             <string>QJackCapture</string>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_6">
              <item>
@@ -1249,7 +1249,7 @@
                 <string/>
                </property>
                <property name="pixmap">
-                <pixmap>:/screens/caleson-render.png</pixmap>
+                <pixmap resource="../resources.qrc">:/screens/qjackcapture.png</pixmap>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -1384,6 +1384,15 @@
             <size>
              <width>200</width>
              <height>16777215</height>
+            </size>
+           </property>
+           <property name="lineWidth">
+            <number>1</number>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>32</width>
+             <height>32</height>
             </size>
            </property>
            <attribute name="horizontalHeaderVisible">
@@ -2280,7 +2289,7 @@ Default is off</string>
           <item>
            <widget class="QLabel" name="label_5">
             <property name="text">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Caleson&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;LibraZiK version&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Caleson is a tool used to configure the JACK server, and commonly needed bridges for PulseAudio or ALSA MIDI.&lt;/p&gt;&lt;p&gt;This version is specific to LibraZiK.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Copyright (C) falkTX 2010 - 2021&lt;/p&gt;&lt;p&gt;Copyright (C) houston4444 2022 - 2023&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;French translation: 2022 - 2023 Olivier Humbert trebmuh@tuxfamily.org&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Caleson&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;LibraZiK version&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Caleson is a tool used to configure the JACK server, and commonly needed bridges for PulseAudio or ALSA MIDI.&lt;/p&gt;&lt;p&gt;This version is specific to LibraZiK.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Copyright (C) falkTX 2010 - 2021&lt;/p&gt;&lt;p&gt;Copyright (C) houston4444 2022 - 2024&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;French translation: 2022 - 2024 Olivier Humbert trebmuh@tuxfamily.org&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="wordWrap">
              <bool>true</bool>

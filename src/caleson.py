@@ -35,6 +35,7 @@ from PyQt5.QtCore import (
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import (
     QApplication, QMainWindow,  QMessageBox)
+from clickablelabel import ClickableLabel
 
 
 # Imports (Custom Stuff)
@@ -329,7 +330,8 @@ class CalesonMainW(QMainWindow):
         self.ui.frame_tweaks_settings.setVisible(False)
 
         for i in range(self.ui.tw_tweaks.rowCount()):
-            self.ui.tw_tweaks.item(i, 0).setTextAlignment(Qt.AlignCenter)
+            self.ui.tw_tweaks.item(i, 0).setTextAlignment(Qt.AlignLeft|Qt.AlignVCenter)
+            self.ui.tw_tweaks.setRowHeight(i, 60)
 
         self.ui.tw_tweaks.setCurrentCell(0, 0)
 
@@ -445,8 +447,11 @@ class CalesonMainW(QMainWindow):
         self.ui.pushButtonAddPulseSource.clicked.connect(self.slot_PulseAudioBridgeAddSource)
         self.ui.pushButtonAddPulseSink.clicked.connect(self.slot_PulseAudioBridgeAddSink)
 
-        self.ui.pic_logs.clicked.connect(self.func_start_logs)
-        self.ui.pic_render.clicked.connect(self.func_start_render)
+        for pic in (self.ui.pic_patchance,
+                    self.ui.pic_raysession, 
+                    self.ui.pic_logs,
+                    self.ui.pic_render):
+            pic.clicked.connect(self.func_start_tool_app)
 
         self.ui.b_tweaks_apply_now.clicked.connect(self.slot_tweaksApply)
 
@@ -833,8 +838,24 @@ class CalesonMainW(QMainWindow):
         self.systray.setToolTip(systrayText)
 
     @pyqtSlot()
+    def func_start_tool_app(self):
+        sender: ClickableLabel = self.sender()
+        
+        if sender is self.ui.pic_patchance:
+            subprocess.Popen(['patchance'])
+        elif sender is self.ui.pic_raysession:
+            subprocess.Popen(['raysession'])
+        elif sender is self.ui.pic_logs:
+            subprocess.Popen(['cadence-logs'])
+        elif sender is self.ui.pic_render:
+            subprocess.Popen(['qjackcapture'])
+        else:
+            _logger.warning('unknown sender for starting a tool app')
+
+    @pyqtSlot()
     def func_start_logs(self):
-        self.func_start_tool("caleson-logs")
+        # self.func_start_tool("caleson-logs")
+        subprocess.Popen()
 
     @pyqtSlot()
     def func_start_render(self):
@@ -854,23 +875,12 @@ class CalesonMainW(QMainWindow):
 
             stool = tool.split(" ", 1)[0]
 
-            if stool in ("caleson-jackmeter", "caleson-xycontroller"):
-                python = ""
-                localPath = os.path.join(
-                    sys.path[0], "..", "c++", stool.replace("caleson-", ""))
+            python = sys.executable
+            tool  += ".py"
+            base = sys.argv[0].rsplit("caleson.py", 1)[0]
 
-                if os.path.exists(os.path.join(localPath, stool)):
-                    base = localPath + os.sep
-                else:
-                    base = ""
-
-            else:
-                python = sys.executable
-                tool  += ".py"
-                base = sys.argv[0].rsplit("caleson.py", 1)[0]
-
-                if python:
-                    python += " "
+            if python:
+                python += " "
 
             cmd = "%s%s%s &" % (python, base, tool)
 
