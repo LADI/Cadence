@@ -3,6 +3,7 @@
 
 # Common/Shared code related to Canvas and JACK
 # Copyright (C) 2010-2018 Filipe Coelho <falktx@falktx.com>
+# Copyright (C) 2023-2024 Houston4444 <picotmathieu@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,47 +17,29 @@
 #
 # For a full copy of the GNU General Public License see the COPYING file
 
-# ------------------------------------------------------------------------------------------------------------
-# Imports (Global)
-
-if True:
-    from PyQt5.QtCore import pyqtSlot, QTimer
-    from PyQt5.QtGui import QCursor, QFontMetrics, QImage, QPainter
-    from PyQt5.QtWidgets import QMainWindow, QMenu
-else:
-    from PyQt4.QtCore import pyqtSlot, QTimer
-    from PyQt4.QtGui import QCursor, QFontMetrics, QImage, QPainter
-    from PyQt4.QtGui import QMainWindow, QMenu
+from PyQt5.QtCore import pyqtSlot, QTimer
+from PyQt5.QtGui import QCursor, QFontMetrics, QImage, QPainter
+from PyQt5.QtWidgets import QMainWindow, QMenu
 
 # ------------------------------------------------------------------------------------------------------------
 # Imports (Custom Stuff)
+import logging
+from shared import cString
+from jacklib_helpers import jacklib
 
-import patchcanvas
-import jacksettings
-import logs
-import render
-from shared import *
-from jacklib_helpers import *
+_logger = logging.getLogger(__name__)
 
-# ------------------------------------------------------------------------------------------------------------
+
 # Have JACK2 ?
+if jacklib and jacklib.JACK2:
+    _logger.debug(
+        f"Using JACK2, version {cString(jacklib.get_version_string())}")
 
-if DEBUG and jacklib and jacklib.JACK2:
-    print("Using JACK2, version %s" % cString(jacklib.get_version_string()))
-
-# ------------------------------------------------------------------------------------------------------------
-# Static Variables
-
-TRANSPORT_VIEW_HMS    = 0
-TRANSPORT_VIEW_BBT    = 1
-TRANSPORT_VIEW_FRAMES = 2
 
 BUFFER_SIZE_LIST = (16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192)
 SAMPLE_RATE_LIST = (22050, 32000, 44100, 48000, 88200, 96000, 192000)
 
-# ------------------------------------------------------------------------------------------------------------
 # Global DBus object
-
 class DBusObject(object):
     __slots__ = [
         'loop',
@@ -75,8 +58,8 @@ class DBusObject(object):
 
 gDBus = DBusObject()
 gDBus.loop = None
-gDBus.bus  = None
-gDBus.a2j  = None
+gDBus.bus = None
+gDBus.a2j = None
 gDBus.jack = None
 gDBus.ladish_control = None
 gDBus.ladish_studio  = None
@@ -86,9 +69,7 @@ gDBus.ladish_app_iface  = None
 gDBus.ladish_app_daemon = None
 gDBus.patchbay = None
 
-# ------------------------------------------------------------------------------------------------------------
 # Global JACK object
-
 class JackObject(object):
     __slots__ = [
         'client'

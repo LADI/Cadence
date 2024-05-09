@@ -3,6 +3,8 @@
 
 # Common/Shared code
 # Copyright (C) 2010-2018 Filipe Coelho <falktx@falktx.com>
+# Copyright (C) 2023-2024 Houston4444 <picotmathieu@gmail.com>
+# Copyright (C) 2024 Nedko Arnaudov (LADI)
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,137 +18,143 @@
 #
 # For a full copy of the GNU General Public License see the COPYING file
 
-# ------------------------------------------------------------------------------------------------------------
 # Imports (Global)
 
+from enum import Enum
+import logging
 import os
+import subprocess
 import sys
-from codecs import open as codecopen
-from unicodedata import normalize
 
-if True:
-    from PyQt5.QtCore import pyqtSignal, qWarning
-    from PyQt5.QtGui import QIcon
-    from PyQt5.QtWidgets import QApplication, QFileDialog, QMessageBox
-else:
-    from PyQt4.QtCore import pyqtSignal, qWarning
-    from PyQt4.QtGui import QIcon
-    from PyQt4.QtGui import QApplication, QFileDialog, QMessageBox
+from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import QApplication, QMessageBox
 
-# ------------------------------------------------------------------------------------------------------------
-# Set Platform
 
-if sys.platform == "darwin":
-    from PyQt5.QtGui import qt_mac_set_menubar_icons
-    qt_mac_set_menubar_icons(False)
-    HAIKU   = False
-    LINUX   = False
-    MACOS   = True
-    WINDOWS = False
-    FREEBSD = False
-elif "haiku" in sys.platform:
-    HAIKU   = True
-    LINUX   = False
-    MACOS   = False
-    WINDOWS = False
-    FREEBSD = False
-elif "linux" in sys.platform:
-    HAIKU   = False
-    LINUX   = True
-    MACOS   = False
-    WINDOWS = False
-    FREEBSD = False
-elif sys.platform in ("win32", "win64", "cygwin"):
-    WINDIR  = os.getenv("WINDIR")
-    HAIKU   = False
-    LINUX   = False
-    MACOS   = False
-    WINDOWS = True
-    FREEBSD = False
-elif sys.platform.startswith('freebsd'):
-    HAIKU   = False
-    LINUX   = False
-    MACOS   = False
-    WINDOWS = False
-    FREEBSD = True
-else:
-    HAIKU   = False
-    LINUX   = False
-    MACOS   = False
-    WINDOWS = False
-    FREEBSD = False
+_logger = logging.getLogger(__name__)
 
-# ------------------------------------------------------------------------------------------------------------
+
+class Platform(Enum):
+    HAIKU = 0
+    LINUX = 1
+    MACOS = 2
+    WINDOWS = 3
+    FREEBSD = 4
+        
+    @staticmethod
+    def this() -> 'Platform':
+        if sys.platform == 'darwin':
+            return Platform.MACOS
+        if 'haiku' in sys.platform:
+            return Platform.HAIKU
+        if 'linux' in sys.platform:
+            return Platform.LINUX
+        if sys.platform in ('win32', 'win64', 'cygwin'):
+            return Platform.WINDOWS
+        if sys.platform.startswith('freebsd'):
+            return Platform.FREEBSD
+    
+    def get_info(self) -> tuple[str, str]:
+        if self is Platform.HAIKU:
+            return ("Haiku OS", "Unknown")
+        
+        if self is Platform.LINUX:
+            if os.path.exists("/etc/lsb-release"):
+                distro = subprocess.getoutput(
+                    ". /etc/lsb-release && echo $DISTRIB_DESCRIPTION")
+            elif os.path.exists("/etc/arch-release"):
+                distro = "ArchLinux"
+            else:
+                distro = os.uname()[0]
+
+            kernel = os.uname()[2]
+
+            return (distro, kernel)
+        
+        if self is self.MACOS:
+            return ("Mac OS", "Unknown")
+        
+        if self is self.WINDOWS:
+            major = sys.getwindowsversion()[0]
+            minor = sys.getwindowsversion()[1]
+            servp = sys.getwindowsversion()[4]
+
+            wos = "Windows"
+            version = servp
+
+            if major == 4 and minor == 0:
+                wos = "Windows 95"
+                version = "RTM"
+            elif major == 4 and minor == 10:
+                wos = "Windows 98"
+                version = "Second Edition"
+            elif major == 5 and minor == 0:
+                wos = "Windows 2000"
+            elif major == 5 and minor == 1:
+                wos = "Windows XP"
+            elif major == 5 and minor == 2:
+                wos = "Windows Server 2003"
+            elif major == 6 and minor == 0:
+                wos = "Windows Vista"
+            elif major == 6 and minor == 1:
+                wos = "Windows 7"
+            elif major == 6 and minor == 2:
+                wos = "Windows 8"
+
+            return (wos, version)    
+
+platform_ = Platform.this()
+
 # Try Import Signal
-
 try:
     from signal import signal, SIGINT, SIGTERM, SIGUSR1, SIGUSR2
     haveSignal = True
 except:
     haveSignal = False
 
-# ------------------------------------------------------------------------------------------------------------
 # Safe exception hook, needed for PyQt5
-
 def sys_excepthook(typ, value, tback):
     return sys.__excepthook__(typ, value, tback)
 
 sys.excepthook = sys_excepthook
 
-# ------------------------------------------------------------------------------------------------------------
-# Set Version
+# Set (LADI) Version
+VERSION = "2.5.0"
 
-VERSION = "1.9.4"
-
-# ------------------------------------------------------------------------------------------------------------
-# Set Debug mode
-
-DEBUG = bool("-d" in sys.argv or "-debug" in sys.argv or "--debug" in sys.argv)
-
-# ------------------------------------------------------------------------------------------------------------
 # Global variables
-
 global gGui
 gGui = None
 
-# ------------------------------------------------------------------------------------------------------------
 # Set TMP
-
 TMP = os.getenv("TMP")
 
 if TMP is None:
-    if WINDOWS:
-        qWarning("TMP variable not set")
-        TMP = os.path.join(WINDIR, "temp")
-    else:
+    if platform_ is Platform.WINDOWS:
+        _logger.warning("TMP variable not set")
+    #     TMP = os.path.join(WINDIR, "temp")
+    # else:
         TMP = "/tmp"
 
-# ------------------------------------------------------------------------------------------------------------
 # Set HOME
-
 HOME = os.getenv("HOME")
-
 if HOME is None:
     HOME = os.path.expanduser("~")
 
-    if not WINDOWS:
-        qWarning("HOME variable not set")
+    if platform_ is not Platform.WINDOWS:
+        _logger.warning("HOME variable not set")
 
 if not os.path.exists(HOME):
-    qWarning("HOME does not exist")
+    _logger.warning("HOME does not exist")
     HOME = TMP
 
-# ------------------------------------------------------------------------------------------------------------
 # Set PATH
-
 PATH = os.getenv("PATH")
 
 if PATH is None:
-    qWarning("PATH variable not set")
+    _logger.warning("PATH variable not set")
 
-    if MACOS:
+    if platform_ is Platform.MACOS:
         PATH = ("/opt/local/bin", "/usr/local/bin", "/usr/bin", "/bin")
-    elif WINDOWS:
+    elif platform_ is Platform.WINDOWS:
         PATH = (os.path.join(WINDIR, "system32"), WINDIR)
     else:
         PATH = ("/usr/local/bin", "/usr/bin", "/bin")
@@ -154,15 +162,7 @@ if PATH is None:
 else:
     PATH = PATH.split(os.pathsep)
 
-# ------------------------------------------------------------------------------------------------------------
-# Remove/convert non-ascii chars from a string
-
-def asciiString(string):
-    return normalize("NFKD", string).encode("ascii", "ignore").decode("utf-8")
-
-# ------------------------------------------------------------------------------------------------------------
 # Convert a ctypes c_char_p into a python string
-
 def cString(value):
     if not value:
         return ""
@@ -170,52 +170,14 @@ def cString(value):
         return value
     return value.decode("utf-8", errors="ignore")
 
-# ------------------------------------------------------------------------------------------------------------
-# Check if a value is a number (float support)
-
-def isNumber(value):
-    try:
-        float(value)
-        return True
-    except:
-        return False
-
-# ------------------------------------------------------------------------------------------------------------
-# Convert a value to a list
-
-def toList(value):
-    if value is None:
-        return []
-    elif not isinstance(value, list):
-        return [value]
-    else:
-        return value
-
-# ------------------------------------------------------------------------------------------------------------
-# Unicode open
-
-def uopen(filename, mode="r"):
-    return codecopen(filename, encoding="utf-8", mode=mode)
-
-# ------------------------------------------------------------------------------------------------------------
-# QLineEdit and QPushButton combo
-
-def getAndSetPath(self_, currentPath, lineEdit):
-    newPath = QFileDialog.getExistingDirectory(self_, self_.tr("Set Path"), currentPath, QFileDialog.ShowDirsOnly)
-    if newPath:
-        lineEdit.setText(newPath)
-    return newPath
-
-# ------------------------------------------------------------------------------------------------------------
 # Get Icon from user theme, using our own as backup (Oxygen)
-
 def getIcon(icon, size=16):
     return QIcon.fromTheme(icon, QIcon(":/%ix%i/%s.png" % (size, size, icon)))
 
-# ------------------------------------------------------------------------------------------------------------
 # Custom MessageBox
-
-def CustomMessageBox(self_, icon, title, text, extraText="", buttons=QMessageBox.Yes|QMessageBox.No, defButton=QMessageBox.No):
+def CustomMessageBox(self_, icon, title, text, extraText="",
+                     buttons=QMessageBox.Yes|QMessageBox.No,
+                     defButton=QMessageBox.No):
     msgBox = QMessageBox(self_)
     msgBox.setIcon(icon)
     msgBox.setWindowTitle(title)
@@ -225,9 +187,7 @@ def CustomMessageBox(self_, icon, title, text, extraText="", buttons=QMessageBox
     msgBox.setDefaultButton(defButton)
     return msgBox.exec_()
 
-# ------------------------------------------------------------------------------------------------------------
 # Signal handler
-
 def setUpSignals(self_):
     global gGui
 
@@ -281,7 +241,6 @@ def showWindowHandler():
     else:
         gGui.showNormal()
 
-# ------------------------------------------------------------------------------------------------------------
 # Shared Icons
 
 def setIcons(self_, modes):
@@ -324,10 +283,10 @@ def setIcons(self_, modes):
         gGui.ui.act_quit.setIcon(getIcon("application-exit"))
         gGui.ui.act_configure.setIcon(getIcon("configure"))
 
+
 def getDaemonLockfile(base):
     lockdir = os.environ.get("XDG_RUNTIME_DIR", None)
     if not lockdir:
         lockdir = os.path.expanduser("~")
 
     return os.path.join(lockdir, "{}-lock".format(base))
-

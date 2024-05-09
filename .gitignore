@@ -3,6 +3,7 @@
 .fuse-*
 .*.kate-swp
 .kdev4/
+.vscode
 
 # Temp files
 *~
@@ -31,10 +32,6 @@ qrc_resources*.cpp
 
 # Translation files
 *.qm
-
-# Binaries
-c++/jackmeter/cadence-jackmeter
-c++/xycontroller/cadence-xycontroller
 
 # CX-Freeze builds
 src/dist/

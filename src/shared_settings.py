@@ -91,22 +91,7 @@ class SettingsW(QDialog):
         # -------------------------------------------------------------
         # Set app-specific settings
 
-        if appName == "catarina":
-            self.fAutoHideGroups = False
-            self.ui.lw_page.hideRow(TAB_INDEX_MAIN)
-            self.ui.lw_page.hideRow(TAB_INDEX_LADISH)
-            self.ui.lw_page.setCurrentCell(TAB_INDEX_CANVAS, 0)
-
-        elif appName == "catia":
-            self.fUseSystemTray = False
-            self.ui.group_main_paths.setEnabled(False)
-            self.ui.group_main_paths.setVisible(False)
-            self.ui.group_tray.setEnabled(False)
-            self.ui.group_tray.setVisible(False)
-            self.ui.lw_page.hideRow(TAB_INDEX_LADISH)
-            self.ui.lw_page.setCurrentCell(TAB_INDEX_MAIN, 0)
-
-        elif appName == "claudia":
+        if appName == "claudia":
             self.ui.cb_jack_port_alias.setEnabled(False)
             self.ui.cb_jack_port_alias.setVisible(False)
             self.ui.label_jack_port_alias.setEnabled(False)
