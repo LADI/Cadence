@@ -50,15 +50,16 @@ from asoundrc_strs import (
     ASOUNDRC_ALOOP, ASOUNDRC_ALOOP_CHECK,
     ASOUNDRC_JACK, ASOUNDRC_PULSE)
 from shared import (
-    Platform, platform_, DEBUG, VERSION, HOME, getIcon,
+    platform_, VERSION, HOME, getIcon,
     CustomMessageBox, setUpSignals)
 from shared_caleson import (
     getProcList, GlobalSettings, AlsaFile,
     startAlsaAudioLoopBridge, wantJackStart)
 from shared_canvasjack import (
-    jacklib, gDBus, BUFFER_SIZE_LIST, jacksettings)
+    jacklib, gDBus, BUFFER_SIZE_LIST)
 from shared_i18n import setup_i18n
 from system_checks import calesonSystemChecks, initSystemChecks
+import jacksettings
 
 import ui_caleson
 
@@ -564,7 +565,9 @@ class CalesonMainW(QMainWindow):
                     QTimer.singleShot(0, self.slot_handleCrash_a2j)
 
         elif kwds['interface'] == "org.jackaudio.JackControl":
-            if DEBUG: print("org.jackaudio.JackControl", kwds['member'])
+            _logger.debug(
+                f"org.jackaudio.JackControl {kwds['member']}" )
+
             if kwds['member'] == "ServerStarted":
                 self.DBusJackServerStartedCallback.emit()
             elif kwds['member'] == "ServerStopped":
@@ -572,7 +575,9 @@ class CalesonMainW(QMainWindow):
 
         elif kwds['interface'] == "org.jackaudio.JackPatchbay":
             if gDBus.patchbay and kwds['path'] == gDBus.patchbay.object_path:
-                if DEBUG: print("org.jackaudio.JackPatchbay,", kwds['member'])
+                _logger.debug(
+                    f"org.jackaudio.JackPatchbay, {kwds['member']}")
+
                 if kwds['member'] == "ClientAppeared":
                     self.DBusJackClientAppearedCallback.emit(
                         args[IJackDbus.CLIENT_ID.value],
@@ -582,7 +587,9 @@ class CalesonMainW(QMainWindow):
                         args[IJackDbus.CLIENT_ID.value])
 
         elif kwds['interface'] == "org.gna.home.a2jmidid.control":
-            if DEBUG: print("org.gna.home.a2jmidid.control", kwds['member'])
+            _logger.debug(
+                f"org.gna.home.a2jmidid.control {kwds['member']}")
+
             if kwds['member'] == "bridge_started":
                 self.DBusA2JBridgeStartedCallback.emit()
             elif kwds['member'] == "bridge_stopped":
@@ -829,7 +836,7 @@ class CalesonMainW(QMainWindow):
         elif sender is self.ui.pic_raysession:
             subprocess.Popen(['raysession'])
         elif sender is self.ui.pic_logs:
-            subprocess.Popen(['cadence-logs'])
+            subprocess.Popen(['caleson-logs'])
         elif sender is self.ui.pic_render:
             subprocess.Popen(['qjackcapture'])
         else:
@@ -837,45 +844,11 @@ class CalesonMainW(QMainWindow):
 
     @pyqtSlot()
     def func_start_logs(self):
-        # self.func_start_tool("caleson-logs")
-        subprocess.Popen()
+        subprocess.Popen(['caleson-logs'])
 
     @pyqtSlot()
     def func_start_render(self):
-        self.func_start_tool("caleson-render")
         subprocess.Popen(['qjackcapture'])
-
-    @pyqtSlot()
-    def func_start_xycontroller(self):
-        self.func_start_tool("caleson-xycontroller")
-
-    def func_start_tool(self, tool):
-        if sys.argv[0].endswith(".py"):
-            if tool == "caleson-logs":
-                tool = "logs"
-            elif tool == "caleson-render":
-                tool = "render"
-
-            stool = tool.split(" ", 1)[0]
-
-            python = sys.executable
-            tool  += ".py"
-            base = sys.argv[0].rsplit("caleson.py", 1)[0]
-
-            if python:
-                python += " "
-
-            cmd = "%s%s%s &" % (python, base, tool)
-
-            print(cmd)
-            os.system(cmd)
-
-        elif sys.argv[0].endswith("/caleson"):
-            base = sys.argv[0].rsplit("/caleson", 1)[0]
-            os.system("%s/%s &" % (base, tool))
-
-        else:
-            os.system("%s &" % tool)
 
     def func_settings_changed(self, stype):
         if stype not in self.settings_changed_types:

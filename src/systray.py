@@ -19,9 +19,14 @@
 
 # Imports (Global)
 
+import logging
+from typing import Optional
 from PyQt5.QtCore import QTimer
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QAction, QMainWindow, QMenu, QSystemTrayIcon
+from PyQt5.QtWidgets import (
+    QApplication, QAction, QMainWindow, QMenu, QSystemTrayIcon)
+
+_logger = logging.getLogger(__name__)
 
 
 iActNameId = 0
@@ -46,7 +51,7 @@ class GlobalSysTray(object):
     def __init__(self, parent, name, icon):
         object.__init__(self)
 
-        self._app = None
+        self._app: Optional[QApplication] = None
         self._parent = parent
         self._gtk_running = False
         self._quit_added = False
@@ -93,7 +98,8 @@ class GlobalSysTray(object):
 
         self.menu_indexes.append(menu_obj)
 
-    def addMenuAction(self, menu_name_id, act_name_id, act_name_string, is_check=False):
+    def addMenuAction(self, menu_name_id, act_name_id,
+                      act_name_string, is_check=False):
         i = self.get_menu_index(menu_name_id)
         if i < 0: return
 
@@ -208,7 +214,7 @@ class GlobalSysTray(object):
             if self.act_indexes[i][iActNameId] == act_name_id:
                 return i
         else:
-            print("systray.py - Failed to get action index for %s" % act_name_id)
+            _logger.error(f"Failed to get action index for {act_name_id}")
             return -1
 
     def get_sep_index(self, sep_name_id):
@@ -216,7 +222,7 @@ class GlobalSysTray(object):
             if self.sep_indexes[i][iSepNameId] == sep_name_id:
                 return i
         else:
-            print("systray.py - Failed to get separator index for %s" % sep_name_id)
+            _logger.error(f"Failed to get separator index for {sep_name_id}")
             return -1
 
     def get_menu_index(self, menu_name_id):
@@ -224,7 +230,7 @@ class GlobalSysTray(object):
             if self.menu_indexes[i][iMenuNameId] == menu_name_id:
                 return i
         else:
-            print("systray.py - Failed to get menu index for %s" % menu_name_id)
+            _logger.error(f"Failed to get menu index for {menu_name_id}")
             return -1
 
     # -------------------------------------------------------------------------------------------

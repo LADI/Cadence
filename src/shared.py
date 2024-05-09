@@ -20,13 +20,16 @@
 # Imports (Global)
 
 from enum import Enum
+import logging
 import os
 import subprocess
 import sys
 
-from PyQt5.QtCore import qWarning
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QMessageBox
+
+
+_logger = logging.getLogger(__name__)
 
 
 class Platform(Enum):
@@ -47,15 +50,7 @@ class Platform(Enum):
             return Platform.WINDOWS
     
     def get_info(self) -> tuple[str, str]:
-        # WTF !!!
-        # I must set 'os' as global here,
-        # else there is a local variable 'os'
-        # referenced before assignment
-        # WTFF !!!
-        global os
-        
         if self is Platform.HAIKU:
-            # TODO
             return ("Haiku OS", "Unknown")
         
         if self is Platform.LINUX:
@@ -79,29 +74,29 @@ class Platform(Enum):
             minor = sys.getwindowsversion()[1]
             servp = sys.getwindowsversion()[4]
 
-            os = "Windows"
+            wos = "Windows"
             version = servp
 
             if major == 4 and minor == 0:
-                os = "Windows 95"
+                wos = "Windows 95"
                 version = "RTM"
             elif major == 4 and minor == 10:
-                os = "Windows 98"
+                wos = "Windows 98"
                 version = "Second Edition"
             elif major == 5 and minor == 0:
-                os = "Windows 2000"
+                wos = "Windows 2000"
             elif major == 5 and minor == 1:
-                os = "Windows XP"
+                wos = "Windows XP"
             elif major == 5 and minor == 2:
-                os = "Windows Server 2003"
+                wos = "Windows Server 2003"
             elif major == 6 and minor == 0:
-                os = "Windows Vista"
+                wos = "Windows Vista"
             elif major == 6 and minor == 1:
-                os = "Windows 7"
+                wos = "Windows 7"
             elif major == 6 and minor == 2:
-                os = "Windows 8"
+                wos = "Windows 8"
 
-            return (os, version)    
+            return (wos, version)    
 
 platform_ = Platform.this()
 
@@ -122,9 +117,6 @@ sys.excepthook = sys_excepthook
 # Set Version
 VERSION = "0.9.0"
 
-# Set Debug mode
-DEBUG = bool("-d" in sys.argv or "-debug" in sys.argv or "--debug" in sys.argv)
-
 # Global variables
 global gGui
 gGui = None
@@ -134,7 +126,7 @@ TMP = os.getenv("TMP")
 
 if TMP is None:
     if platform_ is Platform.WINDOWS:
-        qWarning("TMP variable not set")
+        _logger.warning("TMP variable not set")
     #     TMP = os.path.join(WINDIR, "temp")
     # else:
         TMP = "/tmp"
@@ -145,17 +137,17 @@ if HOME is None:
     HOME = os.path.expanduser("~")
 
     if platform_ is not Platform.WINDOWS:
-        qWarning("HOME variable not set")
+        _logger.warning("HOME variable not set")
 
 if not os.path.exists(HOME):
-    qWarning("HOME does not exist")
+    _logger.warning("HOME does not exist")
     HOME = TMP
 
 # Set PATH
 PATH = os.getenv("PATH")
 
 if PATH is None:
-    qWarning("PATH variable not set")
+    _logger.warning("PATH variable not set")
 
     if platform_ is Platform.MACOS:
         PATH = ("/opt/local/bin", "/usr/local/bin", "/usr/bin", "/bin")
@@ -246,43 +238,3 @@ def showWindowHandler():
     else:
         gGui.showNormal()
 
-# Shared Icons
-def setIcons(self_, modes):
-    global gGui
-
-    if gGui is None:
-        gGui = self_
-
-    if "canvas" in modes:
-        gGui.ui.act_canvas_arrange.setIcon(getIcon("view-sort-ascending"))
-        gGui.ui.act_canvas_refresh.setIcon(getIcon("view-refresh"))
-        gGui.ui.act_canvas_zoom_fit.setIcon(getIcon("zoom-fit-best"))
-        gGui.ui.act_canvas_zoom_in.setIcon(getIcon("zoom-in"))
-        gGui.ui.act_canvas_zoom_out.setIcon(getIcon("zoom-out"))
-        gGui.ui.act_canvas_zoom_100.setIcon(getIcon("zoom-original"))
-        gGui.ui.b_canvas_zoom_fit.setIcon(getIcon("zoom-fit-best"))
-        gGui.ui.b_canvas_zoom_in.setIcon(getIcon("zoom-in"))
-        gGui.ui.b_canvas_zoom_out.setIcon(getIcon("zoom-out"))
-        gGui.ui.b_canvas_zoom_100.setIcon(getIcon("zoom-original"))
-
-    if "jack" in modes:
-        gGui.ui.act_jack_clear_xruns.setIcon(getIcon("edit-clear"))
-        gGui.ui.act_jack_configure.setIcon(getIcon("configure"))
-        gGui.ui.act_jack_render.setIcon(getIcon("media-record"))
-        gGui.ui.b_jack_clear_xruns.setIcon(getIcon("edit-clear"))
-        gGui.ui.b_jack_configure.setIcon(getIcon("configure"))
-        gGui.ui.b_jack_render.setIcon(getIcon("media-record"))
-
-    if "transport" in modes:
-        gGui.ui.act_transport_play.setIcon(getIcon("media-playback-start"))
-        gGui.ui.act_transport_stop.setIcon(getIcon("media-playback-stop"))
-        gGui.ui.act_transport_backwards.setIcon(getIcon("media-seek-backward"))
-        gGui.ui.act_transport_forwards.setIcon(getIcon("media-seek-forward"))
-        gGui.ui.b_transport_play.setIcon(getIcon("media-playback-start"))
-        gGui.ui.b_transport_stop.setIcon(getIcon("media-playback-stop"))
-        gGui.ui.b_transport_backwards.setIcon(getIcon("media-seek-backward"))
-        gGui.ui.b_transport_forwards.setIcon(getIcon("media-seek-forward"))
-
-    if "misc" in modes:
-        gGui.ui.act_quit.setIcon(getIcon("application-exit"))
-        gGui.ui.act_configure.setIcon(getIcon("configure"))

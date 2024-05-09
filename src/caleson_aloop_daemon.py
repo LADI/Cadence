@@ -20,6 +20,7 @@
 
 # Imports (Global)
 
+import logging
 import os
 import sys
 from signal import signal, SIGINT, SIGTERM
@@ -30,6 +31,9 @@ from PyQt5.QtCore import QProcess
 # Imports (Custom Stuff)
 
 import jacklib
+
+
+_logger = logging.getLogger(__name__)
 
 # --------------------------------------------------
 # Auto re-activate if on good kernel
@@ -89,13 +93,18 @@ def client_registration_callback(clientName, register, arg):
         if doRunNow or not doLoop:
             return
 
+        bridge_name = "zita-a2j/j2a" if useZita else "alsa_in/out"
+
         if isKernelGood:
             if reactivateCounter == -1:
                 reactivateCounter = 0
-                print("NOTICE: %s has been stopped, waiting 5 secs to reactivate" % ("zita-a2j/j2a" if useZita else "alsa_in/out"))
+                _logger.info(
+                    f"NOTICE: {bridge_name} has been stopped, "
+                    "waiting 5 secs to reactivate")
         elif doLoop:
             doLoop = False
-            print("NOTICE: %s has been stopped, quitting now..." % ("zita-a2j/j2a" if useZita else "alsa_in/out"))
+            _logger.info(
+                f"NOTICE: {bridge_name} has been stopped, quitting now...")
 
 # --------------------------------------------------
 # listen to jack shutdown
@@ -155,10 +164,12 @@ if __name__ == '__main__':
                 channels = int(chStr)
 
     # Init JACK client
-    client = jacklib.client_open("caleson-aloop-daemon", jacklib.JackUseExactName, None)
+    client = jacklib.client_open(
+        "caleson-aloop-daemon", jacklib.JackUseExactName, None)
 
     if not client:
-        print("caleson-aloop-daemon is already running, delete \"/tmp/.caleson-aloop-daemon.x\" to close it")
+        _logger.error("caleson-aloop-daemon is already running, "
+                      "delete \"/tmp/.caleson-aloop-daemon.x\" to close it")
         quit()
 
     if jacklib.JACK2:
@@ -188,7 +199,10 @@ if __name__ == '__main__':
         if doRunNow:
             if firstStart:
                 firstStart = False
-                print("caleson-aloop-daemon started, using %s and %i channels" % ("zita-a2j/j2a" if useZita else "alsa_in/out", channels))
+                bridge_name = "zita-a2j/j2a" if useZita else "alsa_in/out"
+                _logger.info(
+                    "caleson-aloop-daemon started, "
+                    f"using {bridge_name} and {channels} channels")
 
             run_alsa_bridge()
             doRunNow = False

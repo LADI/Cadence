@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # Imports (Global)
+import logging
 import os
 import sys
 import time
@@ -12,9 +13,12 @@ from PyQt5.QtCore import QCoreApplication
 # Imports (Custom Stuff)
 import pulse2jack_tool
 from shared_caleson import (
-    QSettings, stopAllAudioProcesses, HOME, wantJackStart, AlsaFile,
+    QSettings, stopAllAudioProcesses, wantJackStart, AlsaFile,
     startAlsaAudioLoopBridge)
-from shared import VERSION
+from shared import VERSION, HOME
+
+
+_logger = logging.getLogger(__name__)
 
 
 # Caleson Global Settings
@@ -55,7 +59,7 @@ def startSession(systemStarted, secondSystemStartAttempt) -> bool:
     if (systemStarted
             and not GlobalSettings.value(
                 "JACK/AutoStart", wantJackStart, type=bool)):
-        print("JACK is set to NOT auto-start on login")
+        _logger.info("JACK is set to NOT auto-start on login")
         return True
 
     # Called via autostart desktop file
@@ -99,7 +103,7 @@ def startSession(systemStarted, secondSystemStartAttempt) -> bool:
         startJack()
 
     if not bool(DBus.jack.IsStarted()):
-        print("JACK Failed to Start")
+        _logger.warning("JACK Failed to Start")
         return False
 
     # Start bridges according to user settings
@@ -138,7 +142,7 @@ def startSession(systemStarted, secondSystemStartAttempt) -> bool:
             
         pulse2jack_tool.replace_hotly(bridge_dicts)
 
-    print("JACK Started Successfully")
+    _logger.info("JACK Started Successfully")
     return True
 
 def startJack():
@@ -146,24 +150,25 @@ def startJack():
         DBus.jack.StartServer()
 
 def printArguments():
-    print("\t-s|--start  \tStart session")
-    print("\t   --reset  \tForce-reset all JACK daemons and settings "
-          "(disables auto-start at login)")
-    print("")
-    print("\t-h|--help   \tShow this help message")
-    print("\t-v|--version\tShow version")
+    sys.stderr.write("""\t-s|--start  \tStart session
+\t   --reset  \tForce-reset all JACK daemons and settings
+\t\t        (disables auto-start at login)
 
-def printError(cmd):
-    print("Invalid arguments")
-    print("Run '%s -h' for help" % (cmd))
+\t-h|--help   \tShow this help message
+\t-v|--version\tShow version
+""")
 
-def printHelp(cmd):
-    print("Usage: %s [cmd]" % (cmd))
+def printError(cmd: str):
+    sys.stderr.write("Invalid arguments\n")
+    sys.stderr.write(f"Run '{cmd} -h' for help\n")
+
+def printHelp(cmd: str):
+    sys.stderr.write(f"Usage: {cmd} [cmd]\n")
     printArguments()
 
 def printVersion():
-    print("Caleson version %s" % (VERSION))
-    print("Developed by falkTX and the rest of the KXStudio Team")
+    sys.stdout.write(f"Caleson version {VERSION}\n")
+    sys.stdout.write("Developed by falkTX and Houston4444\n")
 
 
 if __name__ == '__main__':

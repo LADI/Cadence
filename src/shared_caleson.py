@@ -19,6 +19,7 @@
 
 # Imports (Global)
 from enum import Enum
+import logging
 import os
 import time
 
@@ -26,6 +27,9 @@ from PyQt5.QtCore import QProcess, QSettings
 
 # Imports (Custom Stuff)
 from shared import Platform, platform_
+
+
+_logger = logging.getLogger(__name__)
 
 
 class AlsaFile(Enum):
@@ -45,8 +49,8 @@ wantJackStart = os.path.exists(
     "/usr/share/kxstudio/config/config/Caleson/GlobalSettings.conf")
 
 # Get Process list
-def getProcList():
-    retProcs = []
+def getProcList() -> list[str]:
+    retProcs = list[str]()
 
     if platform_ in (Platform.LINUX, Platform.MACOS):
         process = QProcess()
@@ -65,7 +69,7 @@ def getProcList():
                 retProcs.append(dumpTest[1])
 
     else:
-        print("getProcList() - Not supported in this system")
+        _logger.error("getProcList() - Not supported in this system")
 
     return retProcs
 
@@ -103,7 +107,7 @@ def tryCloseJackDBus() -> bool:
             "org.jackaudio.service", "/org/jackaudio/Controller")
         jack.Exit()
     except:
-        print("tryCloseJackDBus() failed")
+        _logger.error("tryCloseJackDBus() failed")
         return False
     
     return True
@@ -114,7 +118,8 @@ def stopAllAudioProcesses(tryCloseJack = True):
         tryCloseJackDBus()
 
     if platform_ not in (Platform.HAIKU, Platform.LINUX, Platform.MACOS):
-        print("stopAllAudioProcesses() - Not supported in this system")
+        _logger.error(
+            "stopAllAudioProcesses() - Not supported in this system")
         return
 
     process = QProcess()
