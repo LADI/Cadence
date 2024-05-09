@@ -699,9 +699,11 @@ class ClaudiaLauncher(QWidget, ui_claudia_launcher.Ui_ClaudiaLauncherW):
             elif os.path.exists("/usr/bin/dpkg"):
                 pkg_out = getoutput("env LANG=C LC_ALL=C /usr/bin/dpkg --get-selections 2>/dev/null").split("\n")
                 for pkg_info in pkg_out:
-                    package, installed = pkg_info.rsplit("\t", 1)
-                    if installed == "install":
-                        pkglist.append(package.strip())
+                    pkg_info = pkg_info.strip()
+                    if pkg_info:
+                        package, installed = pkg_info.rsplit("\t", 1)
+                        if installed == "install":
+                            pkglist.append(package.strip())
 
             elif os.path.exists("/bin/rpm"):
                 pkg_out = getoutput("env LANG=C /bin/rpm -qa --qf \"%{NAME}\n\" 2>/dev/null").split("\n")
