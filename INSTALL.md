@@ -43,6 +43,3 @@ To run Claudia you'll additionally need:
 Optional:
 
  - a2jmidid
-
-After install, the Claudia should still work on distributions with python2,
-without any additional work.
