@@ -17,31 +17,26 @@
 #
 # For a full copy of the GNU General Public License see the COPYING file
 
-# ------------------------------------------------------------------------------------------------------------
+
 # Imports (Global)
-
-
 from PyQt5.QtCore import pyqtSlot, pyqtSignal
 from PyQt5.QtGui import QCursor, QFontMetrics
-from PyQt5.QtWidgets import QMainWindow, QMenu
+from PyQt5.QtWidgets import QMainWindow, QMenu, QMessageBox
 
-# ------------------------------------------------------------------------------------------------------------
+
 # Imports (Custom Stuff)
-
 import jacksettings
 import logs
-from shared import *
-from jacklib_helpers import *
+from shared import DEBUG, Platform, platform_, cString, getIcon
+from jacklib_helpers import jacklib
 
-# ------------------------------------------------------------------------------------------------------------
+
 # Have JACK2 ?
-
 if DEBUG and jacklib and jacklib.JACK2:
     print("Using JACK2, version %s" % cString(jacklib.get_version_string()))
 
-# ------------------------------------------------------------------------------------------------------------
-# Static Variables
 
+# Static Variables
 TRANSPORT_VIEW_HMS = 0
 TRANSPORT_VIEW_BBT = 1
 TRANSPORT_VIEW_FRAMES = 2
@@ -49,9 +44,7 @@ TRANSPORT_VIEW_FRAMES = 2
 BUFFER_SIZE_LIST = (16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192)
 SAMPLE_RATE_LIST = (22050, 32000, 44100, 48000, 88200, 96000, 192000)
 
-# ------------------------------------------------------------------------------------------------------------
 # Global DBus object
-
 class DBusObject(object):
     __slots__ = [
         'loop',
@@ -68,9 +61,7 @@ gDBus.a2j = None
 gDBus.jack = None
 gDBus.patchbay = None
 
-# ------------------------------------------------------------------------------------------------------------
 # Global JACK object
-
 class JackObject(object):
     __slots__ = [
         'client'
@@ -79,9 +70,7 @@ class JackObject(object):
 gJack = JackObject()
 gJack.client = None
 
-# ------------------------------------------------------------------------------------------------------------
 # Abstract Canvas and JACK Class
-
 class AbstractCanvasJackClass(QMainWindow):
     XRunCallback = pyqtSignal()
     BufferSizeCallback = pyqtSignal(int)
@@ -488,7 +477,7 @@ class AbstractCanvasJackClass(QMainWindow):
             self.ui.label_time.customContextMenuRequested.connect(self.slot_transportViewMenu)
 
         if "misc" in modes:
-            if LINUX:
+            if platform_ is Platform.LINUX:
                 self.ui.act_show_logs.triggered.connect(self.slot_showLogs)
             else:
                 self.ui.act_show_logs.setEnabled(False)

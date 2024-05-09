@@ -3,6 +3,7 @@ import os
 from subprocess import getoutput
 from PyQt5.QtWidgets import QApplication
 
+from shared import Platform
 
 class CalesonSystemCheck(object):
     ICON_ERROR = 0
@@ -130,7 +131,7 @@ class CalesonSystemCheck_kernel(CalesonSystemCheck):
 
 calesonSystemChecks = list[CalesonSystemCheck]()
 
-def initSystemChecks(linux=True):
-    if linux:
+def initSystemChecks(platform_: Platform):
+    if platform_ is Platform.LINUX:
         calesonSystemChecks.append(CalesonSystemCheck_kernel())
         calesonSystemChecks.append(CalesonSystemCheck_audioGroup())

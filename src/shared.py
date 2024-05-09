@@ -17,48 +17,94 @@
 #
 # For a full copy of the GNU General Public License see the COPYING file
 
-# ------------------------------------------------------------------------------------------------------------
 # Imports (Global)
 
+from enum import Enum
 import os
+import subprocess
 import sys
-from codecs import open as codecopen
-from unicodedata import normalize
 
 from PyQt5.QtCore import qWarning
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QApplication, QFileDialog, QMessageBox
+from PyQt5.QtWidgets import QApplication, QMessageBox
 
 
-# Set Platform
-if sys.platform == "darwin":
-    from PyQt5.QtGui import qt_mac_set_menubar_icons
-    qt_mac_set_menubar_icons(False)
-    HAIKU = False
-    LINUX = False
-    MACOS = True
-    WINDOWS = False
-elif "haiku" in sys.platform:
-    HAIKU = True
-    LINUX = False
-    MACOS = False
-    WINDOWS = False
-elif "linux" in sys.platform:
-    HAIKU = False
-    LINUX = True
-    MACOS = False
-    WINDOWS = False
-elif sys.platform in ("win32", "win64", "cygwin"):
-    WINDIR = os.getenv("WINDIR")
-    HAIKU = False
-    LINUX = False
-    MACOS = False
-    WINDOWS = True
-else:
-    HAIKU = False
-    LINUX = False
-    MACOS = False
-    WINDOWS = False
+class Platform(Enum):
+    HAIKU = 0
+    LINUX = 1
+    MACOS = 2
+    WINDOWS = 3
+        
+    @staticmethod
+    def this() -> 'Platform':
+        if sys.platform == 'darwin':
+            return Platform.MACOS
+        if 'haiku' in sys.platform:
+            return Platform.HAIKU
+        if 'linux' in sys.platform:
+            return Platform.LINUX
+        if sys.platform in ('win32', 'win64', 'cygwin'):
+            return Platform.WINDOWS
+    
+    def get_info(self) -> tuple[str, str]:
+        # WTF !!!
+        # I must set 'os' as global here,
+        # else there is a local variable 'os'
+        # referenced before assignment
+        # WTFF !!!
+        global os
+        
+        if self is Platform.HAIKU:
+            # TODO
+            return ("Haiku OS", "Unknown")
+        
+        if self is Platform.LINUX:
+            if os.path.exists("/etc/lsb-release"):
+                distro = subprocess.getoutput(
+                    ". /etc/lsb-release && echo $DISTRIB_DESCRIPTION")
+            elif os.path.exists("/etc/arch-release"):
+                distro = "ArchLinux"
+            else:
+                distro = os.uname()[0]
+
+            kernel = os.uname()[2]
+
+            return (distro, kernel)
+        
+        if self is self.MACOS:
+            return ("Mac OS", "Unknown")
+        
+        if self is self.WINDOWS:
+            major = sys.getwindowsversion()[0]
+            minor = sys.getwindowsversion()[1]
+            servp = sys.getwindowsversion()[4]
+
+            os = "Windows"
+            version = servp
+
+            if major == 4 and minor == 0:
+                os = "Windows 95"
+                version = "RTM"
+            elif major == 4 and minor == 10:
+                os = "Windows 98"
+                version = "Second Edition"
+            elif major == 5 and minor == 0:
+                os = "Windows 2000"
+            elif major == 5 and minor == 1:
+                os = "Windows XP"
+            elif major == 5 and minor == 2:
+                os = "Windows Server 2003"
+            elif major == 6 and minor == 0:
+                os = "Windows Vista"
+            elif major == 6 and minor == 1:
+                os = "Windows 7"
+            elif major == 6 and minor == 2:
+                os = "Windows 8"
+
+            return (os, version)    
+
+platform_ = Platform.this()
+
 
 # Try Import Signal
 try:
@@ -87,10 +133,10 @@ gGui = None
 TMP = os.getenv("TMP")
 
 if TMP is None:
-    if WINDOWS:
+    if platform_ is Platform.WINDOWS:
         qWarning("TMP variable not set")
-        TMP = os.path.join(WINDIR, "temp")
-    else:
+    #     TMP = os.path.join(WINDIR, "temp")
+    # else:
         TMP = "/tmp"
 
 # Set HOME
@@ -98,7 +144,7 @@ HOME = os.getenv("HOME")
 if HOME is None:
     HOME = os.path.expanduser("~")
 
-    if not WINDOWS:
+    if platform_ is not Platform.WINDOWS:
         qWarning("HOME variable not set")
 
 if not os.path.exists(HOME):
@@ -111,9 +157,9 @@ PATH = os.getenv("PATH")
 if PATH is None:
     qWarning("PATH variable not set")
 
-    if MACOS:
+    if platform_ is Platform.MACOS:
         PATH = ("/opt/local/bin", "/usr/local/bin", "/usr/bin", "/bin")
-    elif WINDOWS:
+    elif platform_ is Platform.WINDOWS:
         PATH = (os.path.join(WINDIR, "system32"), WINDIR)
     else:
         PATH = ("/usr/local/bin", "/usr/bin", "/bin")

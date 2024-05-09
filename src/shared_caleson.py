@@ -18,7 +18,6 @@
 # For a full copy of the GNU General Public License see the COPYING file
 
 # Imports (Global)
-
 from enum import Enum
 import os
 import time
@@ -26,14 +25,7 @@ import time
 from PyQt5.QtCore import QProcess, QSettings
 
 # Imports (Custom Stuff)
-
-from shared import (HOME, HAIKU, LINUX, MACOS)
-
-
-def get_default_path(plugin_format: str) -> list:
-    return ':'.join(['%s/.%s' % (HOME, plugin_format),
-                     '/usr/local/lib/%s' % plugin_format,
-                     '/usr/lib/%s' % plugin_format])
+from shared import Platform, platform_
 
 
 class AlsaFile(Enum):
@@ -56,7 +48,7 @@ wantJackStart = os.path.exists(
 def getProcList():
     retProcs = []
 
-    if HAIKU or LINUX or MACOS:
+    if platform_ in (Platform.LINUX, Platform.MACOS):
         process = QProcess()
         process.start("ps", ["-u", str(os.getuid())])
         process.waitForFinished()
@@ -121,7 +113,7 @@ def stopAllAudioProcesses(tryCloseJack = True):
     if tryCloseJack:
         tryCloseJackDBus()
 
-    if not (HAIKU or LINUX or MACOS):
+    if platform_ not in (Platform.HAIKU, Platform.LINUX, Platform.MACOS):
         print("stopAllAudioProcesses() - Not supported in this system")
         return
 

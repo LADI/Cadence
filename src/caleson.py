@@ -50,7 +50,7 @@ from asoundrc_strs import (
     ASOUNDRC_ALOOP, ASOUNDRC_ALOOP_CHECK,
     ASOUNDRC_JACK, ASOUNDRC_PULSE)
 from shared import (
-    LINUX, HAIKU, MACOS, WINDOWS, DEBUG, VERSION, HOME, getIcon,
+    Platform, platform_, DEBUG, VERSION, HOME, getIcon,
     CustomMessageBox, setUpSignals)
 from shared_caleson import (
     getProcList, GlobalSettings, AlsaFile,
@@ -117,7 +117,6 @@ def get_linux_information():
     return (distro, kernel)
 
 def get_mac_information():
-    # TODO
     return ("Mac OS", "Unknown")
 
 def get_windows_information():
@@ -155,9 +154,6 @@ def isAlsaAudioBridged():
     global jackClientIdALSA
     return bool(jackClientIdALSA != -1)
 
-def isPulseAudioStarted():
-    return bool("pulseaudio" in getProcList())
-
 
 # Main Window
 class CalesonMainW(QMainWindow):
@@ -194,18 +190,7 @@ class CalesonMainW(QMainWindow):
 
         # -------------------------------------------------------------
         # Set-up GUI (System Information)
-
-        if HAIKU:
-            info = get_haiku_information()
-        elif LINUX:
-            info = get_linux_information()
-        elif MACOS:
-            info = get_mac_information()
-        elif WINDOWS:
-            info = get_windows_information()
-        else:
-            info = ("Unknown", "Unknown")
-
+        info = platform_.get_info()
         self.ui.label_info_os.setText(info[0])
         self.ui.label_info_version.setText(info[1])
         self.ui.label_info_arch.setText(get_architecture())
@@ -793,7 +778,7 @@ class CalesonMainW(QMainWindow):
 
         mess = ""
 
-        if isPulseAudioStarted():
+        if "pulseaudio" in getProcList():
             if self._pulse_bridge_dicts:
                 self.ui.b_pulse_start.setEnabled(False)
                 self.ui.b_pulse_stop.setEnabled(True)
@@ -1392,7 +1377,7 @@ if __name__ == '__main__':
         gDBus.loop = DBusMainLoop(set_as_default=True)
         gDBus.bus = dbus.SessionBus(mainloop=gDBus.loop)
 
-    initSystemChecks(linux=LINUX)
+    initSystemChecks(platform_)
 
     # Show GUI
     gui = CalesonMainW()
