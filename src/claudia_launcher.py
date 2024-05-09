@@ -152,7 +152,7 @@ class ClaudiaLauncher(QWidget, ui_claudia_launcher.Ui_ClaudiaLauncherW):
         self.m_lastThemeName = QIcon.themeName()
 
         # Copy our icons, so we can then set the fallback icon theme as the current theme
-        iconPath = os.path.join(TMP, ".claudia-icons")
+        iconPath = "/tmp/.claudia-icons"
 
         if not os.path.exists(iconPath):
             os.mkdir(iconPath)
@@ -242,268 +242,8 @@ class ClaudiaLauncher(QWidget, ui_claudia_launcher.Ui_ClaudiaLauncherW):
         if not (app and binary):
             return
 
-        if binary.startswith("startBristol") or binary.startswith("carla-single"):
-            self.createAppTemplate(app, binary)
-
-        elif binary in ("ardour",
-                        "ardour3",
-                        "hydrogen",
-                        "jacker",
-                        "lmms",
-                        "muse",
-                        "non-sequencer",
-                        "non-timeline",
-                        "qtractor",
-                        "rosegarden",
-                        "seq24",
-                        "calfjackhost",
-                        "carla",
-                        "jack-rack",
-                        "qsampler",
-                        "jack-mixer"):
-            self.createAppTemplate(app, binary)
-
-        else:
-            appBus = self.callback_getAppBus()
-            appBus.RunCustom2(False, binary, app, "0")
-
-    def createAppTemplate(self, app, binary):
-        rand_check  = randint(1, 99999)
-        proj_bpm    = str(self.callback_getBPM())
-        proj_srate  = str(self.callback_getSampleRate())
-        proj_folder = self.callback_getProjectFolder()
-
-        tmplte_dir  = None
-        tmplte_file = None
-        tmplte_cmd  = ""
-        tmplte_lvl  = "0"
-
-        syspath = sys.path[0]
-        if os.path.exists(os.path.join(syspath, "..", "templates")):
-            tmplte_dir = os.path.join(syspath, "..", "templates")
-        elif os.path.exists(os.path.join(syspath, "..", "data", "templates")):
-            tmplte_dir = os.path.join(syspath, "..", "data", "templates")
-        else:
-            app = None
-            tmplte_cmd = binary
-            print("ClaudiaLauncher::createAppTemplate() - Failed to find template dir")
-            return False
-
-        if not os.path.exists(proj_folder):
-            os.mkdir(proj_folder)
-
-        if binary.startswith("startBristol"):
-            module = binary.replace("startBristol -audio jack -midi jack -", "")
-            tmplte_folder = os.path.join(proj_folder, "bristol_%s_%i" % (module, rand_check))
-            os.mkdir(tmplte_folder)
-
-            if self.callback_isLadishRoom():
-                tmplte_folder = os.path.basename(tmplte_folder)
-
-            tmplte_cmd  = binary
-            tmplte_cmd += " -emulate %s" % module
-            tmplte_cmd += " -cache '%s'" % tmplte_folder
-            tmplte_cmd += " -memdump '%s'" % tmplte_folder
-            tmplte_cmd += " -import '%s'" % os.path.join(tmplte_folder, "memory")
-            tmplte_cmd += " -exec"
-            tmplte_lvl  = "1"
-
-        elif binary.startswith("carla-single"):
-            tmplte_cmd = binary + " " + proj_folder
-            tmplte_lvl = "1"
-
-        elif binary == "ardour":
-            tmplte_folder = os.path.join(proj_folder, "Ardour2_%i" % rand_check)
-            tmplte_file   = os.path.join(tmplte_folder, "Ardour2_%i.ardour" % rand_check)
-            os.mkdir(tmplte_folder)
-
-            os.system("cp '%s' '%s'" % (os.path.join(tmplte_dir, "Ardour2", "Ardour2.ardour"), tmplte_file))
-            os.system("cp '%s' '%s'" % (os.path.join(tmplte_dir, "Ardour2", "instant.xml"), tmplte_folder))
-            os.mkdir(os.path.join(tmplte_folder, "analysis"))
-            os.mkdir(os.path.join(tmplte_folder, "dead_sounds"))
-            os.mkdir(os.path.join(tmplte_folder, "export"))
-            os.mkdir(os.path.join(tmplte_folder, "interchange"))
-            os.mkdir(os.path.join(tmplte_folder, "interchange", "Ardour"))
-            os.mkdir(os.path.join(tmplte_folder, "interchange", "Ardour", "audiofiles"))
-            os.mkdir(os.path.join(tmplte_folder, "peaks"))
-
-            tmplte_cmd  = binary
-            tmplte_cmd += " '%s'" % (os.path.basename(tmplte_folder) if self.callback_isLadishRoom() else tmplte_folder)
-
-        elif binary == "ardour3":
-            projName = "Ardour3_%i" % rand_check
-            tmplte_folder = os.path.join(proj_folder, projName)
-            tmplte_file   = os.path.join(tmplte_folder, "%s.ardour" % projName)
-            os.mkdir(tmplte_folder)
-
-            os.system("cp '%s' '%s'" % (os.path.join(tmplte_dir, "Ardour3", "Ardour3.ardour"), tmplte_file))
-            os.system("cp '%s' '%s'" % (os.path.join(tmplte_dir, "Ardour3", "instant.xml"), tmplte_folder))
-            os.mkdir(os.path.join(tmplte_folder, "analysis"))
-            os.mkdir(os.path.join(tmplte_folder, "dead"))
-            os.mkdir(os.path.join(tmplte_folder, "export"))
-            os.mkdir(os.path.join(tmplte_folder, "externals"))
-            os.mkdir(os.path.join(tmplte_folder, "interchange"))
-            os.mkdir(os.path.join(tmplte_folder, "interchange", projName))
-            os.mkdir(os.path.join(tmplte_folder, "interchange", projName, "audiofiles"))
-            os.mkdir(os.path.join(tmplte_folder, "interchange", projName, "midifiles"))
-            os.mkdir(os.path.join(tmplte_folder, "peaks"))
-            os.mkdir(os.path.join(tmplte_folder, "plugins"))
-
-            tmplte_cmd  = binary
-            tmplte_cmd += " '%s'" % (os.path.basename(tmplte_folder) if self.callback_isLadishRoom() else tmplte_folder)
-
-            if self.callback_isLadishRoom():
-                tmplte_lvl = "jacksession"
-
-        elif binary == "hydrogen":
-            tmplte_file = os.path.join(proj_folder, "Hydrogen_%i.h2song" % rand_check)
-
-            os.system("cp '%s' '%s'" % (os.path.join(tmplte_dir, "Hydrogen.h2song"), tmplte_file))
-
-            tmplte_cmd  = binary
-            tmplte_cmd += " -s '%s'" % (os.path.basename(tmplte_file) if self.callback_isLadishRoom() else tmplte_file)
-
-            if self.callback_isLadishRoom():
-                tmplte_lvl = "jacksession"
-            else:
-                tmplte_lvl = "1"
-
-        elif binary == "jacker":
-            tmplte_file = os.path.join(proj_folder, "Jacker_%i.jsong" % rand_check)
-
-            os.system("cp '%s' '%s'" % (os.path.join(tmplte_dir, "Jacker.jsong"), tmplte_file))
-
-            tmplte_cmd  = binary
-            tmplte_cmd += " '%s'" % (os.path.basename(tmplte_file) if self.callback_isLadishRoom() else tmplte_file)
-
-            if database.USING_KXSTUDIO:
-                tmplte_lvl  = "1"
-
-            # No decimal bpm support
-            proj_bpm = proj_bpm.split(".")[0]
-
-        elif binary == "lmms":
-            tmplte_file = os.path.join(proj_folder, "LMMS_%i.mmp" % rand_check)
-
-            os.system("cp '%s' '%s'" % (os.path.join(tmplte_dir, "LMMS.mmp"), tmplte_file))
-
-            tmplte_cmd  = binary
-            tmplte_cmd += " '%s'" % (os.path.basename(tmplte_file) if self.callback_isLadishRoom() else tmplte_file)
-
-            # No decimal bpm support
-            proj_bpm = proj_bpm.split(".",1)[0]
-
-        elif binary == "muse":
-            tmplte_file = os.path.join(proj_folder, "MusE_%i.med" % rand_check)
-
-            os.system("cp '%s' '%s'" % (os.path.join(tmplte_dir, "MusE.med"), tmplte_file))
-
-            tmplte_cmd  = binary
-            tmplte_cmd += " '%s'" % (os.path.basename(tmplte_file) if self.callback_isLadishRoom() else tmplte_file)
-
-        elif binary == "non-sequencer":
-            tmplte_file_r = os.path.join(proj_folder, "Non-Sequencer_%i.non" % rand_check)
-
-            os.system("cp '%s' '%s'" % (os.path.join(tmplte_dir, "Non-Sequencer.non"), tmplte_file_r))
-
-            tmplte_cmd  = binary
-            tmplte_cmd += " '%s'" % (os.path.basename(tmplte_file_r) if self.callback_isLadishRoom() else tmplte_file_r)
-
-        elif binary == "non-timeline":
-            tmplte_folder = os.path.join(proj_folder, "Non-Timeline_%i" % rand_check)
-            os.mkdir(tmplte_folder)
-
-            os.system("cp '%s' '%s'" % (os.path.join(tmplte_dir, "Non-Timeline", "history"), tmplte_folder))
-            os.system("cp '%s' '%s'" % (os.path.join(tmplte_dir, "Non-Timeline", "info"), tmplte_folder))
-            os.mkdir(os.path.join(tmplte_folder, "sources"))
-
-            os.system('sed -i "s/X_SR_X-CLAUDIA-X_SR_X/%s/" "%s"' % (proj_srate, os.path.join(tmplte_folder, "info")))
-            os.system('sed -i "s/X_BPM_X-CLAUDIA-X_BPM_X/%s/" "%s"' % (proj_bpm, os.path.join(tmplte_folder, "history")))
-
-            tmplte_cmd  = binary
-            tmplte_cmd += " '%s'" % (os.path.basename(tmplte_folder) if self.callback_isLadishRoom() else tmplte_folder)
-
-        elif binary == "qtractor":
-            tmplte_file = os.path.join(proj_folder, "Qtractor_%i.qtr" % rand_check)
-
-            os.system("cp '%s' '%s'" % (os.path.join(tmplte_dir, "Qtractor.qtr"), tmplte_file))
-
-            tmplte_cmd  = binary
-            tmplte_cmd += " '%s'" % (os.path.basename(tmplte_file) if self.callback_isLadishRoom() else tmplte_file)
-            tmplte_lvl  = "1"
-
-        elif binary == "rosegarden":
-            tmplte_file = os.path.join(proj_folder, "Rosegarden_%i.rg" % rand_check)
-
-            os.system("cp '%s' '%s'" % (os.path.join(tmplte_dir, "Rosegarden.rg"), tmplte_file))
-
-            tmplte_cmd  = binary
-            tmplte_cmd += " '%s'" % (os.path.basename(tmplte_file) if self.callback_isLadishRoom() else tmplte_file)
-            tmplte_lvl  = "1"
-
-        elif binary == "seq24":
-            tmplte_file_r = os.path.join(proj_folder, "Seq24_%i.midi" % rand_check)
-
-            os.system("cp '%s' '%s'" % (os.path.join(tmplte_dir, "Seq24.midi"), tmplte_file_r))
-
-            tmplte_cmd  = binary
-            tmplte_cmd += " '%s'" % (os.path.basename(tmplte_file_r) if self.callback_isLadishRoom() else tmplte_file_r)
-            tmplte_lvl  = "1"
-
-        elif binary == "calfjackhost":
-            tmplte_file = os.path.join(proj_folder, "CalfJackHost_%i" % rand_check)
-
-            os.system("cp '%s' '%s'" % (os.path.join(tmplte_dir, "CalfJackHost"), tmplte_file))
-
-            tmplte_cmd  = binary
-            tmplte_cmd += " --load '%s'" % (os.path.basename(tmplte_file) if self.callback_isLadishRoom() else tmplte_file)
-            tmplte_lvl  = "1"
-
-        elif binary == "carla":
-            tmplte_file = os.path.join(proj_folder, "Carla_%i.carxp" % rand_check)
-
-            os.system("cp '%s' '%s'" % (os.path.join(tmplte_dir, "Carla.carxp"), tmplte_file))
-
-            tmplte_cmd  = binary
-            tmplte_cmd += " '%s'" % (os.path.basename(tmplte_file) if self.callback_isLadishRoom() else tmplte_file)
-            tmplte_lvl  = "1"
-
-        elif binary == "jack-rack":
-            tmplte_file = os.path.join(proj_folder, "Jack-Rack_%i.xml" % rand_check)
-
-            os.system("cp '%s' '%s'" % (os.path.join(tmplte_dir, "Jack-Rack.xml"), tmplte_file))
-
-            tmplte_cmd  = binary
-            tmplte_cmd += " '%s'" % (os.path.basename(tmplte_file) if self.callback_isLadishRoom() else tmplte_file)
-
-        elif binary == "qsampler":
-            tmplte_file = os.path.join(proj_folder, "Qsampler_%i.lscp" % rand_check)
-
-            os.system("cp '%s' '%s'" % (os.path.join(tmplte_dir, "Qsampler.lscp"), tmplte_file))
-
-            tmplte_cmd  = binary
-            tmplte_cmd += " '%s'" % (os.path.basename(tmplte_file) if self.callback_isLadishRoom() else tmplte_file)
-
-        elif binary == "jack-mixer":
-            tmplte_file = os.path.join(proj_folder, "Jack-Mixer_%i.xml" % rand_check)
-
-            os.system("cp '%s' '%s'" % (os.path.join(tmplte_dir, "Jack-Mixer.xml"), tmplte_file))
-
-            tmplte_cmd  = binary
-            tmplte_cmd += " -c '%s'" % (os.path.basename(tmplte_file) if self.callback_isLadishRoom() else tmplte_file)
-
-        else:
-            print("ClaudiaLauncher::createAppTemplate(%s) - Failed to parse app name" % app)
-            return False
-
-        if tmplte_file is not None:
-            os.system('sed -i "s|X_SR_X-CLAUDIA-X_SR_X|%s|" "%s"' % (proj_srate, tmplte_file))
-            os.system('sed -i "s|X_BPM_X-CLAUDIA-X_BPM_X|%s|" "%s"' % (proj_bpm, tmplte_file))
-            os.system('sed -i "s|X_FOLDER_X-CLAUDIA-X_FOLDER_X|%s|" "%s"' % (proj_folder.replace("|", "\|").replace("$", "\$"), tmplte_file))
-
         appBus = self.callback_getAppBus()
-        appBus.RunCustom2(False, tmplte_cmd, app, tmplte_lvl)
-        return True
+        appBus.RunCustom2(False, binary, app, "0")
 
     def parentR(self):
         return self._parent
@@ -1126,11 +866,11 @@ class ClaudiaLauncher(QWidget, ui_claudia_launcher.Ui_ClaudiaLauncherW):
     def callback_getAppBus(self):
         return self.parentR().callback_getAppBus()
 
-    def callback_getBPM(self):
-        return self.parentR().callback_getBPM()
+#    def callback_getBPM(self):
+#        return self.parentR().callback_getBPM()
 
-    def callback_getSampleRate(self):
-        return self.parentR().callback_getSampleRate()
+#    def callback_getSampleRate(self):
+#        return self.parentR().callback_getSampleRate()
 
     def callback_isLadishRoom(self):
         return self.parentR().callback_isLadishRoom()
@@ -1140,7 +880,7 @@ if __name__ == '__main__':
     import dbus
     from signal import signal, SIG_IGN, SIGUSR1
     from PyQt5.QtWidgets import QApplication
-    import jacklib, ui_claudia_launcher_app
+    import ui_claudia_launcher_app
 
     # DBus connections
     class DBus(object):
@@ -1166,12 +906,6 @@ if __name__ == '__main__':
             self.test_selected = False
             self.studio_root_folder = HOME
 
-            # Check for JACK
-            self.jack_client = jacklib.client_open("klaudia", jacklib.JackNoStartServer, None)
-            if not self.jack_client:
-                QTimer.singleShot(0, self.slot_showJackError)
-                return
-
             # Set-up GUI
             self.b_start.setIcon(self.getIcon("go-next"))
             self.b_add.setIcon(self.getIcon("list-add"))
@@ -1181,8 +915,8 @@ if __name__ == '__main__':
             self.b_add.setEnabled(False)
 
             self.le_url.setText(self.studio_root_folder)
-            self.co_sample_rate.addItem(str(self.getJackSampleRate()))
-            self.sb_bpm.setValue(self.getJackBPM())
+            #self.co_sample_rate.addItem(str(self.getJackSampleRate()))
+            #self.sb_bpm.setValue(self.getJackBPM())
 
             self.refreshStudioList()
 
@@ -1207,18 +941,6 @@ if __name__ == '__main__':
 
         def getIcon(self, icon):
             return self.launcher.getIcon(icon)
-
-        def getJackBPM(self):
-            pos = jacklib.jack_position_t()
-            pos.valid = 0
-            jacklib.transport_query(self.jack_client, jacklib.pointer(pos))
-
-            if pos.valid & jacklib.JackPositionBBT:
-                return pos.beats_per_minute
-            return 120.0
-
-        def getJackSampleRate(self):
-            return jacklib.get_sample_rate(self.jack_client)
 
         def refreshStudioList(self):
             self.co_ladi_room.clear()
@@ -1250,11 +972,11 @@ if __name__ == '__main__':
         def callback_getAppBus(self):
             return DBus.appBus
 
-        def callback_getBPM(self):
-            return self.getJackBPM()
+#        def callback_getBPM(self):
+#            return self.getJackBPM()
 
-        def callback_getSampleRate(self):
-            return self.getJackSampleRate()
+#        def callback_getSampleRate(self):
+#            return self.getJackSampleRate()
 
         def callback_isLadishRoom(self):
             return not self.le_url.isEnabled()
@@ -1351,8 +1073,6 @@ if __name__ == '__main__':
 
         def closeEvent(self, event):
             self.saveSettings()
-            if self.jack_client:
-                jacklib.client_close(self.jack_client)
             QMainWindow.closeEvent(self, event)
 
     # App initialization

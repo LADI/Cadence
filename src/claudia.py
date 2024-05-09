@@ -1167,8 +1167,8 @@ class ClaudiaMainW(AbstractCanvasJackClass):
         self.ui.treeWidget.expandAll()
 
     def initPorts(self):
-        if not (gJack.client and gDBus.patchbay):
-            return
+#        if not (gJack.client and gDBus.patchbay):
+#            return
 
         version, groups, conns = gDBus.patchbay.GetGraph(0)
 
@@ -1265,25 +1265,25 @@ class ClaudiaMainW(AbstractCanvasJackClass):
 
         groupIcon = patchcanvas.ICON_APPLICATION
 
-        if gJack.client:
-            ret, data, dataSize = jacklib.custom_get_data(gJack.client, groupName, URI_CANVAS_ICON)
+        # if gJack.client:
+        #     ret, data, dataSize = jacklib.custom_get_data(gJack.client, groupName, URI_CANVAS_ICON)
 
-            if ret == 0:
-                iconName = voidptr2str(data)
-                jacklib.free(data)
+        #     if ret == 0:
+        #         iconName = voidptr2str(data)
+        #         jacklib.free(data)
 
-                if iconName == "hardware":
-                    groupIcon = patchcanvas.ICON_HARDWARE
-                    if groupSplit == patchcanvas.SPLIT_UNDEF:
-                        groupSplit = patchcanvas.SPLIT_YES
-                #elif iconName =="carla":
-                    #groupIcon = patchcanvas.ICON_CARLA
-                elif iconName =="distrho":
-                    groupIcon = patchcanvas.ICON_DISTRHO
-                elif iconName =="file":
-                    groupIcon = patchcanvas.ICON_FILE
-                elif iconName =="plugin":
-                    groupIcon = patchcanvas.ICON_PLUGIN
+        #         if iconName == "hardware":
+        #             groupIcon = patchcanvas.ICON_HARDWARE
+        #             if groupSplit == patchcanvas.SPLIT_UNDEF:
+        #                 groupSplit = patchcanvas.SPLIT_YES
+        #         #elif iconName =="carla":
+        #             #groupIcon = patchcanvas.ICON_CARLA
+        #         elif iconName =="distrho":
+        #             groupIcon = patchcanvas.ICON_DISTRHO
+        #         elif iconName =="file":
+        #             groupIcon = patchcanvas.ICON_FILE
+        #         elif iconName =="plugin":
+        #             groupIcon = patchcanvas.ICON_PLUGIN
 
         patchcanvas.addGroup(groupId, groupName, groupSplit, groupIcon)
 
