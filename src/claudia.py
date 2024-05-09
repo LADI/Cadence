@@ -33,6 +33,8 @@ else:
 
 import claudia_launcher
 import systray
+import jacksettings
+import patchcanvas
 import ui_claudia
 import ui_claudia_studioname
 import ui_claudia_studiolist
@@ -43,6 +45,8 @@ import ui_claudia_runcustom
 from shared_canvasjack import *
 from shared_settings import *
 from shared_i18n import *
+
+DEBUG = bool("-d" in sys.argv or "-debug" in sys.argv or "--debug" in sys.argv)
 
 # ------------------------------------------------------------------------------------------------------------
 # Try Import DBus
@@ -928,9 +932,9 @@ class ClaudiaMainW(AbstractCanvasJackClass):
         self.DBusAppStateChanged2Callback.connect(self.slot_DBusAppStateChanged2Callback)
 
         # JACK
-        self.BufferSizeCallback.connect(self.slot_JackBufferSizeCallback)
-        self.SampleRateCallback.connect(self.slot_JackSampleRateCallback)
-        self.ShutdownCallback.connect(self.slot_JackShutdownCallback)
+        # self.BufferSizeCallback.connect(self.slot_JackBufferSizeCallback)
+        # self.SampleRateCallback.connect(self.slot_JackSampleRateCallback)
+        # self.ShutdownCallback.connect(self.slot_JackShutdownCallback)
 
         # -------------------------------------------------------------
         # Set-up DBus
@@ -1053,26 +1057,26 @@ class ClaudiaMainW(AbstractCanvasJackClass):
         self.fLastBPM = None
         self.fLastTransportState = None
 
-        bufferSize = int(jacklib.get_buffer_size(gJack.client))
-        sampleRate = int(jacklib.get_sample_rate(gJack.client))
-        realtime = bool(int(jacklib.is_realtime(gJack.client)))
+#        bufferSize = int(jacklib.get_buffer_size(gJack.client))
+#        sampleRate = int(jacklib.get_sample_rate(gJack.client))
+#        realtime = bool(int(jacklib.is_realtime(gJack.client)))
 
-        self.ui_setBufferSize(bufferSize)
-        self.ui_setSampleRate(sampleRate)
-        self.ui_setRealTime(realtime)
+#        self.ui_setBufferSize(bufferSize)
+#        self.ui_setSampleRate(sampleRate)
+#        self.ui_setRealTime(realtime)
 
         self.refreshDSPLoad()
-        self.refreshTransport()
+#        self.refreshTransport()
         self.refreshXruns()
 
-        self.init_callbacks()
+#        self.init_callbacks()
 
-        jacklib.activate(gJack.client)
+#        jacklib.activate(gJack.client)
 
-    def init_callbacks(self):
-        jacklib.set_buffer_size_callback(gJack.client, self.JackBufferSizeCallback, None)
-        jacklib.set_sample_rate_callback(gJack.client, self.JackSampleRateCallback, None)
-        jacklib.on_shutdown(gJack.client, self.JackShutdownCallback, None)
+#    def init_callbacks(self):
+#        jacklib.set_buffer_size_callback(gJack.client, self.JackBufferSizeCallback, None)
+#        jacklib.set_sample_rate_callback(gJack.client, self.JackSampleRateCallback, None)
+#        jacklib.on_shutdown(gJack.client, self.JackShutdownCallback, None)
 
     def init_studio(self):
         self.ui.treeWidget.clear()
@@ -1326,23 +1330,23 @@ class ClaudiaMainW(AbstractCanvasJackClass):
         if jacksettings.needsInit():
             self.DBusReconnect()
 
-        if not gJack.client:
-            gJack.client = jacklib.client_open("claudia", jacklib.JackNoStartServer, None)
-            if not gJack.client:
-                return self.jackStopped()
+#        if not gJack.client:
+#            gJack.client = jacklib.client_open("claudia", jacklib.JackNoStartServer, None)
+#            if not gJack.client:
+#                return self.jackStopped()
 
-        canRender = render.canRender()
+#        canRender = render.canRender()
 
-        self.ui.act_jack_render.setEnabled(canRender)
-        self.ui.b_jack_render.setEnabled(canRender)
-        self.menuJackTransport(True)
+#        self.ui.act_jack_render.setEnabled(canRender)
+#        self.ui.b_jack_render.setEnabled(canRender)
+#        self.menuJackTransport(True)
         self.menuA2JBridge(False)
 
-        self.ui.cb_buffer_size.setEnabled(True)
-        self.ui.cb_sample_rate.setEnabled(True) # jacksettings.getSampleRate() != -1
+#        self.ui.cb_buffer_size.setEnabled(True)
+#        self.ui.cb_sample_rate.setEnabled(True) # jacksettings.getSampleRate() != -1
 
-        if self.systray:
-            self.systray.setActionEnabled("tools_render", canRender)
+#        if self.systray:
+#            self.systray.setActionEnabled("tools_render", canRender)
 
         self.ui.pb_dsp_load.setMaximum(100)
         self.ui.pb_dsp_load.setValue(0)
@@ -1372,7 +1376,7 @@ class ClaudiaMainW(AbstractCanvasJackClass):
         if sampleRateTest:
             self.ui_setSampleRate(sampleRate)
 
-        self.ui_setRealTime(jacksettings.isRealtime())
+#        self.ui_setRealTime(jacksettings.isRealtime())
         self.ui_setXruns(-1)
 
         self.ui.cb_buffer_size.setEnabled(bufferSizeTest)
@@ -1386,12 +1390,12 @@ class ClaudiaMainW(AbstractCanvasJackClass):
         if self.systray:
             self.systray.setActionEnabled("tools_render", False)
 
-        if self.fCurTransportView == TRANSPORT_VIEW_HMS:
-            self.ui.label_time.setText("00:00:00")
-        elif self.fCurTransportView == TRANSPORT_VIEW_BBT:
-            self.ui.label_time.setText("000|0|0000")
-        elif self.fCurTransportView == TRANSPORT_VIEW_FRAMES:
-            self.ui.label_time.setText("000'000'000")
+        # if self.fCurTransportView == TRANSPORT_VIEW_HMS:
+        #     self.ui.label_time.setText("00:00:00")
+        # elif self.fCurTransportView == TRANSPORT_VIEW_BBT:
+        #     self.ui.label_time.setText("000|0|0000")
+        # elif self.fCurTransportView == TRANSPORT_VIEW_FRAMES:
+        #     self.ui.label_time.setText("000'000'000")
 
         self.ui.pb_dsp_load.setValue(0)
         self.ui.pb_dsp_load.setMaximum(0)
@@ -1654,20 +1658,20 @@ class ClaudiaMainW(AbstractCanvasJackClass):
             self.ui_setXruns(xruns)
             self.fXruns = xruns
 
-    def JackBufferSizeCallback(self, buffer_size, arg):
-        if DEBUG: print("JackBufferSizeCallback(%i)" % buffer_size)
-        self.BufferSizeCallback.emit(buffer_size)
-        return 0
+    # def JackBufferSizeCallback(self, buffer_size, arg):
+    #     if DEBUG: print("JackBufferSizeCallback(%i)" % buffer_size)
+    #     self.BufferSizeCallback.emit(buffer_size)
+    #     return 0
 
-    def JackSampleRateCallback(self, sample_rate, arg):
-        if DEBUG: print("JackSampleRateCallback(%i)" % sample_rate)
-        self.SampleRateCallback.emit(sample_rate)
-        return 0
+    # def JackSampleRateCallback(self, sample_rate, arg):
+    #     if DEBUG: print("JackSampleRateCallback(%i)" % sample_rate)
+    #     self.SampleRateCallback.emit(sample_rate)
+    #     return 0
 
-    def JackShutdownCallback(self, arg):
-        if DEBUG: print("JackShutdownCallback")
-        self.ShutdownCallback.emit()
-        return 0
+    # def JackShutdownCallback(self, arg):
+    #     if DEBUG: print("JackShutdownCallback")
+    #     self.ShutdownCallback.emit()
+    #     return 0
 
     @pyqtSlot()
     def slot_studio_new(self):
@@ -2525,17 +2529,17 @@ class ClaudiaMainW(AbstractCanvasJackClass):
         if gJack.client:
             gDBus.jack.ResetXruns()
 
-    @pyqtSlot(int)
-    def slot_JackBufferSizeCallback(self, bufferSize):
-        self.ui_setBufferSize(bufferSize)
+    # @pyqtSlot(int)
+    # def slot_JackBufferSizeCallback(self, bufferSize):
+    #     self.ui_setBufferSize(bufferSize)
 
-    @pyqtSlot(int)
-    def slot_JackSampleRateCallback(self, sampleRate):
-        self.ui_setSampleRate(sampleRate)
+    # @pyqtSlot(int)
+    # def slot_JackSampleRateCallback(self, sampleRate):
+    #     self.ui_setSampleRate(sampleRate)
 
-    @pyqtSlot()
-    def slot_JackShutdownCallback(self):
-        self.jackStopped()
+    # @pyqtSlot()
+    # def slot_JackShutdownCallback(self):
+    #     self.jackStopped()
 
     @pyqtSlot()
     def slot_A2JBridgeStart(self):
@@ -2671,7 +2675,7 @@ class ClaudiaMainW(AbstractCanvasJackClass):
         settings.setValue("SplitterSizes", self.ui.splitter.saveState())
         settings.setValue("ShowToolbar", self.ui.frame_toolbar.isEnabled())
         settings.setValue("ShowStatusbar", self.ui.frame_statusbar.isEnabled())
-        settings.setValue("TransportView", self.fCurTransportView)
+        # settings.setValue("TransportView", self.fCurTransportView)
         settings.setValue("HorizontalScrollBarValue", self.ui.graphicsView.horizontalScrollBar().value())
         settings.setValue("VerticalScrollBarValue", self.ui.graphicsView.verticalScrollBar().value())
 
@@ -2695,7 +2699,7 @@ class ClaudiaMainW(AbstractCanvasJackClass):
             self.ui.act_settings_show_statusbar.setChecked(showStatusbar)
             self.ui.frame_statusbar.setVisible(showStatusbar)
 
-            self.setTransportView(settings.value("TransportView", TRANSPORT_VIEW_HMS, type=int))
+#            self.setTransportView(settings.value("TransportView", TRANSPORT_VIEW_HMS, type=int))
 
         self.fSavedSettings = {
             "Main/DefaultProjectFolder": settings.value("Main/DefaultProjectFolder", DEFAULT_PROJECT_FOLDER, type=str),

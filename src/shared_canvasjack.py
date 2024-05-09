@@ -103,7 +103,7 @@ class AbstractCanvasJackClass(QMainWindow):
         self.ui.setupUi(self)
 
         self.fAppName          = appName
-        self.fCurTransportView = TRANSPORT_VIEW_HMS
+#        self.fCurTransportView = TRANSPORT_VIEW_HMS
 
         self.fLastBPM = None
         self.fLastTransportState = None
@@ -547,19 +547,19 @@ class AbstractCanvasJackClass(QMainWindow):
             self.ui.act_jack_bf_4096.triggered.connect(self.slot_jackBufferSize_Menu)
             self.ui.act_jack_bf_8192.triggered.connect(self.slot_jackBufferSize_Menu)
 
-        if "transport" in modes:
-            self.ui.act_transport_play.triggered.connect(self.slot_transportPlayPause)
-            self.ui.act_transport_stop.triggered.connect(self.slot_transportStop)
-            self.ui.act_transport_backwards.triggered.connect(self.slot_transportBackwards)
-            self.ui.act_transport_forwards.triggered.connect(self.slot_transportForwards)
-            self.ui.b_transport_play.clicked.connect(self.slot_transportPlayPause)
-            self.ui.b_transport_stop.clicked.connect(self.slot_transportStop)
-            self.ui.b_transport_backwards.clicked.connect(self.slot_transportBackwards)
-            self.ui.b_transport_forwards.clicked.connect(self.slot_transportForwards)
-            self.ui.label_time.customContextMenuRequested.connect(self.slot_transportViewMenu)
+        # if "transport" in modes:
+        #     self.ui.act_transport_play.triggered.connect(self.slot_transportPlayPause)
+        #     self.ui.act_transport_stop.triggered.connect(self.slot_transportStop)
+        #     self.ui.act_transport_backwards.triggered.connect(self.slot_transportBackwards)
+        #     self.ui.act_transport_forwards.triggered.connect(self.slot_transportForwards)
+        #     self.ui.b_transport_play.clicked.connect(self.slot_transportPlayPause)
+        #     self.ui.b_transport_stop.clicked.connect(self.slot_transportStop)
+        #     self.ui.b_transport_backwards.clicked.connect(self.slot_transportBackwards)
+        #     self.ui.b_transport_forwards.clicked.connect(self.slot_transportForwards)
+        #     self.ui.label_time.customContextMenuRequested.connect(self.slot_transportViewMenu)
 
         if "misc" in modes:
-            if LINUX:
-                self.ui.act_show_logs.triggered.connect(self.slot_showLogs)
-            else:
-                self.ui.act_show_logs.setEnabled(False)
+#            if LINUX:
+            self.ui.act_show_logs.triggered.connect(self.slot_showLogs)
+#            else:
+#                self.ui.act_show_logs.setEnabled(False)

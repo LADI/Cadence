@@ -48,7 +48,8 @@ claudia: src/ui_claudia.py \
 #claudia: src/ui_claudia_launcher.py src/ui_claudia_launcher_app.py
 
 tools: \
-	src/ui_settings_app.py
+	src/ui_settings_app.py \
+	src/ui_settings_jack.py
 
 src/ui_%.py: resources/ui/%.ui
 	$(PYUIC) $< -o $@
