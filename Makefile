@@ -43,9 +43,7 @@ UI: claudia tools
 claudia: src/ui_claudia.py \
 	src/ui_claudia_studioname.py src/ui_claudia_studiolist.py \
 	src/ui_claudia_createroom.py src/ui_claudia_projectname.py src/ui_claudia_projectproperties.py \
-	src/ui_claudia_runcustom.py
-
-#claudia: src/ui_claudia_launcher.py src/ui_claudia_launcher_app.py
+	src/ui_claudia_runcustom.py src/ui_claudia_launcher.py src/ui_claudia_launcher_app.py
 
 tools: \
 	src/ui_settings_app.py \
