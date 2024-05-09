@@ -2,45 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
-    <name>AbstractCanvasJackClass</name>
-    <message>
-        <location filename="../src/shared_canvasjack.py" line="142"/>
-        <source>Failed to change buffer-size as %i, reset to %i</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/shared_canvasjack.py" line="329"/>
-        <source>&amp;Play</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/shared_canvasjack.py" line="334"/>
-        <source>&amp;Pause</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/shared_canvasjack.py" line="394"/>
-        <source>Change Sample Rate</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/shared_canvasjack.py" line="394"/>
-        <source>It&apos;s not possible to change Sample Rate while JACK is running.
-Do you want to change as soon as JACK stops?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/shared_canvasjack.py" line="484"/>
-        <source>Save Image</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/shared_canvasjack.py" line="484"/>
-        <source>PNG Image (*.png);;JPEG Image (*.jpg)</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>CalesonMainW</name>
     <message>
         <location filename="../resources/ui/caleson.ui" line="14"/>
@@ -54,7 +15,7 @@ Do you want to change as soon as JACK stops?</source>
     </message>
     <message>
         <location filename="../resources/ui/caleson.ui" line="723"/>
-        <source>Welcome to Caleson</source>
+        <source>Welcome to your Caleson !</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -93,7 +54,7 @@ Do you want to change as soon as JACK stops?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1455"/>
+        <location filename="../src/caleson.py" line="820"/>
         <source>JACK Status</source>
         <translation type="unfinished"></translation>
     </message>
@@ -133,12 +94,12 @@ Do you want to change as soon as JACK stops?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="974"/>
+        <location filename="../src/caleson.py" line="375"/>
         <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="975"/>
+        <location filename="../src/caleson.py" line="376"/>
         <source>Stop</source>
         <translation type="unfinished"></translation>
     </message>
@@ -158,7 +119,7 @@ Do you want to change as soon as JACK stops?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="1189"/>
+        <location filename="../resources/ui/caleson.ui" line="2145"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
@@ -168,548 +129,388 @@ Do you want to change as soon as JACK stops?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="1068"/>
+        <location filename="../resources/ui/caleson.ui" line="2024"/>
         <source>ALSA Audio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1339"/>
+        <location filename="../src/caleson.py" line="715"/>
         <source>No bridge in use</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="1155"/>
+        <location filename="../resources/ui/caleson.ui" line="2111"/>
         <source>Bridge Type:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="1166"/>
+        <location filename="../resources/ui/caleson.ui" line="2122"/>
         <source>(None)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="1171"/>
+        <location filename="../resources/ui/caleson.ui" line="2127"/>
         <source>ALSA -&gt; Loop -&gt; JACK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="1176"/>
+        <location filename="../resources/ui/caleson.ui" line="2132"/>
         <source>ALSA -&gt; JACK (Plugin)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="1181"/>
+        <location filename="../resources/ui/caleson.ui" line="2137"/>
         <source>ALSA -&gt; PulseAudio -&gt; JACK (Plugin)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="1239"/>
+        <location filename="../resources/ui/caleson.ui" line="1271"/>
         <source>ALSA MIDI State</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="1284"/>
+        <location filename="../resources/ui/caleson.ui" line="1388"/>
         <source>Export hardware ports</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="1301"/>
+        <location filename="../resources/ui/caleson.ui" line="1405"/>
         <source>Start with Jack</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="775"/>
+        <location filename="../resources/ui/caleson.ui" line="2006"/>
         <source>PulseAudio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="781"/>
+        <location filename="../resources/ui/caleson.ui" line="946"/>
         <source>PulseAudio state</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="976"/>
-        <source>Channels</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/caleson.ui" line="1048"/>
+        <location filename="../resources/ui/caleson.ui" line="1211"/>
         <source>Auto-start at login</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="999"/>
+        <location filename="../src/caleson.py" line="398"/>
         <source>Tools</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="1359"/>
+        <location filename="../resources/ui/caleson.ui" line="1703"/>
         <source>Applications</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="1384"/>
-        <source>Catia</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/caleson.ui" line="1415"/>
-        <source>JACK Patchbay with A2J Bridge support and JACK Transport</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/caleson.ui" line="1575"/>
-        <source>Meter In / Out</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/caleson.ui" line="1623"/>
-        <source>Digital peak meter, auto-connected to all system inputs or outputs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/caleson.py" line="1003"/>
+        <location filename="../src/caleson.py" line="402"/>
         <source>Logs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1006"/>
+        <location filename="../src/caleson.py" line="403"/>
         <source>Render</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="1462"/>
+        <location filename="../resources/ui/caleson.ui" line="1933"/>
         <source>Render a JACK project</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1007"/>
-        <source>XY-Controller</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/caleson.ui" line="1670"/>
-        <source>Virtual XY Controller with MIDI Keyboard</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/caleson.ui" line="1715"/>
-        <source>Tweaks</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/caleson.ui" line="1760"/>
+        <location filename="../resources/ui/caleson.ui" line="762"/>
         <source>Settings have been changed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="1783"/>
+        <location filename="../resources/ui/caleson.ui" line="785"/>
         <source>Apply Now</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="1838"/>
-        <source>audio-plugins</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/caleson.ui" line="1843"/>
-        <source>default-apps</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/caleson.ui" line="1848"/>
+        <location filename="../resources/ui/caleson.ui" line="859"/>
         <source>wineasio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="1853"/>
+        <location filename="../resources/ui/caleson.ui" line="864"/>
         <source>name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="1858"/>
-        <source>Audio Plugins PATH</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/caleson.ui" line="1869"/>
-        <source>Default Applications</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/caleson.ui" line="1880"/>
+        <location filename="../resources/ui/caleson.ui" line="899"/>
         <source>WineASIO</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="1917"/>
-        <source>Remove</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/caleson.ui" line="1953"/>
-        <source>Add...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/caleson.ui" line="1984"/>
-        <source>LADSPA</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/caleson.ui" line="2018"/>
-        <source>DSSI</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/caleson.ui" line="2052"/>
-        <source>LV2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/caleson.ui" line="2086"/>
-        <source>VST</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/caleson.ui" line="2175"/>
-        <source>Reset</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/caleson.ui" line="2182"/>
-        <source>Change...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/caleson.ui" line="2208"/>
-        <source>Image Viewer</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/caleson.ui" line="2228"/>
-        <source>Text Editor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/caleson.ui" line="2248"/>
-        <source>Video Player</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/caleson.ui" line="2268"/>
-        <source>Music Player</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/caleson.ui" line="2288"/>
-        <source>Web Browser</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/caleson.ui" line="2377"/>
-        <source>[App Name]</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/caleson.ui" line="2400"/>
-        <source>[App Comment]</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/caleson.ui" line="2445"/>
+        <location filename="../resources/ui/caleson.ui" line="1474"/>
         <source>Audio Ports</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="2499"/>
+        <location filename="../resources/ui/caleson.ui" line="1528"/>
         <source>Number of jack ports that wineasio will try to open.
 Default is 16</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="2457"/>
+        <location filename="../resources/ui/caleson.ui" line="1486"/>
         <source>Number of inputs:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="2489"/>
+        <location filename="../resources/ui/caleson.ui" line="1518"/>
         <source>Number of outputs:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="2536"/>
+        <location filename="../resources/ui/caleson.ui" line="1565"/>
         <source>Try to connect the asio channels to the
 physical I/O ports on your hardware.
 Default is on</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="2541"/>
+        <location filename="../resources/ui/caleson.ui" line="1570"/>
         <source>Connect to hardware</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="2553"/>
+        <location filename="../resources/ui/caleson.ui" line="1582"/>
         <source>JACK Options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="2577"/>
+        <location filename="../resources/ui/caleson.ui" line="1606"/>
         <source>Enable wineasio to launch the jack server.
 Default is off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="2581"/>
+        <location filename="../resources/ui/caleson.ui" line="1610"/>
         <source>Autostart server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="2608"/>
+        <location filename="../resources/ui/caleson.ui" line="1637"/>
         <source>When on, an asio app will be able to change the jack buffer size.
 Default is off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="2612"/>
+        <location filename="../resources/ui/caleson.ui" line="1641"/>
         <source>Fixed buffersize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="2623"/>
+        <location filename="../resources/ui/caleson.ui" line="1652"/>
         <source>Preferred buffersize:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="790"/>
+        <location filename="../src/caleson.py" line="292"/>
         <source>PulseAudio is not installed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="962"/>
+        <location filename="../src/caleson.py" line="363"/>
         <source>Start JACK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="963"/>
+        <location filename="../src/caleson.py" line="364"/>
         <source>Stop JACK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="964"/>
+        <location filename="../src/caleson.py" line="365"/>
         <source>Configure JACK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="967"/>
+        <location filename="../src/caleson.py" line="368"/>
         <source>ALSA Audio Bridge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="970"/>
+        <location filename="../src/caleson.py" line="371"/>
         <source>ALSA MIDI Bridge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="973"/>
+        <location filename="../src/caleson.py" line="374"/>
         <source>PulseAudio Bridge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1004"/>
-        <source>Meter (Inputs)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/caleson.py" line="1005"/>
-        <source>Meter (Output)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/caleson.py" line="1234"/>
+        <location filename="../src/caleson.py" line="613"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1237"/>
+        <location filename="../src/caleson.py" line="616"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1153"/>
+        <location filename="../src/caleson.py" line="523"/>
         <source>Unavailable</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1155"/>
+        <location filename="../src/caleson.py" line="525"/>
         <source>Unknown</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1158"/>
+        <location filename="../src/caleson.py" line="528"/>
         <source>-- jackdbus is not available --</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1181"/>
+        <location filename="../src/caleson.py" line="549"/>
         <source>ALSA MIDI Bridge is not installed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1230"/>
+        <location filename="../src/caleson.py" line="609"/>
         <source>Started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="2338"/>
+        <location filename="../src/caleson.py" line="1324"/>
         <source>%i samples</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1288"/>
+        <location filename="../src/caleson.py" line="667"/>
         <source>Stopped</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1317"/>
+        <location filename="../src/caleson.py" line="693"/>
         <source>ALSA MIDI Bridge is running, ports are exported</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1320"/>
+        <location filename="../src/caleson.py" line="696"/>
         <source>ALSA MIDI Bridge is running</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1329"/>
+        <location filename="../src/caleson.py" line="705"/>
         <source>ALSA MIDI Bridge is stopped</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1353"/>
+        <location filename="../src/caleson.py" line="728"/>
         <source>Using Caleson snd-aloop daemon, started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1363"/>
+        <location filename="../src/caleson.py" line="740"/>
         <source>Using Caleson snd-aloop daemon, stopped</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1375"/>
+        <location filename="../src/caleson.py" line="753"/>
         <source>Using JACK plugin bridge (Always on)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1384"/>
+        <location filename="../src/caleson.py" line="763"/>
         <source>Using PulseAudio plugin bridge (Always on)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1878"/>
+        <location filename="../src/caleson.py" line="1204"/>
         <source>Custom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1394"/>
+        <location filename="../src/caleson.py" line="774"/>
         <source>Using custom asoundrc, not managed by Caleson</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1420"/>
+        <location filename="../src/caleson.py" line="802"/>
         <source>PulseAudio is started but not bridged</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1430"/>
+        <location filename="../src/caleson.py" line="812"/>
         <source>PulseAudio is not started</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1456"/>
+        <location filename="../src/caleson.py" line="821"/>
         <source>Realtime</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1457"/>
+        <location filename="../src/caleson.py" line="822"/>
         <source>DSP Load</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1458"/>
+        <location filename="../src/caleson.py" line="823"/>
         <source>Xruns</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1459"/>
+        <location filename="../src/caleson.py" line="824"/>
         <source>Buffer Size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1460"/>
+        <location filename="../src/caleson.py" line="825"/>
         <source>Sample Rate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1461"/>
+        <location filename="../src/caleson.py" line="826"/>
         <source>Block Latency</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1679"/>
+        <location filename="../src/caleson.py" line="1004"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1604"/>
+        <location filename="../src/caleson.py" line="917"/>
         <source>Failed to start JACK, please check the logs for more information.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1613"/>
+        <location filename="../src/caleson.py" line="929"/>
         <source>Failed to stop JACK, please check the logs for more information.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1618"/>
+        <location filename="../src/caleson.py" line="937"/>
         <source>This will force kill all JACK applications!&lt;br&gt;Make sure to save your projects before continue.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1618"/>
+        <location filename="../src/caleson.py" line="937"/>
         <source>Are you sure you want to force the restart of JACK?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1648"/>
+        <location filename="../src/caleson.py" line="967"/>
         <source>Failed to switch JACK master, please check the logs for more information.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1679"/>
+        <location filename="../src/caleson.py" line="1004"/>
         <source>You&apos;re using a custom ~/.asoundrc file not managed by Caleson.&lt;br/&gt;By choosing to use a Caleson ALSA-Audio bridge, &lt;b&gt;the file will be replaced&lt;/b&gt;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1679"/>
+        <location filename="../src/caleson.py" line="1004"/>
         <source>Are you sure you want to do this?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/caleson.py" line="1718"/>
-        <source>Caleson::AlsaBridgeChanged(%i) - invalid index</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/caleson.py" line="2193"/>
-        <source>Add Path</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/caleson.py" line="2216"/>
-        <source>Change Path</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -718,7 +519,7 @@ Default is off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="1559"/>
+        <location filename="../resources/ui/caleson.ui" line="1886"/>
         <source>View JACK and A2J logs</source>
         <translation type="unfinished"></translation>
     </message>
@@ -733,85 +534,105 @@ Default is off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="837"/>
+        <location filename="../resources/ui/caleson.ui" line="1000"/>
         <source>Add Source</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="907"/>
+        <location filename="../resources/ui/caleson.ui" line="1070"/>
         <source>Add Sink</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="961"/>
+        <location filename="../resources/ui/caleson.ui" line="1124"/>
         <source>Apply</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="1220"/>
+        <location filename="../resources/ui/caleson.ui" line="2176"/>
         <source>ALSA MIDI (A2J)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1412"/>
+        <location filename="../src/caleson.py" line="794"/>
         <source>PulseAudio is started and bridged to JACK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="2664"/>
+        <location filename="../resources/ui/caleson.ui" line="2250"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1422"/>
+        <location filename="../src/caleson.py" line="804"/>
         <source>PulseAudio is started but JACK is stopped</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="1432"/>
+        <location filename="../src/caleson.py" line="814"/>
         <source>PulseAudio is not started, nor is JACK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="2707"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Caleson&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;LibraZiK version&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Caleson is a tool used to configure the JACK server, and commonly needed bridges for PulseAudio or ALSA MIDI.&lt;/p&gt;&lt;p&gt;This version is specific to LibraZiK.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Copyright (C) falkTX 2010 - 2021&lt;/p&gt;&lt;p&gt;Copyright (C) houston4444 2022&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;French translation: Olivier Humbert trebmuh@tuxfamily.org&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/caleson.ui" line="1291"/>
+        <location filename="../resources/ui/caleson.ui" line="1395"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;if checked, the JACK port names provided by the bridge contains their matching ALSA client ID. Check it only if you use simultaneously multiple identical MIDI devices.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="1294"/>
+        <location filename="../resources/ui/caleson.ui" line="1398"/>
         <source>Unique port names</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="2120"/>
-        <source>VST3</source>
+        <location filename="../resources/ui/caleson.ui" line="1728"/>
+        <source>Patchance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../resources/ui/caleson.ui" line="2142"/>
-        <source>LXVST</source>
+        <location filename="../resources/ui/caleson.ui" line="1759"/>
+        <source>JACK Patchbay with A2J Bridge, Alsa MIDI and JACK Transport</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resources/ui/caleson.ui" line="1775"/>
+        <source>RaySession</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resources/ui/caleson.ui" line="1806"/>
+        <source>Session Manager with NSM support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resources/ui/caleson.ui" line="1902"/>
+        <source>QJackCapture</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resources/ui/caleson.ui" line="1965"/>
+        <source>merdouille</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../resources/ui/caleson.ui" line="2293"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Caleson&lt;br/&gt;&lt;/span&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;LibraZiK version&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Caleson is a tool used to configure the JACK server, and commonly needed bridges for PulseAudio or ALSA MIDI.&lt;/p&gt;&lt;p&gt;This version is specific to LibraZiK.&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;Copyright (C) falkTX 2010 - 2021&lt;/p&gt;&lt;p&gt;Copyright (C) houston4444 2022 - 2024&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;French translation: 2022 - 2024 Olivier Humbert trebmuh@tuxfamily.org&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>CalesonSystemCheck</name>
     <message>
-        <location filename="../src/caleson.py" line="424"/>
+        <location filename="../src/system_checks.py" line="15"/>
         <source>check</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="426"/>
+        <location filename="../src/system_checks.py" line="17"/>
         <source>yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="428"/>
+        <location filename="../src/system_checks.py" line="19"/>
         <source>nothing to report</source>
         <translation type="unfinished"></translation>
     </message>
@@ -819,22 +640,22 @@ Default is off</source>
 <context>
     <name>CalesonSystemCheck_audioGroup</name>
     <message>
-        <location filename="../src/caleson.py" line="440"/>
+        <location filename="../src/system_checks.py" line="32"/>
         <source>User in audio group</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="447"/>
+        <location filename="../src/system_checks.py" line="39"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="465"/>
+        <location filename="../src/system_checks.py" line="57"/>
         <source>Yes, but needs relogin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="469"/>
+        <location filename="../src/system_checks.py" line="61"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
@@ -842,1453 +663,43 @@ Default is off</source>
 <context>
     <name>CalesonSystemCheck_kernel</name>
     <message>
-        <location filename="../src/caleson.py" line="482"/>
+        <location filename="../src/system_checks.py" line="75"/>
         <source>Current kernel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="503"/>
+        <location filename="../src/system_checks.py" line="96"/>
         <source>Be sure to properly configure your kernel.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="504"/>
+        <location filename="../src/system_checks.py" line="97"/>
         <source>PREEMPT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="508"/>
+        <location filename="../src/system_checks.py" line="101"/>
         <source>PREEMPT_RT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="518"/>
+        <location filename="../src/system_checks.py" line="111"/>
         <source>RT may be available if compiling this version w/CONFIG_PREEMPT or patching this kernel w/CONFIG_PREEMPT_RT.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="524"/>
+        <location filename="../src/system_checks.py" line="117"/>
         <source> Vanilla (PAE)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="527"/>
+        <location filename="../src/system_checks.py" line="120"/>
         <source> Vanilla</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/caleson.py" line="530"/>
+        <location filename="../src/system_checks.py" line="123"/>
         <source>No realtime options for this version of kernel.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>CatarinaAddGroupW</name>
-    <message>
-        <location filename="../resources/ui/catarina_addgroup.ui" line="14"/>
-        <source>Add Group</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_addgroup.ui" line="20"/>
-        <source>New Group</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_addgroup.ui" line="28"/>
-        <source>Group Name:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_addgroup.ui" line="40"/>
-        <source>Hardware Mode (Split Input/Outputs)</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>CatarinaAddPortW</name>
-    <message>
-        <location filename="../resources/ui/catarina_addport.ui" line="14"/>
-        <source>Add Port</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_addport.ui" line="20"/>
-        <source>Parent</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_addport.ui" line="26"/>
-        <source>Port Group:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_addport.ui" line="39"/>
-        <source>Port Info</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_addport.ui" line="45"/>
-        <source>Port ID:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_addport.ui" line="62"/>
-        <source>Port Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_addport.ui" line="72"/>
-        <source>Port Type:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_addport.ui" line="80"/>
-        <source>JACK Audio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_addport.ui" line="85"/>
-        <source>JACK MIDI</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_addport.ui" line="90"/>
-        <source>A2J MIDI</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_addport.ui" line="95"/>
-        <source>ALSA MIDI</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_addport.ui" line="106"/>
-        <source>Port Flags</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_addport.ui" line="112"/>
-        <source>Input</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_addport.ui" line="122"/>
-        <source>Output</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>CatarinaConnectPortsW</name>
-    <message>
-        <location filename="../resources/ui/catarina_connectports.ui" line="14"/>
-        <source>Connect Ports</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_connectports.ui" line="20"/>
-        <source>Outputs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_connectports.ui" line="32"/>
-        <source>Inputs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_connectports.ui" line="54"/>
-        <source>Connection Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_connectports.ui" line="60"/>
-        <source>JACK Audio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_connectports.ui" line="70"/>
-        <source>JACK MIDI</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_connectports.ui" line="77"/>
-        <source>A2J MIDI</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_connectports.ui" line="84"/>
-        <source>ALSA MIDI</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>CatarinaDisconnectPortsW</name>
-    <message>
-        <location filename="../resources/ui/catarina_disconnectports.ui" line="14"/>
-        <source>Disconnect Ports</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_disconnectports.ui" line="20"/>
-        <source>Connection Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_disconnectports.ui" line="26"/>
-        <source>JACK Audio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_disconnectports.ui" line="36"/>
-        <source>JACK MIDI</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_disconnectports.ui" line="43"/>
-        <source>A2J MIDI</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_disconnectports.ui" line="50"/>
-        <source>ALSA MIDI</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_disconnectports.ui" line="60"/>
-        <source>Connection List</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_disconnectports.ui" line="94"/>
-        <source>Output</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_disconnectports.ui" line="99"/>
-        <source>Input</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>CatarinaMainW</name>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="14"/>
-        <source>Catarina</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="30"/>
-        <source>Project</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="42"/>
-        <source>New Project</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="62"/>
-        <source>Open Project</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="82"/>
-        <source>Save Project</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="102"/>
-        <source>Save Project As</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="119"/>
-        <source>Patchbay</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="131"/>
-        <source>Add Group</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="151"/>
-        <source>Remove Group</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="171"/>
-        <source>Rename Group</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="198"/>
-        <source>Add Port</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="218"/>
-        <source>Remove Port</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="238"/>
-        <source>Rename Port</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="265"/>
-        <source>Connect Ports</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="285"/>
-        <source>Disconnect Ports</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="302"/>
-        <source>Canvas</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="314"/>
-        <source>Zoom Auto-Fit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="635"/>
-        <source>Zoom In</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="623"/>
-        <source>Zoom Out</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="611"/>
-        <source>Zoom 100%</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="427"/>
-        <source>&amp;File</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="439"/>
-        <source>&amp;Patchbay</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="454"/>
-        <source>&amp;Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="462"/>
-        <source>&amp;About</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="469"/>
-        <source>&amp;Canvas</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="473"/>
-        <source>Zoom</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="500"/>
-        <source>&amp;Save Positions</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="729"/>
-        <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="512"/>
-        <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="515"/>
-        <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="524"/>
-        <source>Add Group...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="533"/>
-        <source>Remove Group...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="542"/>
-        <source>Add Port...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="551"/>
-        <source>Remove Port...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="560"/>
-        <source>Rename Port...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="569"/>
-        <source>&amp;Connect Ports...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="578"/>
-        <source>&amp;Disconnect Ports...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="587"/>
-        <source>&amp;Refresh</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="590"/>
-        <source>Ctrl+R</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="599"/>
-        <source>Auto-Fit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="602"/>
-        <source>Home</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="614"/>
-        <source>Ctrl+1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="626"/>
-        <source>Ctrl+-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="638"/>
-        <source>Ctrl++</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="646"/>
-        <source>Show Toolbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="651"/>
-        <source>About Qt</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catarina.py" line="1262"/>
-        <source>About Catarina</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="664"/>
-        <source>Show Patchbay Toolbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="673"/>
-        <source>&amp;Arrange</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="676"/>
-        <source>Ctrl+G</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="681"/>
-        <source>Save Image...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="690"/>
-        <source>Configure Catarina</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="693"/>
-        <source>Ctrl+P</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="702"/>
-        <source>&amp;New</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="705"/>
-        <source>Ctrl+N</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="714"/>
-        <source>&amp;Open...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="717"/>
-        <source>Ctrl+O</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="726"/>
-        <source>&amp;Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="738"/>
-        <source>Save &amp;As...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="741"/>
-        <source>Ctrl+Shift+S</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina.ui" line="750"/>
-        <source>Rename Group...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catarina.py" line="1239"/>
-        <source>Warning</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catarina.py" line="718"/>
-        <source>There is already a group with this name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catarina.py" line="769"/>
-        <source>Input</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catarina.py" line="771"/>
-        <source>Output</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catarina.py" line="784"/>
-        <source>Unknown</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catarina.py" line="776"/>
-        <source>JACK Audio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catarina.py" line="778"/>
-        <source>JACK MIDI</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catarina.py" line="780"/>
-        <source>A2J MIDI</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catarina.py" line="782"/>
-        <source>ALSA MIDI</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catarina.py" line="788"/>
-        <source>&lt;table&gt;&lt;tr&gt;&lt;td align=&apos;right&apos;&gt;&lt;b&gt;Group Name:&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;%1&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&apos;right&apos;&gt;&lt;b&gt;Group ID:&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;%2&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&apos;right&apos;&gt;&lt;b&gt;Port Name:&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;%3&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&apos;right&apos;&gt;&lt;b&gt;Port ID:&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;%4&lt;/i&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&apos;right&apos;&gt;&lt;b&gt;Full Port Name:&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;%5&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan=&apos;2&apos;&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&apos;right&apos;&gt;&lt;b&gt;Port Mode:&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;%6&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&apos;right&apos;&gt;&lt;b&gt;Port Type:&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;%7&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catarina.py" line="801"/>
-        <source>Port Information</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catarina.py" line="919"/>
-        <source>Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catarina.py" line="888"/>
-        <source>Failed to save file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catarina.py" line="892"/>
-        <source>The file &apos;%s&apos; does not exist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catarina.py" line="901"/>
-        <source>Failed to load file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catarina.py" line="919"/>
-        <source>Not a valid Catarina file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catarina.py" line="1030"/>
-        <source>Load State</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catarina.py" line="1043"/>
-        <source>Catarina XML Document (*.xml)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catarina.py" line="1043"/>
-        <source>Save State</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catarina.py" line="1150"/>
-        <source>Please add a Group first!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catarina.py" line="1192"/>
-        <source>Please add a Port first!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catarina.py" line="1205"/>
-        <source>Ports already connected!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catarina.py" line="1219"/>
-        <source>Please add some Ports first!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catarina.py" line="1239"/>
-        <source>Please make some Connections first!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catarina.py" line="1262"/>
-        <source>&lt;h3&gt;Catarina&lt;/h3&gt;&lt;br&gt;Version %s&lt;br&gt;Catarina is a testing ground for the &apos;PatchCanvas&apos; module.&lt;br&gt;&lt;br&gt;Copyright (C) 2010-2018 falkTX</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>CatarinaRemoveGroupW</name>
-    <message>
-        <location filename="../resources/ui/catarina_removegroup.ui" line="20"/>
-        <source>Remove Group</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_removegroup.ui" line="51"/>
-        <source>ID</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_removegroup.ui" line="56"/>
-        <source>Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_removegroup.ui" line="61"/>
-        <source>Split</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>CatarinaRemovePortW</name>
-    <message>
-        <location filename="../resources/ui/catarina_removeport.ui" line="14"/>
-        <source>Remove Port</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_removeport.ui" line="20"/>
-        <source>Port Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_removeport.ui" line="26"/>
-        <source>Input</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_removeport.ui" line="36"/>
-        <source>Output</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_removeport.ui" line="46"/>
-        <source>Port Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_removeport.ui" line="52"/>
-        <source>JACK Audio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_removeport.ui" line="62"/>
-        <source>JACK MIDI</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_removeport.ui" line="69"/>
-        <source>A2J MIDI</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_removeport.ui" line="76"/>
-        <source>ALSA MIDI</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_removeport.ui" line="86"/>
-        <source>Port List</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_removeport.ui" line="123"/>
-        <source>#</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_removeport.ui" line="131"/>
-        <source>Full Port Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>CatarinaRenameGroupW</name>
-    <message>
-        <location filename="../resources/ui/catarina_renamegroup.ui" line="14"/>
-        <source>Rename Group</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_renamegroup.ui" line="20"/>
-        <source>Group to Rename:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_renamegroup.ui" line="33"/>
-        <source>New Group Name:</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>CatarinaRenamePortW</name>
-    <message>
-        <location filename="../resources/ui/catarina_renameport.ui" line="14"/>
-        <source>Rename Port</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_renameport.ui" line="20"/>
-        <source>Port Mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_renameport.ui" line="26"/>
-        <source>Input</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_renameport.ui" line="36"/>
-        <source>Output</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_renameport.ui" line="46"/>
-        <source>Port Type</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_renameport.ui" line="52"/>
-        <source>JACK Audio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_renameport.ui" line="62"/>
-        <source>JACK MIDI</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_renameport.ui" line="69"/>
-        <source>A2J MIDI</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_renameport.ui" line="76"/>
-        <source>ALSA MIDI</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_renameport.ui" line="86"/>
-        <source>Port List</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_renameport.ui" line="123"/>
-        <source>#</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_renameport.ui" line="131"/>
-        <source>Full Port Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catarina_renameport.ui" line="142"/>
-        <source>New Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>CatiaMainW</name>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="14"/>
-        <source>Catia</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="30"/>
-        <source>Transport</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="42"/>
-        <source>Transport Play/Pause</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="65"/>
-        <source>Transport Stop</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="85"/>
-        <source>Transport Backwards</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="108"/>
-        <source>Transport Forwards</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="141"/>
-        <source>??:??:??</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="151"/>
-        <source>Beats per Minute</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="163"/>
-        <source> BPM</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="182"/>
-        <source>Canvas</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="194"/>
-        <source>Zoom Auto-Fit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="731"/>
-        <source>Zoom In</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="743"/>
-        <source>Zoom Out</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="755"/>
-        <source>Zoom 100%</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="271"/>
-        <source>Tools</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="283"/>
-        <source>Clear Xruns</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="776"/>
-        <source>Configure JACK</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="323"/>
-        <source>JACK Render</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="378"/>
-        <source>Buffer Size:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="395"/>
-        <source>Sample Rate:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="412"/>
-        <source> RT </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="426"/>
-        <source>? Xruns</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="446"/>
-        <source>DSP Load: %p%</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="466"/>
-        <source>&amp;File</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="472"/>
-        <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="479"/>
-        <source>&amp;Transport</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="488"/>
-        <source>&amp;Canvas</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="492"/>
-        <source>Zoom</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="508"/>
-        <source>&amp;Tools</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="512"/>
-        <source>&amp;JACK Server</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="516"/>
-        <source>Set Buffer Size</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="537"/>
-        <source>&amp;ALSA-MIDI Bridge</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="553"/>
-        <source>S&amp;ettings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="574"/>
-        <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="577"/>
-        <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="586"/>
-        <source>&amp;New...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="589"/>
-        <source>Ctrl+N</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="598"/>
-        <source>&amp;Open...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="601"/>
-        <source>Ctrl+O</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="610"/>
-        <source>&amp;Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="613"/>
-        <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="622"/>
-        <source>Save &amp;As...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="625"/>
-        <source>Ctrl+Shift+S</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="630"/>
-        <source>1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="635"/>
-        <source>&amp;About Catia</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="647"/>
-        <source>&amp;Play</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="650"/>
-        <source>Ctrl+Shift+P</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="659"/>
-        <source>&amp;Stop</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="662"/>
-        <source>Ctrl+Shift+X</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="671"/>
-        <source>&amp;Backwards</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="674"/>
-        <source>Ctrl+Shift+B</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="683"/>
-        <source>&amp;Forwards</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="686"/>
-        <source>Ctrl+Shift+F</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="695"/>
-        <source>&amp;Refresh</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="698"/>
-        <source>Ctrl+R</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="707"/>
-        <source>&amp;Arrange</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="710"/>
-        <source>Ctrl+G</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="719"/>
-        <source>Auto-Fit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="722"/>
-        <source>Home</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="734"/>
-        <source>Ctrl++</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="746"/>
-        <source>Ctrl+-</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="758"/>
-        <source>Ctrl+1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="767"/>
-        <source>Clear &amp;Xruns</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="976"/>
-        <source>Configure Canvas</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="789"/>
-        <source>Show Toolbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="797"/>
-        <source>Show Statusbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="806"/>
-        <source>Configure Catia</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="809"/>
-        <source>Ctrl+P</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="818"/>
-        <source>Start JACK Server</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="821"/>
-        <source>F5</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="830"/>
-        <source>Stop JACK Server</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="833"/>
-        <source>F6</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="841"/>
-        <source>32</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="849"/>
-        <source>64</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="857"/>
-        <source>128</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="865"/>
-        <source>256</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="873"/>
-        <source>512</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="881"/>
-        <source>1024</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="889"/>
-        <source>2048</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="897"/>
-        <source>4096</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="905"/>
-        <source>8192</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="914"/>
-        <source>Start Bridge</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="917"/>
-        <source>F7</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="926"/>
-        <source>Stop Bridge</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="929"/>
-        <source>F8</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="934"/>
-        <source>Export Hardware Ports...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="939"/>
-        <source>Save As &amp;Template...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="944"/>
-        <source>Save &amp;Image...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="953"/>
-        <source>Undo</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="962"/>
-        <source>Redo</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="967"/>
-        <source>About Qt</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="981"/>
-        <source>Sync Now</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="989"/>
-        <source>(none)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="998"/>
-        <source>JACK &amp;Render</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="1003"/>
-        <source>&amp;Logs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="1011"/>
-        <source>16</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/catia.ui" line="1019"/>
-        <source>Show ALSA-MIDI (EXPERIMENTAL)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catia.py" line="316"/>
-        <source>Input</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catia.py" line="318"/>
-        <source>Output</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catia.py" line="285"/>
-        <source>ALSA MIDI</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catia.py" line="287"/>
-        <source>&lt;table&gt;&lt;tr&gt;&lt;td align=&apos;right&apos;&gt;&lt;b&gt;Group Name:&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;%s&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&apos;right&apos;&gt;&lt;b&gt;Port Id:&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;%s&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&apos;right&apos;&gt;&lt;b&gt;Port Name:&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;%s&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan=&apos;2&apos;&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&apos;right&apos;&gt;&lt;b&gt;Port Flags:&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;%s&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&apos;right&apos;&gt;&lt;b&gt;Port Type:&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;%s&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catia.py" line="320"/>
-        <source>Physical</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catia.py" line="322"/>
-        <source>Can Monitor</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catia.py" line="324"/>
-        <source>Terminal</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catia.py" line="330"/>
-        <source>JACK Audio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catia.py" line="332"/>
-        <source>JACK MIDI</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catia.py" line="334"/>
-        <source>Unknown</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catia.py" line="339"/>
-        <source>%.1f ms (%i frames)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catia.py" line="341"/>
-        <source>&lt;table&gt;&lt;tr&gt;&lt;td align=&apos;right&apos;&gt;&lt;b&gt;Group Name:&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;%s&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&apos;right&apos;&gt;&lt;b&gt;Port Name:&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;%s&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&apos;right&apos;&gt;&lt;b&gt;Full Port Name:&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;%s&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&apos;right&apos;&gt;&lt;b&gt;Port Alias #1:&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;%s&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&apos;right&apos;&gt;&lt;b&gt;Port Alias #2:&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;%s&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan=&apos;2&apos;&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&apos;right&apos;&gt;&lt;b&gt;Port Flags:&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;%s&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&apos;right&apos;&gt;&lt;b&gt;Port Type:&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;%s&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan=&apos;2&apos;&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&apos;right&apos;&gt;&lt;b&gt;Port Latency:&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;%s&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&apos;right&apos;&gt;&lt;b&gt;Total Port Latency:&lt;/b&gt;&lt;/td&gt;&lt;td&gt;&amp;nbsp;%s&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catia.py" line="356"/>
-        <source>Port Information</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catia.py" line="369"/>
-        <source>Cannot continue</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catia.py" line="369"/>
-        <source>Rename functions rely on JACK aliases and cannot be done in ALSA ports</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catia.py" line="741"/>
-        <source>Catia - remove group failed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catia.py" line="881"/>
-        <source>Catia - connect jack ports failed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catia.py" line="904"/>
-        <source>Catia - disconnect ports failed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catia.py" line="1127"/>
-        <source>Warning</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catia.py" line="1127"/>
-        <source>Failed to start JACK, please check the logs for more information.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catia.py" line="1161"/>
-        <source>A2J Hardware Export</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catia.py" line="1161"/>
-        <source>Enable Hardware Export on the A2J Bridge?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catia.py" line="1319"/>
-        <source>About Catia</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catia.py" line="1319"/>
-        <source>&lt;h3&gt;Catia&lt;/h3&gt;&lt;br&gt;Version %s&lt;br&gt;Catia is a nice JACK Patchbay with A2J Bridge integration.&lt;br&gt;&lt;br&gt;Copyright (C) 2010-2018 falkTX</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catia.py" line="1391"/>
-        <source>Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/catia.py" line="1391"/>
-        <source>JACK is not available in this system, cannot use this application.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2343,62 +754,62 @@ Default is off</source>
 <context>
     <name>ForceWaitDialog</name>
     <message>
-        <location filename="../src/force_restart.py" line="171"/>
+        <location filename="../src/force_restart.py" line="178"/>
         <source>Info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/force_restart.py" line="171"/>
+        <location filename="../src/force_restart.py" line="178"/>
         <source>JACK was re-started sucessfully</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/force_restart.py" line="174"/>
+        <location filename="../src/force_restart.py" line="181"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/force_restart.py" line="174"/>
+        <location filename="../src/force_restart.py" line="181"/>
         <source>Could not start JACK!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/force_restart.py" line="187"/>
+        <location filename="../src/force_restart.py" line="195"/>
         <source>Closing DBus</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/force_restart.py" line="189"/>
+        <location filename="../src/force_restart.py" line="197"/>
         <source>Stopping audio processes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/force_restart.py" line="191"/>
+        <location filename="../src/force_restart.py" line="199"/>
         <source>Reconnecting to DBus</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/force_restart.py" line="193"/>
+        <location filename="../src/force_restart.py" line="201"/>
         <source>Waiting JACK DBus</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/force_restart.py" line="195"/>
+        <location filename="../src/force_restart.py" line="203"/>
         <source>Starting JACK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/force_restart.py" line="197"/>
+        <location filename="../src/force_restart.py" line="205"/>
         <source>Launching ALSA Audio bridge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/force_restart.py" line="199"/>
+        <location filename="../src/force_restart.py" line="207"/>
         <source>Launching ALSA MIDI bridge (a2j)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/force_restart.py" line="201"/>
+        <location filename="../src/force_restart.py" line="209"/>
         <source>Launching PulseAudio bridge</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2710,7 +1121,7 @@ On ALSA you can here set an alternate device for capture</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/jacksettings.py" line="870"/>
+        <location filename="../src/jacksettings.py" line="900"/>
         <source>Input Device:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2721,7 +1132,7 @@ On ALSA you can here set an alternate device for playback</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/jacksettings.py" line="871"/>
+        <location filename="../src/jacksettings.py" line="901"/>
         <source>Output Device:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2992,44 +1403,44 @@ Also known as buffer size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/jacksettings.py" line="875"/>
+        <location filename="../src/jacksettings.py" line="905"/>
         <source>Input Ports:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/jacksettings.py" line="876"/>
+        <location filename="../src/jacksettings.py" line="906"/>
         <source>Output Ports:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/jacksettings.py" line="880"/>
+        <location filename="../src/jacksettings.py" line="910"/>
         <source>Capture Ports:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/jacksettings.py" line="881"/>
+        <location filename="../src/jacksettings.py" line="911"/>
         <source>Playback Ports:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/jacksettings.py" line="948"/>
+        <location filename="../src/jacksettings.py" line="978"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/jacksettings.py" line="905"/>
+        <location filename="../src/jacksettings.py" line="935"/>
         <source>jackdbus is not available!
 It&apos;s not possible to configure JACK at this point.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/jacksettings.py" line="943"/>
+        <location filename="../src/jacksettings.py" line="973"/>
         <source>jackdbus is not available!
 Is not possible to configure JACK at this point.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/jacksettings.py" line="948"/>
+        <location filename="../src/jacksettings.py" line="978"/>
         <source>DBus is not available, cannot continue.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3093,529 +1504,9 @@ Is not possible to configure JACK at this point.</source>
     </message>
 </context>
 <context>
-    <name>RenderW</name>
-    <message>
-        <location filename="../resources/ui/render.ui" line="14"/>
-        <source>Render</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/render.ui" line="27"/>
-        <source>Encoding</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/render.ui" line="33"/>
-        <source>&amp;Format:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/render.ui" line="52"/>
-        <source>...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/render.ui" line="59"/>
-        <source>Bit &amp;Depth:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/render.ui" line="101"/>
-        <source>Mono</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/render.ui" line="108"/>
-        <source>Stereo</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/render.ui" line="115"/>
-        <source>Other:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/render.ui" line="150"/>
-        <source>&amp;Render</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/render.ui" line="161"/>
-        <source>&amp;Stop</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/render.ui" line="172"/>
-        <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/render.ui" line="185"/>
-        <source>Use Transport</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/render.ui" line="194"/>
-        <source>&amp;Start Time:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/render.ui" line="227"/>
-        <source>hh:mm:ss</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/render.ui" line="214"/>
-        <source>&amp;End Time:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/render.ui" line="241"/>
-        <source>now</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/render.ui" line="251"/>
-        <source>Render Options</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/render.ui" line="257"/>
-        <source>Render &amp;Mode:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/render.ui" line="271"/>
-        <source>Realtime</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/render.ui" line="276"/>
-        <source>Freewheel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/render.ui" line="304"/>
-        <source>32</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/render.ui" line="309"/>
-        <source>64</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/render.ui" line="314"/>
-        <source>128</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/render.ui" line="319"/>
-        <source>256</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/render.ui" line="324"/>
-        <source>512</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/render.ui" line="329"/>
-        <source>1024</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/render.ui" line="334"/>
-        <source>2048</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/render.ui" line="339"/>
-        <source>4096</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/render.ui" line="344"/>
-        <source>8192</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/render.ui" line="368"/>
-        <source>&amp;Buffer Size:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/render.ui" line="381"/>
-        <source>Output folder:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/render.ui" line="416"/>
-        <source>Filename prefix:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/render.py" line="164"/>
-        <source>Warning</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/render.py" line="164"/>
-        <source>The selected directory does not exist. Please choose a valid one.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/render.py" line="243"/>
-        <source>NOTICE: buffer size changed before render</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/render.py" line="256"/>
-        <source>NOTICE: rendering in freewheel mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/render.py" line="464"/>
-        <source>Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/render.py" line="449"/>
-        <source>JACK is not available in this system, cannot use this application.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../src/render.py" line="454"/>
-        <source>The &apos;jack_capture&apos; application is not available.
-Is not possible to render without it!</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>SettingsW</name>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="20"/>
-        <source>Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="77"/>
-        <source>main</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="82"/>
-        <source>canvas</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="87"/>
-        <source>Widget</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="92"/>
-        <source>Main</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="113"/>
-        <source>Canvas</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="158"/>
-        <source>&lt;b&gt;Main&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="196"/>
-        <source>Paths</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="204"/>
-        <source>Default project folder:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="236"/>
-        <source>System Tray</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="245"/>
-        <source>Close Main Window to System Tray</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="252"/>
-        <source>Use System Tray (App-Indicator support)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="262"/>
-        <source>Misc</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="268"/>
-        <source>GUI Refresh interval:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="278"/>
-        <source> ms</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="310"/>
-        <source>JACK Port Aliases:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="321"/>
-        <source>0 (none)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="326"/>
-        <source>1st alias</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="331"/>
-        <source>2nd alias</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="373"/>
-        <source>&lt;b&gt;Canvas&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="411"/>
-        <source>Theme</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="443"/>
-        <source>Bezier Lines</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="453"/>
-        <source>Theme:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="479"/>
-        <source>Options</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="485"/>
-        <source>Auto-hide groups with no ports</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="492"/>
-        <source>Fancy Eye-candy</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="502"/>
-        <source>Use OpenGL for rendering (EXPERIMENTAL, needs restart)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="512"/>
-        <source>Render Hints</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="518"/>
-        <source>Antialiasing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/settings_app.ui" line="531"/>
-        <source>High Quality Antiliasing (OpenGL only)</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>XYControllerW</name>
-    <message>
-        <location filename="../resources/ui/xycontroller.ui" line="14"/>
-        <source>XY Controller</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/xycontroller.ui" line="84"/>
-        <source>X Controls:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/xycontroller.ui" line="104"/>
-        <source>Y Controls:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/xycontroller.ui" line="124"/>
-        <source>Smooth</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/xycontroller.ui" line="233"/>
-        <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/xycontroller.ui" line="239"/>
-        <source>&amp;Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/xycontroller.ui" line="243"/>
-        <source>Channels</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/xycontroller.ui" line="270"/>
-        <source>&amp;File</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/xycontroller.ui" line="280"/>
-        <source>&amp;About</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/xycontroller.ui" line="288"/>
-        <source>Show MIDI &amp;Keyboard</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/xycontroller.ui" line="293"/>
-        <source>(All)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/xycontroller.ui" line="301"/>
-        <source>1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/xycontroller.ui" line="309"/>
-        <source>2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/xycontroller.ui" line="317"/>
-        <source>3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/xycontroller.ui" line="325"/>
-        <source>4</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/xycontroller.ui" line="333"/>
-        <source>5</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/xycontroller.ui" line="341"/>
-        <source>6</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/xycontroller.ui" line="349"/>
-        <source>7</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/xycontroller.ui" line="357"/>
-        <source>8</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/xycontroller.ui" line="365"/>
-        <source>9</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/xycontroller.ui" line="373"/>
-        <source>10</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/xycontroller.ui" line="381"/>
-        <source>11</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/xycontroller.ui" line="389"/>
-        <source>12</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/xycontroller.ui" line="397"/>
-        <source>13</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/xycontroller.ui" line="405"/>
-        <source>14</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/xycontroller.ui" line="413"/>
-        <source>15</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/xycontroller.ui" line="421"/>
-        <source>16</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/xycontroller.ui" line="426"/>
-        <source>&amp;New</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/xycontroller.ui" line="431"/>
-        <source>&amp;Open...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/xycontroller.ui" line="436"/>
-        <source>&amp;Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/xycontroller.ui" line="441"/>
-        <source>Save &amp;As...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/xycontroller.ui" line="450"/>
-        <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../resources/ui/xycontroller.ui" line="455"/>
-        <source>(None)</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>gui</name>
     <message>
-        <location filename="../src/caleson.py" line="2375"/>
+        <location filename="../src/caleson.py" line="1363"/>
         <source>Restore</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3623,26 +1514,18 @@ Is not possible to render without it!</source>
 <context>
     <name>self._parent</name>
     <message>
-        <location filename="../src/systray.py" line="593"/>
+        <location filename="../src/systray.py" line="259"/>
         <source>Minimize</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/systray.py" line="506"/>
+        <location filename="../src/systray.py" line="193"/>
         <source>Quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/systray.py" line="586"/>
+        <location filename="../src/systray.py" line="252"/>
         <source>Restore</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>self_</name>
-    <message>
-        <location filename="../src/shared.py" line="193"/>
-        <source>Set Path</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
