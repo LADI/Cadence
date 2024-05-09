@@ -1,18 +1,10 @@
 # ---  README for Caleson  ---
 
-Caleson is a set of tools useful for audio production. <br/>
+Caleson is an interface for jackdbus, PulseAudio and A2J bridges<br/>
 It's a fork from Cadence (being developed by falkTX), using Python3 and Qt5.
 
-Many things have been removed from the fork:
-* Catia
-* Claudia
-* Catarina
-* Jack-meters
-* xy-controller
-* Tab for managing Plugins PATHS
-* Tab for managing default multimedia applications
+Many things have been removed from the fork, to keep only the main interface and some scripts (no more Catia, Claudia, xy-controller, etc...).
 
-It is still work in progress, no interest to test it for the moment.
 
 ===== DESCRIPTIONS =====
 ------------------------
