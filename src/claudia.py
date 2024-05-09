@@ -2746,7 +2746,7 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     app.setApplicationName("Claudia")
     app.setApplicationVersion(VERSION)
-    app.setOrganizationName("Cadence")
+    app.setOrganizationName("LADI")
     app.setWindowIcon(QIcon(":/scalable/claudia.svg"))
     setup_i18n()
 
