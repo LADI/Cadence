@@ -55,7 +55,6 @@ caleson: src/ui_caleson.py \
 
 tools: \
 	src/ui_logs.py \
-	src/ui_settings_app.py \
 	src/ui_settings_jack.py
 
 src/ui_%.py: resources/ui/%.ui
