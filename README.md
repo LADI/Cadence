@@ -18,14 +18,14 @@ It is still work in progress, no interest to test it for the moment.
 ------------------------
 Here's a brief description of the main tools:
 
-### [Caleson](http://kxstudio.sourceforge.net/KXStudio:Applications:Caleson)
+### Caleson
 The main app. It performs system checks, manages JACK, calls other tools and make system tweaks.
 
-### [Caleson-JackSettings](http://kxstudio.sourceforge.net/KXStudio:Applications:Caleson-JackSettings)
+### Caleson-JackSettings
 Simple and easy-to-use configure dialog for jackdbus. <br/>
 It can configure JACK's driver and engine parameters.
 
-### [Caleson-Logs](http://kxstudio.sourceforge.net/KXStudio:Applications:Caleson-Logs)
+### Caleson-Logs
 Small tool that shows JACK and A2J logs in a multi-tab window. <br/>
 The logs are viewed in a text box, making it easy to browse and extract status messages using copy and paste commands.
 
