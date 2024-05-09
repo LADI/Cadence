@@ -16,17 +16,10 @@
 #
 # For a full copy of the GNU General Public License see the COPYING file
 
-# ------------------------------------------------------------------------------------------------------------
-# Imports (Global)
-
-if True:
-    from PyQt5.QtCore import pyqtSlot, QTimer
-    from PyQt5.QtGui import QCursor, QFontMetrics, QImage, QPainter
-    from PyQt5.QtWidgets import QMainWindow, QMenu
-else:
-    from PyQt4.QtCore import pyqtSlot, QTimer
-    from PyQt4.QtGui import QCursor, QFontMetrics, QImage, QPainter
-    from PyQt4.QtGui import QMainWindow, QMenu
+from PyQt5.QtCore import pyqtSlot, QTimer
+from PyQt5.QtCore import pyqtSignal
+from PyQt5.QtGui import QCursor, QFontMetrics, QImage, QPainter
+from PyQt5.QtWidgets import QMainWindow, QMenu
 
 # ------------------------------------------------------------------------------------------------------------
 # Imports (Custom Stuff)
