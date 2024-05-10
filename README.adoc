@@ -1,6 +1,10 @@
-# ---  README for LADI/Claudia  ---
+:title: ladi-cladia - Qt frontend for LADISH
+:keywords: LADI, JACK, jack-audio-connection-kit, session management, Qt
 
-LADI/Claudia is Qt frontend for LADISH.<br/>
+= README for LADI/Claudia
+
+LADI/Claudia is Qt frontend for LADISH.
+
 It was developed by falkTX, using Python3 and Qt5.
 
 Claudia (and Cadence suite) was abandoned by its original author in August 2023.
