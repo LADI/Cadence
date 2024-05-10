@@ -154,7 +154,6 @@ dist:
 	cp -v NEWS.adoc $(TARBALL_NAME)
 	cp -v README.adoc $(TARBALL_NAME)
 #	cp -v TODO
-	cp -rv c++ $(TARBALL_NAME)
 	cp -rv data $(TARBALL_NAME)
 	cp -rv resources $(TARBALL_NAME)
 	cp -rv src $(TARBALL_NAME)
