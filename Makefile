@@ -81,7 +81,7 @@ install:
 	install -d $(DESTDIR)$(PREFIX)/share/$(CODETREENAME)/
 	install -d $(DESTDIR)$(PREFIX)/share/$(CODETREENAME)/src/
 	install -d $(DESTDIR)$(PREFIX)/share/$(CODETREENAME)/icons/
-	install -d $(DESTDIR)$(PREFIX)/share/$(CODETREENAME)/templates/
+#	install -d $(DESTDIR)$(PREFIX)/share/$(CODETREENAME)/templates/
 
 	# Install script files and binaries
 	install -m 755 \
@@ -118,8 +118,8 @@ install:
 	python3 -m compileall $(DESTDIR)$(PREFIX)/share/$(CODETREENAME)/src/
 
 	# Install addtional stuff for Claudia
-	cp -r data/icons/*     $(DESTDIR)$(PREFIX)/share/claudia/icons/
-	cp -r data/templates/* $(DESTDIR)$(PREFIX)/share/claudia/templates/
+	cp -r data/icons/*     $(DESTDIR)$(PREFIX)/share/$(CODETREENAME)/icons/
+#	cp -r data/templates/* $(DESTDIR)$(PREFIX)/share/$(CODETREENAME)/templates/
 
 	# Adjust PREFIX value in script files
 	sed -i "s?X-PREFIX-X?$(PREFIX)?" \
