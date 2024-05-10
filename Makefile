@@ -131,6 +131,9 @@ uninstall:
 	rm -f $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/claudia.svg
 	rm -rf $(DESTDIR)$(PREFIX)/share/$(CODETREENAME)/
 
+html:
+	asciidoc -b html5 -a data-uri -a icons --theme ladi -o README.html README.adoc
+
 TARBALL_NAME := $(CODETREENAME)-$(VERSION)
 dist:
 	git clean -xfd
