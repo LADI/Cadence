@@ -1,3 +1,9 @@
+== ladi-claudia-2.5.1: May DD, 55 (2024) UNRELEAED
+
+ * Remove all apps except claudia, the LADISH frontend
+ * Remove dependency on libjack
+ * claudia_launcher: fix for empty output of "dpkg --get-selections"
+
 == ladi-cadence-1.9.4: January 11, 55 (2024)
 
  * Add NEWS.adoc file
