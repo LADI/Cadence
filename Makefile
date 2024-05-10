@@ -21,7 +21,11 @@ LRELEASE ?= lrelease
 
 I18N_LANGUAGES :=
 
-# -----------------------------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------
+SHA1_SHORT := $(shell test -d .git && LANG= git rev-parse --short HEAD)
+#$(error "SHA1_SHORT=$(SHA1_SHORT)")
+# TODO: get sha1 from file in the tarball
+# ------------------------------------------------
 
 default: RES UI
 
@@ -134,7 +138,9 @@ uninstall:
 html:
 	asciidoc -b html5 -a data-uri -a icons --theme ladi -o README.html README.adoc
 
-TARBALL_NAME := $(CODETREENAME)-$(VERSION)
+TARBALL_NAME := $(CODETREENAME)-$(VERSION)-g$(SHA1_SHORT)
+
+# TODO: save sha1 in a tarballed file
 dist:
 	git clean -xfd
 	git describe --tags
