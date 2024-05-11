@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=Claudia Launcher
+Name=LADI Claudia Launcher
 GenericName=Claudia Launcher
 GenericName[fr]=Lanceur Claudia
 Comment=Multimedia Applications Launcher
@@ -8,4 +8,4 @@ Exec=claudia-launcher
 Icon=claudia-launcher
 Terminal=false
 Type=Application
-Categories=AudioVideo;AudioEditing;Qt;
+Categories=AudioVideo;AudioVideoEditing;Qt;
