@@ -2,6 +2,7 @@
 
  * Remove all apps except claudia, the LADISH frontend
  * Remove dependency on libjack (removes transport control)
+ * Remove C++ code, only PyQt5 code now
  * claudia_launcher: fix for empty output of "dpkg --get-selections"
  * show "Stopped" in (dsp) status bar when studio is stopped
 
