@@ -1,7 +1,7 @@
 == ladi-claudia-2.5.1: May DD, 55 (2024) UNRELEAED
 
  * Remove all apps except claudia, the LADISH frontend
- * Remove dependency on libjack
+ * Remove dependency on libjack (removes transport control)
  * claudia_launcher: fix for empty output of "dpkg --get-selections"
  * show "Stopped" in (dsp) status bar when studio is stopped
 
