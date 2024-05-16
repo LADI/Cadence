@@ -24,6 +24,7 @@ from time import ctime
 
 if True:
     from PyQt5.QtCore import QPointF
+    from PyQt5.QtCore import QCoreApplication
     from PyQt5.QtWidgets import QAction, QApplication, QCheckBox, QHBoxLayout, QVBoxLayout, QTableWidgetItem, QTreeWidgetItem
 else:
     from PyQt4.QtCore import QPointF
@@ -702,6 +703,7 @@ class ClaudiaMainW(AbstractCanvasJackClass):
         for sampleRate in SAMPLE_RATE_LIST:
             self.ui.cb_sample_rate.addItem(str(sampleRate))
 
+        self.dsp_load_format_string_translated = QCoreApplication.translate("ClaudiaMainW", "DSP Load: %p%")
         # -------------------------------------------------------------
         # Set-up Systray
 
@@ -1351,6 +1353,7 @@ class ClaudiaMainW(AbstractCanvasJackClass):
 
         self.ui.pb_dsp_load.setMaximum(100)
         self.ui.pb_dsp_load.setValue(0)
+        self.ui.pb_dsp_load.setFormat(self.dsp_load_format_string_translated)
         self.ui.pb_dsp_load.update()
 
         self.init_jack()
@@ -1399,7 +1402,9 @@ class ClaudiaMainW(AbstractCanvasJackClass):
         #     self.ui.label_time.setText("000'000'000")
 
         self.ui.pb_dsp_load.setValue(0)
-        self.ui.pb_dsp_load.setMaximum(0)
+        #self.ui.pb_dsp_load.setMaximum(0)
+        self.ui.pb_dsp_load.setMaximum(1)
+        self.ui.pb_dsp_load.setFormat("Stopped")
         self.ui.pb_dsp_load.update()
 
     def studioStarted(self):

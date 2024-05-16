@@ -3,6 +3,7 @@
  * Remove all apps except claudia, the LADISH frontend
  * Remove dependency on libjack
  * claudia_launcher: fix for empty output of "dpkg --get-selections"
+ * show "Stopped" in (dsp) status bar when studio is stopped
 
 == ladi-cadence-1.9.4: January 11, 55 (2024)
 
