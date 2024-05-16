@@ -718,13 +718,13 @@
          </property>
         </widget>
        </item>
-       <item>
-        <widget class="QLabel" name="label_realtime">
-         <property name="text">
-          <string> RT </string>
-         </property>
-        </widget>
-       </item>
+       <!-- <item> -->
+       <!--  <widget class="QLabel" name="label_realtime"> -->
+       <!--   <property name="text"> -->
+       <!--    <string> RT </string> -->
+       <!--   </property> -->
+       <!--  </widget> -->
+       <!-- </item> -->
        <item>
         <widget class="Line" name="line_3">
          <property name="orientation">
