@@ -1519,8 +1519,8 @@ class ClaudiaMainW(AbstractCanvasJackClass):
         self.ui.act_transport_stop.setEnabled(enabled)
         self.ui.act_transport_backwards.setEnabled(enabled)
         self.ui.act_transport_forwards.setEnabled(enabled)
-        self.ui.menu_Transport.setEnabled(enabled)
-        self.ui.group_transport.setEnabled(enabled)
+#        self.ui.menu_Transport.setEnabled(enabled)
+#        self.ui.group_transport.setEnabled(enabled)
 
     def menuA2JBridge(self, started):
         if not gDBus.jack.IsStarted():
@@ -2726,7 +2726,7 @@ class ClaudiaMainW(AbstractCanvasJackClass):
     def timerEvent(self, event):
         if event.timerId() == self.m_timer120:
             if gJack.client:
-                self.refreshTransport()
+                #self.refreshTransport()
                 self.refreshXruns()
         elif event.timerId() == self.m_timer600:
             if gJack.client:

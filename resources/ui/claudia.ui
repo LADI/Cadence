@@ -251,152 +251,152 @@
          </layout>
         </widget>
        </item>
-       <item>
-        <widget class="QGroupBox" name="group_transport">
-         <property name="title">
-          <string>Transport</string>
-         </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_3">
-          <item>
-           <widget class="QPushButton" name="b_transport_play">
-            <property name="maximumSize">
-             <size>
-              <width>23</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="toolTip">
-             <string>Transport Play/Pause</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="../resources.qrc">
-              <normaloff>:/16x16/media-playback-start.png</normaloff>:/16x16/media-playback-start.png</iconset>
-            </property>
-            <property name="checkable">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="b_transport_stop">
-            <property name="maximumSize">
-             <size>
-              <width>23</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="toolTip">
-             <string>Transport Stop</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="../resources.qrc">
-              <normaloff>:/16x16/media-playback-stop.png</normaloff>:/16x16/media-playback-stop.png</iconset>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="b_transport_backwards">
-            <property name="maximumSize">
-             <size>
-              <width>23</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="toolTip">
-             <string>Transport Backwards</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="../resources.qrc">
-              <normaloff>:/16x16/media-seek-backward.png</normaloff>:/16x16/media-seek-backward.png</iconset>
-            </property>
-            <property name="autoRepeat">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="b_transport_forwards">
-            <property name="maximumSize">
-             <size>
-              <width>23</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="toolTip">
-             <string>Transport Forwards</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="icon">
-             <iconset resource="../resources.qrc">
-              <normaloff>:/16x16/media-seek-forward.png</normaloff>:/16x16/media-seek-forward.png</iconset>
-            </property>
-            <property name="autoRepeat">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="Line" name="line">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="label_time">
-            <property name="font">
-             <font>
-              <family>DejaVu Sans Mono</family>
-              <pointsize>9</pointsize>
-             </font>
-            </property>
-            <property name="contextMenuPolicy">
-             <enum>Qt::CustomContextMenu</enum>
-            </property>
-            <property name="text">
-             <string>??:??:??</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QDoubleSpinBox" name="sb_bpm">
-            <property name="toolTip">
-             <string>Beats per Minute</string>
-            </property>
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
-            <property name="buttonSymbols">
-             <enum>QAbstractSpinBox::NoButtons</enum>
-            </property>
-            <property name="suffix">
-             <string> BPM</string>
-            </property>
-            <property name="decimals">
-             <number>2</number>
-            </property>
-            <property name="maximum">
-             <double>999.000000000000000</double>
-            </property>
-            <property name="value">
-             <double>120.000000000000000</double>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
+       <!-- <item> -->
+       <!--  <widget class="QGroupBox" name="group_transport"> -->
+       <!--   <property name="title"> -->
+       <!--    <string>Transport</string> -->
+       <!--   </property> -->
+       <!--   <layout class="QHBoxLayout" name="horizontalLayout_3"> -->
+       <!--    <item> -->
+       <!--     <widget class="QPushButton" name="b_transport_play"> -->
+       <!--      <property name="maximumSize"> -->
+       <!--       <size> -->
+       <!--        <width>23</width> -->
+       <!--        <height>16777215</height> -->
+       <!--       </size> -->
+       <!--      </property> -->
+       <!--      <property name="toolTip"> -->
+       <!--       <string>Transport Play/Pause</string> -->
+       <!--      </property> -->
+       <!--      <property name="text"> -->
+       <!--       <string/> -->
+       <!--      </property> -->
+       <!--      <property name="icon"> -->
+       <!--       <iconset resource="../resources.qrc"> -->
+       <!--        <normaloff>:/16x16/media-playback-start.png</normaloff>:/16x16/media-playback-start.png</iconset> -->
+       <!--      </property> -->
+       <!--      <property name="checkable"> -->
+       <!--       <bool>true</bool> -->
+       <!--      </property> -->
+       <!--     </widget> -->
+       <!--    </item> -->
+       <!--    <item> -->
+       <!--     <widget class="QPushButton" name="b_transport_stop"> -->
+       <!--      <property name="maximumSize"> -->
+       <!--       <size> -->
+       <!--        <width>23</width> -->
+       <!--        <height>16777215</height> -->
+       <!--       </size> -->
+       <!--      </property> -->
+       <!--      <property name="toolTip"> -->
+       <!--       <string>Transport Stop</string> -->
+       <!--      </property> -->
+       <!--      <property name="text"> -->
+       <!--       <string/> -->
+       <!--      </property> -->
+       <!--      <property name="icon"> -->
+       <!--       <iconset resource="../resources.qrc"> -->
+       <!--        <normaloff>:/16x16/media-playback-stop.png</normaloff>:/16x16/media-playback-stop.png</iconset> -->
+       <!--      </property> -->
+       <!--     </widget> -->
+       <!--    </item> -->
+       <!--    <item> -->
+       <!--     <widget class="QPushButton" name="b_transport_backwards"> -->
+       <!--      <property name="maximumSize"> -->
+       <!--       <size> -->
+       <!--        <width>23</width> -->
+       <!--        <height>16777215</height> -->
+       <!--       </size> -->
+       <!--      </property> -->
+       <!--      <property name="toolTip"> -->
+       <!--       <string>Transport Backwards</string> -->
+       <!--      </property> -->
+       <!--      <property name="text"> -->
+       <!--       <string/> -->
+       <!--      </property> -->
+       <!--      <property name="icon"> -->
+       <!--       <iconset resource="../resources.qrc"> -->
+       <!--        <normaloff>:/16x16/media-seek-backward.png</normaloff>:/16x16/media-seek-backward.png</iconset> -->
+       <!--      </property> -->
+       <!--      <property name="autoRepeat"> -->
+       <!--       <bool>true</bool> -->
+       <!--      </property> -->
+       <!--     </widget> -->
+       <!--    </item> -->
+       <!--    <item> -->
+       <!--     <widget class="QPushButton" name="b_transport_forwards"> -->
+       <!--      <property name="maximumSize"> -->
+       <!--       <size> -->
+       <!--        <width>23</width> -->
+       <!--        <height>16777215</height> -->
+       <!--       </size> -->
+       <!--      </property> -->
+       <!--      <property name="toolTip"> -->
+       <!--       <string>Transport Forwards</string> -->
+       <!--      </property> -->
+       <!--      <property name="text"> -->
+       <!--       <string/> -->
+       <!--      </property> -->
+       <!--      <property name="icon"> -->
+       <!--       <iconset resource="../resources.qrc"> -->
+       <!--        <normaloff>:/16x16/media-seek-forward.png</normaloff>:/16x16/media-seek-forward.png</iconset> -->
+       <!--      </property> -->
+       <!--      <property name="autoRepeat"> -->
+       <!--       <bool>true</bool> -->
+       <!--      </property> -->
+       <!--     </widget> -->
+       <!--    </item> -->
+       <!--    <item> -->
+       <!--     <widget class="Line" name="line"> -->
+       <!--      <property name="orientation"> -->
+       <!--       <enum>Qt::Vertical</enum> -->
+       <!--      </property> -->
+       <!--     </widget> -->
+       <!--    </item> -->
+       <!--    <item> -->
+       <!--     <widget class="QLabel" name="label_time"> -->
+       <!--      <property name="font"> -->
+       <!--       <font> -->
+       <!--        <family>DejaVu Sans Mono</family> -->
+       <!--        <pointsize>9</pointsize> -->
+       <!--       </font> -->
+       <!--      </property> -->
+       <!--      <property name="contextMenuPolicy"> -->
+       <!--       <enum>Qt::CustomContextMenu</enum> -->
+       <!--      </property> -->
+       <!--      <property name="text"> -->
+       <!--       <string>??:??:??</string> -->
+       <!--      </property> -->
+       <!--     </widget> -->
+       <!--    </item> -->
+       <!--    <item> -->
+       <!--     <widget class="QDoubleSpinBox" name="sb_bpm"> -->
+       <!--      <property name="toolTip"> -->
+       <!--       <string>Beats per Minute</string> -->
+       <!--      </property> -->
+       <!--      <property name="readOnly"> -->
+       <!--       <bool>true</bool> -->
+       <!--      </property> -->
+       <!--      <property name="buttonSymbols"> -->
+       <!--       <enum>QAbstractSpinBox::NoButtons</enum> -->
+       <!--      </property> -->
+       <!--      <property name="suffix"> -->
+       <!--       <string> BPM</string> -->
+       <!--      </property> -->
+       <!--      <property name="decimals"> -->
+       <!--       <number>2</number> -->
+       <!--      </property> -->
+       <!--      <property name="maximum"> -->
+       <!--       <double>999.000000000000000</double> -->
+       <!--      </property> -->
+       <!--      <property name="value"> -->
+       <!--       <double>120.000000000000000</double> -->
+       <!--      </property> -->
+       <!--     </widget> -->
+       <!--    </item> -->
+       <!--   </layout> -->
+       <!--  </widget> -->
+       <!-- </item> -->
        <item>
         <widget class="QGroupBox" name="group_canvas">
          <property name="title">
@@ -853,15 +853,15 @@
     <addaction name="act_app_add_new"/>
     <addaction name="act_app_run_custom"/>
    </widget>
-   <widget class="QMenu" name="menu_Transport">
-    <property name="title">
-     <string>&amp;Transport</string>
-    </property>
-    <addaction name="act_transport_play"/>
-    <addaction name="act_transport_stop"/>
-    <addaction name="act_transport_backwards"/>
-    <addaction name="act_transport_forwards"/>
-   </widget>
+   <!-- <widget class="QMenu" name="menu_Transport"> -->
+   <!--  <property name="title"> -->
+   <!--   <string>&amp;Transport</string> -->
+   <!--  </property> -->
+   <!--  <addaction name="act_transport_play"/> -->
+   <!--  <addaction name="act_transport_stop"/> -->
+   <!--  <addaction name="act_transport_backwards"/> -->
+   <!--  <addaction name="act_transport_forwards"/> -->
+   <!-- </widget> -->
    <widget class="QMenu" name="menu_Tools">
     <property name="title">
      <string>&amp;Tools</string>
@@ -922,7 +922,7 @@
    <addaction name="menu_Room"/>
    <addaction name="menu_Project"/>
    <addaction name="menu_Application"/>
-   <addaction name="menu_Transport"/>
+   <!-- <addaction name="menu_Transport"/> -->
    <addaction name="menu_Canvas"/>
    <addaction name="menu_Tools"/>
    <addaction name="menu_Settings"/>

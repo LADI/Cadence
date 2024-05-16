@@ -269,15 +269,15 @@ def setIcons(self_, modes):
         gGui.ui.b_jack_configure.setIcon(getIcon("configure"))
         gGui.ui.b_jack_render.setIcon(getIcon("media-record"))
 
-    if "transport" in modes:
-        gGui.ui.act_transport_play.setIcon(getIcon("media-playback-start"))
-        gGui.ui.act_transport_stop.setIcon(getIcon("media-playback-stop"))
-        gGui.ui.act_transport_backwards.setIcon(getIcon("media-seek-backward"))
-        gGui.ui.act_transport_forwards.setIcon(getIcon("media-seek-forward"))
-        gGui.ui.b_transport_play.setIcon(getIcon("media-playback-start"))
-        gGui.ui.b_transport_stop.setIcon(getIcon("media-playback-stop"))
-        gGui.ui.b_transport_backwards.setIcon(getIcon("media-seek-backward"))
-        gGui.ui.b_transport_forwards.setIcon(getIcon("media-seek-forward"))
+    # if "transport" in modes:
+    #     gGui.ui.act_transport_play.setIcon(getIcon("media-playback-start"))
+    #     gGui.ui.act_transport_stop.setIcon(getIcon("media-playback-stop"))
+    #     gGui.ui.act_transport_backwards.setIcon(getIcon("media-seek-backward"))
+    #     gGui.ui.act_transport_forwards.setIcon(getIcon("media-seek-forward"))
+    #     gGui.ui.b_transport_play.setIcon(getIcon("media-playback-start"))
+    #     gGui.ui.b_transport_stop.setIcon(getIcon("media-playback-stop"))
+    #     gGui.ui.b_transport_backwards.setIcon(getIcon("media-seek-backward"))
+    #     gGui.ui.b_transport_forwards.setIcon(getIcon("media-seek-forward"))
 
     if "misc" in modes:
         gGui.ui.act_quit.setIcon(getIcon("application-exit"))
