@@ -1058,12 +1058,12 @@ class ClaudiaMainW(AbstractCanvasJackClass):
         self.fLastBPM = None
         self.fLastTransportState = None
 
-#        bufferSize = int(jacklib.get_buffer_size(gJack.client))
-#        sampleRate = int(jacklib.get_sample_rate(gJack.client))
+        bufferSize = int(gDBus.jack.GetBufferSize())
+        sampleRate = int(gDBus.jack.GetSampleRate())
 #        realtime = bool(int(jacklib.is_realtime(gJack.client)))
 
-#        self.ui_setBufferSize(bufferSize)
-#        self.ui_setSampleRate(sampleRate)
+        self.ui_setBufferSize(bufferSize)
+        self.ui_setSampleRate(sampleRate)
 #        self.ui_setRealTime(realtime)
 
         self.refreshDSPLoad()
@@ -2527,7 +2527,8 @@ class ClaudiaMainW(AbstractCanvasJackClass):
 
     @pyqtSlot()
     def slot_JackClearXruns(self):
-        if gJack.client:
+        #if gJack.client:
+        if gDBus.jack.IsStarted():
             gDBus.jack.ResetXruns()
 
     # @pyqtSlot(int)
@@ -2725,11 +2726,13 @@ class ClaudiaMainW(AbstractCanvasJackClass):
 
     def timerEvent(self, event):
         if event.timerId() == self.m_timer120:
-            if gJack.client:
-                #self.refreshTransport()
+            #if gJack.client:
+            #    self.refreshTransport()
+            if gDBus.jack.IsStarted():
                 self.refreshXruns()
         elif event.timerId() == self.m_timer600:
-            if gJack.client:
+            #if gJack.client:
+            if gDBus.jack.IsStarted():
                 self.refreshDSPLoad()
             else:
                 self.update()

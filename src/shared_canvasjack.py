@@ -270,10 +270,10 @@ class AbstractCanvasJackClass(QMainWindow):
     # Refresh JACK stuff
 
     def refreshDSPLoad(self):
-        if not gJack.client:
+        if not gDBus.jack.IsStarted():
             return
-
-        self.ui_setDSPLoad(int(jacklib.cpu_load(gJack.client)))
+        #self.ui_setDSPLoad(int(jacklib.cpu_load(gJack.client)))
+        self.ui_setDSPLoad(int(gDBus.jack.GetLoad()))
 
     def refreshTransport(self):
         if not gJack.client:
