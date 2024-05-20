@@ -2630,7 +2630,7 @@ class ClaudiaMainW(AbstractCanvasJackClass):
             settings.setValue(LADISH_CONF_KEY_DAEMON_JS_SAVE_DELAY, key_js_save_delay)
             del settings
 
-        dialog = SettingsW(self, "claudia", hasGL)
+        dialog = SettingsW(self, "ladi-claudia", hasGL)
 
         if not ladish_config:
             dialog.ui.lw_page.hideRow(2)
@@ -2761,7 +2761,7 @@ class ClaudiaMainW(AbstractCanvasJackClass):
 if __name__ == '__main__':
     # App initialization
     app = QApplication(sys.argv)
-    app.setApplicationName("Claudia")
+    app.setApplicationName("ladi-claudia")
     app.setApplicationVersion(VERSION)
     app.setOrganizationName("LADI")
     app.setWindowIcon(QIcon(":/scalable/claudia.svg"))

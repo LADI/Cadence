@@ -91,7 +91,7 @@ class SettingsW(QDialog):
         # -------------------------------------------------------------
         # Set app-specific settings
 
-        if appName == "claudia":
+        if appName == "ladi-claudia":
             self.ui.cb_jack_port_alias.setEnabled(False)
             self.ui.cb_jack_port_alias.setVisible(False)
             self.ui.label_jack_port_alias.setEnabled(False)
