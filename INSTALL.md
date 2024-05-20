@@ -39,6 +39,7 @@ To run Claudia you'll additionally need:
 
  - python3-dbus
  - python3-dbus.mainloop.qt
+ - python3-setproctitle https://github.com/dvarrazzo/py-setproctitle
 
 Optional:
 
