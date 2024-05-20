@@ -20,6 +20,9 @@
 # ------------------------------------------------------------------------------------------------------------
 # Imports (Global)
 
+from setproctitle import setproctitle
+setproctitle("ladi-claudia-pyqt5")
+
 from time import ctime
 
 if True:
