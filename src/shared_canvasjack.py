@@ -28,6 +28,7 @@ from PyQt5.QtWidgets import QMainWindow, QMenu
 import logging
 from shared import cString
 from jacklib_helpers import jacklib
+import jacksettings
 
 _logger = logging.getLogger(__name__)
 
