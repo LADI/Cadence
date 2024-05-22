@@ -34,7 +34,7 @@ def setup_i18n():
 
     # Load translations from Claudia resources
     translator = QTranslator()
-    if not translator.load(locale, "claudia", "_", qmpath):
+    if not translator.load(locale, "ladi-claudia", "_", qmpath):
         return False
     app.installTranslator(translator)
     app.fAppTranslator = translator
