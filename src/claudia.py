@@ -1065,11 +1065,11 @@ class ClaudiaMainW(AbstractCanvasJackClass):
 
         bufferSize = int(gDBus.jack.GetBufferSize())
         sampleRate = int(gDBus.jack.GetSampleRate())
-#        realtime = bool(int(jacklib.is_realtime(gJack.client)))
+        realtime = jacksettings.isRealtime()
 
         self.ui_setBufferSize(bufferSize)
         self.ui_setSampleRate(sampleRate)
-#        self.ui_setRealTime(realtime)
+        self.ui_setRealTime(realtime)
 
         self.refreshDSPLoad()
 #        self.refreshTransport()
@@ -1383,7 +1383,7 @@ class ClaudiaMainW(AbstractCanvasJackClass):
         if sampleRateTest:
             self.ui_setSampleRate(sampleRate)
 
-#        self.ui_setRealTime(jacksettings.isRealtime())
+        self.ui_setRealTime(jacksettings.isRealtime())
         self.ui_setXruns(-1)
 
         self.ui.cb_buffer_size.setEnabled(bufferSizeTest)
