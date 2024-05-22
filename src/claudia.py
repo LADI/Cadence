@@ -2744,6 +2744,7 @@ class ClaudiaMainW(AbstractCanvasJackClass):
                 self.refreshDSPLoad()
             else:
                 self.update()
+            self.ui_setRealTime(jacksettings.isRealtime())
         QMainWindow.timerEvent(self, event)
 
     def closeEvent(self, event):
