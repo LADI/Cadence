@@ -2,7 +2,7 @@
 
 # Check if already running
 
-PROCS=`ps -f -u $USER | grep /share/ladi-claudia/src/claudia-launcher.py | grep python`
+PROCS=`ps -f -u $USER | grep /share/ladi-claudia/src/claudia_launcher.py | grep python`
 
 if [ x"$PROCS" != x"" ]; then
 
@@ -16,7 +16,7 @@ if [ x"$PROCS" != x"" ]; then
   if [ x"$PID" != x"" ]; then
 
     # Tell user about this
-    echo "Claudia-Launcher already started, showing GUI now..."
+    echo "LADI Claudia-Launcher already started, showing GUI now..."
 
     # Send SIGUSR2, shows the GUI
     kill -USR2 "$PID"
