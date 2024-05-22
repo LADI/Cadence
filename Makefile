@@ -72,45 +72,45 @@ debug:
 
 install:
 	# Create directories
-	install -d $(DESTDIR)/etc/xdg/autostart/
+#	install -d $(DESTDIR)/etc/xdg/autostart/
 	install -d $(DESTDIR)$(PREFIX)/bin/
 	install -d $(DESTDIR)$(PREFIX)/share/applications/
-	install -d $(DESTDIR)$(PREFIX)/share/icons/hicolor/16x16/apps/
-	install -d $(DESTDIR)$(PREFIX)/share/icons/hicolor/48x48/apps/
-	install -d $(DESTDIR)$(PREFIX)/share/icons/hicolor/128x128/apps/
-	install -d $(DESTDIR)$(PREFIX)/share/icons/hicolor/256x256/apps/
-	install -d $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/
+#	install -d $(DESTDIR)$(PREFIX)/share/icons/hicolor/16x16/apps/
+#	install -d $(DESTDIR)$(PREFIX)/share/icons/hicolor/48x48/apps/
+#	install -d $(DESTDIR)$(PREFIX)/share/icons/hicolor/128x128/apps/
+#	install -d $(DESTDIR)$(PREFIX)/share/icons/hicolor/256x256/apps/
+#	install -d $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/
 	install -d $(DESTDIR)$(PREFIX)/share/$(CODETREENAME)/
 	install -d $(DESTDIR)$(PREFIX)/share/$(CODETREENAME)/src/
-	install -d $(DESTDIR)$(PREFIX)/share/$(CODETREENAME)/icons/
+#	install -d $(DESTDIR)$(PREFIX)/share/$(CODETREENAME)/icons/
 #	install -d $(DESTDIR)$(PREFIX)/share/$(CODETREENAME)/templates/
 
 	# Install script files and binaries
 	install -m 755 \
-		data/claudia \
+		data/ladi-claudia \
 		$(DESTDIR)$(PREFIX)/bin/
 
 	# Install desktop files
-	install -m 644 data/*.desktop           $(DESTDIR)$(PREFIX)/share/applications/
+	install -m 644 data/ladi-claudia.desktop           $(DESTDIR)$(PREFIX)/share/applications/
 
 	# Install icons, 16x16
-	install -m 644 resources/16x16/claudia.png             $(DESTDIR)$(PREFIX)/share/icons/hicolor/16x16/apps/
+#	install -m 644 resources/16x16/claudia.png             $(DESTDIR)$(PREFIX)/share/icons/hicolor/16x16/apps/
 #	install -m 644 resources/16x16/claudia-launcher.png    $(DESTDIR)$(PREFIX)/share/icons/hicolor/16x16/apps/
 
 	# Install icons, 48x48
-	install -m 644 resources/48x48/claudia.png             $(DESTDIR)$(PREFIX)/share/icons/hicolor/48x48/apps/
+#	install -m 644 resources/48x48/claudia.png             $(DESTDIR)$(PREFIX)/share/icons/hicolor/48x48/apps/
 #	install -m 644 resources/48x48/claudia-launcher.png    $(DESTDIR)$(PREFIX)/share/icons/hicolor/48x48/apps/
 
 	# Install icons, 128x128
-	install -m 644 resources/128x128/claudia.png           $(DESTDIR)$(PREFIX)/share/icons/hicolor/128x128/apps/
+#	install -m 644 resources/128x128/claudia.png           $(DESTDIR)$(PREFIX)/share/icons/hicolor/128x128/apps/
 #	install -m 644 resources/128x128/claudia-launcher.png  $(DESTDIR)$(PREFIX)/share/icons/hicolor/128x128/apps/
 
 	# Install icons, 256x256
-	install -m 644 resources/256x256/claudia.png           $(DESTDIR)$(PREFIX)/share/icons/hicolor/256x256/apps/
+#	install -m 644 resources/256x256/claudia.png           $(DESTDIR)$(PREFIX)/share/icons/hicolor/256x256/apps/
 #	install -m 644 resources/256x256/claudia-launcher.png  $(DESTDIR)$(PREFIX)/share/icons/hicolor/256x256/apps/
 
 	# Install icons, scalable
-	install -m 644 resources/scalable/claudia.svg          $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/
+#	install -m 644 resources/scalable/claudia.svg          $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/
 #	install -m 644 resources/scalable/claudia-launcher.svg $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/
 
 	# Install main code
@@ -120,21 +120,21 @@ install:
 	python3 -m compileall $(DESTDIR)$(PREFIX)/share/$(CODETREENAME)/src/
 
 	# Install addtional stuff for Claudia
-	cp -r data/icons/*     $(DESTDIR)$(PREFIX)/share/$(CODETREENAME)/icons/
+#	cp -r data/icons/*     $(DESTDIR)$(PREFIX)/share/$(CODETREENAME)/icons/
 #	cp -r data/templates/* $(DESTDIR)$(PREFIX)/share/$(CODETREENAME)/templates/
 
 	# Adjust PREFIX value in script files
 	sed -i "s?X-PREFIX-X?$(PREFIX)?" \
-		$(DESTDIR)$(PREFIX)/bin/claudia
+		$(DESTDIR)$(PREFIX)/bin/ladi-claudia
 #		$(DESTDIR)$(PREFIX)/bin/claudia-launcher
 
 # -----------------------------------------------------------------------------------------------------------------------------------------
 
 uninstall:
-	rm -f $(DESTDIR)$(PREFIX)/bin/claudia*
-	rm -f $(DESTDIR)$(PREFIX)/share/applications/claudia.desktop
-	rm -f $(DESTDIR)$(PREFIX)/share/icons/hicolor/*/apps/claudia.png
-	rm -f $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/claudia.svg
+	rm -f $(DESTDIR)$(PREFIX)/bin/ladi-claudia*
+	rm -f $(DESTDIR)$(PREFIX)/share/applications/ladi-claudia.desktop
+	rm -f $(DESTDIR)$(PREFIX)/share/icons/hicolor/*/apps/ladi-claudia.png
+	rm -f $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/ladi-claudia.svg
 	rm -rf $(DESTDIR)$(PREFIX)/share/$(CODETREENAME)/
 
 html:
