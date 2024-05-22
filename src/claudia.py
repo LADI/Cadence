@@ -81,7 +81,7 @@ except:
 # Static Variables
 
 # NOTE - set to true when supported
-USE_CLAUDIA_ADD_NEW = True
+USE_CLAUDIA_ADD_NEW = False
 
 # internal indexes
 iConnId     = 0
@@ -690,7 +690,7 @@ class ClaudiaMainW(AbstractCanvasJackClass):
         self.ui.b_project_save.setIcon(getIcon("document-save"))
         self.ui.b_project_save_as.setIcon(getIcon("document-save-as"))
 
-        self.ui.act_app_add_new.setIcon(getIcon("list-add"))
+        #self.ui.act_app_add_new.setIcon(getIcon("list-add"))
         self.ui.act_app_run_custom.setIcon(getIcon("system-run"))
 
         self.ui.act_tools_reactivate_ladishd.setIcon(getIcon("view-refresh"))
@@ -876,7 +876,7 @@ class ClaudiaMainW(AbstractCanvasJackClass):
         self.ui.b_project_save_as.clicked.connect(self.slot_project_save_as)
         self.ui.menu_project_load.aboutToShow.connect(self.slot_updateMenuProjectList)
 
-        self.ui.act_app_add_new.triggered.connect(self.slot_app_add_new)
+        #self.ui.act_app_add_new.triggered.connect(self.slot_app_add_new)
         self.ui.act_app_run_custom.triggered.connect(self.slot_app_run_custom)
 
         self.ui.treeWidget.itemSelectionChanged.connect(self.slot_checkCurrentRoom)
@@ -2017,18 +2017,18 @@ class ClaudiaMainW(AbstractCanvasJackClass):
         if item:
             cMenu = QMenu()
             if item.type() == ITEM_TYPE_STUDIO:
-                act_x_add_new = cMenu.addAction(self.tr("Add New..."))
+                #act_x_add_new = cMenu.addAction(self.tr("Add New..."))
                 act_x_run_custom = cMenu.addAction(self.tr("Run Custom..."))
                 cMenu.addSeparator()
                 act_x_create_room = cMenu.addAction(self.tr("Create Room..."))
 
-                act_x_add_new.setIcon(QIcon.fromTheme("list-add", QIcon(":/16x16/list-add.png")))
+                #act_x_add_new.setIcon(QIcon.fromTheme("list-add", QIcon(":/16x16/list-add.png")))
                 act_x_run_custom.setIcon(QIcon.fromTheme("system-run", QIcon(":/16x16/system-run.png")))
                 act_x_create_room.setIcon(QIcon.fromTheme("list-add", QIcon(":/16x16/list-add.png")))
-                act_x_add_new.setEnabled(self.ui.act_app_add_new.isEnabled())
+                #act_x_add_new.setEnabled(self.ui.act_app_add_new.isEnabled())
 
             elif item.type() == ITEM_TYPE_ROOM:
-                act_x_add_new = cMenu.addAction(self.tr("Add New..."))
+                #act_x_add_new = cMenu.addAction(self.tr("Add New..."))
                 act_x_run_custom = cMenu.addAction(self.tr("Run Custom..."))
                 cMenu.addSeparator()
                 act_x_new = cMenu.addAction(self.tr("New Project..."))
@@ -2041,7 +2041,7 @@ class ClaudiaMainW(AbstractCanvasJackClass):
                 cMenu.addSeparator()
                 act_x_delete_room = cMenu.addAction(self.tr("Delete Room"))
 
-                act_x_add_new.setIcon(QIcon.fromTheme("list-add", QIcon(":/16x16/list-add.png")))
+                #act_x_add_new.setIcon(QIcon.fromTheme("list-add", QIcon(":/16x16/list-add.png")))
                 act_x_run_custom.setIcon(QIcon.fromTheme("system-run", QIcon(":/16x16/system-run.png")))
                 act_x_new.setIcon(QIcon.fromTheme("document-new", QIcon(":/16x16/document-new.png")))
                 act_x_save.setIcon(QIcon.fromTheme("document-save", QIcon(":/16x16/document-save.png")))
@@ -2050,7 +2050,7 @@ class ClaudiaMainW(AbstractCanvasJackClass):
                 act_x_properties.setIcon(QIcon.fromTheme("edit-rename", QIcon(":/16x16/edit-rename.png")))
                 act_x_delete_room.setIcon(QIcon.fromTheme("edit-delete", QIcon(":/16x16/edit-delete.png")))
 
-                act_x_add_new.setEnabled(self.ui.menu_Application.isEnabled() and self.ui.act_app_add_new.isEnabled())
+                #act_x_add_new.setEnabled(self.ui.menu_Application.isEnabled() and self.ui.act_app_add_new.isEnabled())
 
                 project_graph_version, project_properties = gDBus.ladish_room.GetProjectProperties()
 
@@ -2086,17 +2086,19 @@ class ClaudiaMainW(AbstractCanvasJackClass):
 
         if act_x_sel:
             if item.type() == ITEM_TYPE_STUDIO:
-                if act_x_sel == act_x_add_new:
-                    self.slot_app_add_new()
-                elif act_x_sel == act_x_run_custom:
+                #if act_x_sel == act_x_add_new:
+                #    self.slot_app_add_new()
+                #el
+                if act_x_sel == act_x_run_custom:
                     self.slot_app_run_custom()
                 elif act_x_sel == act_x_create_room:
                     self.slot_room_create()
 
             elif item.type() == ITEM_TYPE_ROOM:
-                if act_x_sel == act_x_add_new:
-                    self.slot_app_add_new()
-                elif act_x_sel == act_x_run_custom:
+                #if act_x_sel == act_x_add_new:
+                #    self.slot_app_add_new()
+                #el
+                if act_x_sel == act_x_run_custom:
                     self.slot_app_run_custom()
                 elif act_x_sel == act_x_new:
                     self.slot_project_new()
@@ -2726,7 +2728,7 @@ class ClaudiaMainW(AbstractCanvasJackClass):
             "Canvas/HighQualityAntialiasing": settings.value("Canvas/HighQualityAntialiasing", False, type=bool)
         }
 
-        self.ui.act_app_add_new.setEnabled(USE_CLAUDIA_ADD_NEW)
+        #self.ui.act_app_add_new.setEnabled(USE_CLAUDIA_ADD_NEW)
 
     def resizeEvent(self, event):
         QTimer.singleShot(0, self.slot_miniCanvasCheckSize)

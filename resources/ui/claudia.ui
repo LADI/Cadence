@@ -850,7 +850,7 @@
     <property name="title">
      <string>&amp;Application</string>
     </property>
-    <addaction name="act_app_add_new"/>
+    <!-- <addaction name="act_app_add_new"/> -->
     <addaction name="act_app_run_custom"/>
    </widget>
    <!-- <widget class="QMenu" name="menu_Transport"> -->
@@ -1071,18 +1071,18 @@
     <string>Ctrl+U</string>
    </property>
   </action>
-  <action name="act_app_add_new">
-   <property name="icon">
-    <iconset resource="../resources.qrc">
-     <normaloff>:/16x16/list-add.png</normaloff>:/16x16/list-add.png</iconset>
-   </property>
-   <property name="text">
-    <string>Add &amp;New...</string>
-   </property>
-   <property name="shortcut">
-    <string>Shift+F2</string>
-   </property>
-  </action>
+  <!-- <action name="act_app_add_new"> -->
+  <!--  <property name="icon"> -->
+  <!--   <iconset resource="../resources.qrc"> -->
+  <!--    <normaloff>:/16x16/list-add.png</normaloff>:/16x16/list-add.png</iconset> -->
+  <!--  </property> -->
+  <!--  <property name="text"> -->
+  <!--   <string>Add &amp;New...</string> -->
+  <!--  </property> -->
+  <!--  <property name="shortcut"> -->
+  <!--   <string>Shift+F2</string> -->
+  <!--  </property> -->
+  <!-- </action> -->
   <action name="act_app_run_custom">
    <property name="icon">
     <iconset resource="../resources.qrc">
