@@ -34,9 +34,9 @@ _logger = logging.getLogger(__name__)
 
 
 # Have JACK2 ?
-if jacklib and jacklib.JACK2:
-    _logger.debug(
-        f"Using JACK2, version {cString(jacklib.get_version_string())}")
+#if jacklib and jacklib.JACK2:
+#    _logger.debug(
+#        f"Using JACK2, version {cString(jacklib.get_version_string())}")
 
 
 BUFFER_SIZE_LIST = (16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192)
