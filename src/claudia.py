@@ -36,7 +36,7 @@ else:
 # ------------------------------------------------------------------------------------------------------------
 # Imports (Custom Stuff)
 
-import claudia_launcher
+#import claudia_launcher
 import systray
 import jacksettings
 import patchcanvas
@@ -517,7 +517,7 @@ class ClaudiaLauncherW(QDialog):
     def __init__(self, parent, appBus, proj_folder, is_room, bpm, sample_rate):
         QDialog.__init__(self, parent)
 
-        self.launcher  = claudia_launcher.ClaudiaLauncher(self)
+        #self.launcher  = claudia_launcher.ClaudiaLauncher(self)
         self.buttonBox = QDialogButtonBox(QDialogButtonBox.Ok | QDialogButtonBox.Close, Qt.Horizontal, self)
         self.checkBox  = QCheckBox(self)
         self.checkBox.setText(self.tr("Auto-close"))
