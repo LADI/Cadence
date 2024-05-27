@@ -5,7 +5,11 @@
    the LADI/claudia codebase provides two apps:
  ** ladi-claudia
  ** ladi-jacksettings
- * Remove dependency on libjack (removes transport control)
+ * Remove dependency on libjack (removes transport control).
+   This is functional regression (no transport control in ladi-claudia)
+   against Cadence codebases, where the dependency on libjack and was present
+   (along with bindings for libjack). One can still use some other application,
+   traditionally to manage JACK transport state (via libjack or not).
  * Remove C++ code, only PyQt5 code now
  * claudia_launcher: fix for empty output of "dpkg --get-selections"
  * show "Stopped" in (dsp) status bar when studio is stopped
