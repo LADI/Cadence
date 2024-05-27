@@ -963,9 +963,12 @@ if __name__ == '__main__':
     from PyQt5.QtGui import QIcon
     from PyQt5.QtWidgets import QApplication
 
+    from setproctitle import setproctitle
+
     # App initialization
     app = QApplication(sys_argv)
     setup_i18n()
+    setproctitle("ladi-jack2settings-pyqt5")
 
     # Connect to DBus
     if dbus:

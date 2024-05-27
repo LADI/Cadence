@@ -1,6 +1,10 @@
 == ladi-claudia-2.5.1: May DD, 55 (2024) UNRELEAED
 
- * Remove all apps except claudia, the LADISH frontend
+ * Remove all apps except claudia, the LADISH frontend and the jacksettings.
+   While claudia-launcher is awaiting its reincarnation in LADI,
+   the LADI/claudia codebase provides two apps:
+ ** ladi-claudia
+ ** ladi-jacksettings
  * Remove dependency on libjack (removes transport control)
  * Remove C++ code, only PyQt5 code now
  * claudia_launcher: fix for empty output of "dpkg --get-selections"

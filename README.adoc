@@ -12,14 +12,21 @@ Claudia (and Cadence suite) was abandoned by its original author in August 2023.
 Since August 2023, LADI/Claudia is maintained by Nedko Arnaudov (LADI project),
 the author of jackdbus and ladish.
 
+This codebase provides two components that used to be part of Cadence suite:
+
+ * ladi-claudia, The Qt frontend for LADISH itself.
+ * ladi-jack2settings,
+   а simple and easy-to-use configure Qt GUI dialog for jackdbus.
+   It can configure JACK's driver and engine parameters,
+   and is used along with LADISH to configure jack settings of studios.
+
 Another fork, by Houston4444, provides the other apps for LADISH setups:
 
  * Caleson - a fork of Cadence, "The main app".
    It performs system checks, manages the JACK server (via jackdbus),
    calls other tools and make system tweaks.
- * Caleson-JackSettings, а simple and easy-to-use configure Qt GUI dialog for jackdbus.
-   It can configure JACK's driver and engine parameters,
-   and also works with for LADISH studios in LADIOS.
+ * Caleson-JackSettings, the is the Caleson's variant of Cadence's jacksettings dialog.
+   The ladi-claudia codebase provides ladi-jack2settings as equivalent.
  * Caleson-Logs, Small tool that shows JACK, A2J (and LADISH in LADIOS) logs in a multi-tab window.
    The logs are viewed in a text box, making it easy
    to browse and extract status messages using copy and paste commands.
