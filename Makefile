@@ -79,7 +79,7 @@ install:
 #	install -d $(DESTDIR)$(PREFIX)/share/icons/hicolor/48x48/apps/
 #	install -d $(DESTDIR)$(PREFIX)/share/icons/hicolor/128x128/apps/
 #	install -d $(DESTDIR)$(PREFIX)/share/icons/hicolor/256x256/apps/
-#	install -d $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/
+	install -d $(DESTDIR)$(PREFIX)/share/icons/hicolor/scalable/apps/
 	install -d $(DESTDIR)$(PREFIX)/share/$(CODETREENAME)/
 	install -d $(DESTDIR)$(PREFIX)/share/$(CODETREENAME)/src/
 #	install -d $(DESTDIR)$(PREFIX)/share/$(CODETREENAME)/icons/
