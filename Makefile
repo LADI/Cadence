@@ -126,7 +126,8 @@ install:
 
 	# Adjust PREFIX value in script files
 	sed -i "s?X-PREFIX-X?$(PREFIX)?" \
-		$(DESTDIR)$(PREFIX)/bin/ladi-claudia
+		$(DESTDIR)$(PREFIX)/bin/ladi-claudia \
+		$(DESTDIR)$(PREFIX)/bin/ladi-jack2settings
 #		$(DESTDIR)$(PREFIX)/bin/claudia-launcher
 
 # -----------------------------------------------------------------------------------------------------------------------------------------
