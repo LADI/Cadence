@@ -22,7 +22,8 @@ This codebase provides two components that used to be part of Cadence suite:
 
 Tarballs:
 
-Latest released tarball is for version 2.5.1 and can be found, along with NEWS.adoc at:
+Latest released tarball is for version 2.5.1 and can be found,
+along with https://dl.ladish.org/ladi-claudia/NEWS.txt[NEWS file] at:
 
  * https://dl.ladish.org/ladi-claudia/
 
