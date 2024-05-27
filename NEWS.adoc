@@ -1,4 +1,4 @@
-== ladi-claudia-2.5.1: May DD, 55 (2024) UNRELEAED
+== ladi-claudia-2.5.1: May 27, 55 (2024)
 
  * Remove all apps except claudia, the LADISH frontend and the jacksettings.
    While claudia-launcher is awaiting its reincarnation in LADI,
