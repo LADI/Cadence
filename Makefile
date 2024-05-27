@@ -88,6 +88,7 @@ install:
 	# Install script files and binaries
 	install -m 755 \
 		data/ladi-claudia \
+		data/ladi-jack2settings \
 		$(DESTDIR)$(PREFIX)/bin/
 
 	# Install desktop files
