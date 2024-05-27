@@ -20,6 +20,19 @@ This codebase provides two components that used to be part of Cadence suite:
    It can configure JACK's driver and engine parameters,
    and is used along with LADISH to configure jack settings of studios.
 
+Tarballs:
+
+Latest released tarball is for version 2.5.1 and can be found, along with NEWS.adoc at:
+
+ * https://dl.ladish.org/ladi-claudia/
+
+GIT repositories:
+
+ * https://gitea.ladish.org/LADI/claudia[Upstream development GIT repository] +
+   Self-hosted upstream
+ * https://codeberg.org/LADI/claudia[Primary backup GIT repository at codeberg.org] +
+   Cloud hosted
+
 Another fork, by Houston4444, provides the other apps for LADISH setups:
 
  * Caleson - a fork of Cadence, "The main app".
