@@ -2767,7 +2767,7 @@ if __name__ == '__main__':
     app.setApplicationName("ladi-claudia")
     app.setApplicationVersion(VERSION)
     app.setOrganizationName("LADI")
-    app.setWindowIcon(QIcon(":/scalable/claudia.svg"))
+    app.setWindowIcon(QIcon(":/scalable/ladi-claudia.svg"))
     setup_i18n()
 
     if not haveDBus:
