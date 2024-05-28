@@ -117,7 +117,7 @@ install:
 	install -m 644 src/*.py $(DESTDIR)$(PREFIX)/share/$(CODETREENAME)/src/
 
 	# compile python files
-	python3 -m compileall $(DESTDIR)$(PREFIX)/share/$(CODETREENAME)/src/
+	python3 -m compileall -s "$(DESTDIR)" $(DESTDIR)$(PREFIX)/share/$(CODETREENAME)/src/
 
 	# Install addtional stuff for Claudia
 #	cp -r data/icons/*     $(DESTDIR)$(PREFIX)/share/$(CODETREENAME)/icons/
