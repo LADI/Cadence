@@ -118,7 +118,7 @@ def sys_excepthook(typ, value, tback):
 sys.excepthook = sys_excepthook
 
 # Set (LADI) Version
-VERSION = "2.5.1"
+VERSION = "2.5.2"
 
 # Global variables
 global gGui

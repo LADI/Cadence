@@ -5,7 +5,7 @@
 # This and related files were modified (post 2023) by Nedko Arnaudov (LADI)
 
 CODETREENAME="ladi-claudia"
-VERSION="2.5.1"
+VERSION="2.5.2"
 
 PREFIX  = /usr/local
 DESTDIR =
